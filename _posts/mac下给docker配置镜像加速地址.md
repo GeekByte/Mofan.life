@@ -48,7 +48,7 @@ date: 2021-02-23 17:29:52
 	 Registry Mirrors:
 	  https://7bezldxe.mirror.aliyuncs.com/
 	```
-
+<br>
 ### 其他国内镜像加速地址
 
 ```text
