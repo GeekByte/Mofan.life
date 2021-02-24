@@ -1,5 +1,5 @@
 ---
-title: 'Go-log包下的Print-Fatal-Panic接口'
+title: 'Go log包下的Print、Fatal、Panic接口'
 categories:
   - Go
 tags:
