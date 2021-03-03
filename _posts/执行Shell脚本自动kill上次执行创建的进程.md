@@ -10,7 +10,7 @@ date: 2021-03-03 22:38:24
 
 当项目启动需要指定很多参数时，每次启动都需要写很长的指令，于是考虑将启动指令写成脚本形式，于是产生了一个问题，第一次启动项目使用脚本可以正常启动，但是第二次就会报网络地址或者端口占用的错误，所以，需要每次执行脚本的时候，kill 掉上次的进程，然后启动。于是就有了下面的脚本：
 
-```shell
+```bash
 #/bin/bash
 PROCESS=`ps -ef|grep './go-admin server'|grep -v grep|grep -v PPID|awk '{ print $2}'`
 for i in $PROCESS
