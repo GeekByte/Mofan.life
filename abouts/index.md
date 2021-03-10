@@ -4,15 +4,9 @@ date: 2021-02-21 07:46:36
 layout: about
 ---
 
-# 崔有朋
-
 > 没错，我就是崔有朋！
 >
 > 当你发现我的时候，那么恭喜你！🎉🎉🎉
-
-
-
-<iframe align="center" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1811921555&auto=1&height=66"></iframe>
 
 我的大学时光，马上就要结束了，现在的我，面临着春招，有些惶恐，也有些期待。
 
@@ -43,3 +37,6 @@ layout: about
 在准备期间，我也写ACM实验室规定的50道题，刚开始写，很多题还是写不出来，很费脑。
 
 后来，就是一入编程深似海了，直到今天，我还依然热爱编程。
+
+<iframe align="middle" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1811921555&auto=1&height=66"></iframe>
+
