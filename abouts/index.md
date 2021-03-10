@@ -38,5 +38,5 @@ layout: about
 
 后来，就是一入编程深似海了，直到今天，我还依然热爱编程。
 
-<iframe align="middle" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1811921555&auto=1&height=66"></iframe>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1811921555&auto=1&height=66"></iframe>
 
