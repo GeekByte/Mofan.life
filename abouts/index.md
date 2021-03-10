@@ -12,6 +12,8 @@ layout: about
 
 
 
+<iframe align="center" frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1811921555&auto=1&height=66"></iframe>
+
 我的大学时光，马上就要结束了，现在的我，面临着春招，有些惶恐，也有些期待。
 
 在大学的时候，我在ACM实验室的日子以及后来实习的日子，都是那么的充满惊喜，那个时候的我，博客产出也比较多，当然大多数文章都是自己的踩坑记录，并没有太多实质性的、有深度的东西。
