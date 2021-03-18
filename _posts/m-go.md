@@ -607,3 +607,9 @@ gc 仅仅搜集那些未被标记为可达（reachable）的对象。如果 gc �
  ### Go 可以限制运行时操作系统线程的数量吗？
 
 GOMAXPROCS变量限制
+
+
+
+## Go的地图
+
+[(2条消息) golang go语言_在Go中了解地图_cukw6666的博客-CSDN博客](https://blog.csdn.net/cukw6666/article/details/107982955)
