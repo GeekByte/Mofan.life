@@ -11,6 +11,10 @@ date: 2021-03-18 16:38:00
 
 > 文章来自：http://www.devcheng.net/post/3ffff771.html
 
+
+
+待完善内容：[Redis面试题总结 - 简书](https://www.jianshu.com/p/65765dd10671)
+
 ## Redis是什么
 
 Redis是一个开源的，使用ANSI C语言编写，遵循BSD协议，支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言API的非关系型数据库。
