@@ -33,6 +33,16 @@ HTTP协议是负责传输数据的协议，它是一种无状态的协议，HTTP
 
 客户端➡️服务器：标志位：ACK=1 确认位：ack=y+1 序号位：seq=x+1
 
+> 这个三次握手四次挥手的基础解释以及图片
+>
+> ![v2-8720bd64871a5452df583fdab8207d64_720w](https://www.cmdbyte.com/2021/02/v2-8720bd64871a5452df583fdab8207d64_720w.jpg)
+>
+>  
+>
+> ![v2-2f38fb35dff4a5cc9f5352b9c7533222_720w](https://www.cmdbyte.com/2021/02/v2-2f38fb35dff4a5cc9f5352b9c7533222_720w.png)
+
+
+
 ## HTTP2.0了解吗？和HTTP1.1的差距
 
 HTTP2.0可以说是SPDY的升级版，性能很高
@@ -55,6 +65,10 @@ HTTP2.0相比HTTP1.1的新特性有：
 主机代表着高层，网络代表低层。
 
 ![七层网络模型](https://www.cmdbyte.com/2021/02/%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B.png)
+
+> 七层网络模型
+>
+> ![v2-2af488004591cbc12cd82c44518523de_720w](https://www.cmdbyte.com/2021/02/v2-2af488004591cbc12cd82c44518523de_720w.jpg)
 
 ## TCP保证可靠性
 
@@ -102,6 +116,42 @@ HTTP2.0相比HTTP1.1的新特性有：
 
 
 ## HTTPS最耗时的环节
+
+
+
+## 讲一下你了解的端口及对应的服务
+
+![v2-e584c505e895441d7b52c8f3c02c9770_720w](https://www.cmdbyte.com/2021/02/v2-e584c505e895441d7b52c8f3c02c9770_720w.png)
+
+具体一点可以参考：[常用端口号与对应的服务以及端口关闭_typiloong_新浪博客](http://blog.sina.com.cn/s/blog_66ea0e2801011vb3.html)
+
+
+
+## 简单解释一下ARP协议的工作原理
+
+
+
+![v2-6c73a236adcb7704e5e75162465c3aec_720w](https://www.cmdbyte.com/2021/02/v2-6c73a236adcb7704e5e75162465c3aec_720w.png)
+
+
+
+## 在浏览器中输入链接发生了什么
+
+- 查找域名对应的IP地址。这一步会依次查找浏览器缓存，系统缓存，路由器缓存，ISPNDS缓存，根域名服务器
+- 浏览器向IP对应的web服务器发送一个HTTP请求
+- 服务器响应请求，发回网页内容
+- 浏览器解析网页内容
+
+
+更加详细的一种说法（以百度为例）（来自[计算机网络之面试常考 - 牛客网](https://link.zhihu.com/?target=https%3A//www.nowcoder.com/discuss/1937)）
+
+![v2-99bc5fa53acca200f564b0bd69d1bb41_720w](https://www.cmdbyte.com/2021/02/v2-99bc5fa53acca200f564b0bd69d1bb41_720w.png)
+
+## IP地址分为哪几类
+
+![v2-7438cb1ba454ffe278f5c2310e69f3aa_720w](https://www.cmdbyte.com/2021/02/v2-7438cb1ba454ffe278f5c2310e69f3aa_720w.png)
+
+IPv6：采用128bit，首部宽度部分为40字节
 
 
 
