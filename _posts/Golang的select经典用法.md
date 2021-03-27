@@ -12,7 +12,7 @@ date: 2021-03-27 17:13:37
 示例：
 
 ```go
-    ch1 := make(chan int, 1)
+ch1 := make(chan int, 1)
 	ch2 := make(chan int, 1)
 
 	select {
@@ -57,7 +57,7 @@ date: 2021-03-27 17:13:37
 配合 `default` 语句，可以判断带缓存的 `channel` 是否满了
 
 ```go
-    ch := make(chan int, 1)
+ch := make(chan int, 1)
 	ch <- 1
 
 	select {
