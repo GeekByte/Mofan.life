@@ -149,6 +149,6 @@ func (b *Buffer) ReadFrom(r io.Reader) (n int64, err error) {
 > 调用者在考虑错误之前应当首先处理返回的数据。这样做可以正确地处理在读取一些字节后产生的 I/O 错误，同时允许EOF的出现。
 
 **结论：**
-  ReadFile(filename string)方法之所以速度快的原因就是先计算出file文件的size，在初始化对应size大小的buff，传入ReadRead(p []byte) 来读取字节流。
+ReadFile(filename string)方法之所以速度快的原因就是先计算出file文件的size，在初始化对应size大小的buff，传入ReadRead(p []byte) 来读取字节流。
 
 
