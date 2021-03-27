@@ -27,7 +27,12 @@ date: 2021-03-27 14:32:23
 
 
 
-设计方案：
+待整理：
+
+
 
 [请教如何使用 gorilla/sessions 实现多点登陆 - V2EX](https://www.v2ex.com/t/571680)
 
+[彻底弄懂session，cookie，token - SegmentFault 思否](https://segmentfault.com/a/1190000017831088)
+
+[(6条消息) Go基础学习记录之如何在Golang中使用Session_weixin_34128534的博客-CSDN博客](https://blog.csdn.net/weixin_34128534/article/details/88728330)

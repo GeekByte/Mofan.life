@@ -52,3 +52,8 @@ os.RemoveAll("abc")
 os.Rename("a.txt", "b.txt")
 ```
 
+
+
+待整理：
+
+[golang中os包用法 - Go语言中文网 - Golang中文社区](https://studygolang.com/articles/5024)
