@@ -2,11 +2,8 @@
 title: 配置Sphinx并支持Markdown及表格
 categories:
   - 工具
-  - 文档管理
   - Sphinx
 tags:
-  - 工具
-  - 文档管理
   - Sphinx
   - Markdown
 date: 2021-04-08 18:48:14
