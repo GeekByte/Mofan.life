@@ -1,8 +1,8 @@
 ---
-title: Linux安装Postgresql
+title: Linux安装PostgreSQL
 categories:
-  - Linux
-  - 实践问题
+  - 数据库
+  - PostgreSQL
 tags:
   - Linux
   - PostgreSQL

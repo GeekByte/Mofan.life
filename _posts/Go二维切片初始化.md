@@ -1,8 +1,9 @@
 ---
 title: Go二维切片初始化
 categories:
+  - 编程语言
   - Go
-  - 基础知识
+  - 数组
 tags:
   - Go
 date: 2021-03-11 22:58:55
