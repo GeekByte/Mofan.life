@@ -332,3 +332,8 @@ Indices and tables
 这个时候，既可以回到有`make.bat`的文件，运行`make html`生成`html`页面了，然后刷新浏览器就可以看到变化。
 
 如果你发现运行`make html`后生成的页面还有你在`source`里删除的文件信息，那么，运行`make clean` 后，再运行`make install`即可。
+
+
+
+如果想更多的了解`reStructuredText` 语法的话，可以参考[reStructuredText 简介 — Sphinx 使用手册](https://zh-sphinx-doc.readthedocs.io/en/latest/rest.html)作为一个简单的入门。
+
