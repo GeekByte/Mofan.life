@@ -1,9 +1,11 @@
 ---
-title: postgresql的使用
+title: PostgreSQL的使用
 categories:
-  - postgresql
+  - 数据库
+  - PostgreSQL
 tags:
-  - postgresql
+  - 数据库
+  - PostgreSQL
 date: 2021-03-31 22:13:49
 ---
 
@@ -22,3 +24,4 @@ date: 2021-03-31 22:13:49
 这个可有可无。
 
 [(5条消息) PostgreSQL pg_dump&pg_restore 数据的导出和导入_luojinbai的专栏-CSDN博客](https://blog.csdn.net/luojinbai/article/details/43407947)
+
