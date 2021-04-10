@@ -1,6 +1,7 @@
 ---
 title: git restore命令
 categories:
+  - 工具
   - Git
 tags:
   - Git

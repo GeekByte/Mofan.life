@@ -1,10 +1,10 @@
 ---
 title: Vagrant是什么？为什么使用Vagrant
 categories:
-  - 开发工具
+  - 工具
   - Vagrant
 tags:
-  - 开发工具
+  - Vagrant
 date: 2021-03-04 10:11:34
 ---
 
