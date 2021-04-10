@@ -1,5 +1,5 @@
 ---
-title: postgresql开启远程访问
+title: PostgreSQL开启远程访问
 categories:
   - postgresql
 tags:
