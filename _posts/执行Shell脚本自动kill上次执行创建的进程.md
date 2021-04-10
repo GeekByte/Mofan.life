@@ -1,10 +1,11 @@
 ---
 title: 执行Shell脚本自动kill上次执行创建的进程
 categories:
+  - Linux
   - Shell
 tags:
-  - Shell
   - Linux
+  - Shell
 date: 2021-03-03 22:38:24
 ---
 

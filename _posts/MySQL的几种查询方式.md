@@ -1,8 +1,10 @@
 ---
 title: MySQL的几种查询方式
 categories:
+  - 数据库
   - MySQL
 tags:
+  - 数据库
   - MySQL
 date: 2021-03-04 21:50:12
 ---

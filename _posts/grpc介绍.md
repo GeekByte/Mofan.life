@@ -1,9 +1,11 @@
 ---
-title: grpc介绍
+title: gRPC介绍
 categories:
-  - grace
+  - RPC
+  - gRPC
 tags:
-  - grace
+  - RPC
+  - gRPc
 date: 2021-03-31 22:22:42
 ---
 

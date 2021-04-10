@@ -1,9 +1,11 @@
 ---
-title: grpc安装
+title: gRPC安装
 categories:
-  - grace
+  - RPC
+  - gRPC
 tags:
-  - grace
+  - RPC
+  - gRPC
 date: 2021-03-31 21:57:14
 ---
 
