@@ -12,7 +12,7 @@ date: 2021-03-30 10:51:22
 
 ### 安装ssh
 
-```shell
+```bash
 # Ubuntu
 sudo apt install openssh-server
 
@@ -48,7 +48,7 @@ sudo vim /etc/ssh/sshd_config
 
 iptables防火墙好像没有默认开放22端口。开放端口命令：
 
-```shell
+```bash
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT
 ```
