@@ -1,9 +1,9 @@
 ---
 title: TCP的拥塞控制
 categories:
-  - 计算机网络
+  - 网络
 tags:
-  - 计算机网络
+  - TCP
 date: 2021-03-11 17:24:17
 ---
 
