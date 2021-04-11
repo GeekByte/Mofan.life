@@ -35,7 +35,7 @@ date: 2021-04-11 18:48:10
 
 先来聊聊 Dubbo，Dubbo 可以说是国内开源最早的 RPC 框架了，目前只支持 Java 语言，它的架构可以用下面这张图展示。
 
-![img](https:////upload-images.jianshu.io/upload_images/6943526-26ce9cf956cb8e5c?imageMogr2/auto-orient/strip|imageView2/2/w/500/format/webp)
+![Dubbo_架构](https://www.cmdbyte.com/2021/02/Dubbo_%E6%9E%B6%E6%9E%84.webp)
 
 从图中你能看到，Dubbo 的架构主要包含四个角色，其中 Consumer 是服务消费者，Provider 是服务提供者，Registry 是注册中心，Monitor 是监控系统。
 
@@ -45,7 +45,7 @@ date: 2021-04-11 18:48:10
 
 Motan 是国内另外一个比较有名的开源的 RPC 框架，同样也只支持 Java 语言实现，它的架构可以用下面这张图描述。
 
-![img](https:////upload-images.jianshu.io/upload_images/6943526-b6eccb60e5bd8083?imageMogr2/auto-orient/strip|imageView2/2/w/482/format/webp)
+![Motan_架构](https://www.cmdbyte.com/2021/02/Motan_%E6%9E%B6%E6%9E%84.webp)
 
 Motan 与 Dubbo 的架构类似，都需要在 Client 端（服务消费者）和 Server 端（服务提供者）引入 SDK，其中 Motan 框架主要包含下面几个功能模块。
 
@@ -59,7 +59,7 @@ Motan 与 Dubbo 的架构类似，都需要在 Client 端（服务消费者）�
 
 Tars 是腾讯根据内部多年使用微服务架构的实践，总结而成的开源项目，仅支持 C++ 语言，它的架构图如下。
 
-![img](https:////upload-images.jianshu.io/upload_images/6943526-26c34af8c9dec8db?imageMogr2/auto-orient/strip|imageView2/2/w/602/format/webp)
+![Tars_架构](https://www.cmdbyte.com/2021/02/Tars_%E6%9E%B6%E6%9E%84.webp)
 
 Tars 的架构交互主要包括以下几个流程：
 
@@ -75,7 +75,7 @@ Spring Cloud 利用 Spring Boot 特性整合了开源行业中优秀的组件，
 
 只支持 Java 语言平台，它的架构图可以用下面这张图来描述。
 
-![img](https:////upload-images.jianshu.io/upload_images/6943526-dc975e8beb524b8f?imageMogr2/auto-orient/strip|imageView2/2/w/1080/format/webp)
+![Spring_Cloud_架构](https://www.cmdbyte.com/2021/02/Spring_Cloud_%E6%9E%B6%E6%9E%84.webp)
 
 由此可见，Spring Cloud 微服务架构是由多个组件一起组成的，各个组件的交互流程如下。
 
@@ -88,7 +88,7 @@ Spring Cloud 利用 Spring Boot 特性整合了开源行业中优秀的组件，
 
 先来看下 gRPC，它的原理是通过 IDL（Interface Definition Language）文件定义服务接口的参数和返回值类型，然后通过代码生成程序生成服务端和客户端的具体实现代码，这样在 gRPC 里，客户端应用可以像调用本地对象一样调用另一台服务器上对应的方法。
 
-![img](https:////upload-images.jianshu.io/upload_images/6943526-57bbc3d5e5e2c20c?imageMogr2/auto-orient/strip|imageView2/2/w/499/format/webp)
+<img src="https://www.cmdbyte.com/2021/02/grpc%E4%BB%8B%E7%BB%8D.png" alt="grpc介绍" style="zoom:50%;" />
 
 它的主要特性包括三个方面。
 
@@ -100,7 +100,7 @@ Spring Cloud 利用 Spring Boot 特性整合了开源行业中优秀的组件，
 
 再来看下 Thrift，Thrift 是一种轻量级的跨语言 RPC 通信方案，支持多达 25 种编程语言。为了支持多种语言，跟 gRPC 一样，Thrift 也有一套自己的接口定义语言 IDL，可以通过代码生成器，生成各种编程语言的 Client 端和 Server 端的 SDK 代码，这样就保证了不同语言之间可以相互通信。它的架构图可以用下图来描述。
 
-![img](https:////upload-images.jianshu.io/upload_images/6943526-aa4c1fb997095f9b?imageMogr2/auto-orient/strip|imageView2/2/w/817/format/webp)
+![Thrift_架构](https://www.cmdbyte.com/2021/02/Thrift_%E6%9E%B6%E6%9E%84.webp)
 
 从这张图上可以看出 Thrift RPC 框架的特性。
 
