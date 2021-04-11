@@ -11,7 +11,7 @@ date: 2021-04-11 10:22:49
 
 从Cent OS 7.0开始，Cent OS 默认使用`firewall`作为其防火墙。若使用`iptable`，需要关闭`firewall`。
 
-```shell
+```bash
 # 1、直接关闭firewalld防火墙
 systemctl stop firewalld.service        #停止firewall
 systemctl disable firewalld.service     #禁止firewall开机启动
@@ -33,7 +33,7 @@ systemctl enable iptables.service     #设置防火墙开机启动
 
 ## iptables 配置
 
-```sh
+```bash
 # 查看iptables配置
 iptables -L -n
 
@@ -73,7 +73,7 @@ service iptables restart
 
 ## 用法实例
 
-```sh
+```bash
 #允许所有入栈规则
 iptables -P INPUT ACCEPT
 
@@ -96,4 +96,3 @@ iptables -D INPUT 5
 # 确认是否已经删除，可以重新查看列表
 iptables -L -n --line-number
 ```
-

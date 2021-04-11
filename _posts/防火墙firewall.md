@@ -14,7 +14,7 @@ date: 2021-04-11 10:28:16
 
 ## firewall 常用命令
 
-```sh
+```bash
 firewall-cmd --state                           # 查看防火墙状态，是否是running
 firewall-cmd --reload                          # 重新载入配置，比如添加规则之后，需要执行此命令
 firewall-cmd --get-zones                       # 列出支持的zone
@@ -30,7 +30,7 @@ man firewall-cmd                               # 查看帮助
 
 ## 用法实例
 
-```sh
+```bash
 # 开启80端口
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 # 参数解析：
@@ -56,8 +56,3 @@ systemctl status firewalld.service
 # 查看防火墙规则
 iptables -L -n
 ```
-
-
-
-
-
