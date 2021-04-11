@@ -1,38 +1,91 @@
 ---
-title: Session、Cookie、Token是什么
+title: 理解Session、Cookie、Token
 categories:
-  - 技术
+  - 网络
+  - 基础知识
 tags:
   - 网络
+  - Cookie
+  - Session
+  - Token
 date: 2021-03-27 14:32:23
 ---
 
-**不要混淆 session 和 session 实现。**
+### 背景
 
-本来 session 是一个抽象概念，开发者为了实现中断和继续等操作，将 user agent 和 server 之间一对一的交互，抽象为“会话”，进而衍生出“会话状态”，也就是 session 的概念。
+首先要知道，**`HTTP`是一个无状态协议**。
 
- 而 cookie 是一个实际存在的东西，http 协议中定义在 header 中的字段。可以认为是 session 的一种后端无状态实现。
+什么是无状态呢？就是客户端发送的每一次请求对于服务器而言都是新的请求，也是是这次的请求和上一次的请求没有任何关系，它甚至不能确定这次的请求是不是来自同一个客户端发送的。
 
-而我们今天常说的 “session”，是为了绕开 cookie 的各种限制，通常借助 cookie 本身和后端存储实现的，一种更高级的会话状态实现。
+这种无状态的的好处是快速。坏处是假如我们想要把`www.zhihu.com/login.html`和`www.zhihu.com/index.html`关联起来，必须使用某些手段和工具。
 
-所以 cookie 和 session，你可以认为是同一层次的概念，也可以认为是不同层次的概念。具体到实现，session 因为 session id 的存在，通常要借助 cookie 实现，但这并非必要，只能说是通用性较好的一种实现方案。
+### Cookie和Session
+
+由于`http`的无状态性，所以客户端发送不同请求时，都需要带上用户名和密码这些数据，服务器需要对每个请求做一次身份认证，这无疑增加了服务器的性能开销，为了避免这种无意义的浪费，`session`和``Cookie``出现了。
+
+客户端访问服务器的流程如下
+
+- 首先，客户端会发送一个`http`请求到服务器端。
+- 服务器端接受客户端请求后，建立一个`session`，并发送一个`http`响应到客户端，这个响应头，其中就包含Set-Cookie头部。该头部包含了`sessionId`。`Set-Cookie格式如下，具体请看`[Cookie详解](http://bubkoo.com/2014/04/21/http-cookies-explained/)
+	`Set-Cookie: value[; expires=date][; domain=domain][; path=path][; secure]`
+- 在客户端以后发起的每次请求，浏览器会自动在请求头中添加``Cookie``
+- 服务器接收请求，分解`Cookie`，验证信息，核对成功后返回`response`给客户端
+
+![cookie-sesssion](https://www.cmdbyte.com/2021/02/cookie-sesssion.png)
+
+#### 注意
+
+- `Cookie`只是实现`Session`的其中一种方案。虽然是最常用的，但并不是唯一的方法。禁用`Cookie`后还有其他方法存储，比如放在url中
+- 现在大多都是`Session + Cookie`，但是只用`Session`不用`Cookie`，或是只用`Cookie`，不用session在理论上都可以保持会话状态。可是实际中因为多种原因，一般不会单独使用
+- 用session只需要在客户端保存一个id，实际上大量数据都是保存在服务端。如果全部用`Cookie`，数据量大的时候客户端是没有那么多空间的。
+- 如果只用`Cookie` 不用session，那么账户信息全部保存在客户端，一旦被劫持，全部信息都会泄露。并且客户端数据量变大，网络传输的数据量也会变大。
 
 
 
-1，session 在服务器端，cookie 在客户端（浏览器）
- 2，session 默认被存在在服务器的一个文件里（不是内存）
- 3，session 的运行依赖 session id，而 session id 是存在 cookie 中的，也就是说，如果浏览器禁用了 cookie ，同时 session 也会失效（但是可以通过其它方式实现，比如在 url 中传递 session_id）
- 4，session 可以放在 文件、数据库、或内存中都可以。
- 5，用户验证这种场合一般会用 session
+**总之，Cookie类似于你的身份证，它是一个物体，充当的是媒介，而Session就是上面的信息，充当的是认证。**
 
+### Token
 
+`Token` 也称作令牌，由`uid+time+sign[+固定参数]`组成
+`Token` 的认证方式类似于**临时的证书签名**, 并且是一种服务端无状态的认证方式, 非常适合于 `Restful API `的场景. 所谓无状态就是服务端并不会保存身份认证相关的数据。
 
-待整理：
+#### 组成
 
+- uid: 用户唯一身份标识
+- time: 当前时间的时间戳
+- sign: 签名, 使用 hash/encrypt 压缩成定长的十六进制字符串，以防止第三方恶意拼接
+- 固定参数(可选): 将一些常用的固定参数加入到 token 中是为了避免重复查库
 
+#### 存放
 
-[请教如何使用 gorilla/sessions 实现多点登陆 - V2EX](https://www.v2ex.com/t/571680)
+`Token`在客户端一般存放于`localStorage`，`Cookie`，或`sessionStorage`中。在服务器一般存于数据库中。
 
-[彻底弄懂session，cookie，token - SegmentFault 思否](https://segmentfault.com/a/1190000017831088)
+#### Token认证流程
 
-[(6条消息) Go基础学习记录之如何在Golang中使用Session_weixin_34128534的博客-CSDN博客](https://blog.csdn.net/weixin_34128534/article/details/88728330)
+`Token` 的认证流程与`Session`很相似
+
+- 用户登录，成功后服务器返回`Token`给客户端。
+- 客户端收到数据后保存在客户端
+- 客户端再次访问服务器，将`Token`放入`headers`中
+- 服务器端采用过滤器校验。校验成功则返回请求数据，校验失败则返回错误码
+
+### Token可以抵抗csrf，cookie+session不行
+
+假如用户正在登陆银行网页，同时登陆了攻击者的网页，并且银行网页未对csrf攻击进行防护。攻击者就可以在网页放一个表单，该表单提交src为`http://www.bank.com/api/transfer`，body为`count=1000&to=Tom`。倘若是`Session+Cookie`，用户打开网页的时候就已经转给Tom1000元了.因为form 发起的 `POST` 请求并不受到浏览器同源策略的限制，因此可以任意地使用其他域的 `Cookie` 向其他域发送 `POST` 请求，形成 `CSRF` 攻击。在post请求的瞬间，`Cookie` 会被浏览器自动添加到请求头中。但`Token`不同，`Token`是开发者为了防范csrf而特别设计的令牌，浏览器不会自动添加到`headers`里，攻击者也无法访问用户的`Token`，所以提交的表单无法通过服务器过滤，也就无法形成攻击。
+
+### 分布式情况下的Session和Token
+
+我们已经知道`Session`时有状态的，一般存于服务器内存或硬盘中，当服务器采用分布式或集群时，`Session`就会面对负载均衡问题。
+
+- 负载均衡多服务器的情况，不好确认当前用户是否登录，因为多服务器不共享`Session`。这个问题也可以将`Session`存在一个服务器中来解决，但是就不能完全达到负载均衡的效果。当今的几种[解决session负载均衡](http://blog.51cto.com/zhibeiwang/1965018)的方法。
+
+而`Token`是无状态的，`Token`字符串里就保存了所有的用户信息
+
+- 客户端登陆传递信息给服务端，服务端收到后把用户信息加密（token）传给客户端，客户端将token存放于localStroage等容器中。客户端每次访问都传递`Token`，服务端解密`token`，就知道这个用户是谁了。通过cpu加解密，服务端就不需要存储session占用存储空间，就很好的解决负载均衡多服务器的问题了。这个方法叫做[JWT(Json Web Token)](https://huanqiang.wang/2017/12/28/JWT 介绍/)
+
+### 总结
+
+- `Session`存储于服务器，可以理解为一个状态列表，拥有一个唯一识别符号`SessionId`，通常存放于`Cookie`中。服务器收到`Cookie`后解析出`SessionId`，再去`Session`列表中查找，才能找到相应`Session`。依赖`Cookie`
+- `Cookie`类似一个令牌，装有`SessionId`，存储在客户端，浏览器通常会自动添加。
+- `Token`也类似一个令牌，无状态，用户信息都被加密到`Token`中，服务器收到`Token`后解密就可知道是哪个用户。需要开发者手动添加。
+- `jwt`只是一个跨域认证的方案
