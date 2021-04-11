@@ -21,22 +21,21 @@ date: 2021-03-27 14:32:23
 
 ### Cookie和Session
 
-由于`http`的无状态性，所以客户端发送不同请求时，都需要带上用户名和密码这些数据，服务器需要对每个请求做一次身份认证，这无疑增加了服务器的性能开销，为了避免这种无意义的浪费，`session`和``Cookie``出现了。
+由于`http`的无状态性，所以客户端发送不同请求时，都需要带上用户名和密码这些数据，服务器需要对每个请求做一次身份认证，这无疑增加了服务器的性能开销，为了避免这种无意义的浪费，`Session`和``Cookie``出现了。
 
 客户端访问服务器的流程如下
 
 - 首先，客户端会发送一个`http`请求到服务器端。
-- 服务器端接受客户端请求后，建立一个`session`，并发送一个`http`响应到客户端，这个响应头，其中就包含Set-Cookie头部。该头部包含了`sessionId`。`Set-Cookie格式如下，具体请看`[Cookie详解](http://bubkoo.com/2014/04/21/http-cookies-explained/)
-	`Set-Cookie: value[; expires=date][; domain=domain][; path=path][; secure]`
-- 在客户端以后发起的每次请求，浏览器会自动在请求头中添加``Cookie``
-- 服务器接收请求，分解`Cookie`，验证信息，核对成功后返回`response`给客户端
+- 服务器端接受客户端请求后，建立一个`session`，并发送一个`http`响应到客户端，这个响应头，其中就包含Set-Cookie头部。该头部包含了`sessionId`。
+- 在客户端以后发起的每次请求，浏览器会自动在请求头中添加``Cookie``。
+- 服务器接收请求，分解`Cookie`，验证信息，核对成功后返回`response`给客户端。
 
 ![cookie-sesssion](https://www.cmdbyte.com/2021/02/cookie-sesssion.png)
 
 #### 注意
 
-- `Cookie`只是实现`Session`的其中一种方案。虽然是最常用的，但并不是唯一的方法。禁用`Cookie`后还有其他方法存储，比如放在url中
-- 现在大多都是`Session + Cookie`，但是只用`Session`不用`Cookie`，或是只用`Cookie`，不用session在理论上都可以保持会话状态。可是实际中因为多种原因，一般不会单独使用
+- `Cookie`只是实现`Session`的其中一种方案。虽然是最常用的，但并不是唯一的方法。禁用`Cookie`后还有其他方法存储，比如放在`url`中。
+- 现在大多都是`Session + Cookie`，但是只用`Session`不用`Cookie`，或是只用`Cookie`，不用session在理论上都可以保持会话状态。可是实际中因为多种原因，一般不会单独使用。
 - 用session只需要在客户端保存一个id，实际上大量数据都是保存在服务端。如果全部用`Cookie`，数据量大的时候客户端是没有那么多空间的。
 - 如果只用`Cookie` 不用session，那么账户信息全部保存在客户端，一旦被劫持，全部信息都会泄露。并且客户端数据量变大，网络传输的数据量也会变大。
 
@@ -46,7 +45,7 @@ date: 2021-03-27 14:32:23
 
 ### Token
 
-`Token` 也称作令牌，由`uid+time+sign[+固定参数]`组成
+`Token` 也称作令牌，由`uid+time+sign[+固定参数]`组成。
 `Token` 的认证方式类似于**临时的证书签名**, 并且是一种服务端无状态的认证方式, 非常适合于 `Restful API `的场景. 所谓无状态就是服务端并不会保存身份认证相关的数据。
 
 #### 组成
@@ -81,11 +80,11 @@ date: 2021-03-27 14:32:23
 
 而`Token`是无状态的，`Token`字符串里就保存了所有的用户信息
 
-- 客户端登陆传递信息给服务端，服务端收到后把用户信息加密（token）传给客户端，客户端将token存放于localStroage等容器中。客户端每次访问都传递`Token`，服务端解密`token`，就知道这个用户是谁了。通过cpu加解密，服务端就不需要存储session占用存储空间，就很好的解决负载均衡多服务器的问题了。这个方法叫做[JWT(Json Web Token)](https://huanqiang.wang/2017/12/28/JWT 介绍/)
+- 客户端登陆传递信息给服务端，服务端收到后把用户信息加密（token）传给客户端，客户端将token存放于localStroage等容器中。客户端每次访问都传递`Token`，服务端解密`token`，就知道这个用户是谁了。通过cpu加解密，服务端就不需要存储session占用存储空间，就很好的解决负载均衡多服务器的问题了。这个方法叫做`JWT`。
 
 ### 总结
 
-- `Session`存储于服务器，可以理解为一个状态列表，拥有一个唯一识别符号`SessionId`，通常存放于`Cookie`中。服务器收到`Cookie`后解析出`SessionId`，再去`Session`列表中查找，才能找到相应`Session`。依赖`Cookie`
+- `Session`存储于服务器，可以理解为一个状态列表，拥有一个唯一识别符号`SessionId`，通常存放于`Cookie`中。服务器收到`Cookie`后解析出`SessionId`，再去`Session`列表中查找，才能找到相应`Session`。
 - `Cookie`类似一个令牌，装有`SessionId`，存储在客户端，浏览器通常会自动添加。
 - `Token`也类似一个令牌，无状态，用户信息都被加密到`Token`中，服务器收到`Token`后解密就可知道是哪个用户。需要开发者手动添加。
-- `jwt`只是一个跨域认证的方案
+- `JWT`只是一个跨域认证的方案。
