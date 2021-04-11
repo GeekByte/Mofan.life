@@ -7,6 +7,7 @@ categories:
 tags:
   - 数据库
   - PostgreSQL
+  - 实践问题
 date: 2021-03-31 22:27:18
 ---
 
@@ -18,21 +19,13 @@ date: 2021-03-31 22:27:18
 
 `Linux`: 默认在`/etc/postgresql/<版本号>/main` 下面。
 
+#### 操作
 
-
-这个配置方法默认只允许某个主机或者某个范围的主机访问。
-
-
-
-1.修改`pg_hba.conf`文件
+1.修改`pg_hba.conf`文件，在原先的`host all all` 下面添加内容：
 
 ```txt
-... 
-host all all 127.0.0.1/32  trust 
-host all all 192.168.1.0/24 md5
+host all all 0.0.0.0 0.0.0.0 md5
 ```
-
-这里是让`192.168.1.0`到`192.168.1.255`的主机访问。（这个方法我也不满意， 后续看着改）
 
 2.修改`postgresql.conf` 文件
 
@@ -44,15 +37,11 @@ host all all 192.168.1.0/24 md5
 listen_addresses='*'
 ```
 
-重启服务器。
+重启数据库`service postgres restart`
 
-查看下监听的IP：
+这样实现了远程访问，如果服务器在局域网中，那么还需要做一下内网穿透工作，推荐使用花生壳工具，当然你也可以在`GitHub`上搜索相关的开源技术，这里我比较推荐这两个:
 
-```sehll
-dog@debian:~$ sudo netstat -plunt | grep postgres 
-tcp  0  0 :5432   0.0.0.0:*    LISTEN  787/postgres 
-tcp6  0  0 ::1:5432    :::*     LISTEN  787/postgres
-```
+* [nps](https://github.com/ehang-io/nps)
 
-在远程的情况下看到的都将是星号而不是`127.0.0.1`。
+* [goproxy](https://github.com/snail007/goproxy)
 
