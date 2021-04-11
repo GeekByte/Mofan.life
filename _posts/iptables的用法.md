@@ -1,11 +1,11 @@
 ---
 title: iptables的用法
 categories:
+  - Linux
   - 防火墙
-  - iptables
 tags:
+  - Linux
   - iptables
-  - 防火墙
 date: 2021-03-31 22:25:15
 ---
 
