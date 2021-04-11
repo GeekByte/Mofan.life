@@ -3,7 +3,6 @@ title: Go-gorilla/session的使用
 categories:
   - 开源项目
   - Go
-  - gorilla
 tags:
   - 开源项目
   - Go
