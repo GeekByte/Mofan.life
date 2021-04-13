@@ -1,6 +1,7 @@
 ---
 title: Go的字符rune
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

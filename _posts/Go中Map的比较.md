@@ -1,6 +1,7 @@
 ---
 title: Go中Map的比较
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

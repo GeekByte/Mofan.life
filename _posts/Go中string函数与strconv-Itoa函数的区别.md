@@ -1,6 +1,7 @@
 ---
 title: Go中string函数与strconv.Itoa函数的区别
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

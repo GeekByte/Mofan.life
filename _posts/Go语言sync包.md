@@ -1,5 +1,5 @@
 ---
-title: Go的sync包使用
+title: Go语言sync包
 categories:
   - 编程语言
   - Go
@@ -302,6 +302,8 @@ three
 
 - 当我们对`map`有频繁的读取和不频繁的写入时。
 - 当多个`goroutine`读取，写入和覆盖不相交的键时。具体是什么意思呢？例如，如果我们有一个分片实现，其中包含一组4个`goroutine`，每个`goroutine`负责25％的键（每个负责的键不冲突）。在这种情况下，`sync.Map`是首选。
+
+另一篇介绍`sync.Map`的文章：[Go语言sync.Map - Mofan](https://www.mofan.life/2021/03/25/Go%E8%AF%AD%E8%A8%80sync-Map/)
 
 ## sync.Pool
 

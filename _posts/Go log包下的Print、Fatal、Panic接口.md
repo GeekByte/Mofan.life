@@ -1,6 +1,7 @@
 ---
 title: 'Go log包下的Print、Fatal、Panic接口'
 categories:
+  - 编程语言
   - Go
 tags:
   - Go
