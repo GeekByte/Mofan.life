@@ -3,11 +3,9 @@ title: PostgreSQL开启远程访问
 categories:
   - 数据库
   - PostgreSQL
-  - 实践问题
 tags:
   - 数据库
   - PostgreSQL
-  - 实践问题
 date: 2021-03-31 22:27:18
 ---
 
