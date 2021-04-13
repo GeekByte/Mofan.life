@@ -1,6 +1,7 @@
 ---
 title: 为什么使用Go
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

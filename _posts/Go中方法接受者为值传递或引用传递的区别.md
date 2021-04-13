@@ -1,6 +1,7 @@
 ---
 title: Go中方法接受者为值传递或引用传递的区别
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

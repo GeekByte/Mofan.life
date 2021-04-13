@@ -1,6 +1,7 @@
 ---
 title: go mod命令
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

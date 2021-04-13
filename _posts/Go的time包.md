@@ -1,6 +1,7 @@
 ---
 title: Go的time包
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

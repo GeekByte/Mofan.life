@@ -1,6 +1,7 @@
 ---
 title: Go测试文件放置位置
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

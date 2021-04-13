@@ -1,6 +1,7 @@
 ---
 title: Go使用iota
 categories:
+  - 编程语言
   - Go
 tags:
   - Go
