@@ -1,6 +1,7 @@
 ---
 title: 'Go语言中如何比较两个map[string]interface{}是否相等'
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

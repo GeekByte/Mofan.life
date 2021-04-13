@@ -1,6 +1,7 @@
 ---
 title: Go命名规范
 categories:
+  - 编程语言
   - Go
 tags:
   - Go
