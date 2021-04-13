@@ -2,8 +2,6 @@
 title: 防火墙firewall
 categories:
   - Linux
-  - 防火墙
-  - firewall
 tags:
   - Linux
   - firewall

@@ -2,10 +2,8 @@
 title: Linux终端调用可视化程序打开文件或路径
 categories:
   - Linux
-  - 实践问题
 tags:
   - Linux
-  - 实践问题
 date: 2021-04-11 09:44:52
 ---
 

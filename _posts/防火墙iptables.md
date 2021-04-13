@@ -2,7 +2,6 @@
 title: 防火墙iptables
 categories:
   - Linux
-  - 防火墙
 tags:
   - Linux
   - iptables

@@ -2,7 +2,6 @@
 title: Linux安装Python和配置Pip
 categories:
   - Linux
-  - 实践问题
 tags:
   - Linux
   - Python
