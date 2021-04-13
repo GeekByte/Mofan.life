@@ -1,10 +1,9 @@
 ---
 title: Vim常用操作
 categories:
-  - LInux
+  - 工具
   - Vim
 tags:
-  - Linux
   - Vim
 date: 2021-04-13 08:42:29
 ---

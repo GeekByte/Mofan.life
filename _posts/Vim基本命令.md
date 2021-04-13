@@ -1,5 +1,10 @@
 ---
 title: Vim基本命令
+categories:
+  - 工具
+  - Vim
+tags:
+  - Vim
 date: 2021-03-11 22:20:20
 ---
 
