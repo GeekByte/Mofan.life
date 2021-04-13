@@ -17,7 +17,7 @@ date: 2021-04-13 09:45:43
 
 打开`redis.conf`文件后
 
-1. 找到`bind127.0.0.1`这一行，将其注释掉。
+1. 找到`bind127.0.0.1 -::1`这一行，将其注释掉。
 
 2. 找到 `protected-mode yes` 改为 `protected-mode no`
 
