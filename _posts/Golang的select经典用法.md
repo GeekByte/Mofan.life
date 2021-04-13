@@ -1,6 +1,7 @@
 ---
 title: Golang的select经典用法
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

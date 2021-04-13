@@ -1,6 +1,7 @@
 ---
 title: 'Golang interface{}转struct的两种方法'
 categories:
+  - 编程语言
   - Go
 tags:
   - Go
