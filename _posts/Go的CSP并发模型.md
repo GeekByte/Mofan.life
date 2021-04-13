@@ -1,6 +1,7 @@
 ---
 title: Go的CSP并发模型
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

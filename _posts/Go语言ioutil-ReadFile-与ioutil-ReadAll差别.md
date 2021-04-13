@@ -1,6 +1,7 @@
 ---
 title: Go语言ioutil.ReadFile 与ioutil.ReadAll差别
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

@@ -1,6 +1,7 @@
 ---
 title: Go的os包常用操作
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

@@ -1,6 +1,7 @@
 ---
 title: Go的sync包使用
 categories:
+  - 编程语言
   - Go
 tags:
   - Go
