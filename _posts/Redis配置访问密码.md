@@ -1,5 +1,5 @@
 ---
-title: Redis配置密码访问
+title: Redis配置访问密码
 categories:
   - 数据库
   - Redis
@@ -17,7 +17,7 @@ Redis配置密码访问的方式有两种。
 
 #### 通过修改配置文件配置密码
 
-`redis.conf`配置文件一般是在`redis安装包`解压后的`conf`目录里，当然你也可以放在其他位置，比如常用的`/etc/redis/redis.conf`
+`redis.conf`配置文件一般是在`redis安装包`解压后的目录，当然你也可以放在其他位置，比如常用的`/etc/redis/redis.conf`
 
 通过`Vim`打开这个文件，使用`Vim`的查找命令`/`找到`requirepass`，将它取消注释，然后删除后面的`footbared`，改成你的密码。
 
