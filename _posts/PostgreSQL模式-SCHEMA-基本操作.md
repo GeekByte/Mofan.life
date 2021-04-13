@@ -4,7 +4,6 @@ categories:
   - 数据库
   - PostgreSQL
 tags:
-  - 数据库
   - PostgreSQL
 date: 2021-04-13 21:36:47
 ---

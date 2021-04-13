@@ -4,7 +4,6 @@ categories:
   - 数据库
   - Redis
 tags:
-  - 数据库
   - Redis
 date: 2021-04-13 09:45:43
 ---

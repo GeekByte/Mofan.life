@@ -6,7 +6,6 @@ categories:
 tags:
   - Linux
   - PostgreSQL
-  - 数据库
 date: 2021-03-27 16:00:21
 ---
 
