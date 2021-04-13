@@ -3,7 +3,6 @@ title: 关于Go语言数组索引的有趣现象
 categories:
   - 编程语言
   - Go
-  - 数组
 tags:
   - Go
 date: 2021-03-07 15:19:25

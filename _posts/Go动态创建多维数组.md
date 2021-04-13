@@ -3,7 +3,6 @@ title: Go动态创建多维数组
 categories:
   - 编程语言
   - Go
-  - 数组
 tags:
   - Go
 date: 2021-03-01 18:38:31
