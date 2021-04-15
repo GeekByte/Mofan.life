@@ -24,8 +24,11 @@ comment on table mofan is '莫凡';
 
 这里是在给`mofan`表添加注释。
 
+**给字段添加注释：**
 
+```sql
+comment on column mofan.name is "My Name"
+```
 
-给字段添加注释？？？？？
+这里是给`mofan`表的`name`字段添加注释。
 
-等待补充。
