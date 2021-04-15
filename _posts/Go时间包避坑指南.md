@@ -9,15 +9,17 @@ date: 2021-04-15 22:55:19
 
 首先看一段代码：
 
-	func main() {
-		st := "2019-11-21 11:59:01"
-		fmt.Printf("%s\n", st)
-		t, _ := time.Parse("2006-01-02 15:04:05", st)
-		fmt.Println(t.Unix())
-	
-		tt := time.Unix(t.Unix(), 0)
-		fmt.Println(tt.Format("2006-01-02 15:04:05"))
-	}
+```go
+func main() {
+	st := "2019-11-21 11:59:01"
+	fmt.Printf("%s\n", st)
+	t, _ := time.Parse("2006-01-02 15:04:05", st)
+	fmt.Println(t.Unix())
+
+	tt := time.Unix(t.Unix(), 0)
+	fmt.Println(tt.Format("2006-01-02 15:04:05"))
+}
+```
 上述代码的任务很简单，就是将字符串格式的时间转化为时间戳。
 但是直到调试我才无意发现，这个是有问题的，转化后的unix并不是原来的时间。。
 运行结果如下：
