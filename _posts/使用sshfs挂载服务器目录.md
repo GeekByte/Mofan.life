@@ -32,6 +32,9 @@ sshfs -C -o reconnect user@hostname:remote_dir local_dir
 # user与hostname和ssh命令的一样
 # remote_dir 你要挂载服务器文件夹路径
 # local_dir 你本地要和服务器文件夹建立关系的文件夹，最好新建一个空的
+
+# 挂在完成后，可以使用mount命令查看挂载的目录
+mount
 ```
 
 ### 相关问题

@@ -56,3 +56,19 @@ firewall-cmd --zone=public --add-port=6379/tcp --permanent
 firewall-cmd --reload
 ```
 
+#### 登陆redis-server
+
+##### redis-cli命令
+
+```shell
+# 这里登陆db2数据库
+redis-cli -h host -p port -a password -n 2
+
+# 切换db的命令
+> select db 1
+```
+
+##### 可视化工具
+
+这里推荐[RDM - 适用于Windows，macOS，iPad 和 Linux 的 Redis ® 的 GUI 管理工具.](https://rdm.dev/)
+
