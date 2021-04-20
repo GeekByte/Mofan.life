@@ -11,6 +11,8 @@ date: 2021-04-21 07:17:07
 > 参考：[research!rsc: Go Data Structures: Interfaces](https://research.swtch.com/interfaces)
 >
 > [怎么理解go的interface](https://blog.csdn.net/yihuliunian/article/details/104784523)
+>
+> [golang interface](https://blog.csdn.net/justaipanda/article/details/43155949)
 
 ## 概念补充
 

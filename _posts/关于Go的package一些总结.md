@@ -8,6 +8,8 @@ tags:
 date: 2021-04-19 22:20:45
 ---
 
+> 参考: [Go 语言中你应该知道的关于 Package 的所有 - 知乎](https://zhuanlan.zhihu.com/p/239820433)
+
 ### package的基本认识
 
 相比于`Java`而言，`Go`的包并不算一个新鲜的概念。
