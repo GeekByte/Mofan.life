@@ -1,6 +1,7 @@
 ---
 title: Golang中常用的类型转换方法
 categories:
+  - 编程语言
   - Go
 tags:
   - Go

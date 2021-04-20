@@ -1,6 +1,7 @@
 ---
 title: Go时间包避坑指南
 categories:
+  - 编程语言
   - Go
 tags:
   - Go
