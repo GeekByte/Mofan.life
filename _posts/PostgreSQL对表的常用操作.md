@@ -45,10 +45,16 @@ DROP TABLE IF EXISTS department, company;
 
 ### 修改表
 
-#### 修改列的属性
+#### 修改列的数据类型
 
 ```SQL
-ALTER TABLE company ALTER column address type VARCHAR(20);
+ALTER TABLE table_name ALTER column_name TYPE datatype;
+```
+
+#### 修改列的名称
+
+```sql
+ ALTER TABLE table_name RENAME old_cloumn_name TO new_column_name;
 ```
 
 #### 删除列
@@ -56,13 +62,13 @@ ALTER TABLE company ALTER column address type VARCHAR(20);
 删除一列
 
 ```sql
-ALTER TABLE table DROP COLUMN col1;
+ALTER TABLE table_name DROP COLUMN col1;
 ```
 
 删除多列
 
 ```SQL
-ALTER TABLE table DROP COLUMN col1, DROP COLUMN col2;
+ALTER TABLE table_name DROP COLUMN col1, DROP COLUMN col2;
 ```
 
 #### 新增列
@@ -70,6 +76,54 @@ ALTER TABLE table DROP COLUMN col1, DROP COLUMN col2;
 在`company` 表新增 `age` 列，类型为`real`，非空。
 
 ```sql
-ALTER TABLE company ADD column age real NOT NULL;
+ALTER TABLE company ADD column real real NOT NULL;
+```
+
+#### 给列添加 NOT NULL 约束
+
+```sql
+ALTER TABLE table_name MODIFY column_name datatype NOT NULL;
+```
+
+#### 给列添加 UNIQUE 约束
+
+```sql
+ALTER TABLE table_name ADD CONSTRAINT MyUniqueConstraint UNIQUE(column1, column2...);
+```
+
+`MyUniqueConstraint`: 约束的名字，方便管理
+
+#### 给列添加 CHECK 约束
+
+```sql
+ALTER TABLE table_name ADD CONSTRAINT MyUniqueConstraint CHECK (CONDITION);
+```
+
+`MyUniqueConstraint`: 约束的名字，方便管理
+
+`CONDITION`: 约束，即为列的条件，比如`age > 20`
+
+#### 删除约束
+
+```sql
+ALTER TABLE table_name DROP CONSTRAINT MyUniqueConstraint;
+
+# 如果是MySQL
+ALTER TABLE table_name DROP INDEX MyUniqueConstraint;
+```
+
+#### 给表添加主键
+
+```sql
+ALTER TABLE table_name ADD CONSTRAINT MyPrimaryKey PRIMARY KEY (column1, column2...);
+```
+
+#### 删除主键
+
+```sql
+ALTER TABLE table_name DROP CONSTRAINT MyPrimaryKey;
+
+# 如果是MySQL
+ALTER TABLE table_name DROP PRIMARY KEY;
 ```
 
