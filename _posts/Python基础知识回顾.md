@@ -105,9 +105,9 @@ print(f'The area of a circle with radius {r} is {s:.2f}')
 The area of a circle with radius 2.5 is 19.62
 ```
 
-### List
+### list
 
-`List`是一种有序的集合，可以随时添加和删除其中的元素。
+`list`是一种有序的集合，可以随时添加和删除其中的元素。
 
 ```Python
 x = ['a', 'b', 'c']
@@ -125,9 +125,9 @@ x.append(p) # x=['a', 'b', 'c', ['x', 'y']]
 x[3][1] # 'x'
 ```
 
-### Tuple
+### tuple
 
-元组，特性与`List`类似，但是初始化后不能改变，这里的不能改变指的是Tuple的内存指向不能变
+元组，特性与`list`类似，但是初始化后不能改变，这里的不能改变指的是Tuple的内存指向不能变
 
 ```Python
 t = (1, 2)
@@ -137,9 +137,17 @@ t = (1,)
 t = (1, 2, [3, 4])
 ```
 
-**注意：**`Tuple`与`List`的声明区别，`()`与`[]`。
+**注意：**`tuple`与`list`的声明区别，`()`与`[]`。
 
-### 条件判断
+### dict
+
+
+
+### set
+
+
+
+## 条件判断
 
 ```Python
 s = input("Plase input a number: ") # 注意input()读取的数据是str，不能直接和int比较
@@ -152,5 +160,25 @@ else:
     print("Hello, World!")
 ```
 
+## 循环
 
+```python
+# for
+a = [1, 2, 3]
+for x in a:
+    print(x)
+    if x == 3:
+        break
+    elif x == 2:
+        continue
+    else:
+        print("are you ok?")
+
+# while
+x = 1
+while x < 10:
+    x = x + 1
+    if x > 5:
+        break
+```
 
