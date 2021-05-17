@@ -12,9 +12,11 @@ date: 2021-03-31 22:27:18
 
 关于这两个文件的位置在这里简单说下，只说`Mac` 和 `Linux` 的。
 
-`Mac` : 默认是在`/Library/PostgreSQL/<版本号>/data` 下面。
+`Mac` : 默认是在`/Library/PostgreSQL/<版本号>/data` 下面。(版本9.6)
 
-`Linux`: 默认在`/etc/postgresql/<版本号>/main` 下面。
+`Ubuntu`: 默认在`/etc/postgresql/<版本号>/main` 下面。(版本9.6)
+
+`CentOS`: 默认在`/var/lib/pgsql/13/data/`下面。(版本13)
 
 #### 操作
 
@@ -34,7 +36,7 @@ host all all 0.0.0.0 0.0.0.0 md5
 listen_addresses='*'
 ```
 
-重启数据库`service postgres restart`
+重启数据库`service postgres restart`，有时候需要携带版本号`service postgres restart`(这是在CentOS中使用PostgreSQL 13遇到的情况)
 
 这样实现了远程访问，如果服务器在局域网中，那么还需要做一下内网穿透工作，推荐使用花生壳工具，当然你也可以在`GitHub`上搜索相关的开源技术，这里我比较推荐这两个:
 
