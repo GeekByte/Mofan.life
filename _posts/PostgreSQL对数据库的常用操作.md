@@ -171,3 +171,11 @@ dropdb -h localhost -p 5432 -U <username> --if-exists <dbname>
 
 ### 修改数据库信息
 
+
+
+### 查看数据库的所有用户
+
+```sql
+\du
+```
+
