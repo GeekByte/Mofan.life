@@ -1,5 +1,5 @@
 ---
-title: Linux问题之WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+title: Linux问题之WARNING REMOTE HOST IDENTIFICATION HAS CHANGED!
 categories:
   - Linux
   - 实践问题
