@@ -171,7 +171,28 @@ dropdb -h localhost -p 5432 -U <username> --if-exists <dbname>
 
 ### 修改数据库信息
 
+#### 修改数据库密码
 
+修改密码有两种方式，一种是在`psql`客户端使用`Postgresql`命令的方式，一种是使用SQL语句，但是第一种会相对更安全一些。
+
+**psql**
+
+```sql
+test1=> \password 
+Enter new password: 
+Enter it again: 
+test1=> 
+```
+
+**SQL语句**
+
+这种方式不限制客户端
+
+```sql
+ALTER USER test1 PASSWORD '<采用相关协议加密后的密码字符串>'
+```
+
+采用这种方式修改安全性低的原因是SQL语句可能被记录在相关日志中，日志泄漏会导致密码的泄漏，同时，如果数据库有主从复制，则其他数据库的密码也会修改，因为主从复制的实现原理是基于数据库操作日志的。
 
 ### 查看数据库的所有用户
 
