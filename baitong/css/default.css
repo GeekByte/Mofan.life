@@ -70,11 +70,22 @@
     height: 720px;
     color: #333;
     font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
-    font-size: 14px
+    font-size: 14px;
+    line-height: 20px;
 }
 
 #code .string {
     color: #2a36ff
+}
+
+.jiaozhu {
+    font-family: Snell Roundhand, cursive;
+}
+.time {
+    font-family: "Xingkai TC";
+    font-size: 30px;
+    font-weight: normal;
+    color: #9A2EFE;
 }
 
 #code .baitong {
@@ -95,9 +106,11 @@
     font-font: "Xingkai SC";
 }
 #code .redword {
-    color: #FE2E2E;
+    color: #8D08E7;
     font-weight: bold;
-    font-family: "Xingkai SC";
+    font-family: "STKaiti";
+    font-size: 14px;
+
 }
 
 #code .orangeword {
@@ -127,8 +140,9 @@
 }
 
 #code .comments {
-    color: #3f7f5f;
+    /*color: #3f7f5f;*/
     font-size: 12px;
+    font-fmaily: Brush Script MT,cursive;
 }
 
 #copyright {
