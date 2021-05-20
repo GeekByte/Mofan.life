@@ -79,7 +79,7 @@
 }
 
 .jiaozhu {
-    font-family: Brush Script Std, cursive;
+    font-family: Snell Roundhand, cursive;
 }
 .time {
     font-family: "Xingkai TC";
@@ -90,7 +90,7 @@
 
 #code .baitong {
     color: #9A2EFE;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: bold;
     font-family: "Xingkai SC";
 }
@@ -120,13 +120,13 @@
 
 #code .blueword {
     /*color: #2E9AFE;*/
-    color: #1141FF;
+    color: #3A3AF9;
     font-weight: bold;
     font-family: "Xingkai SC";
 }
 
 #code .purpleword {
-    color: #8258FA;
+    color: #9900FF;
     font-weight: bold;
     font-family: "Xingkai SC";
 }
