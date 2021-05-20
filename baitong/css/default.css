@@ -106,7 +106,7 @@
     font-font: "Xingkai SC";
 }
 #code .redword {
-    color: #8D08E7;
+    color: #FFFF11;
     font-weight: bold;
     font-family: "STKaiti";
 
@@ -119,7 +119,8 @@
 }
 
 #code .blueword {
-    color: #2E9AFE;
+    /*color: #2E9AFE;*/
+    color: #1141FF;
     font-weight: bold;
     font-family: "Xingkai SC";
 }
