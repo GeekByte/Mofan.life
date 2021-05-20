@@ -66,12 +66,12 @@
 
 #code {
     float: left;
-    width: 365px;
+    width: 440px;
     height: 720px;
     color: #333;
     font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 15px;
+    line-height: 21px;
 }
 
 #code .string {
@@ -109,7 +109,6 @@
     color: #8D08E7;
     font-weight: bold;
     font-family: "STKaiti";
-    font-size: 14px;
 
 }
 
@@ -140,9 +139,10 @@
 }
 
 #code .comments {
-    /*color: #3f7f5f;*/
-    font-size: 12px;
-    font-fmaily: Brush Script MT,cursive;
+    color: #000000;
+    font-size: 14px;
+    font-family: STKaiti;
+    font-weight: bold;
 }
 
 #copyright {
