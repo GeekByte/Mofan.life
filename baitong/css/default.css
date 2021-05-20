@@ -66,11 +66,11 @@
 
 #code {
     float: left;
-    width: 500px;
+    width: 300px;
     height: 680px;
     color: #333;
     font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
-    font-size: 13px
+    font-size: 14px
 }
 
 #code .string {
@@ -81,7 +81,7 @@
     color: #9A2EFE;
     font-size: 20px;
     font-weight: bold;
-    font-family: Monospaced, serif;
+    font-family: "Xingkai SC";
 }
 
 #code .keyword {
@@ -92,11 +92,12 @@
 #code .dataword {
     color: #3f7f5f;
     font-weight: bold;
-    font-family: Monospaced, serif;
+    font-family:STXingkai;
 }
 #code .redword {
-    color: #FA5858;
+    color: #FF0000;
     font-weight: bold;
+    font-family: "STKaiti";
 }
 
 #code .orangeword {
@@ -123,7 +124,8 @@
 }
 
 #code .comments {
-    color: #3f7f5f
+    color: #3f7f5f;
+    font-size: 12px;
 }
 
 #copyright {

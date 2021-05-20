@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="be7674ab-106d-4fda-a752-67b5591ace15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/default.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/default.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +44,8 @@
       <option name="presentableId" value="Default" />
       <updated>1621347959878</updated>
       <workItem from="1621347961097" duration="1338000" />
-      <workItem from="1621427296596" duration="7860000" />
+      <workItem from="1621427296596" duration="8554000" />
+      <workItem from="1621472200550" duration="897000" />
     </task>
     <servers />
   </component>
@@ -60,5 +62,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
