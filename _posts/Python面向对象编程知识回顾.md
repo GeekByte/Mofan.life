@@ -188,3 +188,147 @@ Student
 Student
 ```
 
+### 限制实例绑定的属性: \__slots__
+
+Python允许再运行过程中给实例绑定属性和方法，但是，有时需要限制实例绑定的属性，就需要用到\__slots__
+
+```python
+class Student(object):
+    pass
+
+# 给实例绑定属性
+>>> s = Student()
+>>> s.name = 'Michael' # 动态给实例绑定一个属性
+>>> print(s.name)
+Michael
+
+# 实例绑定方法
+>>> def set_age(self, age): # 定义一个函数作为实例方法
+...     self.age = age
+>>> from types import MethodType
+>>> s.set_age = MethodType(set_age, s) # 给实例绑定一个方法
+>>> s.set_age(25) # 调用实例方法
+>>> s.age # 测试结果
+25
+```
+
+限制实例绑定属性
+
+```python
+class Student(object):
+    __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
+    
+>>> s = Student() # 创建新的实例
+>>> s.name = 'Michael' # 绑定属性'name'
+>>> s.age = 25 # 绑定属性'age'
+>>> s.score = 99 # 绑定属性'score'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Student' object has no attribute 'score'
+```
+
+对于类之间的继承关系，`__slots_`只作用于类的第一级子类实例，对于子类的实例不起作用，如果需要限制子类实例绑定的属性，需要在子类中单独定义`__slots__`，子类实例限制绑定的属性为子类和父类限制绑定属性的`并集`。
+
+### 把类方法当作类属性使用: @properly
+
+通过实例直接对类的属性进行修改很方便但是没有参数检查，要想实现参数检查就需要在类中编写对属性进行操作的方法，但又出现一个问题，当实例操作属性时，通过调用方法的形式没有直接使用类属性的方法简洁，于是为了结合两者的优点，`@properly`装饰器出现了。
+
+```python
+class Student(object):
+
+    @property # 直接加@property类似get方法
+    def score(self):
+        return self._score
+
+    @score.setter # @property.setter类似set方法
+    def score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+        
+# 实际使用
+>>> s = Student()
+>>> s.score = 60 # OK，实际转化为s.set_score(60)
+>>> s.score # OK，实际转化为s.get_score()
+60
+>>> s.score = 9999 # 参数检查起作用了
+Traceback (most recent call last):
+  ...
+ValueError: score must between 0 ~ 100!
+```
+
+**注意：**类属性名称不能和方法名称相同，因为调用实例属性时会被当作方法使用，调用方法时又被当作属性使用，造成无限递归，最终导致栈溢出报错`RecursionError`。
+
+### 枚举类
+
+```python
+# 直接使用Enum类实现
+from enum import Enum
+
+# 枚举默认从1开始
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+
+for name, member in Month.__members__.items():
+    print(name, '=>', member, ',', member.value)
+
+# 打印结果
+Jan => Month.Jan , 1
+Feb => Month.Feb , 2
+Mar => Month.Mar , 3
+....
+
+
+# 自定义枚举类，用于需要控制枚举起点、枚举类型等场景
+from enum import Enum, unique
+
+@unique # @unique装饰器可以帮助我们检查枚举中有没有重复值
+class Weekday(Enum):
+    Sun = 0 # Sun的value被设定为0
+    Mon = 1
+    Tue = 2
+    Wed = 3
+    Thu = 4
+    Fri = 5
+    Sat = 6
+
+```
+
+对于枚举类型的访问方式：
+
+```python
+>>> day1 = Weekday.Mon
+>>> print(day1)
+Weekday.Mon
+
+>>> print(Weekday['Tue'])
+Weekday.Tue
+
+>>> print(Weekday.Tue.value)
+2
+>>> print(day1 == Weekday.Mon)
+True
+
+>>> print(Weekday(1))
+Weekday.Mon
+>>> print(day1 == Weekday(1))
+True
+
+>>> Weekday(7)
+Traceback (most recent call last):
+  ...
+ValueError: 7 is not a valid Weekday
+    
+>>> for name, member in Weekday.__members__.items():
+...     print(name, '=>', member)
+...
+Sun => Weekday.Sun
+Mon => Weekday.Mon
+Tue => Weekday.Tue
+Wed => Weekday.Wed
+Thu => Weekday.Thu
+Fri => Weekday.Fri
+Sat => Weekday.Sat
+```
+
