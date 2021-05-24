@@ -2,10 +2,8 @@
 title: Linux问题之WARNING REMOTE HOST IDENTIFICATION HAS CHANGED!
 categories:
   - Linux
-  - 实践问题
 tags:
   - Linux
-  - 实践问题
 date: 2021-04-10 16:57:13
 ---
 
