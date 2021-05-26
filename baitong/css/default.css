@@ -1,4 +1,9 @@
-﻿body {
+﻿/*html {*/
+/*    filter: progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);*/
+/*    -webkit-filter: grayscale(100%);*/
+/*}*/
+
+body {
     margin: 0;
     padding: 0;
     background: #ffe;
