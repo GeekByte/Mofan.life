@@ -9,19 +9,23 @@ date: 2021-06-30 09:39:12
 ---
 
 ```go
-type MyStruct struct {
+type M struct {
         N int
 }
-n := MyStruct{ 1 }
+m := M{ 1 }
+
 // get
-immutable := reflect.ValueOf(n)
-val := immutable.FieldByName("N").Int()
-fmt.Printf("N=%d\n", val) // prints 1
+x := reflect.ValueOf(m)
+val := x.FieldByName("N").Int()
+fmt.Printf("N=%d\n", val) // N=1
 
 // set
-mutable := reflect.ValueOf(&n).Elem()
-mutable.FieldByName("N").SetInt(7)
-fmt.Printf("N=%d\n", n.N) // prints 7
+y := reflect.ValueOf(&m).Elem()
+ok := y.FieldByName("N").SetInt(7)
+if ok {
+    fmt.Println("设置成功")
+}
+fmt.Printf("N=%d\n", n.N) // N=7
 ```
 
 如果是interface{}转map[string]interface{} 可以直接转
@@ -29,13 +33,12 @@ fmt.Printf("N=%d\n", n.N) // prints 7
 ```go
 User.(map[string]interface{})["username"]
 ```
-
 其实值类型的转换如下
 
 ```go
 var a interface{}
-   var b string
-   a = "asdasdasdasd"
-   b = a.(string)
-   fmt.Println(a, b)
+var b string
+a = "asdasdasdasd"
+b = a.(string)
+fmt.Println(a, b)
 ```
