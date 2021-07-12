@@ -22,6 +22,14 @@ postgres=# select count(*) from pg_stat_activity;
 ```shell
 vim /etc/postgresql/9.6/main/postgresql.conf
 
-# 通过/max 找到下面的配置，修改值即可
+# 通过/max 找到下面的配置,修改值
 max_connections = 100
+
 ```
+
+### 使配置生效
+
+```shell
+service postgresql restart
+```
+
