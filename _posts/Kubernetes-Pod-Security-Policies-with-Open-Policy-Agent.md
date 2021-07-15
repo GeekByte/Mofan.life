@@ -14,7 +14,7 @@ date: 2021-07-15 22:14:23
 Pod是Kubernetes应用程序的基本执行单元，是您创建或部署的Kubernetes对象模型中最小和最简单的单元。它是一个或多个具有共享存储/网络的容器的组，以及有关如何运行容器的规范。因此，在容器上实施安全策略时，我们将检查安全策略并将其应用于Pod规范。那么，这些策略如何执行？使用准入控制器。
 
 ### 什么是Admission Controllers?
-准入控制器是kube-apiserver的一部分。在配置存储在集群设置（etcd）中之前，它们拦截对Kubernetes API服务器的请求。准入控制器可以是正在验证（用于验证传入请求的一个）或正在变异（用于修改传入请求的一个）或两者都在进行。请参阅[Kubernetes文档](https://link.zhihu.com/?target=https%3A//kubernetes.io/docs/reference/access-authn-authz/admission-controllers/%23what-does-each-admission-controller-do)以快速浏览各种准入控制器。
+准入控制器是kube-apiserver的一部分。在配置存储在集群设置（etcd）中之前，它们拦截对Kubernetes API服务器的请求。准入控制器可以是正在验证（用于验证传入请求的一个）或正在变异（用于修改传入请求的一个）或两者都在进行。请参阅[Kubernetes文档](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#what-does-each-admission-controller-do)以快速浏览各种准入控制器。
 
 ### Open Policy Agent 作为 admission controller
 Open Policy Agent（OPA）是一种开放源代码的通用策略引擎，可以将策略编写为代码。 OPA提供了一种高级声明性语言-Rego-以策略作为代码。使用OPA，我们可以跨微服务，CI / CD管道，API网关等执行策略。 OPA最重要的用例之一是Kubernetes作为准入控制者的策略实施。
