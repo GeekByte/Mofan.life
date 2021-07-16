@@ -29,3 +29,6 @@ Pod Security Policy
 Pod安全策略（PSP）是实现为准入控制器的集群级别资源。 PSP允许用户将安全要求转换为管理Pod规范的特定策略。首先，创建PodSecurityPolicy资源时，它什么也不做。为了使用它，必须通过允许“使用”动词来授权请求​​用户或目标pod的服务帐户使用该策略。您可以参考Kubernetes文档上的启用Pod安全策略。
 
 注意，PSP准入控制器既充当验证角色，又充当变异准入控制器。对于某些参数，PSP准入控制器使用默认值来更改传入的请求。此外，顺序始终是先突变然后验证。
+
+
+参考地址：[Kubernetes Pod Security Policies with Open Policy Agent](https://www.infracloud.io/blogs/kubernetes-pod-security-policies-opa/)
