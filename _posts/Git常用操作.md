@@ -56,3 +56,28 @@ git config --global  --list
 git config --local  --list
 ```
 
+### Git打tag与撤销tag
+
+
+#### 删除本地tag
+```shell
+git tag -d <tagname>
+```
+
+#### 删除远端tag
+```shell
+git push origin --delete <tagname>
+```
+
+
+#### 向远端推送本地tag
+```shell
+git push origin <tagname>
+```
+
+
+#### 向远端推送本地所有tag
+```shell
+git push origin --tags
+```
+
