@@ -36,3 +36,33 @@ leveraging 借力，杠杆作用，利用贷款进行投机
 cross 交叉编译
 
 Shrinking 收缩，缩小，离开
+
+parentheses 圆括号（）
+
+2b2b7e9e-d01b-44ff-bc70-ad621590a6c2
+
+4adf2b65-8f33-420a-b3c4-5b83df9a4243
+
+
+
+278e5e4d8538be0af16028d989e5f6b1efb31daa
+
+278e5e4d8538be0af16028d989e5f6b1efb31daa
+
+/tmp/.buildx-cache
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key:  ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+
+            cache-from: type=local,src=/tmp/.buildx-cache
+
+
+
+
+c1294ded-6443-48a0-839e-205d852b9e78
