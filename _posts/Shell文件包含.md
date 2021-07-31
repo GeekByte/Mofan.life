@@ -1,7 +1,7 @@
 ---
 title: Shell脚本之引入外部脚本文件
 categories:
-  - Linux
+  - 编程语言
   - Shell
 tags:
   - Linux

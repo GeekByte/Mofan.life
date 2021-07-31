@@ -1,7 +1,7 @@
 ---
 title: Shell脚本之流程控制
 categories:
-  - Linux
+  - 编程语言
   - Shell
 tags:
   - Linux

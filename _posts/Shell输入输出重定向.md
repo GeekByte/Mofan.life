@@ -1,7 +1,7 @@
 ---
 title: Shell脚本之输入输出重定向
 categories:
-  - Linux
+  - 编程语言
   - Shell
 tags:
   - Linux

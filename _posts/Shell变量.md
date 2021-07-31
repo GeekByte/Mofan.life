@@ -1,7 +1,7 @@
 ---
 title: Shell脚本之变量
 categories:
-  - Linux
+  - 编程语言
   - Shell
 tags:
   - Linux

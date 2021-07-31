@@ -1,7 +1,7 @@
 ---
 title: Shell脚本之函数
 categories:
-  - Linux
+  - 编程语言
   - Shell
 tags:
   - Linux

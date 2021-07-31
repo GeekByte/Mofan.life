@@ -1,7 +1,7 @@
 ---
 title: Shell脚本编程基本介绍
 categories:
-  - Linux
+  - 编程语言
   - Shell
 tags:
   - Linux
