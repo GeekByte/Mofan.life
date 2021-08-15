@@ -20,7 +20,7 @@ git add .
 git stash
 
 # 切换到本该用来开发代码的分支（假设是xxx)
-git checkou xxxx
+git checkout xxxx
 
 # 将暂存栈中的代码取出来
 git stash pop
