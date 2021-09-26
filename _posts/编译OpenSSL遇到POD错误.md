@@ -1,9 +1,9 @@
 ---
 title: 编译OpenSSL遇到POD错误
 categories:
-  - 小问题
+  - Issues
 tags:
-  - 小问题
+  - Linux
 date: 2021-03-23 22:23:48
 ---
 
