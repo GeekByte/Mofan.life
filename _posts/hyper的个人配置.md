@@ -1,5 +1,5 @@
 ---
-title: hyper的个人配置
+title: Hyper的个人配置
 categories:
   - 工具
   - Hyper
