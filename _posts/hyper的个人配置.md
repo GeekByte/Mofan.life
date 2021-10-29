@@ -16,6 +16,11 @@ date: 2021-10-29 10:02:02
 
 > 如果你安装时，提示 hyper 命令不可用，你可以点击菜单栏的 Tools -> Install Hyper CLI command in PATH
 
+
+> 另外，配合oh-my-zsh的主题使用效果更好，请参考: https://www.mofan.life/2021/10/29/oh-my-zsh%E8%87%AA%E7%94%A8%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/
+
+> 如果安装oh-my-zsh后，发现 .bash_profile 里的环境变量不能用了，请在 .zshrc 的文件上面加上一行: source ~/.bash_profile
+
 ```js
 "use strict";
 // Future versions of Hyper may add additional config options,
