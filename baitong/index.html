@@ -1,137 +1,17 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
-<head>
-	<link rel="icon" href="img/xin.ico" type="image/x-icon" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>小仙女, 送你个520</title>
-
-<style type="text/css">
-@font-face {
-	font-family: digit;
-	src: url('digital-7_mono.ttf') format("truetype");
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <title>哈哈哈</title>
+<style>
+video.vv {
+margin: auto;
+display: block;
+border-radius: 30px;
 }
 </style>
-
-<link href="css/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/garden.js"></script>
-<script type="text/javascript" src="js/functions.js"></script>
-
-</head>
-
 <body>
-
-<!--浏览器检测-->
-<!--<div class="dbw-internet-tips">-->
-<!--	<div class="dbw-tips-title"><img src="assets/img/nodata.png" alt=""></div>-->
-<!--	<div class="dbw-tips-con">为了能给您更好的体验, 请使用<span class="dbw-tips-chrome">谷歌浏览器</span>查看</div>-->
-<!--	<div class="dbw-tips-download">没有安装谷歌浏览器？<span class="dbw-btn-download">点击下载</span></div>-->
-<!--</div>-->
-
-<!--背景音乐-->
-<div>
-	<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1 height=1 src="//music.163.com/outchain/player?type=2&id=5308028&auto=1&height=66"></iframe>
-</div>
-
-<div id="mainDiv">
-	<div id="content">
-		<div id="code" class="code_a">
-			<span class="comments">/**</span><br />
-			<span class="space"/><span class="comments">* 2017年09月26日 11:52, </span><br />
-			<span class="space"/><span class="comments">* 2021年05月20日 13:14.</span><br />
-			<span class="space"/><span class="comments">*/</span><br />
-			<span class="baitong">胡柏桐</span><br />
-			<br />
-			<span class="purpleword">
-				还记得2017年的夏天吗?<br />
-				是的, 在九月份的时候, 我遇见了你<br />
-				只因你在门上小窗的一个眼神, 便在我心里种下了一颗种子<br />
-				我在夏天的运气一向不错, 但那天肯定是运气最好的一次<br />
-				大学里关于你的回忆不多, 比较幸福的是<br />
-				第一次遇见你和听你第一条语音消息<br />
-				还有我大二深夜给你念经的那些日子<br />
-			</span><br />
-
-			<span class="blueword">
-				我曾幻想过很多个遇见你的场景<br />
-				只是没想到, 多年后再次见到你的地方是在北京<br />
-				幸运的是, 你的眼神还是那么熟悉<br />
-			    你还是你, 那种初遇的感觉仍然存在<br />
-				我知道, 我仍然喜欢你, 但我不再奢求什么<br />
-				如果你问我现在对你是否还是初遇时的喜欢<br />
-			    肯定不是, 咋见之欢, 早已在岁月中沉淀出自己的样子<br />
-				我明白, 爱情是两个人的事, 你若无意, 我也不能强求<br />
-				你是一个善良的人, 我没想到你没有因为我的喜欢而与我形同陌路<br />
-				反而还告诉我一些道理和提供一些帮助, 让我就算在陌生的城市也感到温暖<br />
-			</span><br />
-
-			<span class="orangeword">
-				最后, 我要对你说声谢谢<br />
-				虽然我这一路走来, 因为你有过悲伤和喜悦<br />
-				但不得不说, 每当想起你, 我会很开心, 并觉得自己应该继续努力<br />
-				关于将来的日子<br>
-				女朋友是你是我的心愿, 对你的喜欢仍然会在<br />
-				你也不要感到孤单, 没有安全感, 毕竟我还在不是<br />
-				<br />
-				<br />
-			</span>
-			<span class="redword">
-				520快乐,2021年5月20日 13:14 在人类纪元只有一次<br />
-				这珍贵的时刻就以此与你共享了.🌹
-			</span>
-		</div>
-		<div id="loveHeart">
-			<canvas id="garden"></canvas>
-			<div id="words">
-				<div id="messages" class="time">
-					我们已经认识了:
-					<div id="elapseClock"></div>
-				</div>
-				<div id="loveu">
-<pre class="jiaozhu">
-Cx330 stars may be lonely
-	but you won't.
-</pre>
-					<div class="signature">-- Youpeng</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<script type="text/javascript">
-var offsetX = $("#loveHeart").width() / 2;
-var offsetY = $("#loveHeart").height() / 2 - 55;
-var together = new Date();
-together.setFullYear(2017,  9,  26);
-together.setHours(11);
-together.setMinutes(52);
-together.setSeconds(0);
-together.setMilliseconds(0);
-
-if (!document.createElement('canvas').getContext) {
-	var msg = document.createElement("div");
-	msg.id = "errorMsg";
-	msg.innerHTML = "你的浏览器不支持啊, 兄弟！！"
-	document.body.appendChild(msg);
-	$("#code").css("display",  "none")
-	$("#copyright").css("position",  "absolute");
-	$("#copyright").css("bottom",  "10px");
-	document.execCommand("stop");
-} else {
-	setTimeout(function () {
-		startHeartAnimation();
-	},  5000);
-
-	timeElapse(together);
-	setInterval(function () {
-		timeElapse(together);
-	},  500);
-
-	adjustCodePosition();
-	$("#code").typewriter();
-}
-</script>
+<video class="vv" width="90%" height="90%"  controls="controls" autoplay="autoplay">
+  <source src="https://cmdbyte-1259069968.cos.ap-beijing.myqcloud.com/2021/02/ngc2237.mp4" type="video/mp4" />
+</video>
 </body>
 </html>
