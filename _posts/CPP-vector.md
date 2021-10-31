@@ -116,7 +116,7 @@ date: 2021-10-31 22:03:22
 18.swap 与另一个vector交换数据
 ```
 
-	## vector 语法
+## vector 语法
 
 1. Vector<类型>标识符
 2. Vector<类型>标识符(最大容量)
