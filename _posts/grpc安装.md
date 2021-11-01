@@ -26,6 +26,10 @@ date: 2021-03-31 21:57:14
 ```shell
 # 下载grpc代码
 git clone https://github.com/grpc/grpc.git
+
+# 下载完后进入grpc目录
+cd grpc
+
 # 更新子模块, 加上--recursive可以把源码下载下来，为了避免乱七八糟的问题，强烈建议你带上
 git submodule update --init --recursive
 ```
