@@ -11,6 +11,11 @@ date: 2021-03-11 22:20:20
 > **本文作者**：**[Ryan Miao](https://www.cnblogs.com/woshimrf/p/vim.html)**
 > **本文链接**：https://www.cnblogs.com/woshimrf/p/vim.html
 
+
+> 另一篇参考资料: [vim与复制，删除，粘贴，块操作以及快速替换功能](https://blog.csdn.net/deng_sai/article/details/46313767)
+
+
+
 vim简单的命令用着还好。比如插入，删除，查询。但替换就用的比较少。所以，还是需要用的时候拿出来对照者看。
 
 使用vim编辑文件：
