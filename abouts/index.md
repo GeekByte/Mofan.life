@@ -14,6 +14,7 @@ layout: about
 
 
 ### 项目经历
+就写两个对我影响较大的。
 
 #### 租房评价系统（易租）
 
@@ -31,10 +32,12 @@ layout: about
 
 ### 技术栈
 
-* 语言：Go、Python、Shell、Java、C/C++、JavaScriot、Rust（在学）
+* 语言：Go、Python、Shell、Java、C++、JavaScriot、Rust（在学）
 * 数据库：Redis、MySQL、PostgreSQL、MongoDB、InfluxDB
-* 操作系统：Linux
-* 其他: Gin、Beego、Docker、Go Kit、OPA
+* 操作系统：CentOS、Ubuntu
+* 其他: Docker、Kubernetes、Gin、Beego、Go Kit、OPA、服务网格、DDD、微服务
+* 知识相关: 网络、操作系统、数据结构、另外学习过信息安全
+* 外语：英语，除了沟通，读写没问题
 
 ### 自我介绍
 
