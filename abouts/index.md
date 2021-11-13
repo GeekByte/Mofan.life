@@ -4,8 +4,6 @@ date: 2021-02-21 07:46:36
 layout: about
 ---
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1 height=1 src="//music.163.com/outchain/player?type=2&id=1393230190&auto=1&height=66"></iframe>
-
 ### 基本信息
 
 本科数学专业，半路遇到计算机，随后入坑，一路自学而来。自认为自己这点本事在大佬面前只是小打小闹，但我仍希望能与大佬同台，我会尽量用短的时间弥补我的不足。
@@ -16,7 +14,6 @@ layout: about
 
 
 ### 项目经历
-
 
 #### 租房评价系统（易租）
 
@@ -51,5 +48,4 @@ layout: about
 
 最后，我想说，如果我们能够成为队友，那么我一定不会令你失望。
 
-
-
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1 height=1 src="//music.163.com/outchain/player?type=2&id=1393230190&auto=1&height=66"></iframe>
