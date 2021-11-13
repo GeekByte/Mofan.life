@@ -1,20 +1,47 @@
----
-title: abouts
-date: 2021-02-21 07:46:36
-layout: about
----
+# 简历
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1 height=1 src="//music.163.com/outchain/player?type=2&id=1869929903&auto=1&height=32"></iframe>
+### 基本信息
+本科数学专业，半路遇到计算机，随后入坑，一路自学而来。自认为自己这点本事在大佬面前只是小打小闹，但我仍希望能与大佬同台，我会尽量用短的时间弥补我的不足。
 
-<p align="center" style="font-weight:900;font-size:60px;color:#000000;font-family:Xingkai SC;font-style:italic;">自从厌倦于追寻</p>
-<p align="center" style="font-weight:900;font-size:60px;color:#000000;font-family:Xingkai SC;font-style:italic;">我已学会一觅即中</p>
-<p align="center" style="font-weight:900;font-size:60px;color:#000000;font-family:Xingkai SC;font-style:italic;">自从一股逆风袭来</p>
-<p align="center" style="font-weight:900;font-size:60px;color:#000000;font-family:Xingkai SC;font-style:italic;">我已能抗御八面来风</p>
-<p align="center" style="font-weight:900;font-size:60px;color:#000000;font-family:Xingkai SC;font-style:italic;">驾舟而行</p>
+我的GitHub: https://www.github.com/mofankk
 
-<br>
-<br>
-<br>
+自认为我的优势: DDD思想，服务网格，代码优雅，快速学习能力，问题修复能力，产品设计思维，架构视野，不过认知尚浅，希望在工作中能够实践学习。
 
-<p align="center" style="font-weight:bold;font-size:25px;color:#000000;font-family:Xingkai SC;font-style:italic;">不赴-凤凰传奇</p>
+### 项目经历
 
+#### 租房评价系统（易租）
+
+项目技术栈：Go、Gin、Redis、PostgreSQL、Nginx、腾讯云短信SDK
+
+>  这是我的毕业设计，也是正式转行做Go后第一个从零设计、技术选型到实现的项目，不过受限于个人的前端水平，只做了后台，但项目有很多瑕疵，还有后续打磨。（由于涉及到敏感信息，暂时不对外开放。）
+>
+> 在这个项目中，我实现了使用短信验证码登陆与注册，房源的发布与浏览，针对房东与租客以及其他用户的评价可见性关系。
+
+#### 一款招聘软件的后台
+
+技术栈：OPA、Go Kit、阿里云Serverless Kubernetes、服务网格 ASM、再就是一点思想：DDD
+
+> 这是我参与的一个项目，从零构建，让我知道了更酷的技术和更先进的设计思想。以及学习到大佬的代码风格，对代码质量的精益求精，对问题的刻苦钻研，以及历练了我快速学习快速应用的能力，总之，收益颇多，无以言表。
+
+### 技术栈
+
+* 语言：Go、Python、Shell、Java、C/C++、JavaScriot、Rust（在学）
+* 数据库：Redis、MySQL、PostgreSQL、MongoDB、InfluxDB
+* 操作系统：Linux
+* 其他: Gin、Beego、Docker、Go Kit、OPA
+
+### 自我介绍
+
+从我大一进入ACM集训队开始，我就狂热的爱上了编程这项东西，如果说曾今我仅仅将编程停留在语言层面，研究代码如何写的更有质量，那么现在的我则更多的是从架构层面考虑问题；
+
+我是乐观主义的人，能够发现一件事物潜在的乐趣以及可能的价值，我的爱好也比较广泛，比如摄影、阅读、跑步和篮球；
+
+同时我又是一个喜欢帮助别人的人，我相信别人的问题可能是我不曾遇到的问题，搞定了它我也能得到成长；
+
+对于团队，我希望所在的团队他们也是技术有追求的人，我们可以在battle技术中互相取经；
+
+最后，我想说，如果我们能够成为队友，那么我一定不会令你失望。
+
+
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1 height=1 src="//music.163.com/outchain/player?type=2&id=1393230190&auto=1&height=66"></iframe>
