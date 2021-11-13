@@ -4,7 +4,9 @@ date: 2021-02-21 07:46:36
 layout: about
 ---
 
-#### 基本信息
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1 height=1 src="//music.163.com/outchain/player?type=2&id=1393230190&auto=1&height=66"></iframe>
+
+### 基本信息
 
 本科数学专业，半路遇到计算机，随后入坑，一路自学而来。自认为自己这点本事在大佬面前只是小打小闹，但我仍希望能与大佬同台，我会尽量用短的时间弥补我的不足。
 
@@ -13,10 +15,10 @@ layout: about
 自认为我的优势: DDD思想，服务网格，代码优雅，快速学习能力，问题修复能力，产品设计思维，架构视野，不过认知尚浅，希望在工作中能够实践学习。
 
 
-#### 项目经历
+### 项目经历
 
 
-##### 租房评价系统（易租）
+#### 租房评价系统（易租）
 
 项目技术栈：Go、Gin、Redis、PostgreSQL、Nginx、腾讯云短信SDK
 
@@ -24,20 +26,20 @@ layout: about
 >
 > 在这个项目中，我实现了使用短信验证码登陆与注册，房源的发布与浏览，针对房东与租客以及其他用户的评价可见性关系。
 
-##### 一款招聘软件的后台
+#### 一款招聘软件的后台
 
 技术栈：OPA、Go Kit、阿里云Serverless Kubernetes、服务网格 ASM、再就是一点思想：DDD
 
 > 这是我参与的一个项目，从零构建，让我知道了更酷的技术和更先进的设计思想。以及学习到大佬的代码风格，对代码质量的精益求精，对问题的刻苦钻研，以及历练了我快速学习快速应用的能力，总之，收益颇多，无以言表。
 
-#### 技术栈
+### 技术栈
 
 * 语言：Go、Python、Shell、Java、C/C++、JavaScriot、Rust（在学）
 * 数据库：Redis、MySQL、PostgreSQL、MongoDB、InfluxDB
 * 操作系统：Linux
 * 其他: Gin、Beego、Docker、Go Kit、OPA
 
-#### 自我介绍
+### 自我介绍
 
 从我大一进入ACM集训队开始，我就狂热的爱上了编程这项东西，如果说曾今我仅仅将编程停留在语言层面，研究代码如何写的更有质量，那么现在的我则更多的是从架构层面考虑问题；
 
@@ -51,4 +53,3 @@ layout: about
 
 
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1 height=1 src="//music.163.com/outchain/player?type=2&id=1393230190&auto=1&height=66"></iframe>
