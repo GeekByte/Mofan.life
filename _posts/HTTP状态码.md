@@ -1,9 +1,9 @@
 ---
 title: HTTP状态码
 categories:
-  - 计算机网络
+  - Network
 tags:
-  - 计算机网络
+  - Network
 date: 2021-09-02 15:01:53
 ---
 

@@ -1,10 +1,10 @@
 ---
 title: Websocket
 categories:
-  - 网络
-  - Websocket
+  - Network
 tags:
-  - 网络
+  - Network
+  - WebSocket
 date: 2021-03-31 22:41:34
 ---
 

@@ -1,13 +1,9 @@
 ---
 title: 理解Session、Cookie、Token
 categories:
-  - 网络
-  - 基础知识
+  - Network
 tags:
-  - 网络
-  - Cookie
-  - Session
-  - Token
+  - Network
 date: 2021-03-27 14:32:23
 ---
 
