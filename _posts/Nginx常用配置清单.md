@@ -1,7 +1,6 @@
 ---
 title: Nginx常用配置清单
 categories:
-  - 工具
   - Nginx
 tags:
   - Nginx
