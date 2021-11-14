@@ -1,7 +1,7 @@
 ---
 title: Vim常用命令Pro
 categories:
-  - 文本工具
+  - 工具
   - Vim
 tags:
   - Vim
