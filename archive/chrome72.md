@@ -8,3 +8,5 @@ open -na Chrome72 --args --user-data-dir=/tmp/temporary-chrome-profile-dir --dis
 
 现在的脚本：
 do shell script "open -na Chrome72 --args --user-data-dir=/Users/cyp/Library/Application Support/Google/Chrome72 --disable-web-security --disable-site-isolation-trials"
+
+-
