@@ -17,7 +17,9 @@ date: 2021-11-18 23:11:39
 
 验证代码:
 ```go
-  import "fmt"
+package main
+
+import "fmt"
 
 >>func main() {
       fmt.Println("main")
