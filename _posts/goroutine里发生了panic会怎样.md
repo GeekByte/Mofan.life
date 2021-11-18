@@ -1,12 +1,12 @@
 ---
-title: Go 面试
+title: 多个goroutine，其中一个发生panic，程序会发生什么
 categories:
   - 面试
   - Go
 tags:
   - Go
   - 面试
-date: 2021-11-18 23:11:39
+date: 2021-11-18 19:11:39
 ---
 
 ### 多个goroutine，其中一个发生panic，程序会发生什么
