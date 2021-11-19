@@ -2,7 +2,7 @@
 title: Golang精编100题-搞定golang面试
 categories:
   - 面试
-  - Golang
+  - Go
 tags:
   - 面试
   - Go
