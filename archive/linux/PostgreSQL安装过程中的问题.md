@@ -2,6 +2,10 @@
 
 ## 1. 在 postgres 用户中，psql 要求输入密码
 
+> 错误信息大概是：
+>
+> psql: error: connection to server on socket "/var/run/postgresql/.s.PGSQL.5432" failed: FATAL: Peer authentication failed for user "postgres"
+
 在确保正确安装了 postgresql<版本>-server 后，将 `pg_hba.conf` 中的 `peer` 改成 `trust`。
 
 > pg_hba.conf的位置：
