@@ -1,7 +1,8 @@
 ---
 title: Mac连接L2TPVPN问题
 categories:
-  - Issues
+  - Problems
+  - Mac
 tags:
   - Mac
 date: 2021-03-23 22:30:26

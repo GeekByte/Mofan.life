@@ -1,9 +1,11 @@
 ---
 title: 编译OpenSSL遇到POD错误
 categories:
-  - Issues
+  - Problems
+  - OpenSSL
 tags:
   - Linux
+  - OpenSSL
 date: 2021-03-23 22:23:48
 ---
 

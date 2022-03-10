@@ -1,7 +1,8 @@
 ---
 title: Ubuntu报“xxx is not in the sudoers file.This incident will be reported”错误解决方法
 categories:
-  - Issues
+  - Problems
+  - Ubuntu
 tags:
   - Linux
   - Ubuntu

@@ -1,7 +1,8 @@
 ---
 title: Mac使用命令查看SSD健康情况
 categories:
-  - Issues
+  - Problems
+  - Mac
 tags:
   - Mac
 date: 2021-10-30 21:46:04

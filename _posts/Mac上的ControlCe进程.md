@@ -1,7 +1,8 @@
 ---
 title: Mac上的ControlCe进程
 categories:
-  - Issues
+  - Problems
+  - Mac
 tags:
   - Mac
 date: 2021-10-30 22:07:37
