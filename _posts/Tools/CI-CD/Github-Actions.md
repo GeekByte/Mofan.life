@@ -1,9 +1,12 @@
 --
 title: Github Actions
 categories:
-  - null
+  - Tools
+  - CI/CD
 tags:
-  - null
+  - Tools
+  - CI/CD
+  - GitHub
 date: 2021-07-24 21:53:37
 ---
 

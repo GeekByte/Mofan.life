@@ -1,9 +1,10 @@
 ---
 title: git blame用法
 categories:
-  - 工具
+  - Tools
   - Git
 tags:
+  - Tools
   - Git
 date: 2021-04-19 18:34:45
 ---

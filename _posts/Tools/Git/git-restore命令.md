@@ -1,9 +1,10 @@
 ---
 title: git restore命令
 categories:
-  - 工具
+  - Tools
   - Git
 tags:
+  - Tools
   - Git
 date: 2021-02-27 22:03:24
 ---

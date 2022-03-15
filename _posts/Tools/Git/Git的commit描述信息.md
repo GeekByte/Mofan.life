@@ -1,9 +1,10 @@
 ---
-title: 关于Git的commit描述
+title: Git的描述信息
 categories:
-  - 工具
+  - Tools
   - Git
 tags:
+  - Tools
   - Git
 date: 2021-04-20 22:42:35
 ---

@@ -1,9 +1,10 @@
 ---
 title: Git常用操作
 categories:
-  - 工具
+  - Tools
   - Git
 tags:
+  - Tools
   - Git
 date: 2021-04-14 09:02:34
 ---

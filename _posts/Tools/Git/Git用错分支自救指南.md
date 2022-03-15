@@ -1,9 +1,10 @@
 ---
 title: Git用错分支自救指南
 categories:
-  - 工具
+  - Tools
   - Git
 tags:
+  - Tools
   - Git
 date: 2021-08-16 00:50:14
 ---
