@@ -24,12 +24,12 @@ git diff branch1 branch2 <具体文件路径>
 git diff branch1 branch2
 ```
 
-### 4. 查看branch1分支有，而branch2中没有的log
+### 4. 查看 branch1 分支有，而 branch2 中没有的 log
 ```sh
 git log branch1 ^branch2
 ```
 
-### 5. 查看branch2中比branch1中多提交了哪些内容
+### 5. 查看 branch2 中比 branch1 中多提交了哪些内容
 ```sh
 git log branch1..branch2
 ```
@@ -40,7 +40,7 @@ git log branch1..branch2
 git log branch1...branch2
 ```
 
-7. 在上述情况下，在显示出每个提交是在哪个分支上
+### 7. 在上述情况下，在显示出每个提交是在哪个分支上
 ```sh
 git log -lefg-right branch1...branch2
 ```
