@@ -1,7 +1,7 @@
 ---
 title: 配置Sphinx并支持Markdown及表格
 categories:
-  - 工具
+  - Tools
   - Sphinx
 tags:
   - Sphinx

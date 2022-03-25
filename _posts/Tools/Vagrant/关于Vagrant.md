@@ -1,7 +1,7 @@
 ---
 title: 关于Vagrant
 categories:
-  - 工具
+  - Tools
   - Vagrant
 tags:
   - Vagrant

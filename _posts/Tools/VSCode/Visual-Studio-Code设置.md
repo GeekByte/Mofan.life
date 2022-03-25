@@ -1,11 +1,10 @@
 ---
 title: Visual Studio Code设置
 categories:
-  - 工具
-  - Visual Studio Code
+  - Tools
+  - VSCode
 tags:
-  - 工具
-  - Visual Studio Code
+  - VSCode
 date: 2021-11-01 20:44:30
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Hyper的个人配置
 categories:
-  - 工具
+  - Tools
   - Hyper
 tags:
   - Hyper

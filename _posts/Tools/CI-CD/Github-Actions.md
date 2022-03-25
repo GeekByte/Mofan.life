@@ -4,9 +4,7 @@ categories:
   - Tools
   - CI/CD
 tags:
-  - Tools
   - CI/CD
-  - GitHub
 date: 2021-07-24 21:53:37
 ---
 

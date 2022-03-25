@@ -4,7 +4,6 @@ categories:
   - Tools
   - Git
 tags:
-  - Tools
   - Git
 date: 2022-03-15 23:50:46
 ---

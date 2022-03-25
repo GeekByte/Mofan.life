@@ -1,10 +1,10 @@
 ---
 title: iterm2快捷键
 categories:
-  - 工具
-  - iterm2
+  - Tools
+  - iTerm2
 tags:
-  - iterm2
+  - iTerm2
 date: 2021-06-28 09:52:22
 ---
 
