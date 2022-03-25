@@ -1,7 +1,8 @@
 ---
 title: JetBrains系列工具的使用技巧
 categories:
-  - 工具
+  - Tools
+  - JetBrains
 tags:
   - JetBrains
 date: 2021-04-15 21:27:32
