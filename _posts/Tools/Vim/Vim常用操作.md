@@ -1,7 +1,7 @@
 ---
 title: Vim常用操作
 categories:
-  - 工具
+  - Tools
   - Vim
 tags:
   - Vim
