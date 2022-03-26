@@ -24,7 +24,7 @@ date: 2021-10-29 09:16:49
 
 下面是我的一份 .vimrc 的配置文档，可进行参考，当然你也可以直接替换你的 .vimrc 文档，然后在文档里执行 :PlugInstall 的 vim 命令(注意一定要先安装 vim-plugin).
 
-```txt
+```shell
 syntax on
 colorscheme desert
 set nu 
@@ -32,12 +32,16 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set autoindent
+set autochdir
 set backspace=2
 set foldmethod=indent
 set foldlevelstart=99
 set linespace=2
+set noreadonly
+set nocompatible
+set mmp=2000
 "set clipboard=unnamed
-
+let g:coc_node_path="/usr/local/bin/node"
 
 "=================================
 " Vim-plug Start
@@ -48,18 +52,19 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "---- golang ----
 Plug 'fatih/vim-go', {'tag': '*'}
-"---- python ---
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "---- undo ----
 Plug 'mbbill/undotree'
 "-----NERDTree ----
 Plug 'preservim/nerdtree'
-
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
+"-----CPP----------
+Plug 'bfrg/vim-cpp-modern'
+"-----Python-------
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 call plug#end()
 "=================================
 " Vim-plug End
 "=================================
+
 
 "==============================================================================
 " vim-go plugin settings
@@ -77,8 +82,18 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 let g:godef_split=2
+let g:go_list_type = "quickfix"
+
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+
+" autocmd FileType go nmap <leader>b  <Plug>(go-build)
+" autocmd FileType go nmap <leader>r  <Plug>(go-run)
 
 "==============================================================================
 " undotree plugin settings
@@ -154,10 +169,14 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 inoremap <C-j> <Esc>o
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+" 复制到系统剪切板
+inoremap <C-y> "+y
+" inoremap <C-p> "+p
 
 " NERDTree KeyMap
+" nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-k> :NERDTreeToggle<CR>
 nnoremap <C-l> :NERDTreeFind<CR>
 
@@ -171,6 +190,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gk <Plug>(go-implements)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
