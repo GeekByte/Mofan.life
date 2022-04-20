@@ -108,7 +108,7 @@ can’t decompress data; zlib not available
 
 脚本 :
 
-```shell
+```sh
 prefix='/usr/local/'
 pyver='3.6'
 
