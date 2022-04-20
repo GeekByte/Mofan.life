@@ -47,30 +47,31 @@ Following modules built successfully but were removed because they could not be 
 > openssl 源码编译(copy from INSTALL.md)：
 >
 > #### Unix / Linux / macOS
->
+> ```sh
 >     $ ./Configure
 >     # 如果需要指定安装路径，命令换为: ./Configure --prefix=/usr/local/openssl
 >     $ make
 >     $ make test
+> ```
 >
 > #### Unix / Linux / macOS
 >
 > Depending on your distribution, you need to run the following command as
 > root user or prepend `sudo` to the command:
->
+> ```sh
 >     $ make install
->
+> ```
 > By default, OpenSSL will be installed to
->
+> ```sh
 >     /usr/local
->
+> ```
 > More precisely, the files will be installed into the  subdirectories
->
+> ```sh
 >     /usr/local/bin
 >     /usr/local/lib
 >     /usr/local/include
 >     ...
->
+> ```
 > depending on the file type, as it is custom on Unix-like operating systems.
 
 ##### undefined reference to `EVP_MD_CTX_free'
