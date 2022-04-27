@@ -1,10 +1,10 @@
 ---
-title: oh-my-zsh自用主题推荐
+title: ohmyzsh自用主题推荐
 categories:
   - Tools
-  - Oh-My-Zsh
+  - ohmyzsh
 tags:
-  - Oh-My-Zsh
+  - ohmyzsh
 date: 2021-10-29 10:12:20
 ---
 
