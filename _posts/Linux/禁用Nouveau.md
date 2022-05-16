@@ -26,32 +26,32 @@ blacklist nouveau
 options nouveau modeset=0
 ```
 Regenerate the kernel initramfs:
-```shell
+```bash
 sudo dracut --force
 ```
 Run the following command:
-```shell
+```bash
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 Reboot the system.
 - RHEL/CentOS
 Create a file at /etc/modprobe.d/blacklist-nouveau.conf with the following contents:
-```shell
+```bash
 blacklist nouveau
 options nouveau modeset=0
 ```
 Regenerate the kernel initramfs:
-```shell
+```bash
 sudo dracut --force
 ```
 - OpenSUSE
 Create a file at /etc/modprobe.d/blacklist-nouveau.conf with the following contents:
-```shell
+```bash
 blacklist nouveau
 options nouveau modeset=0
 ```
 Regenerate the kernel initrd:
-```shell
+```bash
 sudo /sbin/mkinitrd
 ```
 
