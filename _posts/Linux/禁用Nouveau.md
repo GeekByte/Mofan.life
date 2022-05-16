@@ -15,7 +15,7 @@ The Nouveau kernel driver is currently in use by your system.
 To install the Display Driver, the Nouveau drivers must first be disabled. Each distribution of Linux has a different method for disabling Nouveau.
 
 The Nouveau drivers are loaded if the following command prints anything:
-```sh
+```shell
 lsmod | grep nouveau
 ```
 
@@ -26,32 +26,32 @@ blacklist nouveau
 options nouveau modeset=0
 ```
 Regenerate the kernel initramfs:
-```sh
+```shell
 sudo dracut --force
 ```
 Run the following command:
-```bash
+```shell
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 Reboot the system.
 - RHEL/CentOS
 Create a file at /etc/modprobe.d/blacklist-nouveau.conf with the following contents:
-```sh
+```shell
 blacklist nouveau
 options nouveau modeset=0
 ```
 Regenerate the kernel initramfs:
-```sh
+```shell
 sudo dracut --force
 ```
 - OpenSUSE
 Create a file at /etc/modprobe.d/blacklist-nouveau.conf with the following contents:
-```sh
+```shell
 blacklist nouveau
 options nouveau modeset=0
 ```
 Regenerate the kernel initrd:
-```sh
+```shell
 sudo /sbin/mkinitrd
 ```
 
