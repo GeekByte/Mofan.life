@@ -28,7 +28,9 @@ options nouveau modeset=0
 Regenerate the kernel initramfs:
 ```sh
 sudo dracut --force
+```
 Run the following command:
+```bash
 sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 Reboot the system.
