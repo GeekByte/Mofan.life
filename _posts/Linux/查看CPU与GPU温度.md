@@ -2,7 +2,6 @@
 title: 查看CPU与GPU温度
 categories:
   - Linux
-  - Ubuntu
 tags:
   - Linux
 date: 2022-03-24 18:32:08
