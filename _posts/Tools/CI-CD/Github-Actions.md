@@ -1,4 +1,4 @@
---
+---
 title: Github Actions
 categories:
   - Tools
@@ -7,7 +7,6 @@ tags:
   - CI/CD
 date: 2021-07-24 21:53:37
 ---
-
 
 ### 简介
 大家知道，持续集成由很多操作组成，比如抓取代码、运行测试、登录远程服务器，发布到第三方服务等等。GitHub 把这些操作就称为 actions。
