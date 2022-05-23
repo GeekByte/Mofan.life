@@ -183,7 +183,7 @@ replace with bar (y/n/a/q/l/^E/^Y)?
 :s/apple\|orange\|mango/fruid/g
 ```
 
-删除没行行尾空格
+删除每行行尾空格
 
 ```tex
 :s/\s\+$//e
