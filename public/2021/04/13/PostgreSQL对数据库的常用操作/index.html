@@ -1,0 +1,938 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="创建数据库PostgreSQL 创建数据库可以用以下三种方式：  1、使用 CREATE DATABASE SQL 语句来创建。 2、使用 createdb 命令来创建。 3、使用 pgAdmin 等可视化工具创建。  这里只介绍前两种。 CREATE DATABASE 创建数据库基本创建，默认属于当前用户 1CREATE DATABASE &amp;lt;dbname&amp;gt;; 指定数据库所有者 1CR">
+  
+  
+  
+  <title>PostgreSQL对数据库的常用操作 - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PostgreSQL对数据库的常用操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-13 21:35" pubdate>
+          April 13, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PostgreSQL对数据库的常用操作</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on 5 months ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p><code>PostgreSQL</code> 创建数据库可以用以下三种方式：</p>
+<ul>
+<li>1、使用 <strong>CREATE DATABASE</strong> SQL 语句来创建。</li>
+<li>2、使用 <strong>createdb</strong> 命令来创建。</li>
+<li>3、使用 <strong>pgAdmin</strong> 等可视化工具创建。</li>
+</ul>
+<p>这里只介绍前两种。</p>
+<h4 id="CREATE-DATABASE-创建数据库"><a href="#CREATE-DATABASE-创建数据库" class="headerlink" title="CREATE DATABASE 创建数据库"></a>CREATE DATABASE 创建数据库</h4><p>基本创建，默认属于当前用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> DATABASE <span class="hljs-operator">&lt;</span>dbname<span class="hljs-operator">&gt;</span>;<br></code></pre></td></tr></table></figure>
+<p>指定数据库所有者</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> DATABASE <span class="hljs-operator">&lt;</span>dbname<span class="hljs-operator">&gt;</span> OWNER <span class="hljs-operator">&lt;</span>username<span class="hljs-operator">&gt;</span>;<br></code></pre></td></tr></table></figure>
+<h4 id="createdb-命令创建数据库"><a href="#createdb-命令创建数据库" class="headerlink" title="createdb 命令创建数据库"></a>createdb 命令创建数据库</h4><p><code>createdb</code> 是一个 SQL 命令 <code>CREATE DATABASE</code> 的封装。</p>
+<p><code>createdb</code> 命令语法格式如下：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">createdb <span class="hljs-comment">[option...]</span> <span class="hljs-comment">[dbname <span class="hljs-comment">[description]</span>]</span><br></code></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<p><strong>dbname</strong>：要创建的数据库名。</p>
+<p><strong>description</strong>：关于新创建的数据库相关的说明。</p>
+<p><strong>options</strong>：参数可选项，可以是以下值：</p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="center">选项 &amp; 描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>-D tablespace</strong></td>
+<td align="center">指定数据库默认表空间。</td>
+</tr>
+<tr>
+<td align="left"><strong>-e</strong></td>
+<td align="center">将 <code>createdb</code> 生成的命令发送到服务端。</td>
+</tr>
+<tr>
+<td align="left"><strong>-E encoding</strong></td>
+<td align="center">指定数据库的编码，默认是<code>utf-8</code></td>
+</tr>
+<tr>
+<td align="left"><strong>-l locale</strong></td>
+<td align="center">指定数据库的语言环境。</td>
+</tr>
+<tr>
+<td align="left"><strong>-T template</strong></td>
+<td align="center">指定创建此数据库的模板。</td>
+</tr>
+<tr>
+<td align="left"><strong>–help</strong></td>
+<td align="center">显示 <code>createdb</code> 命令的帮助信息。</td>
+</tr>
+<tr>
+<td align="left"><strong>-h host</strong></td>
+<td align="center">指定服务器的主机名。</td>
+</tr>
+<tr>
+<td align="left"><strong>-p port</strong></td>
+<td align="center">指定服务器监听的端口，或者 <code>socket</code> 文件。</td>
+</tr>
+<tr>
+<td align="left"><strong>-U username</strong></td>
+<td align="center">连接数据库的用户名。</td>
+</tr>
+<tr>
+<td align="left"><strong>-w</strong></td>
+<td align="center">忽略输入密码。</td>
+</tr>
+<tr>
+<td align="left"><strong>-W</strong></td>
+<td align="center">连接时强制要求输入密码。</td>
+</tr>
+</tbody></table>
+<p><code>createdb</code> 命令和 <code>psql</code> 命令一样，均位于 <strong>PostgreSQL安装目录/bin</strong> 下，执行创建数据库的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">createdb -h localhost -p 5432 -U postgres &lt;dbname&gt;<br></code></pre></td></tr></table></figure>
+<p>上面的命令，我们使用了超级用户 <code>postgres</code> 登录到主机地址为 <code>localhost</code>，端口号为 <code>5432</code> 的 <code>PostgreSQL</code> 数据库中并创建 <code>dbname</code> 数据库。</p>
+<h3 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h3><p>选择数据库的方式也有三种：分别是在数据库的命令窗口、在系统终端窗口和可视化工具，这里也只介绍前两种。</p>
+<h4 id="数据库的命令窗口"><a href="#数据库的命令窗口" class="headerlink" title="数据库的命令窗口"></a>数据库的命令窗口</h4><p><code>\l</code> : 查看已经存在的数据库</p>
+<p><code>\c &lt;dbname&gt;</code> : 进入到指定的数据库</p>
+<h4 id="系统命令行窗口"><a href="#系统命令行窗口" class="headerlink" title="系统命令行窗口"></a>系统命令行窗口</h4><p>使用<code>psql</code>命令，具体的使用请通过<code>psql --help</code> 查看.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">psql -h localhost -p 5432 -U &lt;username&gt; -d &lt;dbname&gt;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>-h</code> 指定数据库服务器IP地址</li>
+<li><code>-p</code> 指定端口</li>
+<li><code>-U</code> 指定登陆用户名</li>
+<li><code>-d</code> 指定登陆到的数据库名称，可以省略，直接加数据库名，如果省略<code>-d</code>后面的内容，则默认登陆到和用户名相同的数据库</li>
+</ul>
+<h3 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h3><p><code>PostgreSQL</code> 删除数据库可以用以下三种方式：</p>
+<ul>
+<li>1、使用 <strong>DROP DATABASE</strong> SQL 语句来删除。</li>
+<li>2、使用 <strong>dropdb</strong> 命令来删除。</li>
+<li>3、使用 <strong>pgAdmin</strong> 工具。</li>
+</ul>
+<p>这里只介绍前两种。</p>
+<h4 id="DROP-DATABASE-删除数据库"><a href="#DROP-DATABASE-删除数据库" class="headerlink" title="DROP DATABASE 删除数据库"></a>DROP DATABASE 删除数据库</h4><p><strong>注意：</strong></p>
+<ul>
+<li><p><code>DROP DATABASE </code>会删除数据库的系统目录项并且删除包含数据的文件目录。</p>
+</li>
+<li><p><code>DROP DATABASE</code> 只能由超级管理员或数据库拥有者执行。</p>
+</li>
+<li><p><code>DROP DATABASE</code> 命令需要在 <code>PostgreSQL</code> 命令窗口来执行。</p>
+</li>
+</ul>
+<p>删除名称为<code>dbname</code> 的数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> DATABASE <span class="hljs-operator">&lt;</span>dbname<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<p>如果存在<code>dbname</code> 则删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">DROP</span> DATABASE IF <span class="hljs-keyword">EXISTS</span> <span class="hljs-operator">&lt;</span>dbname<span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure>
+<h4 id="dropdb-命令删除数据库"><a href="#dropdb-命令删除数据库" class="headerlink" title="dropdb 命令删除数据库"></a>dropdb 命令删除数据库</h4><p><code>dropdb</code> 是 <code>DROP DATABASE</code> 的包装器。</p>
+<p><code>dropdb</code> 用于删除 <code>PostgreSQL</code> 数据库。</p>
+<p><code>dropdb</code> 命令只能由超级管理员或数据库拥有者执行。</p>
+<p><code>dropdb</code> 命令语法格式如下：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">dropdb [connection-<span class="hljs-keyword">option</span>...] [<span class="hljs-keyword">option</span>...] dbname<br></code></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<p><strong>dbname</strong>：要删除的数据库名。</p>
+<p><strong>options</strong>：参数可选项，可以是以下值：</p>
+<table>
+<thead>
+<tr>
+<th align="left">序号</th>
+<th align="center">选项 &amp; 描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>-e</strong></td>
+<td align="center">显示 <code>dropdb</code> 生成的命令并发送到数据库服务器。</td>
+</tr>
+<tr>
+<td align="left"><strong>-i</strong></td>
+<td align="center">在做删除的工作之前发出一个验证提示。</td>
+</tr>
+<tr>
+<td align="left"><strong>-V</strong></td>
+<td align="center">打印 <code>dropdb</code> 版本并退出。</td>
+</tr>
+<tr>
+<td align="left"><strong>–if-exists</strong></td>
+<td align="center">如果数据库不存在则发出提示信息，而不是错误信息。</td>
+</tr>
+<tr>
+<td align="left"><strong>–help</strong></td>
+<td align="center">显示有关 <code>dropdb</code> 命令的帮助信息。</td>
+</tr>
+<tr>
+<td align="left"><strong>-h host</strong></td>
+<td align="center">指定运行服务器的主机名。</td>
+</tr>
+<tr>
+<td align="left"><strong>-p port</strong></td>
+<td align="center">指定服务器监听的端口，或者 <code>socket</code> 文件。</td>
+</tr>
+<tr>
+<td align="left"><strong>-U username</strong></td>
+<td align="center">连接数据库的用户名。</td>
+</tr>
+<tr>
+<td align="left"><strong>-w</strong></td>
+<td align="center">连接数据库的用户名。</td>
+</tr>
+<tr>
+<td align="left"><strong>-W</strong></td>
+<td align="center">连接时强制要求输入密码。</td>
+</tr>
+<tr>
+<td align="left"><strong>–maintenance-db=dbname</strong></td>
+<td align="center">删除数据库时指定连接的数据库，默认为 <code>postgres</code>，如果它不存在则使用 <code>template1</code>。</td>
+</tr>
+</tbody></table>
+<p>基本使用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">dropdb -h localhost -p 5432 -U &lt;username&gt; --if-exists &lt;dbname&gt; <br></code></pre></td></tr></table></figure>
+<p>我们使用了用户 <code>username</code> 登录到主机地址为 <code>localhost</code>，端口号为 <code>5432</code> 的 <code>PostgreSQL</code> 数据库中并删除 <code>dbname</code> 数据库。</p>
+<h3 id="修改数据库信息"><a href="#修改数据库信息" class="headerlink" title="修改数据库信息"></a>修改数据库信息</h3><h4 id="修改数据库密码"><a href="#修改数据库密码" class="headerlink" title="修改数据库密码"></a>修改数据库密码</h4><p>修改密码有两种方式，一种是在<code>psql</code>客户端使用<code>Postgresql</code>命令的方式，另一种是不限制客户端，使用SQL语句修改。</p>
+<p><strong>psql</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">test1<span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> \password <br>Enter <span class="hljs-keyword">new</span> password: <br>Enter it again: <br>test1<span class="hljs-operator">=</span><span class="hljs-operator">&gt;</span> <br></code></pre></td></tr></table></figure>
+<p><strong>SQL语句</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">USER</span> test1 PASSWORD <span class="hljs-string">&#x27;&lt;采用相关协议加密后的密码字符串&gt;&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>采用这种方式修改要注意数据库日志问题，如果数据库采用主从复制模型，修改主数据库会导致从数据库的密码也修改了。</p>
+<h3 id="查看数据库的所有用户"><a href="#查看数据库的所有用户" class="headerlink" title="查看数据库的所有用户"></a>查看数据库的所有用户</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">\du<br></code></pre></td></tr></table></figure>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="category-chain-item">数据库</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/PostgreSQL/" class="category-chain-item">PostgreSQL</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/PostgreSQL/">#PostgreSQL</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PostgreSQL对数据库的常用操作</div>
+      <div>https://www.mofan.life/2021/04/13/PostgreSQL对数据库的常用操作/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 13, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/13/PostgreSQL%E5%AF%B9%E8%A1%A8%E7%9A%84%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" title="PostgreSQL对表的常用操作">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PostgreSQL对表的常用操作</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/13/Redis%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E7%99%BB%E9%99%86/" title="Redis开启远程登陆">
+                        <span class="hidden-mobile">Redis开启远程登陆</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

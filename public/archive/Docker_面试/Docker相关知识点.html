@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="mofan.life: Youpeng&amp;#39;s Technology Blog">
+  
+  
+  
+  <title>page.title - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h1 id="Docker相关知识点"><a href="#Docker相关知识点" class="headerlink" title="Docker相关知识点"></a>Docker相关知识点</h1><h3 id="Docker-常用的命令"><a href="#Docker-常用的命令" class="headerlink" title="Docker 常用的命令"></a>Docker 常用的命令</h3><ul>
+<li>docker pull 拉取或更新镜像</li>
+<li>docker push 推送镜像至远程仓库</li>
+<li>docker rm 删除容器</li>
+<li>docker rmi 删除镜像</li>
+<li>docker images 列出所有镜像</li>
+<li>docker ps 列出正在运行的容器</li>
+<li>docker ps -a 列出全部容器（包括不再运行的容器）</li>
+</ul>
+<h3 id="Docker-是怎么样工作的"><a href="#Docker-是怎么样工作的" class="headerlink" title="Docker 是怎么样工作的"></a>Docker 是怎么样工作的</h3><p>docker 是一种 C/S 架构模式（Client-Server)。</p>
+<p>docker client 与 docker demon 的连接是通过 websocket。</p>
+<p>docker client 负责处理用户输入的各种命令，然后将命令发送到 server 中，docker 中真正管理容器的是 server，也就是 docker demon（docker 守护进程）。</p>
+<h3 id="Docker-容器之间怎么隔离"><a href="#Docker-容器之间怎么隔离" class="headerlink" title="Docker 容器之间怎么隔离"></a>Docker 容器之间怎么隔离</h3><p>Linux 中的 PID、IPC、网络等资源是全局的，Docker 中使用 namespace 机制进行资源隔离，在该机制下，这些资源就不再是全局的，而是属于某个特定的 namespace，各个 namespace 下的资源互不打扰。</p>
+<p>虽然 namespace 在逻辑上控制资源互相隔离，但容器中的进程还是可以不受控制的访问系统资源，所以，docker 采用 control groups 技术（也就是cgroup)，有了cgroup就可以控制容器中进程对系统资源的消耗了，比如你可以限制某个容器使用内存的上限、可以在哪些CPU上运行等等。</p>
+<p>有了这两项技术，容器看起来就真的像是独立的操作系统了。</p>
+<h3 id="Docker-容器与主机间资源的拷贝"><a href="#Docker-容器与主机间资源的拷贝" class="headerlink" title="Docker 容器与主机间资源的拷贝"></a>Docker 容器与主机间资源的拷贝</h3><p>docker cp命令用于容器与主机之间的数据拷贝</p>
+<p>主机到哦容器：docker cp /www 96f7f14e99ab:/www/</p>
+<p>容器到主机：docker cp 96f7f14e99ab:/www /tmp</p>
+<h3 id="如何在生产中监控-Docker"><a href="#如何在生产中监控-Docker" class="headerlink" title="如何在生产中监控 Docker"></a>如何在生产中监控 Docker</h3><p>docker 通过 docker status 命令和 docker事件 等工具来监控生产环境中的docker，我们可以通过这些命令获取关于容器的一些数据。</p>
+<ul>
+<li>docker status 统计数据：当我们使用容器ID调用docker stats时，我们获得容器的CPU，内存使用情况等。它类似于Linux中的top命令。</li>
+<li>docker事件：docker事件是一个命令，用于查看docker守护程序中正在进行的活动流。一些常见的docker事件是：attach，commit，die，detach，rename，destroy等。我们还可以使用各种选项来限制或过滤我们感兴趣的事件。</li>
+</ul>
+<h3 id="Dcokerfile中的命令-COPY-和-ADD-的区别"><a href="#Dcokerfile中的命令-COPY-和-ADD-的区别" class="headerlink" title="Dcokerfile中的命令 COPY 和 ADD 的区别"></a>Dcokerfile中的命令 COPY 和 ADD 的区别</h3><p>COPY 的 src 只能是本地文件，其他无区别。</p>
+<h3 id="一个完整的Docker由哪些部分组成"><a href="#一个完整的Docker由哪些部分组成" class="headerlink" title="一个完整的Docker由哪些部分组成"></a>一个完整的Docker由哪些部分组成</h3><ul>
+<li>Docker Client</li>
+<li>Docker Server （or Docker Daemon)</li>
+<li>Container</li>
+<li>Images</li>
+</ul>
+<h3 id="进入容器的方法"><a href="#进入容器的方法" class="headerlink" title="进入容器的方法"></a>进入容器的方法</h3><ol>
+<li>使用 docker attach 命令</li>
+<li>使用 docker exec 命令， eg：docker exec -i -t 784fd3b294d7 /bin/bash</li>
+</ol>
+<h3 id="什么是联合文件系统（UnionFS）"><a href="#什么是联合文件系统（UnionFS）" class="headerlink" title="什么是联合文件系统（UnionFS）"></a>什么是联合文件系统（UnionFS）</h3><p>docker 的镜像实际上是由一层一层的文件系统组成的，这种层级的文件系统就是 UnionFS。UnionFS 是一种分层、轻量级并且高性能的文件系统。联合加载会把各层的文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录。</p>
+<h3 id="Docker与虚拟机的区别"><a href="#Docker与虚拟机的区别" class="headerlink" title="Docker与虚拟机的区别"></a>Docker与虚拟机的区别</h3><ul>
+<li>Docker 是一种应用程序容器，专注于在应用程序容器内自动部署应用程序，应用程序容器旨在打包和运行单个服务，而虚拟机是一种系统容器，系统容器专注于运行多个进程。</li>
+<li>Docker 不需要引导操作系统内核，所以，可以在短时间内创建一个容器，且基于容器的虚拟化对主机资源消耗很低，所以，可以用于接近主机的性能</li>
+<li>主机上的所有容器共享主机的调度程序，从而节省了额外资源需求</li>
+<li>容器中的资源管理是通过 cgroup 实现的， cgroup 不允许容器消耗比分配给他们的更多的资源。</li>
+</ul>
+<h3 id="什么是Docker"><a href="#什么是Docker" class="headerlink" title="什么是Docker"></a>什么是Docker</h3><ul>
+<li>Docker 是一个容器化平台，它以容器的方式将应用程序及其所需的依赖项打包在一起，以确保在开发、测试及生产的任何环境中无缝运行。</li>
+<li>Docker 容器将一个软件包装在一个完整的文件系统中，该文件系统包含软件运行所需的一切，</li>
+</ul>
+<h3 id="什么是Docker镜像？"><a href="#什么是Docker镜像？" class="headerlink" title="什么是Docker镜像？"></a>什么是Docker镜像？</h3><p>Docker镜像是<strong>Docker容器的源代码</strong>。换句话说，Docker镜像<strong>用于创建容器</strong>。使用build命令创建镜像，并且在使用run启动使它们生成容器。镜像存储在Docker注册表registry.hub.docker.com中，因为它们可能变得非常大，镜像被设计为由其他镜像层组成，允许在通过网络传输镜像时发送最少量的数据。 </p>
+<h3 id="什么是Docker容器？"><a href="#什么是Docker容器？" class="headerlink" title="什么是Docker容器？"></a>什么是Docker容器？</h3><p>Docker容器包括<strong>应用程序及其所有依赖项</strong>，但<strong>与其他容器共享内核</strong>，作为主机操作系统上<strong>用户空间中的独立进程</strong>运行。Docker容器不依赖于任何特定的基础架构：它们可以在任何计算机，任何基础架构和任何云中运行。 </p>
+<h3 id="什么类型的应用程序-无状态或有状态更适合Docker容器？"><a href="#什么类型的应用程序-无状态或有状态更适合Docker容器？" class="headerlink" title="什么类型的应用程序 - 无状态或有状态更适合Docker容器？"></a>什么类型的应用程序 - 无状态或有状态更适合Docker容器？</h3><p>最好为Docker Container创建无状态应用程序。我们可以从应用程序中创建一个容器，并从应用程序中取出可配置的状态参数。现在我们可以在生产和具有不同参数的QA环境中运行相同的容器。这有助于在不同场景中重用相同的镜像。使用Docker Containers比使用有状态应用程序更容易扩展无状态应用程序。</p>
+<h3 id="Docker的使用流程"><a href="#Docker的使用流程" class="headerlink" title="Docker的使用流程"></a>Docker的使用流程</h3><ol>
+<li>首先要编写 Dockerfile 文件，Dockerfile 是镜像的源代码；</li>
+<li>然后基于 Dockerfile 构建容器的镜像，镜像可以理解为 ”源代码“ 的 ”编译版本“；</li>
+<li>获得容器的镜像后，应使用注册表重新分发容器。注册表就像一个 git仓库，它用于 推送和拉取 镜像；</li>
+<li>使用该镜像来运行容器。</li>
+</ol>
+<h3 id="Dockerfile中常见的指令"><a href="#Dockerfile中常见的指令" class="headerlink" title="Dockerfile中常见的指令"></a>Dockerfile中常见的指令</h3><ul>
+<li>FROM：使用 FROM 为后续指令设置 基础镜像，在每个有效的 Dockerfile 中，FROM是第一条指令。</li>
+<li>MAINTAINER：镜像维护者的姓名和邮箱。</li>
+<li>RUN：容器构建时需要运行的命令，该命令基于基础镜像支持的命令。</li>
+<li>EXPOSE：当前容器对外界暴露的端口。</li>
+<li>WORKDIR：（默认在/根目录），终端登录进去后的落脚点。</li>
+<li>ENV：构建镜像过程中的环境变量。</li>
+<li>ADD：拷贝 + 解压 功能。</li>
+<li>COPY：直接拷贝。</li>
+<li>VOLUME：自建容器卷。</li>
+<li>CMD：容器启动时需要运行的命令。可能有多个CMD，但只有最后一个生效，CMD会被 docker run 之后的参数替换。</li>
+<li>ENTRYPOINT：目的和CMD一样，但不会被 docker run 之后的参数替换。</li>
+<li>ONBUILD：触发器，当镜像当作另一个镜像的构建基础时，ONBUILD指令向镜像添加将在稍后执行的触发指令。</li>
+</ul>
+<p>镜像：Docker镜像由一系列只读层构建的；</p>
+<p>层：每个层代表 Dockerfile 中的一条指令。</p>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

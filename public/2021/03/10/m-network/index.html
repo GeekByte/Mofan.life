@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="讲一下TCP和HTTPTCP协议对应传输层，HTTP协议对应应用层，HTTP协议是建立在TCP协议基础之上的。 TCP协议可以对上层网络提供接口，使上层网络数据的传输建立在“无差别”的网络之上。完成一个TCP连接需要经历三次握手，断开则需要四次挥手。理想状态下，TCP连接一旦建立，在通信双方任一方没有断开之前，都是处于连接状态的， HTTP协议是负责传输数据的协议，它是一种无状态的协议，HTTP连">
+  
+  
+  
+  <title>网络 - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="网络"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-03-10 09:17" pubdate>
+          March 10, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">网络</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on 5 months ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h2 id="讲一下TCP和HTTP"><a href="#讲一下TCP和HTTP" class="headerlink" title="讲一下TCP和HTTP"></a>讲一下TCP和HTTP</h2><p>TCP协议对应传输层，HTTP协议对应应用层，HTTP协议是建立在TCP协议基础之上的。</p>
+<p>TCP协议可以对上层网络提供接口，使上层网络数据的传输建立在“无差别”的网络之上。完成一个TCP连接需要经历三次握手，断开则需要四次挥手。理想状态下，TCP连接一旦建立，在通信双方任一方没有断开之前，都是处于连接状态的，</p>
+<p>HTTP协议是负责传输数据的协议，它是一种无状态的协议，HTTP连接是一种“短连接”，在HTTP1.0中，客户端的每次请求都对应一次连接，请求完成则断开连接。在HTTP1.1中可以在一次连接中处理多个请求，并且多个请求重叠进行，不需要每个请求都经历一次“连接-断开”的过程。</p>
+<h2 id="TCP和UDP的特性"><a href="#TCP和UDP的特性" class="headerlink" title="TCP和UDP的特性"></a>TCP和UDP的特性</h2><ul>
+<li>TCP是面向连接的，连接要经过三次握手，断开要经过四次挥手。UDP是面向无连接的，它是一个可以随时通信的协议，只要双方建立了Socket，设置了监听端口，就可以收到到达的UDP包，并能够随时建立Socket</li>
+<li>TCP具有流量控制和用塞控制机制，通过控制滑动窗口的大小来控制数据发送速率。而UDP理论上可以向网络中无限制的发送数据，除非在程序端做了控制。</li>
+<li>TCP可以保证数据传输的可靠性，有速率控制、重传机制、数据校验等机制。而UDP则是尽力的传输数据，不能保证数据的可靠性。</li>
+<li>TCP报文段头部占20个字节，比UDP多12个，加上连接有握手机制，使用效率上不如UDP。</li>
+</ul>
+<h2 id="TCP三次握手、四次挥手，四次能不能变成三次"><a href="#TCP三次握手、四次挥手，四次能不能变成三次" class="headerlink" title="TCP三次握手、四次挥手，四次能不能变成三次"></a>TCP三次握手、四次挥手，四次能不能变成三次</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>客户端➡️服务器：标志位：SYN=1 序号为：seq=x（默认x=1）</p>
+<p>服务器➡️客户端：标志位：SYN=1，ACK=1 确认位：ack=x+1 序号位：seq=y</p>
+<p>客户端➡️服务器：标志位：ACK=1 确认位：ack=y+1 序号位：seq=x+1</p>
+<blockquote>
+<p>这个三次握手四次挥手的基础解释以及图片</p>
+<p><img src="https://www.cmdbyte.com/2021/02/v2-8720bd64871a5452df583fdab8207d64_720w.jpg" srcset="/img/loading.gif" lazyload alt="v2-8720bd64871a5452df583fdab8207d64_720w"></p>
+<p><img src="https://www.cmdbyte.com/2021/02/v2-2f38fb35dff4a5cc9f5352b9c7533222_720w.png" srcset="/img/loading.gif" lazyload alt="v2-2f38fb35dff4a5cc9f5352b9c7533222_720w"></p>
+</blockquote>
+<h2 id="HTTP2-0了解吗？和HTTP1-1的差距"><a href="#HTTP2-0了解吗？和HTTP1-1的差距" class="headerlink" title="HTTP2.0了解吗？和HTTP1.1的差距"></a>HTTP2.0了解吗？和HTTP1.1的差距</h2><p>HTTP2.0可以说是SPDY的升级版，性能很高</p>
+<p>HTTP2.0相比HTTP1.1的新特性有：</p>
+<ul>
+<li>新的二进制格式：HTTP1.x基于文本，HTTP2.0的解析基于二进制，实现方便且健壮</li>
+<li>多路复用：一个连接里可以有多个request，每个request都有一个id，接收方可以根据id选择对应的服务</li>
+<li>header压缩：使用encoder减少传输大小，通信双方个cache一份header fileds表</li>
+<li>服务端推送</li>
+</ul>
+<h2 id="服务器如何处理大流量高并发请求"><a href="#服务器如何处理大流量高并发请求" class="headerlink" title="服务器如何处理大流量高并发请求"></a>服务器如何处理大流量高并发请求</h2><ul>
+<li>增加资源供给：更大的带宽、更高配置的服务器、更高性能的web服务应用、更高性能的数据库</li>
+<li>请求分流：使用集群，分布式的系统架构</li>
+<li>应用优化：使用高效的编程语言、优化业务逻辑算法、优化访问数据库的SQL语句</li>
+</ul>
+<h2 id="计算机网络七层协议"><a href="#计算机网络七层协议" class="headerlink" title="计算机网络七层协议"></a>计算机网络七层协议</h2><p>主机代表着高层，网络代表低层。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B.png" srcset="/img/loading.gif" lazyload alt="七层网络模型"></p>
+<blockquote>
+<p>七层网络模型</p>
+<p><img src="https://www.cmdbyte.com/2021/02/v2-2af488004591cbc12cd82c44518523de_720w.jpg" srcset="/img/loading.gif" lazyload alt="v2-2af488004591cbc12cd82c44518523de_720w"></p>
+</blockquote>
+<h2 id="TCP保证可靠性"><a href="#TCP保证可靠性" class="headerlink" title="TCP保证可靠性"></a>TCP保证可靠性</h2><ul>
+<li>校验和</li>
+<li>确认应答与序列号</li>
+<li>超时重传</li>
+<li>连接管理</li>
+<li>流量控制</li>
+<li>用塞控制<ul>
+<li>慢开始</li>
+<li>拥塞避免避免</li>
+<li>快重传</li>
+<li>快恢复</li>
+</ul>
+</li>
+</ul>
+<h2 id="TCP十六位校验如何实现的"><a href="#TCP十六位校验如何实现的" class="headerlink" title="TCP十六位校验如何实现的"></a>TCP十六位校验如何实现的</h2><p>在发送方将整个报文段分成多个16位的段，将所有段进行反码相加，然后将结果存放在校验和字段中，接收方也采用相同的方法进行计算，若最终结果为检验字段所有位全为1，则正确，否则存在错误。</p>
+<h2 id="TCP粘包"><a href="#TCP粘包" class="headerlink" title="TCP粘包"></a>TCP粘包</h2><h2 id="802-3x工作在第几层，为什么"><a href="#802-3x工作在第几层，为什么" class="headerlink" title="802.3x工作在第几层，为什么"></a>802.3x工作在第几层，为什么</h2><h2 id="HTTPS握手，为什么需要非对称加密和对称加密"><a href="#HTTPS握手，为什么需要非对称加密和对称加密" class="headerlink" title="HTTPS握手，为什么需要非对称加密和对称加密"></a>HTTPS握手，为什么需要非对称加密和对称加密</h2><h2 id="基于UDP再设计一个可靠的协议，如何设计"><a href="#基于UDP再设计一个可靠的协议，如何设计" class="headerlink" title="基于UDP再设计一个可靠的协议，如何设计"></a>基于UDP再设计一个可靠的协议，如何设计</h2><h2 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h2><h2 id="HTTP和HTTPS的区别"><a href="#HTTP和HTTPS的区别" class="headerlink" title="HTTP和HTTPS的区别"></a>HTTP和HTTPS的区别</h2><h2 id="HTTP和HTTPS的应用场景"><a href="#HTTP和HTTPS的应用场景" class="headerlink" title="HTTP和HTTPS的应用场景"></a>HTTP和HTTPS的应用场景</h2><h2 id="HTTPS最耗时的环节"><a href="#HTTPS最耗时的环节" class="headerlink" title="HTTPS最耗时的环节"></a>HTTPS最耗时的环节</h2><h2 id="讲一下你了解的端口及对应的服务"><a href="#讲一下你了解的端口及对应的服务" class="headerlink" title="讲一下你了解的端口及对应的服务"></a>讲一下你了解的端口及对应的服务</h2><p><img src="https://www.cmdbyte.com/2021/02/v2-e584c505e895441d7b52c8f3c02c9770_720w.png" srcset="/img/loading.gif" lazyload alt="v2-e584c505e895441d7b52c8f3c02c9770_720w"></p>
+<p>具体一点可以参考：<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_66ea0e2801011vb3.html">常用端口号与对应的服务以及端口关闭_typiloong_新浪博客</a></p>
+<h2 id="简单解释一下ARP协议的工作原理"><a href="#简单解释一下ARP协议的工作原理" class="headerlink" title="简单解释一下ARP协议的工作原理"></a>简单解释一下ARP协议的工作原理</h2><p><img src="https://www.cmdbyte.com/2021/02/v2-6c73a236adcb7704e5e75162465c3aec_720w.png" srcset="/img/loading.gif" lazyload alt="v2-6c73a236adcb7704e5e75162465c3aec_720w"></p>
+<h2 id="在浏览器中输入链接发生了什么"><a href="#在浏览器中输入链接发生了什么" class="headerlink" title="在浏览器中输入链接发生了什么"></a>在浏览器中输入链接发生了什么</h2><ul>
+<li>查找域名对应的IP地址。这一步会依次查找浏览器缓存，系统缓存，路由器缓存，ISPNDS缓存，根域名服务器</li>
+<li>浏览器向IP对应的web服务器发送一个HTTP请求</li>
+<li>服务器响应请求，发回网页内容</li>
+<li>浏览器解析网页内容</li>
+</ul>
+<p>更加详细的一种说法（以百度为例）（来自<a href="https://link.zhihu.com/?target=https://www.nowcoder.com/discuss/1937">计算机网络之面试常考 - 牛客网</a>）</p>
+<p><img src="https://www.cmdbyte.com/2021/02/v2-99bc5fa53acca200f564b0bd69d1bb41_720w.png" srcset="/img/loading.gif" lazyload alt="v2-99bc5fa53acca200f564b0bd69d1bb41_720w"></p>
+<h2 id="IP地址分为哪几类"><a href="#IP地址分为哪几类" class="headerlink" title="IP地址分为哪几类"></a>IP地址分为哪几类</h2><p><img src="https://www.cmdbyte.com/2021/02/v2-7438cb1ba454ffe278f5c2310e69f3aa_720w.png" srcset="/img/loading.gif" lazyload alt="v2-7438cb1ba454ffe278f5c2310e69f3aa_720w"></p>
+<p>IPv6：采用128bit，首部宽度部分为40字节</p>
+<h2 id="ipv4-和-ipv6"><a href="#ipv4-和-ipv6" class="headerlink" title="ipv4 和 ipv6"></a>ipv4 和 ipv6</h2><h2 id="tcp-的阻塞控制"><a href="#tcp-的阻塞控制" class="headerlink" title="tcp 的阻塞控制"></a>tcp 的阻塞控制</h2><ul>
+<li>慢开始</li>
+<li>拥塞避免</li>
+<li>快重传</li>
+<li>快恢复</li>
+</ul>
+<h2 id="拥塞避免后再次慢开始还会从1开始吗"><a href="#拥塞避免后再次慢开始还会从1开始吗" class="headerlink" title="拥塞避免后再次慢开始还会从1开始吗"></a>拥塞避免后再次慢开始还会从1开始吗</h2><p> 是的。目的就是要迅速减少主机发送到网络中的分组数，使得发生拥塞的路由器有足够时间把队列中积压的分组处理完毕。</p>
+<h2 id="为什么-tcp-需要拥塞控制"><a href="#为什么-tcp-需要拥塞控制" class="headerlink" title="为什么 tcp 需要拥塞控制"></a>为什么 tcp 需要拥塞控制</h2><p><strong>防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不致过载。</strong></p>
+<p>当发送端给接收端发送数据时，只有接收端收到了数据，才会给发送端返回应答信息。如果接收端一直没有收到应答信息，则发送端会认为数据已经丢失，会进行重新发送。</p>
+<p>接收端收不到信息其实有两种情况，一种是数据真的丢失，一种是网络通信处于拥塞状态，拥塞控制针对的就是第二种情况。</p>
+<h2 id="Cookie与Session的区别"><a href="#Cookie与Session的区别" class="headerlink" title="Cookie与Session的区别"></a>Cookie与Session的区别</h2><ul>
+<li><strong>数据存放位置不同</strong><ul>
+<li>Cookie数据存放在客户的浏览器上</li>
+<li>Session数据存放在服务器上</li>
+</ul>
+</li>
+<li><strong>安全程度不同</strong><ul>
+<li>cookie不是很安全，别人可以分析存放在本地的COOKIE并进行COOKIE欺骗,考虑到安全应当使用session</li>
+</ul>
+</li>
+<li><strong>性能使用程度不同</strong><ul>
+<li>session会在一定时间内保存在服务器上。当访问增多，会比较占用服务器的性能,考虑到减轻服务器性能方面，应当使用cookie</li>
+</ul>
+</li>
+<li><strong>数据存储大小不同</strong><ul>
+<li>单个cookie保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个cookie，而session则存储与服务端，浏览器对其没有限制。</li>
+</ul>
+</li>
+<li><strong>会话机制不同</strong><ul>
+<li>session会话机制：session会话机制是一种服务器端机制，它使用类似于哈希表（可能还有哈希表）的结构来保存信息。</li>
+<li>cookies会话机制：cookie是服务器存储在本地计算机上的小块文本，并随每个请求发送到同一服务器。 Web服务器使用HTTP标头将cookie发送到客户端。在客户端终端，浏览器解析cookie并将其保存为本地文件，该文件自动将来自同一服务器的任何请求绑定到这些cookie。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Session-ID如何维护（Cookie里带有Session-ID）"><a href="#Session-ID如何维护（Cookie里带有Session-ID）" class="headerlink" title="Session ID如何维护（Cookie里带有Session ID）"></a>Session ID如何维护（Cookie里带有Session ID）</h2><p>A．保存session id的方式可以采用cookie，这样在交互过程中浏览器可以自动的按照规则把这个标识发送给服务器。<br>B．由于cookie可以被人为的禁止，必须有其它的机制以便在cookie被禁止时仍然能够把session id传递回服务器，经常采用的一种技术叫做URL重写，就是把session id附加在URL路径的后面，附加的方式也有两种，一种是作为URL路径的附加信息，另一种是作为查询字符串附加在URL后面。网络在整个交互过程中始终保持状态，就必须在每个客户端可能请求的路径后面都包含这个session id。<br>C．另一种技术叫做表单隐藏字段。就是服务器会自动修改表单，添加一个隐藏字段，以便在表单提交时能够把session id传递回服务器。</p>
+<h2 id="XSS和CSRF"><a href="#XSS和CSRF" class="headerlink" title="XSS和CSRF"></a>XSS和CSRF</h2><h2 id="多台服务器session存储怎么设计"><a href="#多台服务器session存储怎么设计" class="headerlink" title="多台服务器session存储怎么设计"></a>多台服务器session存储怎么设计</h2><h2 id="多台服务器session除了存在redis还可以存在哪里"><a href="#多台服务器session除了存在redis还可以存在哪里" class="headerlink" title="多台服务器session除了存在redis还可以存在哪里"></a>多台服务器session除了存在redis还可以存在哪里</h2><h2 id="https详细过程"><a href="#https详细过程" class="headerlink" title="https详细过程"></a>https详细过程</h2><h2 id="get-post区别，还有什么其他方法，分别是做什么的"><a href="#get-post区别，还有什么其他方法，分别是做什么的" class="headerlink" title="get post区别，还有什么其他方法，分别是做什么的"></a>get post区别，还有什么其他方法，分别是做什么的</h2><h2 id="web安全问题有哪些"><a href="#web安全问题有哪些" class="headerlink" title="web安全问题有哪些"></a>web安全问题有哪些</h2><p><strong>1、SQL注入</strong><br>拼接的SQL字符串改变了设计者原来的意图，执行了如泄露、改变数据等操作，甚至控制数据库<br>服务器， SQL Injection与Command Injection等攻击包括在内</p>
+<p><strong>2、跨站脚本攻击（XSS或css）</strong></p>
+<p>跨站脚本(Cross-Site Scripting)是指远程WEB页面的html代码可以插入具有恶意目的的数据，当<br>浏览器下载该页面，嵌入其中的恶意脚本将被解释执行，从而对客户端用户造成伤害。简称CSS<br>或XSS<br><strong>3、没有限制URL访问</strong></p>
+<p>系统已经对URL的访问做了限制，但这种限制却实际并没有生效。攻击者能够很容易的就伪造<br>请求直接访问未被授权的页面</p>
+<p><strong>4、越权访问</strong></p>
+<p>用户对系统的某个模块或功能没有权限，通过拼接URL或Cookie欺骗来访问该模块或功能</p>
+<p><strong>5、泄露配置信息</strong></p>
+<p>服务器返回的提示或错误信息中出现服务器版本信息泄露、程序出错泄露物理路径、程序查询<br>出错返回SQL语句、过于详细的用户验证返回信息。</p>
+<p><strong>6、不安全的加密存储</strong></p>
+<p>常见的问题是不安全的密钥生成和储存、不轮换密钥，和使用弱算法。使用弱的或者不带salt<br>的哈希算法来保护密码也很普遍。外部攻击者因访问的局限性很难探测这种漏洞。他们通常<br>必须首先破解其他东西以获得需要的访问。</p>
+<p><strong>7、传输层保护不足</strong></p>
+<p>在身份验证过程中没有使用SSL / TLS，因此暴露传输数据和会话ID，被攻击者截听，或使<br>用过期或者配置不正确的证书。</p>
+<p><strong>8、登录信息提示</strong></p>
+<p>用户登录提示信息会给攻击者一些有用的信息，作为程序的开发人员应该做到对登录提示信<br>息的模糊化，以防攻击者利用登录得知用户是否存在</p>
+<p><strong>9、重复提交请求</strong></p>
+<p>程序员在代码中没有对重复提交请求做限制，这样就会出现订单被多次下单，帖子被重<br>复发布。恶意攻击者可能利用此漏洞对网站进行批量灌水，致使网站瘫痪</p>
+<p><strong>10、网页脚本错误</strong></p>
+<p>访问者所使用的浏览器不能完全支持页面里的脚本，形成“脚本错误”，也就是网站中的脚<br>本没有被成功执行。遇到“脚本错误”时一般会弹出一个非常难看的脚本运行错误警告窗口</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9D%A2%E8%AF%95/" class="category-chain-item">面试</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E9%9D%A2%E8%AF%95/%E7%BD%91%E7%BB%9C/" class="category-chain-item">网络</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>网络</div>
+      <div>https://www.mofan.life/2021/03/10/m-network/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>March 10, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/10/m-database/" title="数据库">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数据库</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/09/m-go/" title="Go面试题">
+                        <span class="hidden-mobile">Go面试题</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

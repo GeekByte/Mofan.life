@@ -1,0 +1,775 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="刚开始接触 Mac 的人，可能他的第二款终端软件就是 iTerm2，但是，用时间长了后，总感觉 iTerm2 不够纯粹，但好在 iTerm2 的功能还是挺多的，属于那种开箱就用也能体验良好的终端。当我在思考替代 iTerm2 的终端的时候，我的需求渐渐清晰，一定要轻量，而且在好看的同时具有个性，于是我发现了 Hyper，看到的第一眼就喜欢上了这款终端，开启这个软件让人有一种眼前一亮的感觉. 说了这">
+  
+  
+  
+  <title>Hyper的个人配置 - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hyper的个人配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-29 10:02" pubdate>
+          October 29, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hyper的个人配置</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on 2 months ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>刚开始接触 Mac 的人，可能他的第二款终端软件就是 iTerm2，但是，用时间长了后，总感觉 iTerm2 不够纯粹，但好在 iTerm2 的功能还是挺多的，属于那种开箱就用也能体验良好的终端。<br>当我在思考替代 iTerm2 的终端的时候，我的需求渐渐清晰，一定要轻量，而且在好看的同时具有个性，于是我发现了 Hyper，看到的第一眼就喜欢上了这款终端，开启这个软件让人有一种眼前一亮的感觉.</p>
+<p>说了这么多，就贴一份我的配置清单吧.<br>我使用的主题是: hyper-electron-highlighter, 需要通过 <code>hyper i hyper-electron-highlighter</code> 命令进行安装, 同时要注意该 plugins 要放到config下，因为后面还有我自定义的一些颜色，总之，注意顺序，别把修改的部分覆盖了.</p>
+<blockquote>
+<p>如果你安装时，提示 hyper 命令不可用，你可以点击菜单栏的 Tools -&gt; Install Hyper CLI command in PATH</p>
+</blockquote>
+<blockquote>
+<p>另外，配合oh-my-zsh的主题使用效果更好，请参考: <a href="https://www.mofan.life/2021/10/29/oh-my-zsh%E8%87%AA%E7%94%A8%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/">https://www.mofan.life/2021/10/29/oh-my-zsh%E8%87%AA%E7%94%A8%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/</a></p>
+</blockquote>
+<blockquote>
+<p>如果安装oh-my-zsh后，发现 .bash_profile 里的环境变量不能用了，请在 .zshrc 的文件上面加上一行: source ~/.bash_profile</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-meta">&quot;use strict&quot;</span>;<br><span class="hljs-comment">// Future versions of Hyper may add additional config options,</span><br><span class="hljs-comment">// which will not automatically be merged into this file.</span><br><span class="hljs-comment">// See https://hyper.is#cfg for all currently supported options.</span><br><span class="hljs-built_in">module</span>.exports = &#123;<br>    config: &#123;<br>        <span class="hljs-comment">// choose either `&#x27;stable&#x27;` for receiving highly polished,</span><br>        <span class="hljs-comment">// or `&#x27;canary&#x27;` for less polished but more frequent updates</span><br>        updateChannel: <span class="hljs-string">&#x27;stable&#x27;</span>,<br>        <span class="hljs-comment">// default font size in pixels for all tabs</span><br>        fontSize: <span class="hljs-number">14</span>,<br>        <span class="hljs-comment">// font family with optional fallbacks</span><br>        fontFamily: <span class="hljs-string">&#x27;Monaco, Menlo, &quot;DejaVu Sans Mono&quot;, Consolas, &quot;Lucida Console&quot;, monospace&#x27;</span>,<br>        <span class="hljs-comment">// default font weight: &#x27;normal&#x27; or &#x27;bold&#x27;</span><br>        fontWeight: <span class="hljs-string">&#x27;normal&#x27;</span>,<br>        <span class="hljs-comment">// font weight for bold characters: &#x27;normal&#x27; or &#x27;bold&#x27;</span><br>        fontWeightBold: <span class="hljs-string">&#x27;normal&#x27;</span>,<br>        <span class="hljs-comment">// line height as a relative unit</span><br>        lineHeight: <span class="hljs-number">1.1</span>,<br>        <span class="hljs-comment">// letter spacing as a relative unit</span><br>        letterSpacing: <span class="hljs-number">1</span>,<br>        <span class="hljs-comment">// terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)</span><br>        cursorColor: <span class="hljs-string">&#x27;rgba(248,28,229,0.8)&#x27;</span>,<br>        <span class="hljs-comment">// terminal text color under BLOCK cursor</span><br>        cursorAccentColor: <span class="hljs-string">&#x27;#000&#x27;</span>,<br>        <span class="hljs-comment">// `&#x27;BEAM&#x27;` for |, `&#x27;UNDERLINE&#x27;` for _, `&#x27;BLOCK&#x27;` for █</span><br>        cursorShape: <span class="hljs-string">&#x27;BLOCK&#x27;</span>,<br>        <span class="hljs-comment">// set to `true` (without backticks and without quotes) for blinking cursor</span><br>        cursorBlink: <span class="hljs-literal">true</span>,<br>        <span class="hljs-comment">// color of the text</span><br>        foregroundColor: <span class="hljs-string">&#x27;#fff&#x27;</span>,<br>        <span class="hljs-comment">// terminal background color</span><br>        <span class="hljs-comment">// opacity is only supported on macOS</span><br>        backgroundColor: <span class="hljs-string">&#x27;#000&#x27;</span>,<br>        <span class="hljs-comment">// terminal selection color</span><br>        selectionColor: <span class="hljs-string">&#x27;rgba(204, 51, 255,0.4)&#x27;</span>,<br>        <span class="hljs-comment">// border color (window, tabs)</span><br>        borderColor: <span class="hljs-string">&#x27;#333&#x27;</span>,<br>        <span class="hljs-comment">// custom CSS to embed in the main window</span><br>        css: <span class="hljs-string">&#x27;::selection &#123; background-color: rgba(233, 44, 108, 0.8); color: #fcfcfc; border-radius: 25px;&#125;&#x27;</span>,<br>        <span class="hljs-comment">// custom CSS to embed in the terminal window</span><br>        termCSS: <span class="hljs-string">&#x27;::selection &#123; background-color: rgba(233, 44, 108, 0.8); color: #fcfcfc; border-radius: 25px;&#125;&#x27;</span>,<br>        <span class="hljs-comment">// set custom startup directory (must be an absolute path)</span><br>        workingDirectory: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-comment">// if you&#x27;re using a Linux setup which show native menus, set to false</span><br>        <span class="hljs-comment">// default: `true` on Linux, `true` on Windows, ignored on macOS</span><br>        showHamburgerMenu: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-comment">// set to `false` (without backticks and without quotes) if you want to hide the minimize, maximize and close buttons</span><br>        <span class="hljs-comment">// additionally, set to `&#x27;left&#x27;` if you want them on the left, like in Ubuntu</span><br>        <span class="hljs-comment">// default: `true` (without backticks and without quotes) on Windows and Linux, ignored on macOS</span><br>        showWindowControls: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-comment">// custom padding (CSS format, i.e.: `top right bottom left`)</span><br>        padding: <span class="hljs-string">&#x27;10px 12px&#x27;</span>,<br>        <span class="hljs-comment">// the full list. if you&#x27;re going to provide the full color palette,</span><br>        <span class="hljs-comment">// including the 6 x 6 color cubes and the grayscale map, just provide</span><br>        <span class="hljs-comment">// an array here instead of a color map object</span><br>        plugins: [<span class="hljs-string">&quot;hyper-electron-highlighter&quot;</span>],<br>        colors: &#123;<br>              black: <span class="hljs-string">&#x27;#ffffff&#x27;</span>,<br>        <span class="hljs-comment">//      red: &#x27;#66ff99&#x27;,</span><br>              green: <span class="hljs-string">&#x27;#00ff66&#x27;</span>,<br>            yellow: <span class="hljs-string">&#x27;#ffff33&#x27;</span>,<br>        <span class="hljs-comment">//     blue: &#x27;#0A2FC4&#x27;,</span><br>             magenta: <span class="hljs-string">&#x27;#ff66cc&#x27;</span>,<br>        <span class="hljs-comment">//     cyan: &#x27;#20C5C6&#x27;,</span><br>             white: <span class="hljs-string">&#x27;#00ff00&#x27;</span>,<br>        <span class="hljs-comment">//     lightBlack: &#x27;#686868&#x27;,</span><br>        <span class="hljs-comment">//     lightRed: &#x27;#FFFFFF&#x27;,</span><br>        <span class="hljs-comment">//     lightGreen: &#x27;#67F86F&#x27;,</span><br>        <span class="hljs-comment">//     lightYellow: &#x27;#009933&#x27;,</span><br>        <span class="hljs-comment">//     lightBlue: &#x27;#6A76FB&#x27;,</span><br>             lightMagenta: <span class="hljs-string">&#x27;#9900ff&#x27;</span>,<br>        <span class="hljs-comment">//     lightCyan: &#x27;#68FDFE&#x27;,</span><br>             lightWhite: <span class="hljs-string">&#x27;#00ff00&#x27;</span>,<br>        <span class="hljs-comment">//     limeGreen: &#x27;#32CD32&#x27;,</span><br>        <span class="hljs-comment">//     lightCoral: &#x27;#F08080&#x27;,</span><br>        &#125;,<br>        <span class="hljs-comment">// the shell to run when spawning a new session (i.e. /usr/local/bin/fish)</span><br>        <span class="hljs-comment">// if left empty, your system&#x27;s login shell will be used by default</span><br>        <span class="hljs-comment">//</span><br>        <span class="hljs-comment">// Windows</span><br>        <span class="hljs-comment">// - Make sure to use a full path if the binary name doesn&#x27;t work</span><br>        <span class="hljs-comment">// - Remove `--login` in shellArgs</span><br>        <span class="hljs-comment">//</span><br>        <span class="hljs-comment">// Windows Subsystem for Linux (WSL) - previously Bash on Windows</span><br>        <span class="hljs-comment">// - Example: `C:\\Windows\\System32\\wsl.exe`</span><br>        <span class="hljs-comment">//</span><br>        <span class="hljs-comment">// Git-bash on Windows</span><br>        <span class="hljs-comment">// - Example: `C:\\Program Files\\Git\\bin\\bash.exe`</span><br>        <span class="hljs-comment">//</span><br>        <span class="hljs-comment">// PowerShell on Windows</span><br>        <span class="hljs-comment">// - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`</span><br>        <span class="hljs-comment">//</span><br>        <span class="hljs-comment">// Cygwin</span><br>        <span class="hljs-comment">// - Example: `C:\\cygwin64\\bin\\bash.exe`</span><br>        shell: <span class="hljs-string">&#x27;/bin/zsh&#x27;</span>,<br>        <span class="hljs-comment">// for setting shell arguments (i.e. for using interactive shellArgs: `[&#x27;-i&#x27;]`)</span><br>        <span class="hljs-comment">// by default `[&#x27;--login&#x27;]` will be used</span><br>        shellArgs: [<span class="hljs-string">&#x27;--login&#x27;</span>],<br>        <span class="hljs-comment">// for environment variables</span><br>        env: &#123;&#125;,<br>        <span class="hljs-comment">// Supported Options:</span><br>        <span class="hljs-comment">//  1. &#x27;SOUND&#x27; -&gt; Enables the bell as a sound</span><br>        <span class="hljs-comment">//  2. false: turns off the bell</span><br>        bell: <span class="hljs-string">&#x27;SOUND&#x27;</span>,<br>        <span class="hljs-comment">// An absolute file path to a sound file on the machine.</span><br>        <span class="hljs-comment">// bellSoundURL: &#x27;/path/to/sound/file&#x27;,</span><br>        <span class="hljs-comment">// if `true` (without backticks and without quotes), selected text will automatically be copied to the clipboard</span><br>        copyOnSelect: <span class="hljs-literal">false</span>,<br>        <span class="hljs-comment">// if `true` (without backticks and without quotes), hyper will be set as the default protocol client for SSH</span><br>        defaultSSHApp: <span class="hljs-literal">true</span>,<br>        <span class="hljs-comment">// if `true` (without backticks and without quotes), on right click selected text will be copied or pasted if no</span><br>        <span class="hljs-comment">// selection is present (`true` by default on Windows and disables the context menu feature)</span><br>        quickEdit: <span class="hljs-literal">false</span>,<br>        <span class="hljs-comment">// choose either `&#x27;vertical&#x27;`, if you want the column mode when Option key is hold during selection (Default)</span><br>        <span class="hljs-comment">// or `&#x27;force&#x27;`, if you want to force selection regardless of whether the terminal is in mouse events mode</span><br>        <span class="hljs-comment">// (inside tmux or vim with mouse mode enabled for example).</span><br>        macOptionSelectionMode: <span class="hljs-string">&#x27;vertical&#x27;</span>,<br>        <span class="hljs-comment">// Whether to use the WebGL renderer. Set it to false to use canvas-based</span><br>        <span class="hljs-comment">// rendering (slower, but supports transparent backgrounds)</span><br>        webGLRenderer: <span class="hljs-literal">false</span>,<br>        <span class="hljs-comment">// keypress required for weblink activation: [ctrl|alt|meta|shift]</span><br>        <span class="hljs-comment">// todo: does not pick up config changes automatically, need to restart terminal :/</span><br>        webLinksActivationKey: <span class="hljs-string">&#x27;&#x27;</span>,<br>        <span class="hljs-comment">// if `false` (without backticks and without quotes), Hyper will use ligatures provided by some fonts</span><br>        disableLigatures: <span class="hljs-literal">true</span>,<br>        <span class="hljs-comment">// for advanced config flags please refer to https://hyper.is/#cfg</span><br>        windowSize: [<span class="hljs-number">900</span>, <span class="hljs-number">600</span>]<br><br>       <span class="hljs-comment">// verminal: &#123;</span><br>       <span class="hljs-comment">//   fontFamily: &#x27;&quot;My favourite font&quot;&#x27;,</span><br>       <span class="hljs-comment">//   fontSize: 16</span><br>       <span class="hljs-comment">// &#125;,</span><br><br>       <span class="hljs-comment">// Customize the theme</span><br>       <span class="hljs-comment">// themeSettings: &#123;</span><br>       <span class="hljs-comment">//     // Do not make background transparent (default is 0.9)</span><br>       <span class="hljs-comment">//     opacity: 1,</span><br>       <span class="hljs-comment">//     // Switch from luke&#x27;s orange uniform to master yoda (check the available styles above)</span><br>       <span class="hljs-comment">//     style: &#x27;luke&#x27;,</span><br>       <span class="hljs-comment">//     // Change the character that mars a tab active</span><br>       <span class="hljs-comment">//     tabActiveMarker: &#x27;💁&#x27;</span><br>       <span class="hljs-comment">// &#125;,</span><br><br>    &#125;,<br>    <span class="hljs-comment">// a list of plugins to fetch and install from npm</span><br>    <span class="hljs-comment">// format: [@org/]project[#version]</span><br>    <span class="hljs-comment">// examples:</span><br>    <span class="hljs-comment">//   `hyperpower`</span><br>    <span class="hljs-comment">//   `@company/project`</span><br>    <span class="hljs-comment">//   `project#1.0.1`</span><br>    <span class="hljs-comment">// &quot;hyper-ui&quot;, &quot;hyper-aura-theme&quot;, &quot;hyper-named-css-colors&quot;</span><br>    <span class="hljs-comment">//plugins: [</span><br>    <span class="hljs-comment">//     &quot;hyper-electron-highlighter&quot;,</span><br>    <span class="hljs-comment">//],</span><br>    <span class="hljs-comment">// in development, you can create a directory under</span><br>    <span class="hljs-comment">// `~/.hyper_plugins/local/` and include it here</span><br>    <span class="hljs-comment">// to load it and avoid it being `npm install`ed</span><br>    localPlugins: [],<br>    keymaps: &#123;<br>    <span class="hljs-comment">// Example</span><br>    <span class="hljs-comment">// &#x27;window:devtools&#x27;: &#x27;cmd+alt+o&#x27;,</span><br>        <span class="hljs-string">&quot;window:devtools&quot;</span>: <span class="hljs-string">&quot;command+alt+i&quot;</span>,<br>        <span class="hljs-string">&quot;window:reload&quot;</span>: <span class="hljs-string">&quot;command+shift+r&quot;</span>,<br>        <span class="hljs-string">&quot;window:reloadFull&quot;</span>: <span class="hljs-string">&quot;command+shift+f5&quot;</span>,<br>        <span class="hljs-string">&quot;window:preferences&quot;</span>: <span class="hljs-string">&quot;command+,&quot;</span>,<br>        <span class="hljs-string">&quot;zoom:reset&quot;</span>: <span class="hljs-string">&quot;command+0&quot;</span>,<br>        <span class="hljs-string">&quot;zoom:in&quot;</span>: [<br>          <span class="hljs-string">&quot;command+plus&quot;</span>,<br>          <span class="hljs-string">&quot;command+=&quot;</span><br>        ],<br>        <span class="hljs-string">&quot;zoom:out&quot;</span>: <span class="hljs-string">&quot;command+-&quot;</span>,  <br>        <span class="hljs-string">&quot;window:new&quot;</span>: <span class="hljs-string">&quot;command+n&quot;</span>,<br>        <span class="hljs-string">&quot;window:minimize&quot;</span>: <span class="hljs-string">&quot;command+m&quot;</span>,<br>        <span class="hljs-string">&quot;window:zoom&quot;</span>: <span class="hljs-string">&quot;command+enter&quot;</span>,<br>        <span class="hljs-string">&quot;window:toggleFullScreen&quot;</span>: <span class="hljs-string">&quot;command+ctrl+f&quot;</span>,<br>        <span class="hljs-string">&quot;window:close&quot;</span>: <span class="hljs-string">&quot;command+shift+w&quot;</span>,<br>        <span class="hljs-string">&quot;tab:new&quot;</span>: <span class="hljs-string">&quot;command+t&quot;</span>,<br>        <span class="hljs-string">&quot;tab:next&quot;</span>: [<br>          <span class="hljs-string">&quot;command+shift+]&quot;</span>,<br>          <span class="hljs-string">&quot;command+shift+right&quot;</span>,<br>          <span class="hljs-string">&quot;command+alt+right&quot;</span>,<br>          <span class="hljs-string">&quot;ctrl+tab&quot;</span><br>        ],<br>        <span class="hljs-string">&quot;tab:prev&quot;</span>: [<br>          <span class="hljs-string">&quot;command+shift+[&quot;</span>,<br>          <span class="hljs-string">&quot;command+shift+left&quot;</span>,<br>          <span class="hljs-string">&quot;command+alt+left&quot;</span>,<br>          <span class="hljs-string">&quot;ctrl+shift+tab&quot;</span><br>        ],<br>        <span class="hljs-string">&quot;tab:jump:prefix&quot;</span>: <span class="hljs-string">&quot;command&quot;</span>,<br>        <span class="hljs-string">&quot;pane:next&quot;</span>: <span class="hljs-string">&quot;command+j&quot;</span>, <br>        <span class="hljs-string">&quot;pane:prev&quot;</span>: <span class="hljs-string">&quot;command+k&quot;</span>, <br>        <span class="hljs-string">&quot;pane:splitRight&quot;</span>: <span class="hljs-string">&quot;command+d&quot;</span>,<br>        <span class="hljs-string">&quot;pane:splitDown&quot;</span>: <span class="hljs-string">&quot;command+shift+d&quot;</span>,<br>        <span class="hljs-string">&quot;pane:close&quot;</span>: <span class="hljs-string">&quot;command+w&quot;</span>,<br>        <span class="hljs-string">&quot;editor:undo&quot;</span>: <span class="hljs-string">&quot;command+z&quot;</span>,<br>        <span class="hljs-string">&quot;editor:redo&quot;</span>: <span class="hljs-string">&quot;command+y&quot;</span>,<br>        <span class="hljs-string">&quot;editor:cut&quot;</span>: <span class="hljs-string">&quot;command+x&quot;</span>,<br>        <span class="hljs-string">&quot;editor:copy&quot;</span>: <span class="hljs-string">&quot;command+c&quot;</span>,<br>        <span class="hljs-string">&quot;editor:paste&quot;</span>: <span class="hljs-string">&quot;command+v&quot;</span>,<br>        <span class="hljs-string">&quot;editor:selectAll&quot;</span>: <span class="hljs-string">&quot;command+a&quot;</span>,<br>        <span class="hljs-string">&quot;editor:search&quot;</span>: <span class="hljs-string">&quot;command+f&quot;</span>,<br>        <span class="hljs-string">&quot;editor:search-close&quot;</span>: <span class="hljs-string">&quot;esc&quot;</span>,<br>        <span class="hljs-string">&quot;editor:movePreviousWord&quot;</span>: <span class="hljs-string">&quot;alt+left&quot;</span>,<br>        <span class="hljs-string">&quot;editor:moveNextWord&quot;</span>: <span class="hljs-string">&quot;alt+right&quot;</span>,<br>        <span class="hljs-string">&quot;editor:moveBeginningLine&quot;</span>: <span class="hljs-string">&quot;command+left&quot;</span>,<br>        <span class="hljs-string">&quot;editor:moveEndLine&quot;</span>: <span class="hljs-string">&quot;command+right&quot;</span>,<br>        <span class="hljs-string">&quot;editor:deletePreviousWord&quot;</span>: <span class="hljs-string">&quot;alt+backspace&quot;</span>,<br>        <span class="hljs-string">&quot;editor:deleteNextWord&quot;</span>: <span class="hljs-string">&quot;alt+delete&quot;</span>,<br>        <span class="hljs-string">&quot;editor:deleteBeginningLine&quot;</span>: <span class="hljs-string">&quot;command+backspace&quot;</span>,<br>        <span class="hljs-string">&quot;editor:deleteEndLine&quot;</span>: <span class="hljs-string">&quot;command+delete&quot;</span>,<br>        <span class="hljs-string">&quot;editor:break&quot;</span>: <span class="hljs-string">&quot;ctrl+c&quot;</span>,<br>        <span class="hljs-string">&quot;plugins:update&quot;</span>: <span class="hljs-string">&quot;command+shift+u&quot;</span><br>      <br>    &#125;,<br>&#125;;<br><span class="hljs-comment">//# sourceMappingURL=config-default.js.map</span><br></code></pre></td></tr></table></figure>
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Tools/" class="category-chain-item">Tools</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Tools/Hyper/" class="category-chain-item">Hyper</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hyper/">#Hyper</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hyper的个人配置</div>
+      <div>https://www.mofan.life/2021/10/29/Tools/Hyper/Hyper的个人配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 29, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/29/Tools/OhMyZsh/ohmyzsh%E8%87%AA%E7%94%A8%E4%B8%BB%E9%A2%98%E6%8E%A8%E8%8D%90/" title="ohmyzsh自用主题推荐">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ohmyzsh自用主题推荐</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/29/Tools/Vim/%E4%BD%BF%E7%94%A8Vim%E8%BF%9B%E8%A1%8CGo%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="使用Vim进行Go开发环境搭建">
+                        <span class="hidden-mobile">使用Vim进行Go开发环境搭建</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

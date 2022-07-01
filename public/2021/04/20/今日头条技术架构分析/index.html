@@ -1,0 +1,815 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="文章来源：今日头条技术架构分析，看这篇就对了！  今日头条创立于2012年3月，到目前仅几年时间。从十几个工程师开始研发，到上百人，再到200余人。产品线由内涵段子，到今日头条，今日特卖，今日电影等产品线。 一、产品背景今日头条是为用户提供个性化资讯客户端。下面就和大家分享一下当前今日头条的数据（据内部与公开数据综合）： 5**亿注册用户** 2014年5月1.5亿，2015年5月3亿，2016">
+  
+  
+  
+  <title>今日头条技术架构分析 - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="今日头条技术架构分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-20 12:40" pubdate>
+          April 20, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">今日头条技术架构分析</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on 5 months ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>文章来源：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5p5saNiKRrGNsajVq_QY0Q">今日头条技术架构分析，看这篇就对了！</a></p>
+</blockquote>
+<p>今日头条创立于2012年3月，到目前仅几年时间。从十几个工程师开始研发，到上百人，再到200余人。产品线由内涵段子，到今日头条，今日特卖，今日电影等产品线。</p>
+<h2 id="一、产品背景"><a href="#一、产品背景" class="headerlink" title="一、产品背景"></a>一、产品背景</h2><p>今日头条是为用户提供个性化资讯客户端。下面就和大家分享一下当前今日头条的数据（据内部与公开数据综合）：</p>
+<p><strong>5**</strong>亿注册用户**</p>
+<p>2014年5月1.5亿，2015年5月3亿，2016年5月份为5亿。几乎为成倍增长。</p>
+<p><strong>日活4800万用户</strong></p>
+<p>2014年为1000万日活，2015年为3000万日活。</p>
+<p><strong>日均5亿PV</strong></p>
+<p>5亿文章浏览，视频为1亿。页面请求量超过30亿次。</p>
+<p>用户停留时长超过65分钟以上</p>
+<h3 id="1、文章抓取与分析"><a href="#1、文章抓取与分析" class="headerlink" title="1、文章抓取与分析"></a><strong>1、文章抓取与分析</strong></h3><p>我们日常产生原创新闻在1万篇左右，包括各大新闻网站和地方站，另外还有一些小说，博客等文章。这些对于工程师来讲，写个Crawler并非困难的事。</p>
+<p>接下来，今日头条会用人工方式对敏感文章进行审核过滤。此外，今日头条头条号目前也有为数不少的原创文章加入到了内容遴选队列中。</p>
+<p>接下来我们会对文章进行文本分析，比如分类，标签、主题抽取，按文章或新闻所在地区，热度，权重等计算。</p>
+<h3 id="2、用户建模"><a href="#2、用户建模" class="headerlink" title="2、用户建模"></a><strong>2、用户建模</strong></h3><p>当用户开始使用今日头条后，对用户动作的日志进行实时分析。使用的工具如下：</p>
+<p>- Scribe</p>
+<p>- Flume</p>
+<p>- Kafka</p>
+<p>我们对用户的兴趣进行挖掘，会对用户的每个动作进行学习。主要使用：</p>
+<p>- Hadoop</p>
+<p>- Storm</p>
+<p>产生的用户模型数据和大部分架构一样，保存在MySQL/MongoDB（读写分离）以及Memcache/Redis中。</p>
+<p>随着用户量的不断扩展大，用户模型处理的机器集群数量较大。2015年前为7000台左右。其中，用户推荐模型包括以下维度：</p>
+<p>1 用户订阅</p>
+<p>2 标签</p>
+<p>3 部分文章打散推送</p>
+<p>此时，需要每时每刻做推荐。</p>
+<h3 id="3、新用户的“冷启动”"><a href="#3、新用户的“冷启动”" class="headerlink" title="3、新用户的“冷启动”"></a><strong>3、新用户的“冷启动”</strong></h3><p>今日头条会通过用户使用的手机，操作系统，版本等“识别”。另外，比如用户通过社交帐号登录，如新浪微博，头条会对其好友，粉丝，微博内容及转发、评论等维度进行对用户做初步“画像”。</p>
+<p>分析用户的主要参数如下：</p>
+<p>- 关注、粉丝关系</p>
+<p>- 关系</p>
+<p>- 用户标签</p>
+<p>除了手机硬件，今日头条还会对用户安装的APP进行分析。例如机型和APP结合分析，用小米，用三星的和用苹果的不同，另外还有用户浏览器的书签。头条会实时捕捉用户对APP频道的动作。另外还包括用户订阅的频道，比如电影，段子，商品等。</p>
+<h3 id="4、推荐系统"><a href="#4、推荐系统" class="headerlink" title="4、推荐系统"></a><strong>4、推荐系统</strong></h3><p>推荐系统，也称推荐引擎。它是今日头条技术架构的核心部分。包括自动推荐与半自动推荐系统两种类型：</p>
+<p>1 自动推荐系统</p>
+<p>-  自动候选</p>
+<p>-  自动匹配用户，如用户地址定位，抽取用户信息</p>
+<p>-  自动生成推送任务</p>
+<p>这时需要高效率，大并发的推送系统，上亿的用户都要收到。</p>
+<p>2 半自动推荐系统</p>
+<p>-  自动选择候选文章</p>
+<p>-  根据用户站内外动作</p>
+<p>头条的频道，在技术侧划分的包括分类频道、兴趣标签频道、关键词频道、文本分析等，这些都分成相对独立的开发团队。目前已经有300+个分类器，仍在不断增加新的用户模型，原来的用户模型不用撤消，仍然发挥作用。</p>
+<p>在还没有推出头条号时，内容主要是抓取其它平台的文章，然后去重，一年几百万级，并不太大。主要是用户动作日志收集，兴趣收集，用户模型收集。</p>
+<p>资讯App的技术指标，比如屏幕滑动，用户是不是对一篇都看完，停留时间等都需要我们特别关注</p>
+<img src="https://www.cmdbyte.com/2021/02/640.webp" srcset="/img/loading.gif" lazyload alt="640" style="zoom:67%;" />
+
+<h3 id="5、数据存储"><a href="#5、数据存储" class="headerlink" title="5、数据存储"></a><strong>5、数据存储</strong></h3><p>今日头条使用MySQL或Mongo持久化存储+Memched（Redis），分了很多库（一个大内存库），亦尝试使用了SSD的产品。</p>
+<p>搜索公众号后端架构师后台回复“架构整洁”，获取一份惊喜礼包。</p>
+<p>今日头条的图片存储，直接放在数据库中，分布式保存文件，读取的时候采用CDN。</p>
+<h3 id="6、消息推送"><a href="#6、消息推送" class="headerlink" title="6、消息推送"></a><strong>6、消息推送</strong></h3><p>消息推送，对于用户: 及时获取信息。对运营来讲，能够 提⾼⽤用户活跃度。比如在今日头条推送后能够提升20%左右的DAU，如果没有推送，会影响10%左右 DAU（2015年数据）。</p>
+<p>推送后要关注的ROI：点击率，点击量。能够监测到App卸载和推送禁用数量。</p>
+<p>今日头条推送的主要内容包括突发与热点咨讯，有人评论回复，站外好友注册加入。</p>
+<p>在头条，推送也是个性化：</p>
+<p>-  频率个性化</p>
+<p>-  内容个性化</p>
+<p>-  地域</p>
+<p>-  兴趣</p>
+<p>比如：</p>
+<p>按照城市：辽宁朝阳发生的某个新闻事件，发给朝阳本地的用户。</p>
+<p>按照兴趣：比如京东收购一号店，发给互联网兴趣的用户。</p>
+<p>推送平台的工具和选择，需要具备如下的标准：</p>
+<p>-  通道，首先速度要快，但是要可控，可靠，并且节省资源</p>
+<p>-  推送的速度要快，有不同维度的策略支持，可跟踪，开发接口要友好</p>
+<p>-  推送运营的后台，反馈也要快，包括时效性，热度，工具操作方便</p>
+<p>-  对于运营侧，清晰是否确定推荐，包括推送的文案处理</p>
+<p>因此，推送后台应该提供日报，完整的数据后台，提供A/B Test方案支持。</p>
+<p>推送系统一部分使用自有IDC，在发送量特别大，消耗带宽较严重。可以使用类似阿里云的服务，可有效节省成本。</p>
+<h2 id="二、今日头条系统架构"><a href="#二、今日头条系统架构" class="headerlink" title="二、今日头条系统架构"></a>二、今日头条系统架构</h2><p><img src="https://www.cmdbyte.com/2021/02/640%20(1).webp" srcset="/img/loading.gif" lazyload alt="系统架构"></p>
+<p><img src="https://www.cmdbyte.com/2021/02/640%20(2).webp" srcset="/img/loading.gif" lazyload alt="流式计算"></p>
+<p><img src="https://www.cmdbyte.com/2021/02/640%20(3).webp" srcset="/img/loading.gif" lazyload alt="在线存储-abase_1"></p>
+<p><img src="https://www.cmdbyte.com/2021/02/640%20(4).webp" srcset="/img/loading.gif" lazyload alt="在线存储-abase_2"></p>
+<h2 id="三、头条微服务架构"><a href="#三、头条微服务架构" class="headerlink" title="三、头条微服务架构"></a>三、头条微服务架构</h2><p>今日头条通过拆分子系统，大的应用拆成小应用，抽象通用层做代码复用。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/640%20(5).webp" srcset="/img/loading.gif" lazyload alt="微服务架构"></p>
+<p>系统的分层比较典型。重点在基础设施，希望通过基础设施提高快速迭代、容灾和一系列的工作，希望各个业务团队能更快做业务上的迭代以及架构上的调整。</p>
+<h2 id="四、今日头条的虚拟化PaaS平台规划"><a href="#四、今日头条的虚拟化PaaS平台规划" class="headerlink" title="四、今日头条的虚拟化PaaS平台规划"></a>四、今日头条的虚拟化PaaS平台规划</h2><p>通过三层实现，通过 PaaS 平台统一管理。提供通用 SaaS 服务，同时提供通用的 App 执行引擎。最底层是 IaaS 层。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/640%20(6).webp" srcset="/img/loading.gif" lazyload alt="虚拟化PaaS平台规划"></p>
+<p>IaaS 管理所有的机器，把公有云整合起来，头条有一些热点事件会全国推广推送，对网络带宽比较高，我们借助公有云，需要哪一种类型计算资源，统一抽象起来。基础设施结合服务化的思路，比如日志，监控等等功能，业务不需要关注细节就可以享受到基础设施提供的能力。</p>
+<h2 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h2><p><strong>今日头条重要的部分在于</strong>：</p>
+<ul>
+<li>数据生成与采集</li>
+<li>数据传输。Kafka做消息总线连接在线和离线系统。</li>
+<li>数据入库。数据仓库、ETL（抽取转换加载）</li>
+<li>数据计算。数据仓库中的数据表如何能被高效的查询很关键，因为这会直接关系到数据分析的效率。常见的查询引擎可以归到三个模式中，Batch 类、MPP 类、Cube 类，头条在 3 种模式上都有所应用。</li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>今日头条技术架构分析</div>
+      <div>https://www.mofan.life/2021/04/20/今日头条技术架构分析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 20, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/20/MongoDB%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E6%97%B6%E8%A7%92%E8%89%B2%E6%8C%87%E5%AE%9A%E9%97%AE%E9%A2%98/" title="MongoDB创建用户时角色指定问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MongoDB创建用户时角色指定问题</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/19/%E5%85%B3%E4%BA%8EGo%E7%9A%84package%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/" title="关于Go的package一些总结">
+                        <span class="hidden-mobile">关于Go的package一些总结</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

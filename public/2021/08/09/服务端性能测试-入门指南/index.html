@@ -1,0 +1,940 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="文章来源：服务端性能测试 - 入门指南 (慎入: 6000 字长文) · TesterHome  全文包括：  什么是性能 性能对用户和产品收入影响 性能测试目的、性能关注指标、性能测试类型、性能测试流程 常用的性能测试工具对比  1、前言随着 5G 时代的到来，以及万物互联时代的到来，云应用和云服务会越来越多，数据量会指数级增长。尤其是 2020 年全球疫情的时代意义，会导致各行各业开始上云。">
+  
+  
+  
+  <title>服务端性能测试-入门指南 - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="服务端性能测试-入门指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-09 11:36" pubdate>
+          August 9, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">服务端性能测试-入门指南</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on 5 months ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <blockquote>
+<p>文章来源：<a target="_blank" rel="noopener" href="https://testerhome.com/topics/27409">服务端性能测试 - 入门指南 (慎入: 6000 字长文) · TesterHome</a></p>
+</blockquote>
+<p>全文包括：</p>
+<ul>
+<li><a href="https://www.mofan.life/2021/08/09/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95-%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/#2%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E6%80%A7%E8%83%BD">什么是性能</a></li>
+<li><a href="https://www.mofan.life/2021/08/09/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95-%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/#3-%E6%80%A7%E8%83%BD%E7%9A%84%E5%BD%B1%E5%93%8D">性能对用户和产品收入影响</a></li>
+<li><a href="https://www.mofan.life/2021/08/09/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95-%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/#5%E3%80%81%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%92%8C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">性能测试目的、性能关注指标、性能测试类型、性能测试流程</a></li>
+<li><a href="https://www.mofan.life/2021/08/09/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95-%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/#6-%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94">常用的性能测试工具对比</a></li>
+</ul>
+<h2 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h2><p>随着 5G 时代的到来，以及万物互联时代的到来，云应用和云服务会越来越多，数据量会指数级增长。尤其是 2020 年全球疫情的时代意义，会导致各行各业开始上云。从而会催生出极具个性化的各类产品的诞生。</p>
+<p>所有行业的生态会像鲸落效应一样，围绕若干个巨无霸公司衍生出满足人们各种需求的中小型产品。大部分产品的形态可能会变成重服务端、轻客户端。</p>
+<p>所以，服务端性能测试的需求也有可能会出现井喷式增长。但是服务端性能测试需求对于中小型公司，尤其是大部分不关注用户体验的公司来说，性能测试需求特点是周期短、时间紧。</p>
+<p>因此，对于大部分测试从业人员来说，了解并掌握常见的性能测试知识是必不可少的，虽然不会经常用到。</p>
+<h2 id="2、什么是性能"><a href="#2、什么是性能" class="headerlink" title="2、什么是性能"></a>2、什么是性能</h2><p>不同角色关注的性能是不一样的，性能测试这项系统工程，需要各角色在其关注的纬度提供信息或帮助。</p>
+<h3 id="用户眼中的性能"><a href="#用户眼中的性能" class="headerlink" title="用户眼中的性能"></a>用户眼中的性能</h3><p>性能对于用户来说，就是操作的响应速度、产品的崩溃是否影响自己的生活。比如滴滴之前在情人节当天打车服务的性能事故。</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.40.25.png" srcset="/img/loading.gif" lazyload alt="用户眼中的性能"></p>
+<h3 id="老板眼中的性能"><a href="#老板眼中的性能" class="headerlink" title="老板眼中的性能"></a>老板眼中的性能</h3><p>老板主要关心产品的收入、成本（用了多少钱服务了多少用户）、用户满意度（用户对产品是否满意）。</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.41.41.png" srcset="/img/loading.gif" lazyload alt="老板眼中的性能"></p>
+<h3 id="运维眼中的性能"><a href="#运维眼中的性能" class="headerlink" title="运维眼中的性能"></a>运维眼中的性能</h3><p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.42.23.png" srcset="/img/loading.gif" lazyload alt="运维眼中的性能"></p>
+<h3 id="开发眼中的性能"><a href="#开发眼中的性能" class="headerlink" title="开发眼中的性能"></a>开发眼中的性能</h3><p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.43.03.png" srcset="/img/loading.gif" lazyload alt="开发眼中的性能"></p>
+<h3 id="测试眼中的性能"><a href="#测试眼中的性能" class="headerlink" title="测试眼中的性能"></a>测试眼中的性能</h3><p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.43.36.png" srcset="/img/loading.gif" lazyload alt="测试眼中的性能"></p>
+<h2 id="3-性能的影响"><a href="#3-性能的影响" class="headerlink" title="3.性能的影响"></a>3.性能的影响</h2><h3 id="3-1-性能对用户的影响"><a href="#3-1-性能对用户的影响" class="headerlink" title="3.1 性能对用户的影响"></a>3.1 性能对用户的影响</h3><p>对于大部分商业公司的 ToC 产品，性能关乎产品命运和增长。如下图所示，虽然现在阿里京东垄断不太容易更换应用，但是遇到性能很差的时候，心里还是忍不住问候几句。</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.44.42.png" srcset="/img/loading.gif" lazyload alt="3.1 性能对用户的影响"></p>
+<h3 id="3-2-性能对收入的影响"><a href="#3-2-性能对收入的影响" class="headerlink" title="3.2 性能对收入的影响"></a>3.2 性能对收入的影响</h3><p>大家都知道性能对产品收入有非常大的影响，但是很少公司有全面的运营分析来证明这件事。<br>以下是《2016 全球零售业数字化性能基准报告》中关于性能对收入影响的数据。<br>从图中可以看到，响应时间对转化率的影响非常大，比如沃尔玛够硬核了吧，沃尔玛的响应时间降低 0.1 秒，收入即可增加 1%，是非常大的收入提升。****</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.46.05.png" srcset="/img/loading.gif" lazyload alt="3.2 性能对收入的影响"></p>
+<h2 id="4-性能的组成"><a href="#4-性能的组成" class="headerlink" title="4.性能的组成"></a>4.性能的组成</h2><p>以中小型电商网站为例，如下图所示，性能基本组成：</p>
+<ul>
+<li>客户端 (Web、移动端、小程序) 性能</li>
+<li>DNS 性能</li>
+<li>负载均衡服务性能</li>
+<li>Nginx 集群性能、折损率</li>
+<li>CDN 缓存性能（回源率、穿透率）</li>
+<li>应用服务器性能</li>
+<li>DB 性能（Mysql/Redis/Memcache）</li>
+</ul>
+<p>由此可见，中大型项目的性能测试，从来都是一项系统工程，需要非常多人跨部门合作，且持续时间长，耗费资源大。</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.47.12.png" srcset="/img/loading.gif" lazyload alt="性能的组成"></p>
+<h2 id="5、性能测试基础知识和注意事项"><a href="#5、性能测试基础知识和注意事项" class="headerlink" title="5、性能测试基础知识和注意事项"></a>5、性能测试基础知识和注意事项</h2><p>熟悉性能测试之前，首先了解性能测试的目标是什么。带着目标去思考会更有利于理解下面的内容。</p>
+<h3 id="5-1-性能测试目的"><a href="#5-1-性能测试目的" class="headerlink" title="5.1 性能测试目的"></a>5.1 性能测试目的</h3><p>性能测试的最终目的是为了最大限度的满足用户的需求，通常要达成以下目标：<br>（1）性能评估：测试中评估系统的 QPS、响应时间、成功率等；<br>（2）寻找系统瓶颈，进行系统调优；<br>（3）检测软件中的问题；<br>（4）验证稳定性和可靠性；</p>
+<h3 id="5-2-性能应该关注的指标"><a href="#5-2-性能应该关注的指标" class="headerlink" title="5.2 性能应该关注的指标"></a>5.2 性能应该关注的指标</h3><p>一般来说，性能测试要统一考虑这么几个因素：Thoughput 吞吐量，Latency 响应时间，资源利用（CPU/MEM/IO/Bandwidth…），成功率，系统稳定性。</p>
+<p><strong>（1）响应时间</strong>：你得定义一个系统的响应时间 latency，建议是 TP95 或以上。响应时间具体要求多少，一般读不超过 200ms，写不超过 500ms。要是实在不知道，对标同行业竞品。<br><strong>（2）最高吞吐量</strong>：TPS（每秒事务请求数）或 QPS（每秒请求量），在目标响应时间要求下，系统可支撑的最高吞吐量。<br><strong>（3）成功率</strong>：在关注 QPS 和响应时间的同时，还要关注成功率。如果 QPS 和响应时间都满足性能要求时，请求成功率只有 50%，用户也是不会接收的。<br><strong>（4）性能拐点</strong>：一般服务都有性能临界点。当超过临界点时，吞吐量非线性下降，响应时间指数级增加，成功率降低。<br>找到出现性能拐点的主要原因：<br>基于性能拐点主要原因设置高危性能报警线。此为高风险注意事项，因为一旦达到性能拐点，有可能会出现雪崩现象，造成极其严重的事故。<br>观察超过性能拐点后，系统是否会出现假死、崩溃等高风险事件。<br><strong>（5）系统稳定性</strong>：保持最高吞吐量（目标响应时间下的最高吞吐量），持续运行 7*24 小时。然后收集 CPU，内存，硬盘/网络 IO，等指标，查看系统是否稳定，比如，CPU 是平稳的，内存使用也是平稳的。那么，这个值就是系统的性能。<br><strong>（6）极限吞吐量</strong>：阶梯式增加并发压力，找到系统的极限值。比如：在成功率 100% 的情况下（不考虑响应时间的长短），系统能坚持 10 分钟的吞吐量。<br><strong>（7）系统健壮性：做 Burst Test。用第二步得到的吞吐量执行 5 分钟，然后在第四步得到的极限值执行 1 分钟，再回到第二步的吞吐量执行 5 钟，再到第四步的权限值执行 1 分钟，如此往复个一段时间，比如 2 天。</strong>收集系统数据：CPU、内存、硬盘/网络 IO 等，观察他们的曲线，以及相应的响应时间，确保系统是稳定的。<br><strong>（8）低吞吐量和网络小包的测试</strong>：有时候，在低吞吐量的时候，可能会导致 latency 上升，比如 TCP_NODELAY 的参数没有开启会导致 latency 上升（<a target="_blank" rel="noopener" href="https://coolshell.cn/articles/11564.html">详见 TCP 的那些事</a>），而网络小包会导致带宽用不满也会导致性能上不去，所以，性能测试还需要根据实际情况有选择的测试一下这两咱场景。</p>
+<h3 id="5-3-性能测试类型"><a href="#5-3-性能测试类型" class="headerlink" title="5.3 性能测试类型"></a>5.3 性能测试类型</h3><p>首先简单分析性能测试的压力模型。<br>如下图所示，随着单位时间压力的不断增长，被测系统和服务器的压力不断增加，TPS 会因为这些因素而发生变化，而且通常符合一下规律。</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.51.14.png" srcset="/img/loading.gif" lazyload alt="5.3 性能曲线"></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.51.53.png" srcset="/img/loading.gif" lazyload alt="5.3 性能区间"></p>
+<p>为得到性能关注的指标，基本分为以下性能测试类型：</p>
+<ul>
+<li><strong>性能测试（狭义）</strong><ul>
+<li>说明：性能测试方法是通过模拟生产运行的业务压力量和使用场景组合，测试系统的性能是否满足生产性能要求。通俗地说，这种方法就是要在特定的运行条件下验证系统的能力状态。</li>
+<li>特点： 1、这种方法的主要目的是验证系统是否有系统宣称具有的能力。 2、这种方法要事先了解被测试系统经典场景，并具有确定的性能目标。 3、这种方法要求在已经确定的环境下运行。 也就是说，这种方法是对系统性能已经有了解的前提，并对需求有明确的目标，并在已经确定的环境下进行的。</li>
+</ul>
+</li>
+<li><strong>负载测试 (Load Test)</strong><ul>
+<li>说明：通过在被测系统上不断加压，直到性能指标达到极限（例如 “响应时间”）超过预定指标或都某种资源已经达到饱和状态。　　</li>
+<li>特点： 1、这种性能测试方法的主要目的是找到系统处理能力的极限。 2、这种性能测试方法需要在给定的测试环境下进行，通常也需要考虑被测试系统的业务压力量和典型场景、使得测试结果具有业务上的意义。 3、这种性能测试方法一般用来了解系统的性能容量，或是配合性能调优来使用。 也就是说，这种方法是对一个系统持续不段的加压，看你在什么时候已经超出 “我的要求” 或系统崩溃。</li>
+</ul>
+</li>
+<li><strong>压力测试（强度测试）(Stress Test)</strong><ul>
+<li>说明：压力测试方法测试系统在一定饱和状态下，例如 cpu、内存在饱和使用情况下，系统能够处理的会话能力，以及系统是否会出现错误</li>
+<li>特点： 1、这种性能测试方法的主要目的是检查系统处于压力性能下时应用的表现。 2、这种性能测试一般通过模拟负载等方法，使得系统的资源使用达到较高的水平。 3、这种性能测试方法一般用于测试系统的稳定性。 也就是说，这种测试是让系统处在很大强度的压力之下，看系统是否稳定，哪里会出问题。</li>
+</ul>
+</li>
+<li><strong>并发测试（Concurrency Testing）</strong><ul>
+<li>说明：并发测试方法通过模拟用户并发访问，测试多用户并发访问同一个应用、同一个模块或者数据记录时是否存在死锁或其者他性能问题。</li>
+<li>特点： 1、这种性能测试方法的主要目的是发现系统中可能隐藏的并发访问时的问题。 2、这种性能测试方法主要关注系统可能存在的并发问题，例如系统中的内存泄漏、线程锁和资源争用方面的问题。 3、这种性能测试方法可以在开发的各个阶段使用需要相关的测试工具的配合和支持。 也就是说，这种测试关注点是多个用户同时（并发）对一个模块或操作进行加压。</li>
+</ul>
+</li>
+<li><strong>配置测试（Configuration Testing）</strong><ul>
+<li>说明：配置测试方法通过对被测系统的软\硬件环境的调整，了解各种不同对系统的性能影响的程度，从而找到系统各项资源的最优分配原则。</li>
+<li>特点： 1、这种性能测试方法的主要目的是了解各种不同因素对系统性能影响的程度，从而判断出最值得进行的调优操作。 2、这种性能测试方法一般在对系统性能状况有初步了解后进行。 3、这种性能测试方法一般用于性能调优和规划能力。 也就是说，这种测试关注点是 “微调”，通过对软硬件的不段调整，找出这他们的最佳状态，使系统达到一个最强的状态。</li>
+</ul>
+</li>
+<li><strong>可靠性测试</strong><ul>
+<li>说明：通过给系统加载一定业务压力（例如资源在 70%-90% 的使用率），使系统运行一段时间，以此检测系统是否稳定运行。</li>
+<li>特点： 1、这种性能测试方法的主要目的是验证是否支持长期稳定的运行。 2、这种性能测试方法需要在压力下持续一段时间的运行。（2~3 天）3、测试过程中需要关注系统的运行状况。 如果测试过程中发现，随着时间的推移，响应时间有明显的变化，或是系统资源使用率有明显波动，都可能是系统不稳定的征兆。 也就是说，这种测试的关注点是 “稳定”，不需要给系统太大的压力，只要系统能够长期处于一个稳定的状态。</li>
+</ul>
+</li>
+<li><strong>失效恢复测试</strong><ul>
+<li>说明：如果系统局部发生故障，用户是否能够继续使用系统，以及如果这种情况发生，用户将受到多大程度的影响。</li>
+<li>特点： 1.这种性能测试方法的主要目的是验证在局部故障情况下，系统能否继续使用。 2.这种性能测试方法还需要指出，当问题发生时，“能支持多少用户访问” 的结论和 “采取何种应急措施” 的方案。 3.一般来说，只有对系统持续运行指标有明确要求的系统才需要进行这种类型的测试。</li>
+</ul>
+</li>
+<li><strong>大数据量测试</strong>：针对某些系统存储、传输、统计查询等业务进行大数据量的测试。</li>
+</ul>
+<p>注意：在做性能测试时请忘掉分类。例如，运行 8 个小时来测试系统是否可靠，而这个测试极有可能包含了可靠性能测、强度测试、并发测试、负载测试，等等。因此，在实施性能测试时决不能割裂它们的内部联系去进行，而应该基于测试目标，分析它们之间的关系，以一种高效率的方式来设计性能测试。</p>
+<h3 id="5-4-性能测试流程"><a href="#5-4-性能测试流程" class="headerlink" title="5.4 性能测试流程"></a>5.4 性能测试流程</h3><p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2011.53.28.png" srcset="/img/loading.gif" lazyload alt="5.4 性能测试基本过程"></p>
+<h4 id="（1）性能需求分析"><a href="#（1）性能需求分析" class="headerlink" title="（1）性能需求分析"></a>（1）性能需求分析</h4><p>性能需求分析是整个性能测试工作开展的基础，如果连性能的需求都没弄清楚，后面的性能测试工具以及执行就无从谈起了。<br>在这一阶段，性能测试人员需要与 PM、DEV 及项目相关的人员进行沟通，同时收集各种项目资料，对系统进行分析，确认测试的目标。并将其转化为可衡量的具体性能指标。<br>测试需求分析阶段的主要任务是分析被测系统及其性能需求，建立性能测试数据模型，分析性能需求，确定合理性能目标，并进行评审；</p>
+<h4 id="（2）性能测试准备"><a href="#（2）性能测试准备" class="headerlink" title="（2）性能测试准备"></a>（2）性能测试准备</h4><p>主要包括：设计场景，根据场景编写程序、编写脚本、准备测试环境，构造测试数据，环境预调优等；<br>设计场景：针对系统的特点设计出合理的测试场景。为了让测试结果更加准确，这里需要很细致的工作。如建立用户模型，只有知道真实的用户是如何对系统产生压力，才可以设计出有代表性的压力测试场景。这就涉及到很多信息，如用户群的分布、各类型用户用到的功能、用户的使用习惯、工作时间段、系统各模块压力分布等等。只有从多方面不断的积累这种数据，才会让压力场景更有意义。最后将设计场景转换成具体的用例。<br>测试数据：测试数据的设计也是一个重点且容易出问题的地方。生成测试数据量达到未来预期数量只是最基础的一步，更需要考虑的是数据的分布是否合理，需要仔细的确认程序中使用到的各种查询条件，这些重点列的数值要尽可能的模拟真实的数据分布， 否则测试的结果可能是无效的。测试数据最好使用线上脱敏后的数据，尽可能接近真实用户行为。<br>预调优：指根据系统的特点和团队的经验，提前对系统的各个方面做一些优化调整，避免测试执行过程中的无谓返工。比如一个高并发的系统，10000 人在线，连接池和线程池的配置还用默认的，显然是会测出问题的。</p>
+<h4 id="（3）执行性能测试"><a href="#（3）执行性能测试" class="headerlink" title="（3）执行性能测试"></a>（3）执行性能测试</h4><p>执行阶段工作主要包含两个方面的内容：一是执行测试用例模型，包括执行脚本和场景；其次测试过程监控，包括测试结果、记录性能指标和性能计数器的值</p>
+<h4 id="（4）结果分析与性能调优"><a href="#（4）结果分析与性能调优" class="headerlink" title="（4）结果分析与性能调优"></a>（4）结果分析与性能调优</h4><p>发现问题或者性能指标达不到预期，及时的分析定位，处理后重复测试过程。<br>性能问题通常是相互关联相互影响的，表面上看到的现象很可能不是根本问题，而是另一处出现问题后引起的反应。这就要求监控收集数据时要全面，从多方面多个角度去判断定位。调优的过程其实也是一种平衡的过程，在系统的多个方面达到一个平衡即可。</p>
+<h4 id="（5）性能报告与总结"><a href="#（5）性能报告与总结" class="headerlink" title="（5）性能报告与总结"></a>（5）性能报告与总结</h4><p>编写性能测试报告，阐明性能测试目标、性能结果、测试环境、数据构造规则、遇到的问题和解决办法等。并对此次性能测试经验进行总结与沉淀。具体性能测试报告的编写可以参考《性能测试报告模板》。<br>上面所有内容中，如果排除技术上的问题，性能测试中最难做好的，就是用户模型的分析。它直接决定了压力测试场景是否能够有效的模拟真实世界压力，而正是这种对真实压力的模拟，才使性能测试有了更大的意义。可以说，性能测试做到一定程度，差距就体现在了模型建立上。</p>
+<p>至于性能问题的分析、定位或者调优，很大程度是一种技术问题，需要多方面的专业知识。数据库、操作系统、网络、开发都是一个合格的性能测试人员需要拥有的技能，只有这样，才能从多角度全方位的去考虑分析问题。</p>
+<h2 id="6-性能工具性能对比"><a href="#6-性能工具性能对比" class="headerlink" title="6 性能工具性能对比"></a>6 性能工具性能对比</h2><p>测试对象：Nginx index.html(612Byte)，CPU:16 核 / 内存:16GB / 磁盘:500GB<br>压力机：Ubuntu18.04, CPU: 8 核 / 内存：8G / 磁盘: 500GB</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.14.49.png" srcset="/img/loading.gif" lazyload alt="性能测试工具对比"></p>
+<p>在此只进行了最基础的性能对比测试，仅供基本的工具选择判断。</p>
+<h3 id="6-1-性能工具介绍"><a href="#6-1-性能工具介绍" class="headerlink" title="6.1 性能工具介绍"></a>6.1 性能工具介绍</h3><h4 id="ngrinder（待补充）"><a href="#ngrinder（待补充）" class="headerlink" title="ngrinder（待补充）"></a>ngrinder（待补充）</h4><p>阿里京东也在用，天生为分布式开发的，易用性很好</p>
+<h4 id="wrk-wrk2"><a href="#wrk-wrk2" class="headerlink" title="wrk / wrk2"></a>wrk / wrk2</h4><p>wrk 是一款针对 Http 协议的基准测试工具，它能够在单机多核 CPU 的条件下，使用系统自带的高性能 I/O 机制，如 epoll，kqueue 等，通过多线程和事件模式，对目标机器产生大量的负载。<br>PS: 其实，wrk 是复用了 redis 的 ae 异步事件驱动框架，准确来说 ae 事件驱动框架并不是 redis 发明的, 它来至于 Tcl 的解释器 jim, 这个小巧高效的框架, 因为被 redis 采用而被大家所熟知。</p>
+<h5 id="优势："><a href="#优势：" class="headerlink" title="优势："></a>优势：</h5><p>轻量级性能测试工具;<br>安装简单（相对 Apache ab 来说）;<br>学习曲线基本为零，几分钟就能学会咋用了；<br>基于系统自带的高性能 I/O 机制，如 epoll, kqueue, 利用异步的事件驱动框架，通过很少的线程就可以压出很大的并发量；</p>
+<h5 id="劣势："><a href="#劣势：" class="headerlink" title="劣势："></a>劣势：</h5><p>wrk 目前仅支持单机压测，后续也不太可能支持多机器对目标机压测，因为它本身的定位，并不是用来取代 JMeter, LoadRunner 等专业的测试工具，wrk 提供的功能，对后端开发人员来说，应付日常接口性能验证还是比较友好的。<br>之前在乐视我们的测试架构师基于 wrk2 主导开发并支持了分布式，开发成本还是略高的。</p>
+<h5 id="基础使用："><a href="#基础使用：" class="headerlink" title="基础使用："></a>基础使用：</h5><p>子命令参数说明：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs tex">使用方法: wrk &lt;选项&gt; &lt;被测HTTP服务的URL&gt;                            <br>  Options:                                            <br>    -c, --connections &lt;N&gt;  跟服务器建立并保持的TCP连接数量  <br>    -d, --duration    &lt;T&gt;  压测时间           <br>    -t, --threads     &lt;N&gt;  使用多少个线程进行压测（为了减少现成的上下文切换，官方建议thread数量等同CPU核数）  <br><br>    -s, --script      &lt;S&gt;  指定Lua脚本路径       <br>    -H, --header      &lt;H&gt;  为每一个HTTP请求添加HTTP头      <br>        --latency          在压测结束后，打印延迟统计信息   <br>        --timeout     &lt;T&gt;  超时时间     <br>    -v, --version          打印正在使用的wrk的详细版本信息<br><br>  &lt;N&gt;代表数字参数，支持国际单位 (1k, 1M, 1G)<br>  &lt;T&gt;代表时间参数，支持时间单位 (2s, 2m, 2h)<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>PS: 关于线程数，并不是设置的越大，压测效果越好，线程设置过大，反而会导致线程切换过于频繁，效果降低，一般来说，推荐设置成压测机器 CPU 核心数的 2 倍到 4 倍就行了。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 示例</span><br>wrk -c400 -t24 -d30s --latency http://10.60.82.91/<br></code></pre></td></tr></table></figure>
+<p><strong>报告解析：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs tex">Running 30s test @ http:&#x2F;&#x2F;www.baidu.com （压测时间30s）<br>  12 threads and 400 connections （共12个测试线程，400个连接）<br>                          （平均值） （标准差）  （最大值）（正负一个标准差所占比例）<br>  Thread Stats   Avg      Stdev     Max   +&#x2F;- Stdev<br>    （延迟）<br>    Latency   386.32ms  380.75ms   2.00s    86.66%<br>    (每秒请求数)<br>    Req&#x2F;Sec    17.06     13.91   252.00     87.89%<br>  Latency Distribution （延迟分布）<br>     50%  218.31ms<br>     75%  520.60ms<br>     90%  955.08ms<br>     99%    1.93s <br>  4922 requests in 30.06s, 73.86MB read (30.06s内处理了4922个请求，耗费流量73.86MB)<br>  Socket errors: connect 0, read 0, write 0, timeout 311 (发生错误数)<br>Requests&#x2F;sec:    163.76 (QPS 163.76,即平均每秒处理请求数为163.76)<br>Transfer&#x2F;sec:      2.46MB (平均每秒流量2.46MB)<br><br><br>Running 30s test @ http:&#x2F;&#x2F;10.60.82.91&#x2F; （压测时间30s）<br>  32 threads and 400 connections （共32个测试线程，400个连接）<br>              （平均值） （标准差）  （最大值）（正负一个标准差所占比例）<br>  Thread Stats   Avg      Stdev     Max   +&#x2F;- Stdev<br>  Latency(延迟)  10.31ms   40.13ms 690.32ms   98.33%<br>  Req&#x2F;Sec(每秒请求数) 2.14k   482.15     6.36k    77.39%<br>  Latency Distribution<br>     50%    5.11ms<br>     75%    7.00ms<br>     90%    9.65ms<br>     99%  212.68ms<br><br>  (30.10s内处理了2022092个请求，耗费流量1.62GB)<br>  2022092 requests in 30.10s, 1.62GB read<br>Requests&#x2F;sec:  67183.02  (QPS 67183.02,即平均每秒处理请求数为67183.02)<br>Transfer&#x2F;sec:     55.03MB (平均每秒流量55.03MB)<br></code></pre></td></tr></table></figure>
+<h4 id="Jmeter"><a href="#Jmeter" class="headerlink" title="Jmeter"></a>Jmeter</h4><p>Jmeter 是 Java 开发的、基于多线程并发模型的压测工具，也是目前最流行的开源压测工具，工作原理类似，如下图：</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.17.07.png" srcset="/img/loading.gif" lazyload alt="Jmeter"></p>
+<ul>
+<li>其所谓的虚拟用户 (vuser) 就是对应一个线程</li>
+<li>在单个线程中，每个请求（query）都是同步调用的，下一个请求要等待前一个请求完成才能进行</li>
+<li>一个请求（query）分成三部分：<ul>
+<li>send - 施压端发送开始，直到承压端接收完成</li>
+<li>wait - 承压端接收完成开始，直至业务处理结束</li>
+<li>recv - 承压端返回数据，直至施压端接收完成</li>
+</ul>
+</li>
+<li>同一线程中连续的两个请求之间存在等待时间这种概念，即图中的空白处</li>
+</ul>
+<p><strong>在多线程并发模型下，是不是可以通过不断增加线程数量生产出更大的压力？</strong><br>答案是否定的。</p>
+<p>事实上一个进程在一个时间点只能执行一个线程，而所谓的并发是指在进程里不断切换线程实现了看上去的多个任务的并发，但是线程上下文切换有很高的成本，过多的线程数反而会造成性能的严重下滑。</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.17.55.png" srcset="/img/loading.gif" lazyload alt="阻塞I/O模型"></p>
+<p>从应用角度来看，基于多线程的并发模型，往往需要设置最大并发数参数，而如果压测场景需要不断往上加压，那这类工具其实挺难应付的。</p>
+<h4 id="Locust"><a href="#Locust" class="headerlink" title="Locust"></a>Locust</h4><p>Locust 是用 Python 开发的分布式压测工具，近年来在国内比较流行。Locust 并不是基于 Python 的多线程，而是 coroutine（协程，gevent 提供），gevent 使用了 libev 或者 libuv 作为 eventloop。<br>Locust 响应时间失真问题：<br>Locust 当压力机 CPU 达到瓶颈后，响应时间会严重失真。<br>比如当 Locust normal 模式下，8 进程，CPU 瓶颈后，90% 响应时间为 340ms。同时 wrk 获取的响应时间为 59.41ms.</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.19.26.png" srcset="/img/loading.gif" lazyload alt="Locust"></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.20.07.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="基本使用介绍："><a href="#基本使用介绍：" class="headerlink" title="基本使用介绍："></a>基本使用介绍：</h5><p>装饰器 task 可以设置压力比例</p>
+<ul>
+<li><p>HttpUser 示例:</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> locust <span class="hljs-keyword">import</span> HttpUser, task<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickstartUser</span>(<span class="hljs-params">HttpUser</span>):</span><br>    <span class="hljs-comment"># task为每个正在运行的用户创建一个greenlet(微线程)</span><br><span class="hljs-meta">    @task(<span class="hljs-params"><span class="hljs-number">1</span></span>)</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detail</span>(<span class="hljs-params">self</span>):</span><br>        self.client.get(<span class="hljs-string">&quot;http://10.60.82.91/&quot;</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_start</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure></li>
+<li><p>FastHttpUser 示例</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> locust <span class="hljs-keyword">import</span> task<br><span class="hljs-keyword">from</span> locust.contrib.fasthttp <span class="hljs-keyword">import</span> FastHttpUser<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">QuickstartUser</span>(<span class="hljs-params">FastHttpUser</span>):</span><br>    <span class="hljs-comment"># task为每个正在运行的用户创建一个greenlet(微线程)</span><br><span class="hljs-meta">    @task(<span class="hljs-params"><span class="hljs-number">1</span></span>)</span><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">detail</span>(<span class="hljs-params">self</span>):</span><br>        self.client.get(<span class="hljs-string">&quot;http://10.60.82.91/&quot;</span>)<br><br>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_start</span>(<span class="hljs-params">self</span>):</span><br>        <span class="hljs-keyword">pass</span><br></code></pre></td></tr></table></figure></li>
+<li><p>启动及分布式</p>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> -c 并发用户数</span><br><span class="hljs-meta">#</span><span class="bash"> -r 每秒启动用户数</span><br><span class="hljs-meta">#</span><span class="bash"> -t 持续运行时间</span><br>locust -f load_test.py --host=http://10.60.82.91 --no-web -c 10 -r 10 -t 1m<br><br><span class="hljs-meta">#</span><span class="bash"> 分布式</span><br>nohup locust -f locust_files/fast_http_user.py --master &amp;<br>nohup locust -f locust_files/fast_http_user.py --worker --master-host=10.60.82.90 &amp;<br></code></pre></td></tr></table></figure>
+<h3 id="6-2-测试记录"><a href="#6-2-测试记录" class="headerlink" title="6.2 测试记录"></a>6.2 测试记录</h3></li>
+</ul>
+<h4 id="wrk-测试记录"><a href="#wrk-测试记录" class="headerlink" title="wrk 测试记录"></a>wrk 测试记录</h4><p><strong>2 线程： -c1000 -t1（因最少 2 线程）QPS: 35560.79</strong></p>
+<p>wrk -c1000 -t1 -d30s –latency <a target="_blank" rel="noopener" href="http://10.60.82.91/">http://10.60.82.91/</a></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.23.14.png" srcset="/img/loading.gif" lazyload alt="wrk 2线程"></p>
+<p><strong>3 线程：（ -c1000 -t2 QPS: 66941.77 ）</strong></p>
+<p>wrk -c1000 -t2 -d30s –latency <a target="_blank" rel="noopener" href="http://10.60.82.91/">http://10.60.82.91/</a></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.24.02.png" srcset="/img/loading.gif" lazyload alt="wrk 3线程"></p>
+<p><strong>8 线程: ( -c1000 -t8 QPS: 75579.30 ）</strong></p>
+<p>wrk -c1000 -t8 -d30s –latency <a target="_blank" rel="noopener" href="http://10.60.82.91/">http://10.60.82.91/</a><br>Nginx: 86% * 16 = 1376% ， 达到 CPU 瓶颈</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.24.42.png" srcset="/img/loading.gif" lazyload alt="wrk 8线程"></p>
+<p>Wrk: CPU = 40% * 8 = 320%</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.25.34.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Locust-HttpUser-记录"><a href="#Locust-HttpUser-记录" class="headerlink" title="Locust HttpUser 记录"></a>Locust HttpUser 记录</h4><p><strong>1 进程：（10 并发，QPS：512）</strong></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.26.09.png" srcset="/img/loading.gif" lazyload></p>
+<p>Nginx:（CPU：8.6%）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.26.36.png" srcset="/img/loading.gif" lazyload></p>
+<p>Locust:（CPU：100%， 单核 CPU 达到瓶颈）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.27.00.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Locust-FastHttpUser-记录"><a href="#Locust-FastHttpUser-记录" class="headerlink" title="Locust FastHttpUser 记录"></a>Locust FastHttpUser 记录</h4><p><strong>1 进程：（10 并发，QPS：1836, 90%RT: 5ms）</strong></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.27.30.png" srcset="/img/loading.gif" lazyload></p>
+<p>Nginx:（CPU：24%）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.27.55.png" srcset="/img/loading.gif" lazyload></p>
+<p>Locust:（CPU：100%， 单核 CPU 达到瓶颈）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.28.16.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>8 进程：（100 并发，QPS：11000, 90%RT: 7ms）</strong></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.28.54.png" srcset="/img/loading.gif" lazyload></p>
+<p>Nginx:（CPU：150%）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.29.23.png" srcset="/img/loading.gif" lazyload></p>
+<p>locust：（CPU：800%， CPU 达到瓶颈）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.29.47.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Jmeter-测试记录"><a href="#Jmeter-测试记录" class="headerlink" title="Jmeter 测试记录"></a>Jmeter 测试记录</h4><p><strong>8 核 (100 并发，QPS：38500)</strong></p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.30.41.png" srcset="/img/loading.gif" lazyload></p>
+<p>Nginx：（CPU：397.3%）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.31.17.png" srcset="/img/loading.gif" lazyload></p>
+<p>Jmeter：（CPU：681%）</p>
+<p><img src="https://www.cmdbyte.com/2021/%E6%88%AA%E5%B1%8F2021-08-09%2014.31.43.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://my.oschina.net/leichen/blog/4399759">性能测试之并发模型对比 (Jmeter/Locust/Gatling)</a></li>
+<li><a target="_blank" rel="noopener" href="https://coolshell.cn/articles/17381.html">左耳朵耗子 - 性能测试应该怎么做？</a></li>
+<li><a target="_blank" rel="noopener" href="https://download.csdn.net/download/u011608531/13991206">Dynatrace-2016 全球零售业数字化性能基准报告</a></li>
+<li><a target="_blank" rel="noopener" href="https://download.csdn.net/download/u011608531/12792649">支付宝性能测试实战 剑风</a></li>
+<li><a target="_blank" rel="noopener" href="https://download.csdn.net/download/u011608531/12792619">网银在线性能测试指南（京东金融）</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904094054744072">聊聊 ab、wrk、JMeter、Locust 这些压测工具的并发模型差别</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/quanxiaoha/p/10661650.html">性能工具 wrk 介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.locust.io/en/stable/installation.html">Locust 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/50b6771eb853">mac 安装 locust 问题：解决 MacOS 升级后出现 xcrun: error: invalid active developer path, missing xcrun 的问题</a></li>
+</ul>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>服务端性能测试-入门指南</div>
+      <div>https://www.mofan.life/2021/08/09/服务端性能测试-入门指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 9, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/10/%E6%A0%88-stack-%E7%9A%84%E4%B8%89%E7%A7%8D%E5%90%AB%E4%B9%89/" title="栈(stack)的三种含义">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">栈(stack)的三种含义</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/08/01/Go%E4%B8%BA%E4%BD%95%E6%B2%A1%E6%9C%89max-min-int-int-%E5%87%BD%E6%95%B0/" title="Go为何没有max/min(int,int)函数">
+                        <span class="hidden-mobile">Go为何没有max/min(int,int)函数</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

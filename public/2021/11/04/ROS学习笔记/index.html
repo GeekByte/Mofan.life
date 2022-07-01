@@ -1,0 +1,881 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="官网: cn&amp;#x2F;ROS&amp;#x2F;Tutorials - ROS Wiki 首先要记住几点:  ros与系统环境变量关系密切，所以要时刻注意当前终端的环境信息，比如要source工作空间下devel&amp;#x2F;setup.sh 启动ros节点之前，必须先启动roscore  文件系统概念 软件包（Packages）：包是ROS代码的软件组织单元，每个软件包都可以包含程序库、可执行文件、脚本或其他构件。 Manifest">
+  
+  
+  
+  <title>ROS学习笔记 - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ROS学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-11-04 21:33" pubdate>
+          November 4, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ROS学习笔记</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on 5 months ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <p>官网: <a target="_blank" rel="noopener" href="http://wiki.ros.org/cn/ROS/Tutorials">cn/ROS/Tutorials - ROS Wiki</a></p>
+<p>首先要记住几点:</p>
+<ol>
+<li>ros与系统环境变量关系密切，所以要时刻注意当前终端的环境信息，比如要source工作空间下devel/setup.sh</li>
+<li>启动ros节点之前，必须先启动<code>roscore</code></li>
+</ol>
+<h2 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
+<li><strong>软件包（Packages）：</strong>包是ROS代码的软件组织单元，每个软件包都可以包含程序库、可执行文件、脚本或其他构件。</li>
+<li><strong>Manifests (<a target="_blank" rel="noopener" href="http://wiki.ros.org/catkin/package.xml">package.xml</a>)：</strong> 清单（Manifest）是对软件包的描述。它用于定义软件包之间的依赖关系，并记录有关软件包的元信息，如版本、维护者、许可证等。</li>
+</ul>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><h4 id="roscd-直接切换目录-cd-到某个软件包或者软件包集当中。"><a href="#roscd-直接切换目录-cd-到某个软件包或者软件包集当中。" class="headerlink" title="roscd: 直接切换目录(cd)到某个软件包或者软件包集当中。"></a>roscd: 直接切换目录(cd)到某个软件包或者软件包集当中。</h4><ul>
+<li><code>roscd [locationname[/subdir]]</code></li>
+<li>进入存储ROS日志文件的目录: <code>roscd log</code></li>
+</ul>
+<h4 id="rosls-直接按软件包的名称执行-ls-命令（而不必输入绝对路径）。"><a href="#rosls-直接按软件包的名称执行-ls-命令（而不必输入绝对路径）。" class="headerlink" title="rosls: 直接按软件包的名称执行(ls)命令（而不必输入绝对路径）。"></a>rosls: 直接按软件包的名称执行(ls)命令（而不必输入绝对路径）。</h4><h2 id="软件包-package"><a href="#软件包-package" class="headerlink" title="软件包(package)"></a>软件包(package)</h2><h3 id="软件包的结构"><a href="#软件包的结构" class="headerlink" title="软件包的结构"></a>软件包的结构</h3><ul>
+<li>这个包必须有一个符合catkin规范的<a target="_blank" rel="noopener" href="http://wiki.ros.org/catkin/package.xml">package.xml</a>文件，这个<code>package.xml</code>文件提供有关该软件包的元信息</li>
+<li>这个包必须有一个<a target="_blank" rel="noopener" href="http://wiki.ros.org/catkin/CMakeLists.txt">catkin版本的CMakeLists.txt</a>文件，如果它是个<a target="_blank" rel="noopener" href="http://wiki.ros.org/catkin/package.xml#Metapackages">Catkin元包</a>的话，则需要有一个<code>CMakeList.txt</code>文件的相关样板</li>
+<li>每个包必须有自己的目录，这意味着在同一个目录下不能有嵌套的或者多个软件包存在</li>
+</ul>
+<p>最简单的软件包看起来就像这样：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs txt">my_package/<br>  CMakeLists.txt<br>  package.xml<br></code></pre></td></tr></table></figure>
+<h3 id="catkin工作空间中的软件包"><a href="#catkin工作空间中的软件包" class="headerlink" title="catkin工作空间中的软件包"></a>catkin工作空间中的软件包</h3><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs txt">workspace_folder/        -- WORKSPACE<br>  src/                   -- SOURCE SPACE<br>    CMakeLists.txt       -- &#x27;Toplevel&#x27; CMake file, provided by catkin<br>    package_1/<br>      CMakeLists.txt     -- CMakeLists.txt file for package_1<br>      package.xml        -- Package manifest for package_1<br>    ...<br>    package_n/<br>      CMakeLists.txt     -- CMakeLists.txt file for package_n<br>      package.xml        -- Package manifest for package_n<br></code></pre></td></tr></table></figure>
+<h3 id="工具-1"><a href="#工具-1" class="headerlink" title="工具"></a>工具</h3><h4 id="catkin-create-pkg-创建-构建-软件包"><a href="#catkin-create-pkg-创建-构建-软件包" class="headerlink" title="catkin_create_pkg 创建(构建)软件包"></a>catkin_create_pkg 创建(构建)软件包</h4><p><code>catkin_create_pkg &lt;package_name&gt; &lt;dependence&gt;</code></p>
+<h4 id="catkin-make-构建一个catkin工作区并生效配置文件"><a href="#catkin-make-构建一个catkin工作区并生效配置文件" class="headerlink" title="catkin_make 构建一个catkin工作区并生效配置文件"></a>catkin_make 构建一个catkin工作区并生效配置文件</h4><p>要将新工作区添加到ROS环境中，需要source工作空间内的<code>devel/setup.sh</code></p>
+<p><strong>执行时机:</strong></p>
+<ul>
+<li>开启新终端的时候</li>
+<li>增加工作区的时候</li>
+</ul>
+<h4 id="rospack-软件包信息查询"><a href="#rospack-软件包信息查询" class="headerlink" title="rospack: 软件包信息查询"></a>rospack: 软件包信息查询</h4><ul>
+<li>返回软件包所在路径: <code>rospack find [package_name]</code></li>
+<li>打印软件包依赖关系<ul>
+<li>查看一级依赖: <code>rospack depends1 &lt;package_name&gt;</code></li>
+<li>递归检测出所有嵌套的依赖包: <code>rospack depends &lt;package_name&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="软件包内的package-xml"><a href="#软件包内的package-xml" class="headerlink" title="软件包内的package.xml"></a>软件包内的package.xml</h3><p>package.xml 包含：描述标签、维护者标签、许可证标签、依赖项标签。</p>
+<p>通过package.xml可以自定义软件包，所以新软件包的诞生不一定非要通过<code>catkin_create_pkg</code>创建</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">package</span> <span class="hljs-attr">format</span>=<span class="hljs-string">&quot;2&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>beginner_tutorials<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.1.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>The beginner_tutorials package<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">maintainer</span> <span class="hljs-attr">email</span>=<span class="hljs-string">&quot;you@yourdomain.tld&quot;</span>&gt;</span>Your Name<span class="hljs-tag">&lt;/<span class="hljs-name">maintainer</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">license</span>&gt;</span>BSD<span class="hljs-tag">&lt;/<span class="hljs-name">license</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">url</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;website&quot;</span>&gt;</span>http://wiki.ros.org/beginner_tutorials<span class="hljs-tag">&lt;/<span class="hljs-name">url</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">author</span> <span class="hljs-attr">email</span>=<span class="hljs-string">&quot;you@yourdomain.tld&quot;</span>&gt;</span>Jane Doe<span class="hljs-tag">&lt;/<span class="hljs-name">author</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">buildtool_depend</span>&gt;</span>catkin<span class="hljs-tag">&lt;/<span class="hljs-name">buildtool_depend</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">build_depend</span>&gt;</span>roscpp<span class="hljs-tag">&lt;/<span class="hljs-name">build_depend</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">build_depend</span>&gt;</span>rospy<span class="hljs-tag">&lt;/<span class="hljs-name">build_depend</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">build_depend</span>&gt;</span>std_msgs<span class="hljs-tag">&lt;/<span class="hljs-name">build_depend</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">exec_depend</span>&gt;</span>roscpp<span class="hljs-tag">&lt;/<span class="hljs-name">exec_depend</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">exec_depend</span>&gt;</span>rospy<span class="hljs-tag">&lt;/<span class="hljs-name">exec_depend</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">exec_depend</span>&gt;</span>std_msgs<span class="hljs-tag">&lt;/<span class="hljs-name">exec_depend</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">package</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h2 id="节点-node"><a href="#节点-node" class="headerlink" title="节点(node)"></a>节点(node)</h2><blockquote>
+<p><strong>图概念</strong></p>
+<p><a target="_blank" rel="noopener" href="http://wiki.ros.org/cn/ROS/Concepts#ROS.2Bi6F7l1b.2BXEJrIQ-">计算图（Computation Graph）</a>是一个由ROS进程组成的点对点网络，它们能够共同处理数据。ROS的基本计算图概念有节点（Nodes）、主节点（Master）、参数服务器（Parameter Server）、消息（Messages）、服务（Services）、话题（Topics）和袋（Bags），它们都以不同的方式向图（Graph）提供数据。</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/Nodes">节点（Nodes）</a>：节点是一个可执行文件，它可以通过ROS来与其他节点进行通信。</li>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/Messages">消息（Messages）</a>：订阅或发布话题时所使用的ROS数据类型。</li>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/Topics">话题（Topics）</a>：节点可以将消息<em>发布</em>到话题，或通过<em>订阅</em>话题来接收消息。</li>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/Master">主节点（Master）</a>：ROS的命名服务，例如帮助节点发现彼此。</li>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/rosout">rosout</a>：在ROS中相当于<code>stdout/stderr（标准输出/标准错误）</code>。</li>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/roscore">roscore</a>：主节点 + rosout + [参数服务器](<a target="_blank" rel="noopener" href="http://wiki.ros.org/Parameter">http://wiki.ros.org/Parameter</a> Server)（会在以后介绍）。</li>
+</ul>
+</blockquote>
+<p>ROS节点使用ROS[客户端库](<a target="_blank" rel="noopener" href="http://wiki.ros.org/cn/Client">http://wiki.ros.org/cn/Client</a> Libraries)与其他节点通信。节点可以发布或订阅话题，也可以提供或使用<a target="_blank" rel="noopener" href="http://wiki.ros.org/Services">服务</a>。</p>
+<h3 id="工具-2"><a href="#工具-2" class="headerlink" title="工具"></a>工具</h3><h4 id="rosnode-显示当前正在运行的ROS节点信息"><a href="#rosnode-显示当前正在运行的ROS节点信息" class="headerlink" title="rosnode 显示当前正在运行的ROS节点信息"></a>rosnode 显示当前正在运行的ROS节点信息</h4><ul>
+<li>列出当前活动的节点:  <code>rosnode list</code></li>
+<li>查看某节点信息: <code>rosnode info &lt;node_name&gt;</code></li>
+</ul>
+<h4 id="rosrun-运行软件包内的节点"><a href="#rosrun-运行软件包内的节点" class="headerlink" title="rosrun 运行软件包内的节点"></a>rosrun 运行软件包内的节点</h4><p><code>rosrun [package_name] [node_name]</code></p>
+<h2 id="话题-topic"><a href="#话题-topic" class="headerlink" title="话题(topic)"></a>话题(topic)</h2><p><strong>节点</strong>之间的通信通过<strong>话题</strong>实现。</p>
+<p><strong>节点</strong>可以<strong>订阅</strong>与<strong>发布</strong>话题。</p>
+<h3 id="工具-3"><a href="#工具-3" class="headerlink" title="工具"></a>工具</h3><h4 id="rat-graph-用动态的图显示了系统中正在发生的事情"><a href="#rat-graph-用动态的图显示了系统中正在发生的事情" class="headerlink" title="rat_graph 用动态的图显示了系统中正在发生的事情"></a>rat_graph 用动态的图显示了系统中正在发生的事情</h4><h4 id="rostopic-话题信息相关"><a href="#rostopic-话题信息相关" class="headerlink" title="rostopic 话题信息相关"></a>rostopic 话题信息相关</h4><ul>
+<li><p><code>rostopic echo [topic]</code> 显示某个话题上发布的数据</p>
+</li>
+<li><p><code>rostopic list -v</code> 列出所有发布和订阅的主题及其类型的详细信息</p>
+</li>
+<li><p><code>rostopic type [topic]</code> 查看所发布话题的消息类型</p>
+<p>  进而查看某消息类型的详细信息: <code>rosmsg show [msg_type]</code></p>
+</li>
+<li><p><code>rostopic pub [topic] [msg_type] [args]</code> 把数据发布到当前某个正在广播的话题上</p>
+</li>
+<li><p><code>rostopic hz [topic]</code> 报告话题上数据发布的速率</p>
+</li>
+</ul>
+<h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p><a target="_blank" rel="noopener" href="http://wiki.ros.org/Services">服务（Services）</a>是节点之间通讯的另一种方式。服务允许节点发送一个<strong>请求（request）</strong>并获得一个<strong>响应（response）</strong></p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs txt">rosservice list         输出活跃服务的信息<br>rosservice call         用给定的参数调用服务<br>rosservice type         输出服务的类型<br>rosservice find         按服务的类型查找服务<br>rosservice uri          输出服务的ROSRPC uri<br></code></pre></td></tr></table></figure>
+<p>用法:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs txt">rosservice type [service]<br><br>rosservice call [service] [args]<br><br>rosservice type [service] | rossrv show<br></code></pre></td></tr></table></figure>
+<h3 id="参数服务器"><a href="#参数服务器" class="headerlink" title="参数服务器"></a>参数服务器</h3><p><code>rosparam</code>能让我们在ROS[参数服务器（Parameter Server）](<a target="_blank" rel="noopener" href="http://wiki.ros.org/Parameter">http://wiki.ros.org/Parameter</a> Server)上存储和操作数据。参数服务器能够存储整型（integer）、浮点（float）、布尔（boolean）、字典（dictionaries）和列表（list）等数据类型。rosparam使用YAML标记语言的语法。</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gams">rosparam <span class="hljs-keyword">set</span>            设置参数<br>rosparam <span class="hljs-comment">get</span>            获取参数<br>rosparam <span class="hljs-comment">load</span>           从文件中加载参数<br>rosparam <span class="hljs-comment">dump</span>           向文件中转储参数<br>rosparam <span class="hljs-comment">delete</span>         删除参数<br>rosparam <span class="hljs-comment">list</span>           列出参数名<br></code></pre></td></tr></table></figure>
+<p>用法:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs txt">rosparam set [param_name]<br>rosparam get [param_name]<br><br>rosparam dump [file_name] [namespace]<br>rosparam load [file_name] [namespace]<br></code></pre></td></tr></table></figure>
+<h2 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h2><h3 id="工具-rqt-console和rqt-logger-level"><a href="#工具-rqt-console和rqt-logger-level" class="headerlink" title="工具 rqt_console和rqt_logger_level"></a>工具 rqt_console和rqt_logger_level</h3><p><code>rqt_console</code>连接到了ROS的日志框架，以显示节点的输出信息。<code>rqt_logger_level</code>允许我们在节点运行时改变输出信息的详细级别，包括<code>Debug</code>、<code>Info</code>、<code>Warn和</code>Error`。</p>
+<h3 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h3><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs txt">Fatal （致命）<br>Error （错误）<br>Warn  （警告）<br>Info  （信息）<br>Debug （调试）<br></code></pre></td></tr></table></figure>
+<h2 id="roslaunch"><a href="#roslaunch" class="headerlink" title="roslaunch"></a>roslaunch</h2><p><code>roslaunch</code>可以用来启动定义在<code>launch（启动）</code>文件中的节点。</p>
+<p>Eg:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">launch</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">group</span> <span class="hljs-attr">ns</span>=<span class="hljs-string">&quot;turtlesim1&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">node</span> <span class="hljs-attr">pkg</span>=<span class="hljs-string">&quot;turtlesim&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sim&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;turtlesim_node&quot;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">group</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">group</span> <span class="hljs-attr">ns</span>=<span class="hljs-string">&quot;turtlesim2&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">node</span> <span class="hljs-attr">pkg</span>=<span class="hljs-string">&quot;turtlesim&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sim&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;turtlesim_node&quot;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">group</span>&gt;</span><br><br>  <span class="hljs-tag">&lt;<span class="hljs-name">node</span> <span class="hljs-attr">pkg</span>=<span class="hljs-string">&quot;turtlesim&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;mimic&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;mimic&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">remap</span> <span class="hljs-attr">from</span>=<span class="hljs-string">&quot;input&quot;</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;turtlesim1/turtle1&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">remap</span> <span class="hljs-attr">from</span>=<span class="hljs-string">&quot;output&quot;</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;turtlesim2/turtle1&quot;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">node</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">launch</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>用法:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">roslaunch [package_name] [launch_file]<br></code></pre></td></tr></table></figure>
+<h2 id="rosed"><a href="#rosed" class="headerlink" title="rosed"></a>rosed</h2><p>可以直接通过软件包名编辑包中的文件，而无需键入完整路径。（默认采用vim）</p>
+<p>切换默认编辑器，只需在~/.bashrc中加入:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 切换到nano</span><br>export EDITOR=&#x27;nano -w&#x27;<br><br><span class="hljs-meta">#</span><span class="bash"> 或者切换到emacs</span><br>export EDITOR=&#x27;emacs -nw&#x27;<br></code></pre></td></tr></table></figure>
+<h2 id="消息与服务"><a href="#消息与服务" class="headerlink" title="消息与服务"></a>消息与服务</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/msg">msg</a>（消息）：msg文件就是文本文件，用于描述ROS消息的字段。它们用于为不同编程语言编写的消息生成源代码。</li>
+<li><a target="_blank" rel="noopener" href="http://wiki.ros.org/srv">srv</a>（服务）：一个srv文件描述一个服务。它由两部分组成：请求（request）和响应（response）。</li>
+</ul>
+<p>msg文件存放在软件包的<code>msg</code>目录下，srv文件则存放在<code>srv</code>目录下。</p>
+<p>msg文件就是简单的文本文件，每行都有一个字段类型和字段名称。可以使用的类型为：</p>
+<ul>
+<li>int8, int16, int32, int64 (以及 uint*)</li>
+<li>float32, float64</li>
+<li>string</li>
+<li>time, duration</li>
+<li>其他msg文件</li>
+<li>variable-length array[] 和 fixed-length array[C]</li>
+</ul>
+<p>ROS中还有一个特殊的数据类型：<code>Header</code>，它含有时间戳和ROS中广泛使用的坐标帧信息。在msg文件的第一行经常可以看到<code>Header header</code>。</p>
+<p>下面是一个使用了Header、字符串原语和其他两个消息的示例： 下面是一个msg文件的样例，它使用了Header，string，和其他另外两个消息的类型：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs txt">Header header<br>string child_frame_id<br>geometry_msgs/PoseWithCovariance pose<br>geometry_msgs/TwistWithCovariance twist<br></code></pre></td></tr></table></figure>
+<p>srv文件和msg文件一样，只是它们包含两个部分：请求和响应。这两部分用一条<code>---</code>线隔开。下面是一个srv文件的示例：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs txt">int64 A<br>int64 B<br>---<br>int64 Sum<br></code></pre></td></tr></table></figure>
+<p>在上面的例子中，<code>A</code>和<code>B</code>是请求, <code>Sum</code>是响应。</p>
+<h3 id="工具-4"><a href="#工具-4" class="headerlink" title="工具"></a>工具</h3><h4 id="rosmsg-消息相关"><a href="#rosmsg-消息相关" class="headerlink" title="rosmsg 消息相关"></a>rosmsg 消息相关</h4><p><code>rosmsg show [message type]</code>可以显示消息的定义信息，同时可以用来检查创建的消息能否被ROS识别。</p>
+<h4 id="rossrv-服务相关"><a href="#rossrv-服务相关" class="headerlink" title="rossrv 服务相关"></a>rossrv 服务相关</h4><p><code>rossrv show &lt;service type&gt;</code> 类似rosmsg</p>
+<h2 id="rosbag-数据的录制与回放"><a href="#rosbag-数据的录制与回放" class="headerlink" title="rosbag 数据的录制与回放"></a>rosbag 数据的录制与回放</h2><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs txt">$ rosbag -h<br><br>   check        Determine whether a bag is playable in the current system, or if it can be migrated.<br>   compress     Compress one or more bag files.<br>   decompress   Decompress one or more bag files.<br>   decrypt      Decrypt one or more bag files.<br>   encrypt      Encrypt one or more bag files.<br>   filter       Filter the contents of the bag.<br>   fix          Repair the messages in a bag file so that it can be played in the current system.<br>   help  <br>   info         Summarize the contents of one or more bag files.<br>   play         Play back the contents of one or more bag files in a time-synchronized fashion.<br>   record       Record a bag file with the contents of specified topics.<br>   reindex      Reindexes one or more bag files.<br></code></pre></td></tr></table></figure>
+<p>rosbag不能完整的录制系统运行行为，因为对系统定时精度依赖比较大。</p>
+<h3 id="为什么用ros-readbagfile而不是rostopic-echo-b呢？"><a href="#为什么用ros-readbagfile而不是rostopic-echo-b呢？" class="headerlink" title="为什么用ros_readbagfile而不是rostopic echo -b呢？"></a>为什么用ros_readbagfile而不是rostopic echo -b呢？</h3><ol>
+<li><p>因为<code>rostopic</code><strong>极其地</strong>慢！ 举个例子，就算在高配计算机（4核8线程的奔腾i7和m.2固态硬盘）上运行这个命令，也需要<strong>11.5分钟</strong>才能读取一个18GB的bag文件！</p>
+ <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">time rostopic echo -b large_bag_file.bag /topic1<br></code></pre></td></tr></table></figure>
+<p> 而用<code>ros_readbagfile</code>脚本，在相同计算机上只要花费<strong>1分钟37秒</strong>就能读取同样的话题和18GB的bag文件！因此<code>ros_readbagfile</code>比<code>rostopic</code>快了11.5/(1+37/60) = <strong>大约7倍</strong>！</p>
+ <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">time ros_readbagfile large_bag_file.bag /topic1<br></code></pre></td></tr></table></figure></li>
+<li><p>因为<code>rostopic</code>一次只能读取<strong>单个话题</strong>，而<code>ros_readbagfile</code>可以同时读取<strong>任意多的话题</strong>！</p>
+ <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">ros_readbagfile &lt;mybagfile.bag&gt; [topic1] [topic2] [topic3] [...] [topic1000]<br></code></pre></td></tr></table></figure>
+<h2 id="roswtf-查你的系统并尝试发现问题"><a href="#roswtf-查你的系统并尝试发现问题" class="headerlink" title="roswtf 查你的系统并尝试发现问题"></a>roswtf 查你的系统并尝试发现问题</h2></li>
+</ol>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/ROS/" class="category-chain-item">ROS</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ROS/">#ROS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ROS学习笔记</div>
+      <div>https://www.mofan.life/2021/11/04/ROS学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 4, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/11/05/Linux%E9%87%8D%E5%90%AF%E7%BD%91%E5%8D%A1/" title="Linux重启网卡">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux重启网卡</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/11/03/Linux%E6%B7%BB%E5%8A%A0%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%90%AF%E5%8A%A8/" title="Linux添加图形化程序自启动">
+                        <span class="hidden-mobile">Linux添加图形化程序自启动</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

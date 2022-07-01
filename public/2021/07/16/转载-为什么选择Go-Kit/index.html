@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="前言工作这些年，先后经历过两家公司，有参与过php语言框架的开发和主导过go语言技术栈的落地工作，在此过程中有一些感悟和总结。我想以之前我主导的go语言技术栈为线索，来陈述当时遇到的一些问题，以及分析问题和解决问题的思路。主要目的是想陈述go技术体系在团队中落地的过程，分析我们在各个阶段中，遇到的一些问题，并將分析问题的思路和解决问题的方法记录下来，以便让后来的同学了解go语言在团队的演进过程，吸">
+  
+  
+  
+  <title>转载:为什么选择Go-Kit - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="转载:为什么选择Go-Kit"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-16 21:56" pubdate>
+          July 16, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">转载:为什么选择Go-Kit</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on 5 months ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>工作这些年，先后经历过两家公司，有参与过php语言框架的开发和主导过go语言技术栈的落地工作，在此过程中有一些感悟和总结。我想以之前我主导的go语言技术栈为线索，来陈述当时遇到的一些问题，以及分析问题和解决问题的思路。主要目的是想陈述go技术体系在团队中落地的过程，分析我们在各个阶段中，遇到的一些问题，并將分析问题的思路和解决问题的方法记录下来，以便让后来的同学了解go语言在团队的演进过程，吸取相关的经验，以便在今后的系统设计和开发上少走弯路。</p>
+<p>在系统不断演进的过程中，有时候对框架的选型很随意，认为能满足现在功能就行，没有对其功能扩展性和性能进行考量，导致随着业务的发展，发现当时选型有误，但想转又很难。那么现在，我就来谈谈，我们是如何抉择这些事情的。</p>
+<h3 id="我们为什么要由php转向go"><a href="#我们为什么要由php转向go" class="headerlink" title="我们为什么要由php转向go"></a>我们为什么要由php转向go</h3><p>最初，大约是在2015年时，平台内所有的业务系统均是由php语言构成的，上线没多久，平台的流量开始爆发性增长，并发量越来越大，晚高峰每秒请求由最初的几千QPS到现在的几十万QPS。当时，最快最有效的优化手段无外乎加机器和增加php－fpm的数量，但是，受限于php本身的网络模型，终究不适合这种高并发，大流量的场景。面对这种棘手的问题，再加上当时人手有限，业务任务重等因素，于是找其它部门借了一批写lua的外援，帮忙把一些逻辑简单且访问量大的接口，换成了lua，暂时扛过了晚高峰，因此，有相当长的一段时间，大部分项目是php＋lua共存的一个状态。但由于lua本身的一些局限性，不太适合做一些复杂的业务逻辑，所以最终，在业务有强烈的需求的前提下，同时伴随着技术发展的潮流，于2015年底，我们开始选择转向go语言。</p>
+<h3 id="我们怎样由php转向go"><a href="#我们怎样由php转向go" class="headerlink" title="我们怎样由php转向go"></a>我们怎样由php转向go</h3><p>由于之前团队全部都是php栈，在go方面的积累并不多，所以在php转向go的过程中，面临了在转型过程中都会遇到的问题：</p>
+<p>1 用什么框架；</p>
+<p>2 在业务任务重，人员极其匮乏的情况下如何將php项目重构成go。</p>
+<h3 id="用什么框架"><a href="#用什么框架" class="headerlink" title="用什么框架"></a>用什么框架</h3><p>之前团队有人仿造内部php框架开发过一个golang框架，有人提议将其直接拿过来用，有人说找个开源的如beego，gin，martini等这类流行的框架。我个人当时不太赞同使用自研的框架，主要有以下几点原因：1 文档少，漏洞多；2 需要投入人力去开发和维护，在当时人力极其紧缺的情况下是不现实的。另外，当时社区流行的框架也比较多，但是最终也没有选择那些流行的框架，主要是出于以下考虑：时间短，任务重，没有精力去辨别各个框架的优劣，适用场景以及性能如何。万一冒然使用一个还没有深入了解的框架，线上出问题咋办！尤其在当时系统频繁出问题，顶着各种压力的情况下。</p>
+<p>虽说，我们无法在短时间内选一个合适的框架，但是能够确定的是：我们的需求是什么？</p>
+<p>1 只做高性能的HTTP 接口；</p>
+<p>2 需要完整的单元测试体系；</p>
+<p>3 可扩展，组件化；</p>
+<p>基于以上三点，可以发现，go语言自带的特性就可以满足这些需求。于是，我们开始决定裸写。</p>
+<p>此外，还有一个裸写的原因就是：没想好将来想要什么！当然，每个团队的背景不一样，业务场景也不同，在人力和时间充裕的情况下，还是需要选择一个合适的框架比较好。</p>
+<h3 id="裸写不是乱写"><a href="#裸写不是乱写" class="headerlink" title="裸写不是乱写"></a>裸写不是乱写</h3><p>裸写不是乱写。众说周知，用框架的其中一个好处就是保证团队代码风格的一致性，当然，目前市面上除了beego外的大多数框架，在代码风格上也并没有做约束。为了保证团队go代码的规范性和一致性，按照经典的分层架构和过往的经验，我们制定了一套go编程模版，由上向下：Router层，Service层，Dao层，还有贯穿这三层的Entity层，架构图如图1所示。其中，Router层负责处理与http handler逻辑,请求参数以及response格式相关的处理工作；Service层处理业务逻辑；Dao层处理数据访问逻辑；Entity层负责实体定义相关的逻辑，并贯穿Router，Service，Dao这三层。层与层之间不直接进行耦合，高层模块不直接依赖与低层模块，它们都依赖于所定义的抽象接口。</p>
+<blockquote>
+<p>Booch曾经说过：“所有结构良好的面向对象构架都具有清晰的层次定义，每个层次通过一个定义良好的，受控的接口向外提供了一组内聚的服务”。</p>
+</blockquote>
+<p>除此之外，我们还维护了一套常用的公共组件库，如：日志库，各种数据库driver等。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/5167807-448f5f3106d6cc89.webp" srcset="/img/loading.gif" lazyload alt="5167807-448f5f3106d6cc89"></p>
+<h3 id="如何重构"><a href="#如何重构" class="headerlink" title="如何重构"></a>如何重构</h3><p>当我们制定好编程模版后，我们就开始进行项目重构工作。由于，业务任务重，人手少，所以，重构的基本方向就是：根据业务需求，结合接口重要性进行重构。只有这样，才能保证在业务需求不停的情况下，进行系统重构。所以，在此期间，有相当长的一段时间是处于php＋go进行混合编程，混合部署的状态，如图2所示，重构完的接口，通过nginx代理到新接口，这种状态一直持续了一年。采取混合编程的思路在重构初期，可能会遇到一些问题，比如：同一段业务逻辑，需要用go写一遍，用php写一遍，无疑增加了一定的工作量，当然这也是避免不了的。</p>
+<p>注意，有些同学在重构的时候容易走到一个误区：一口气把整个项目都重构了，或者说重构大部分内容。从时间成本和系统稳定性上来讲，这种方式风险比较大，不推荐。推荐的思路：一个接口一个接口进行重构。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/5167807-76e29ae60dba041e.webp" srcset="/img/loading.gif" lazyload alt="PHP+Go混合架构"></p>
+<h3 id="最终，为何想引入go-kit"><a href="#最终，为何想引入go-kit" class="headerlink" title="最终，为何想引入go-kit"></a>最终，为何想引入go-kit</h3><p>之前这套东西，基本上可以满足大部分的业务场景，但随着随着业务的发展，请求量越来越大，同时，有些请求的链路也变长了，为了继续保证接口的高并发和低时延特性，团队有少量业务开始尝试GRPC。根据测试，压测一个空接口，GRPC的性能大约是HTTP＋JSON的2～3倍，在这里推荐一个压测框架<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/shafreeck/fperf">fperf </a>。</p>
+<p>但是，针对GRPC的使用，不要盲目“求新”。以本人经验，HTTP＋JSON的模式基本上可以满足大部分的业务开发场景了，针对小部分对接口时延和并发量要求极高的场景可以考虑使用GRPC。因为，GRPC本身还是不利于调试，且会在一定程度上增加调用方和服务方的耦合性，所以，最后的传输协议和格式建议还是以HTTP＋JSON为主，以GRPC为辅。</p>
+<p>另外，我们还是需要标准化一些中间件的使用，如回路断流，rate limit等，来保障系统的稳定性。这次的思考，时间比较充分，所以有精力去研究一些新的东西。最后，框架抉择的思路和最初是一样的，就是，明确我们的需求是什么？</p>
+<p>1 需要一个同时支持多种传输协议，不论是现在的http，thrift，grpc，还是将来出现的某种新协议，要有良好扩展性的框架；</p>
+<p>2 框架本身和业务代码保持一种低耦合的状态；</p>
+<p>3 需要一套通用的middleware，使之与http，grpc等传输协议无关。</p>
+<p>目前市面上流行的框架都是围绕着http协议而展开的，包括gin，beego等。经调研，我们发现go-kit能够满足我们的需求。 go-kit本身不是一个框架，而是一套微服务工具集。其设计思想跟我们初期go编程模版制定的思想也算是不谋而合——分层设计，组件化，可扩展。go-kit的架构如图3所示，分为三层结构：Transport层，Endpoint层，Service层。Transport层主要负责与传输协议HTTP，GRPC，THRIFT等相关的逻辑，Endpoint层主要负责request／response格式的转换，以及公用拦截器相关的逻辑；Service层则专注于业务逻辑。go-kit除了经典的分层架构外，还在endpoint层提供了很多公用的拦截器，如log，metric，tracing，circuitbreaker，rate-limiter等，来保障业务系统的可用性。它们在设计上有一个共同特点：都是同传输协议无关的。在之前的一些http框架中，这些拦截器同传输协议是紧紧耦合在一起的，如果，此时我需要将某些HTTP接口改造成GRPC协议的接口，那么这些拦截器我还得再基于grpc再实现一遍，设计上存在一定的冗余。因此，借助go-kit这套工具集，我们就能很好的对transport协议，middleware进行扩展，且不会影响到业务本身的设计。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/5167807-42d352f9f790768e.webp" srcset="/img/loading.gif" lazyload alt="Go Kit架构图"></p>
+<h3 id="怎样將go-kit集成到现有的业务系统中"><a href="#怎样將go-kit集成到现有的业务系统中" class="headerlink" title="怎样將go-kit集成到现有的业务系统中"></a>怎样將go-kit集成到现有的业务系统中</h3><p>我们找到了心仪的开源工具后，那么我们怎样以较低的成本将其引入到我们业务系统中呢？之前我们有提到，我们的go模版是分为三层：router，service和dao。而go-kit也分为三层，我们可以根据每层职责的不同进行重新组合，如图4所示，从上到下依次为：transport层，endpoint层，service层，dao层。这样就能很轻易的將go-kit集成进来，当然你如果哪天因为某种原因，不想再继续使用go-kit这套东西，直接將endpoint层和Transport层移除即可。在集成的过程中，需要注意一点：之前的代码中router层不能包含任何业务逻辑，否则就无法集成。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/5167807-5811f7a0366bf155.webp" srcset="/img/loading.gif" lazyload></p>
+<h3 id="如何高效的使用go-kit"><a href="#如何高效的使用go-kit" class="headerlink" title="如何高效的使用go-kit"></a>如何高效的使用go-kit</h3><p>前面有提到，go-kit本身分为三层，针对这点有同学会提出：“每次新建项目，都需要手动写下go-kit的这三层逻辑，有点浪费时间，不够简洁”，这确实是一个共性问题，从go-kit的github的<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/go-kit/kit/pull/964">issue</a>中可以发现，也有不少人反馈过类似问题。很庆幸的是，有人给我们铺好了路，详见<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/GrantZheng/kit">GoKit CLi</a>，其主要功能如图5所示。</p>
+<p><img src="https://www.cmdbyte.com/2021/02/5167807-4820098bc6f40225.webp" srcset="/img/loading.gif" lazyload alt="GoKit CLi功能模块"></p>
+<p>这个工具可以根据我们的需求自动生成service，transport和endpoint模版，以及生成供调用方的使用的client library，节省我们大量的时间，提高我们的生产效率。具体操作步骤，可以参考<a target="_blank" rel="noopener" href="https://links.jianshu.com/go?to=https://github.com/GrantZheng/kit">GoKit CLi</a>的说明，这里不再赘述。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>不论是我之前的一篇文章《<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/98b8c97e2ce1">浅谈互联网业务系统设计</a>》所讲的系统设计，还是这篇文章所陈述的框架选型。我一直在强调的一点就是：需求是什么？如何在满足需求的同时，让框架和系统具有一定的弹性。无外乎使用经典的五大设计原则：单一职责原则，开放封闭原则，依赖倒置原则，接口隔离原则，为你的设计提供坚实的理论基础和方向指引。另外，在做选型的时候不要盲从，别人口中好的东西，不一定适合你，只有明确自身需求后，找到适合自己的才是最好的！</p>
+<p>作者：郑渊<br>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0c34a75569b1">https://www.jianshu.com/p/0c34a75569b1</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" class="category-chain-item">开源项目</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/Go/" class="category-chain-item">Go</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/Go/Go-Kit/" class="category-chain-item">Go-Kit</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Go/">#Go</a>
+      
+        <a href="/tags/Go-Kit/">#Go-Kit</a>
+      
+        <a href="/tags/Microservice/">#Microservice</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>转载:为什么选择Go-Kit</div>
+      <div>https://www.mofan.life/2021/07/16/转载-为什么选择Go-Kit/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 16, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/07/19/Go%E8%AF%BB%E5%8F%96%E5%92%8C%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6/" title="Go读取和写入文件">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Go读取和写入文件</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/15/Kubernetes-Pod-Security-Policies-with-Open-Policy-Agent/" title="Kubernetes Pod Security Policies with Open Policy Agent">
+                        <span class="hidden-mobile">Kubernetes Pod Security Policies with Open Policy Agent</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,986 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="查找&amp;#x2F;text : 正向查找text，按n查找下一个，按N查找上一个。 ?text : 反向查找text，按n查找下一个，按N查找上一个。 *&amp;#x2F;# ： 查找光标当前的单词，如果光标当前单词为text，那么就是查找text。 :set ignorecase ：设置查找忽略大小写。 :set noignorecase ：设置查找不忽略大小写。 :nohisearch : 关闭当前的高亮显示，当再次查找">
+  
+  
+  
+  <title>Vim常用操作 - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/page.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vim常用操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Youpeng Cui
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-04-13 08:42" pubdate>
+          April 13, 2021 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vim常用操作</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    Last updated on a month ago
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p><strong>/text</strong> : 正向查找<code>text</code>，按<code>n</code>查找下一个，按<code>N</code>查找上一个。</p>
+<p><strong>?text</strong> : 反向查找<code>text</code>，按<code>n</code>查找下一个，按<code>N</code>查找上一个。</p>
+<p>*<strong>/#</strong> ： 查找光标当前的单词，如果光标当前单词为<code>text</code>，那么就是查找<code>text</code>。</p>
+<p><strong>:set ignorecase</strong> ：设置查找忽略大小写。</p>
+<p><strong>:set noignorecase</strong> ：设置查找不忽略大小写。</p>
+<p><strong>:nohisearch</strong> : 关闭当前的高亮显示，当再次查找时恢复高亮。</p>
+<p><strong>:set incsearch</strong> : 逐步搜索模式，对当前渐入的字符进行查找，不必等待输入完成再查找。</p>
+<p><strong>:set wrapscan</strong> : 重新搜索，当搜索到文件头或尾时，返回重新搜索。</p>
+<h3 id="编辑"><a href="#编辑" class="headerlink" title="编辑"></a>编辑</h3><h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p><strong>x 或 Del</strong> ：删除光标所在处的单个字符。</p>
+<p><strong>dd</strong> : 删除当前光标所在的行。</p>
+<p><strong>#dd</strong> : 删除从光标处开始的<code>#</code>行内容，<code>#</code>是一个数字。</p>
+<p><strong>d^</strong> : 删除一行中从光标位置到行首的所有字符。</p>
+<p><strong>d$</strong> : 删除一行中从光标位置到行尾的所有字符。</p>
+<h4 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h4><p><strong>yy</strong> : 复制当前行的内容到剪切板。</p>
+<p><strong>#yy</strong> : 复制从光标处开始的<code>#</code>行内容，<code>#</code>是一个数字。</p>
+<h4 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h4><p><strong>p</strong> : 将缓冲区的内容粘贴到光标位置处之后（小写）。</p>
+<p><strong>P</strong> : 将缓冲区的内容粘贴到光标位置处之前（大写）。</p>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p><strong>i</strong> : 在当前位置插入</p>
+<p><strong>A</strong> : 在当前行尾插入</p>
+<p><strong>I</strong> : 在当前行首插入</p>
+<p><strong>o</strong> : 在当前行后插入一行</p>
+<p><strong>O</strong> : 在当前行前插入一行</p>
+<h3 id="文件窗口"><a href="#文件窗口" class="headerlink" title="文件窗口:"></a>文件窗口:</h3><p>:open file –在当前窗口打开新文件</p>
+<p>:split file –在新窗口打开文件</p>
+<p>:new file –用新窗口打开文件,同 :split file</p>
+<p>:bn –切换到下一个文件</p>
+<p>:bp –切换到上一个文件</p>
+<p>:args –查看当前打开的文件列表(当前正在编辑的文件会用[]括起来)</p>
+<p>:e <a href="ftp://192.168.10.76/abc.txt">ftp://192.168.10.76/abc.txt</a></p>
+<p>:e \qadrive est.txt –打开远程文件</p>
+<p>:split –打开一个新窗口,光标停在顶层的窗口上</p>
+<p>:new –打开一个新窗口,光标停在顶层的窗口上</p>
+<p>:vsplit –横向打开窗口。</p>
+<p>Ctrl+ww –移动到下一个窗口</p>
+<p>Ctrl+wj –移动到下方的窗口</p>
+<p>Ctrl+wk –移动到上方的窗口</p>
+<p>:!ls %:p  显示当前文件完整路径，但是会离开Vim页面</p>
+<p>2、其他命令:</p>
+<p>Esc/Ctrl+[ – 键入命令</p>
+<p>:!command –执行shell命令</p>
+<p>:suspend/Ctrl+Z –挂起vim,回到shell,fg 返回vim</p>
+<p>:!perl -c script.pl –检查perl脚本语法,不用退出vim</p>
+<p>:!perl script.pl –执行perl脚本, 不用退出vim</p>
+<p>:help –显示帮助文档</p>
+<p>:help i –显示i的帮助文档(:特殊键用&lt;&gt;, -t:启动参数用-)</p>
+<p>3、编辑命令:</p>
+<p>拷贝粘贴剪切:</p>
+<p>yy –拷贝当前行</p>
+<p>2yy –拷贝当前行开始的2行</p>
+<p>p –在当前光标后粘贴</p>
+<p>P –在当前行前粘贴</p>
+<p>:1,10 co 20 –将1-10行插入到第20行之后。</p>
+<p>:1,$ co $ –将整个文件复制一份并添加到文件尾部</p>
+<p>v –进入选择模式,相当于在Windows下按住 Shift选择</p>
+<p>V –进入选择模式,整行选择</p>
+<p>ddp –交换当前行和其下一行</p>
+<p>2dd –剪切当前行之后的2行</p>
+<p>:1,10d –将1-10行剪切</p>
+<p>:1, 10 m 20 –将第1-10行移动到第20行之后</p>
+<p>替换:</p>
+<p>ra –将当前光标所在字符替换为a</p>
+<p>s/old/new/ –用old替换new,替换当前行的第一个匹配</p>
+<p>s/old/new/g –用old替换new,替换当前行的所有匹配</p>
+<p>%s/old/new/ –用old替换new,替换所有行的第一个匹配</p>
+<p>%s/old/new/g –用old替换new,替换所有匹配</p>
+<p>:10,20 s/^/text/g –在第10行到第20行每行前面加上text(:3,5 s/^/#/g –注释3-5行, :3,5 s/^#//g<br>–解除3-5行的注释, :1,$ s/^/#/g –注释整个文档, :%s/^/#/g –注释整个文档)</p>
+<p>ddp –交换光标所在行和下一行</p>
+<p>移动:</p>
+<p>h –左移一个字符(5h –左移5个字符)</p>
+<p>l –右移一个字符(5l –右移5个字符)</p>
+<p>k –上移一个字符(5k –上移5个字符)</p>
+<p>j –下移一个字符(5j –下移5个字符)</p>
+<p>w –向后移动一个单词(5w –向后移动5个单词)</p>
+<p>b –向前移动一个单词(5b –向前移动5个单词)</p>
+<p>e –同 w ,光标停在单词尾部</p>
+<p>ge –同 e ,光标停在单词尾部</p>
+<p>^ –移动到本行第一个非空白字符</p>
+<p>0 –移动到本行第0个字符</p>
+<p>–同0</p>
+<p>$ –移动到行尾(3$ –移动到下面3行的行尾)</p>
+<p>gg –移动到文件头(10gg –移动到第10行首)</p>
+<p>[[ –同 gg</p>
+<p>G –移动到文件尾(10G –移动到第10行尾)</p>
+<p>]] –同 G</p>
+<p>fx –移动到本行光标后第一个为x的字符(3fx –移动到本行光标后第3个为x的字符)</p>
+<p>Fx –同 fx ,反向查找</p>
+<p>:20 –跳到20行行首</p>
+<p>Ctrl+e –向下滚动一行</p>
+<p>Ctrl+y –向上滚动一行</p>
+<p>Ctrl+d –向下滚动半屏</p>
+<p>Ctrl+u –向上滚动半屏</p>
+<p>Ctrl+f –向下滚动一屏</p>
+<p>Ctrl+b –向上滚动一屏</p>
+<p>撤销:</p>
+<p>u –撤销</p>
+<p>U –撤销对整行的操作</p>
+<p>Ctrl+r –撤销刚才的撤销</p>
+<p>删除:</p>
+<p>x –删除当前字符(3x –删除当前光标开始向后三个字符)</p>
+<p>X –删除当前字符的前一个字符, 同 dh</p>
+<p>dl –删除当前字符, 同 x</p>
+<p>dh –删除前一个字符</p>
+<p>dd –删除当前行</p>
+<p>dj –删除上一行</p>
+<p>dk –删除下一行</p>
+<p>10d –删除当前行开始的10行。</p>
+<p>D –删除当前字符至行尾, 同 d$</p>
+<p>kdgg –删除当前行之前所有行(不包括当前行)</p>
+<p>:1,10d –删除1-10行</p>
+<p>:11,$d –删除11行及以后所有的行</p>
+<p>:1,$d –删除所有行</p>
+<p>J　–删除两行之间的空行, 合并两行</p>
+<p>退出</p>
+<p>:wq –保存并退出</p>
+<p>ZZ –保存并退出</p>
+<p>:q! –强制退出并忽略所有更改</p>
+<p>:e! –放弃所有修改，并打开原来文件</p>
+<p>:close –关闭窗口,最后一个窗口不能使用此命令,可以防止意外退出vim</p>
+<p>:q –如果是最后一个被关闭的窗口，那么将退出vim</p>
+<p>1、文件窗口:</p>
+<p>:open file –在当前窗口打开新文件</p>
+<p>:split file –在新窗口打开文件</p>
+<p>:new file –用新窗口打开文件,同 :split file</p>
+<p>:bn –切换到下一个文件</p>
+<p>:bp –切换到上一个文件</p>
+<p>:args –查看当前打开的文件列表(当前正在编辑的文件会用[]括起来)</p>
+<p>:e <a href="ftp://192.168.10.76/abc.txt">ftp://192.168.10.76/abc.txt</a></p>
+<p>:e \qadrive est.txt –打开远程文件</p>
+<p>:split –打开一个新窗口,光标停在顶层的窗口上</p>
+<p>:new –打开一个新窗口,光标停在顶层的窗口上</p>
+<p>:vsplit –横向打开窗口。</p>
+<p>Ctrl+ww –移动到下一个窗口</p>
+<p>Ctrl+wj –移动到下方的窗口</p>
+<p>Ctrl+wk –移动到上方的窗口</p>
+<p>2、其他命令:</p>
+<p>Esc/Ctrl+[ – 键入命令</p>
+<p>:!command –执行shell命令</p>
+<p>:suspend/Ctrl+Z –挂起vim,回到shell,fg 返回vim</p>
+<p>:!perl -c script.pl –检查perl脚本语法,不用退出vim</p>
+<p>:!perl script.pl –执行perl脚本, 不用退出vim</p>
+<p>:help –显示帮助文档</p>
+<p>:help i –显示i的帮助文档(:特殊键用&lt;&gt;, -t:启动参数用-)</p>
+<p>3、编辑命令:</p>
+<p>插入:</p>
+<p>i –在当前位置插入</p>
+<p>A –在当前行尾插入</p>
+<p>I –在当前行首插入</p>
+<p>o –在当前行后插入一行</p>
+<p>O –在当前行前插入一行</p>
+<p>拷贝粘贴剪切:</p>
+<p>yy –拷贝当前行</p>
+<p>2yy –拷贝当前行开始的2行</p>
+<p>p –在当前光标后粘贴</p>
+<p>P –在当前行前粘贴</p>
+<p>:1,10 co 20 –将1-10行插入到第20行之后。</p>
+<p>:1,$ co $ –将整个文件复制一份并添加到文件尾部</p>
+<p>v –进入选择模式,相当于在Windows下按住 Shift选择</p>
+<p>V –进入选择模式,整行选择</p>
+<p>ddp –交换当前行和其下一行</p>
+<p>2dd –剪切当前行之后的2行</p>
+<p>:1,10d –将1-10行剪切</p>
+<p>:1, 10 m 20 –将第1-10行移动到第20行之后</p>
+<p>替换:</p>
+<p>ra –将当前光标所在字符替换为a</p>
+<p>s/old/new/ –用old替换new,替换当前行的第一个匹配</p>
+<p>s/old/new/g –用old替换new,替换当前行的所有匹配</p>
+<p>%s/old/new/ –用old替换new,替换所有行的第一个匹配</p>
+<p>%s/old/new/g –用old替换new,替换所有匹配</p>
+<p>:10,20 s/^/text/g –在第10行到第20行每行前面加上text(:3,5 s/^/#/g –注释3-5行, :3,5 s/^#//g<br>–解除3-5行的注释, :1,$ s/^/#/g –注释整个文档, :%s/^/#/g –注释整个文档)</p>
+<p>ddp –交换光标所在行和下一行</p>
+<p>移动:</p>
+<p>h –左移一个字符(5h –左移5个字符)</p>
+<p>l –右移一个字符(5l –右移5个字符)</p>
+<p>k –上移一个字符(5k –上移5个字符)</p>
+<p>j –下移一个字符(5j –下移5个字符)</p>
+<p>w –向后移动一个单词(5w –向后移动5个单词)</p>
+<p>b –向前移动一个单词(5b –向前移动5个单词)</p>
+<p>e –同 w ,光标停在单词尾部</p>
+<p>ge –同 e ,光标停在单词尾部</p>
+<p>^ –移动到本行第一个非空白字符</p>
+<p>0 –移动到本行第0个字符</p>
+<p>–同0</p>
+<p>$ –移动到行尾(3$ –移动到下面3行的行尾)</p>
+<p>gg –移动到文件头(10gg –移动到第10行首)</p>
+<p>[[ –同 gg</p>
+<p>G –移动到文件尾(10G –移动到第10行尾)</p>
+<p>]] –同 G</p>
+<p>fx –移动到本行光标后第一个为x的字符(3fx –移动到本行光标后第3个为x的字符)</p>
+<p>Fx –同 fx ,反向查找</p>
+<p>:20 –跳到20行行首</p>
+<p>Ctrl+e –向下滚动一行</p>
+<p>Ctrl+y –向上滚动一行</p>
+<p>Ctrl+d –向下滚动半屏</p>
+<p>Ctrl+u –向上滚动半屏</p>
+<p>Ctrl+f –向下滚动一屏</p>
+<p>Ctrl+b –向上滚动一屏</p>
+<p>撤销:</p>
+<p>u –撤销</p>
+<p>U –撤销对整行的操作</p>
+<p>Ctrl+r –撤销刚才的撤销</p>
+<p>删除:</p>
+<p>x –删除当前字符(3x –删除当前光标开始向后三个字符)</p>
+<p>X –删除当前字符的前一个字符, 同 dh</p>
+<p>dl –删除当前字符, 同 x</p>
+<p>dh –删除前一个字符</p>
+<p>dd –删除当前行</p>
+<p>dj –删除上一行</p>
+<p>dk –删除下一行</p>
+<p>10d –删除当前行开始的10行。</p>
+<p>D –删除当前字符至行尾, 同 d$</p>
+<p>kdgg –删除当前行之前所有行(不包括当前行)</p>
+<p>:1,10d –删除1-10行</p>
+<p>:11,$d –删除11行及以后所有的行</p>
+<p>:1,$d –删除所有行</p>
+<p>J　–删除两行之间的空行, 合并两行</p>
+<p>退出</p>
+<p>:wq –保存并退出</p>
+<p>ZZ –保存并退出</p>
+<p>:q! –强制退出并忽略所有更改</p>
+<p>:e! –放弃所有修改，并打开原来文件</p>
+<p>:close –关闭窗口,最后一个窗口不能使用此命令,可以防止意外退出vim</p>
+<p>:q –如果是最后一个被关闭的窗口，那么将退出vim</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Tools/" class="category-chain-item">Tools</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Tools/Vim/" class="category-chain-item">Vim</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vim/">#Vim</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vim常用操作</div>
+      <div>https://www.mofan.life/2021/04/13/Tools/Vim/Vim常用操作/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Youpeng Cui</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>April 13, 2021</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>Licensed under</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/13/Redis%E9%85%8D%E7%BD%AE%E8%AE%BF%E9%97%AE%E5%AF%86%E7%A0%81/" title="Redis配置访问密码">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis配置访问密码</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/11/%E4%B8%80%E8%A7%88Go%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/" title="一览Go开源项目">
+                        <span class="hidden-mobile">一览Go开源项目</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.3.2/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.3.2/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://mofan-comment.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        MathJax = {
+          tex    : {
+            inlineMath: { '[+]': [['$', '$']] }
+          },
+          loader : {
+            load: ['ui/lazy']
+          },
+          options: {
+            renderActions: {
+              findScript    : [10, doc => {
+                document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                  const display = !!node.type.match(/; *mode=display/);
+                  const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                  const text = document.createTextNode('');
+                  node.parentNode.replaceChild(text, node);
+                  math.start = { node: text, delim: '', n: 0 };
+                  math.end = { node: text, delim: '', n: 0 };
+                  doc.math.push(math);
+                });
+              }, '', false],
+              insertedScript: [200, () => {
+                document.querySelectorAll('mjx-container').forEach(node => {
+                  let target = node.parentNode;
+                  if (target.nodeName.toLowerCase() === 'li') {
+                    target.parentNode.classList.add('has-jax');
+                  }
+                });
+              }, '', false]
+            }
+          }
+        };
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.0/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
