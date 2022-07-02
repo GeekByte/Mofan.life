@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -319,7 +319,7 @@
 <p>Go 语言起源 2007 年，并于 2009 年正式对外发布。它从 2009 年 9 月 21 日开始作为谷歌公司 20%兼职项目，即相关员工利用 20% 的空余时间来参与 Go 语言的研发工作。该项目的三位领导者均是著名的 IT 工程师：Robert Griesemer，参与开发 Java HotSpot 虚拟机；Rob Pike，Go 语言项目总负责人，贝尔实验室 Unix 团队成员，参与的项目包括 Plan 9，Inferno 操作系统和 Limbo 编程语言；Ken Thompson，贝尔实验室 Unix 团队成员，C 语言、Unix 和 Plan 9 的创始人之一，与 Rob Pike 共同开发了 UTF-8 字符集规范。自 2008 年 1 月起，Ken Thompson 就开始研发一款以 C 语言为目标结果的编译器来拓展 Go 语言的设计思想[3]。</p>
 </blockquote>
 <p><img src="https://www.cmdbyte.com/2021/02/1d0cd732976596f83a48008f84adfbb4.png" srcset="/img/loading.gif" lazyload alt="Go 语言设计者：Griesemer、Thompson 和 Pike [3]"></p>
-<p>当时Google的很多工程师是用的都是C/C++，所以语法的设计上接近于C，Go的设计师们想要解决其他语言使用中的缺点，但是仍保留他们的优点[5]：</p>
+<p>当时Google的很多工程师是用的都是C&#x2F;C++，所以语法的设计上接近于C，Go的设计师们想要解决其他语言使用中的缺点，但是仍保留他们的优点[5]：</p>
 <ul>
 <li>静态类型和运行时效率</li>
 <li>可读性和易用性</li>
@@ -387,16 +387,18 @@
 <p>由于Go在设计的时候就考虑到了并发的支持，<strong>或者说很多特性都是为了并发而设计</strong>，这和一些后期库支持并发和第三方库支持并发的语言不同。</p>
 <p><strong>所以Go的并发到底有多方便？</strong>在Go中使用并发，只需要在普通的函数执行前加上一个go关键字，就可以新建一个线程让函数在其中执行：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">go</span> loop() <span class="hljs-comment">// 启动一个goroutine</span><br>    loop()<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>这样带来的好处<strong>不仅仅是让并发编程更方便了</strong>，在一些特定情况下，比如Go引用一些使用了并发的库时，这些库所使用的并发也是基于Go本身的并发设计，不会存在库使用另一套并发实现的情况，这样Go调度器在处理程序中的各种并发线程时，可以有更加统一化的管理方式。</p>
 <p>不过Go的并发对于程序的实现要求还是比较高的，在使用一些通信Channel的场合，稍有疏忽就可能出现死锁的问题，比如：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">fatal</span> <span class="hljs-literal">error</span>: all goroutines are asleep - deadlock!<br></code></pre></td></tr></table></figure>
+
 <p><strong>Go的并发量可以比大部分语言里普通的线程实现要高</strong>，这受益于轻量级的Goroutine，轻量化主要是它所占用的空间要小得多，例如64位环境下的JVM，它会默认固定为每个线程分配1MB的线程栈空间，而<strong>Goroutines大概只有4-8KB</strong>，之后再按需分配。足够轻量化的线程在相同的内存下也就可以有更高并发量（服务器CPU还没有饱和的情况下），同时也可以减少很多上下文切换的时间开销[9]。但是如果你的每个线程占用空间都非常大时（比如10MB，当然这是非常规需求的情况下），Go的轻量化优势就没有那么明显了。</p>
 <p>Go在并发上的优点很明显，也是Go的功能目标，从语言设计上支持了并发，提供了统一便捷的工具，复杂的并发业务也需要在Go的一整套并发规范体系下进行编程，当然这肯定会牺牲部分实现自由度，但可以获得性能的提高和维护成本的下降。</p>
 <p>PS：关于Go调度器的内容在这里并没有被提及，因为很难用简单的文字向读者说明该调度方式和其他调度方式的优劣，将在未来的某一篇中会细致地介绍Go调度器的内容。</p>
 <h3 id="Go的垃圾回收"><a href="#Go的垃圾回收" class="headerlink" title="Go的垃圾回收"></a>Go的垃圾回收</h3><blockquote>
 <p>垃圾回收（英语：Garbage Collection，缩写为GC），在计算机科学中是一种自动的存储器管理机制。当一个计算机上的动态存储器不再需要时，就应该予以释放，以让出存储器，这种存储器资源管理，称为垃圾回收。垃圾回收器可以让程序员减轻许多负担，也减少程序员犯错的机会[10]。</p>
 </blockquote>
-<p>在使用Go或者其他支持GC的语言时，**不用再像C++一样，手动地去释放不需要的变量占用的内容空间(free/delete)**。</p>
+<p>在使用Go或者其他支持GC的语言时，**不用再像C++一样，手动地去释放不需要的变量占用的内容空间(free&#x2F;delete)**。</p>
 <p><strong>的确，这很方便</strong>（对于懒人和容易忘记主动释放的人），<strong>但是也多了一些限制</strong>（暗箱操作的不透明性以及在GC处理上的性能开销）。<strong>GC也不是万能的</strong>，当遇到一些对性能要求较高的场景，还是需要记得进行一些主动释放或优化操作（比如说自定义内存池）。</p>
 <p>PS：将在未来的某一篇中会细致地介绍Go垃圾回收的细节（如果你们也觉得有必要的话）。</p>
 <h2 id="什么时候可以选择Go？"><a href="#什么时候可以选择Go？" class="headerlink" title="什么时候可以选择Go？"></a>什么时候可以选择Go？</h2><p>Go有很多优点，编译快、性能好、天生并发以及垃圾回收，很多比较有特色的内容也还没有说到（比如gofmt）。</p>
@@ -404,10 +406,10 @@
 <p><strong>所以到底Go适合做什么，不适合做什么？</strong></p>
 <p>分析了这么多后，这个问题其实很难回答，但我们可以选择先从不适合的领域把Go剔除掉，看看我们会剩下什么。</p>
 <h3 id="Go不适合做什么"><a href="#Go不适合做什么" class="headerlink" title="Go不适合做什么"></a>Go不适合做什么</h3><ul>
-<li>极致高性能优化的场景，你可能需要使用C/C++，甚至是汇编；</li>
+<li>极致高性能优化的场景，你可能需要使用C&#x2F;C++，甚至是汇编；</li>
 <li>简单流程的脚本工具、数值分析、深度学习，可能Python更适合（至少目前是）；</li>
 <li>搭一个博客或网站，PHP何尝不是天下第一的语言呢；</li>
-<li>如果你想比较方便找到一份的后端工作，绝大部分公司的Java岗一直缺人（在实际生产过程中，目前Go仍没有比Java表现得好太多，至少没有好到让一个部门/公司将核心业务重新转向Go来进行重构）；</li>
+<li>如果你想比较方便找到一份的后端工作，绝大部分公司的Java岗一直缺人（在实际生产过程中，目前Go仍没有比Java表现得好太多，至少没有好到让一个部门&#x2F;公司将核心业务重新转向Go来进行重构）；</li>
 <li>…</li>
 </ul>
 <p>你可以找到类似上面那样的很多场景，你可能会发现Go并不能那么完美地替代掉谁。</p>
@@ -420,21 +422,21 @@
 <p>简而言之，尽管Go的过于简洁带来了很多问题（有些人说的难听点叫过于简单），Go所具有的优点，可以让大部分人用编程语言这种工具，来解决对他们而言更加重要的问题。</p>
 <p><strong>Go语言不是银弹，但它的确能有效地解决这些问题。</strong></p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
-<li>[1] RUNOOB Go语言教程 菜鸟教程，<a target="_blank" rel="noopener" href="https://www.runoob.com/go/go-tutorial.html">https://www.runoob.com/go/go-…</a></li>
-<li>[2] 没有银弹：软件工程的本质性与附属性工作(No Silver Bullet—Essence and Accidents of Software Engineering)，<a target="_blank" rel="noopener" href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">http://worrydream.com/refs/Br…</a></li>
-<li>[3] The way to Go，<a target="_blank" rel="noopener" href="https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/01.2.md">https://github.com/unknwon/th…</a></li>
-<li>[4] 我为什么选择使用 Go 语言？，<a target="_blank" rel="noopener" href="https://juejin.im/entry/5705f83a8ac247004c04900c">https://juejin.im/entry/5705f…</a></li>
+<li>[1] RUNOOB Go语言教程 菜鸟教程，<a target="_blank" rel="noopener" href="https://www.runoob.com/go/go-tutorial.html">https://www.runoob.com/go/go-...</a></li>
+<li>[2] 没有银弹：软件工程的本质性与附属性工作(No Silver Bullet—Essence and Accidents of Software Engineering)，<a target="_blank" rel="noopener" href="http://worrydream.com/refs/Brooks-NoSilverBullet.pdf">http://worrydream.com/refs/Br...</a></li>
+<li>[3] The way to Go，<a target="_blank" rel="noopener" href="https://github.com/unknwon/the-way-to-go_ZH_CN/blob/master/eBook/01.2.md">https://github.com/unknwon/th...</a></li>
+<li>[4] 我为什么选择使用 Go 语言？，<a target="_blank" rel="noopener" href="https://juejin.im/entry/5705f83a8ac247004c04900c">https://juejin.im/entry/5705f...</a></li>
 <li>[5] Wiki - Go，<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Go">https://zh.wikipedia.org/wiki/Go</a></li>
-<li>[6] 为什么 C++ 编译速度比 Java 慢得多？，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/42964826">https://www.zhihu.com/questio…</a></li>
-<li>[7] Github - eighmcculloch/keywords，<a target="_blank" rel="noopener" href="https://github.com/leighmcculloch/keywords">https://github.com/leighmccul…</a></li>
-<li>[8] The Computer Language Benchmarks Game，<a target="_blank" rel="noopener" href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">https://benchmarksgame-team.p…</a></li>
-<li>[9] 为什么能有上百万个 Goroutines，却只能有上千个 Java 线程？，<a target="_blank" rel="noopener" href="https://www.infoq.cn/article/a-million-go-routines-but-only-1000-java-threads">https://www.infoq.cn/article/…</a></li>
-<li>[10] Wiki - 垃圾回收，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">https://en.wikipedia.org/wiki…</a></li>
+<li>[6] 为什么 C++ 编译速度比 Java 慢得多？，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/42964826">https://www.zhihu.com/questio...</a></li>
+<li>[7] Github - eighmcculloch&#x2F;keywords，<a target="_blank" rel="noopener" href="https://github.com/leighmcculloch/keywords">https://github.com/leighmccul...</a></li>
+<li>[8] The Computer Language Benchmarks Game，<a target="_blank" rel="noopener" href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">https://benchmarksgame-team.p...</a></li>
+<li>[9] 为什么能有上百万个 Goroutines，却只能有上千个 Java 线程？，<a target="_blank" rel="noopener" href="https://www.infoq.cn/article/a-million-go-routines-but-only-1000-java-threads">https://www.infoq.cn/article/...</a></li>
+<li>[10] Wiki - 垃圾回收，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)">https://en.wikipedia.org/wiki...</a></li>
 </ul>
 <h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><p>在调查Go的过程中，发现了一些比较有意思、或者比较实用的文章，一并附在这里。</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://juejin.im/entry/5705f83a8ac247004c04900c">我为什么选择使用 Go 语言？</a>，该文写于2016年，在我的文章基本构思完成的时候，偶然看到了这篇文章，作者有很多早期Go版本的开发经验，里面有更多的细节都是出自于工程师的经验之谈，我发现其中的部分想法和我不谋而合，你可以把这篇文章当作本文的后续扩展阅读，不过要注意文章的时效，可能提及到的一些Go的缺点现在已经被改进了。</li>
-<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/11/compiler.html">C/C++编译器的工作过程</a>，主要是供不熟悉C系的朋友了解一下编译器的工作过程。</li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/11/compiler.html">C&#x2F;C++编译器的工作过程</a>，主要是供不熟悉C系的朋友了解一下编译器的工作过程。</li>
 <li><a target="_blank" rel="noopener" href="https://benchmarksgame-team.pages.debian.net/benchmarksgame/index.html">The Computer Language Benchmarks Game</a>，一个对各个语言进行性能测试的网站，里面的算法具有一定的代表性，但是不能代表所有工程可能遇到的情况，仅供参考。</li>
 <li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/59481694">为什么 Go 语言在某些方面的性能还不如 Java？</a>，这是知乎上一个2017年开始有的问题，你可以看到很多人对于这个问题的分析，从多个角度来理解语言之间的性能差异。</li>
 <li><a target="_blank" rel="noopener" href="https://github.com/golang/go/wiki/WhyGo">go-wiki WhyGo</a>，Go的Github仓库上维护的Wiki中，有一篇关于WhyGo的文章整理，不过大部分是英文，里面主要是很多关于“为什么我要选择Go”的软硬稿。</li>
@@ -447,7 +449,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/liigo/article/details/23699459">我为什么放弃Go语言 Liigo</a>，嗯，2014年，仍旧是Go争议很大的时候，CSDN上一篇阅读数很高的文章，作者从自己的角度对Go进行批判（Go早期的确是有不少问题），你可以看到早期Go的很多问题，也可以斟酌这些问题对你是否重要以及到底在2020年的Go中有没有被解决。</li>
 <li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/66944175">Golang 本身是用什么语言写的？</a>，一个关于编译的有趣的问题，可以适当了解。</li>
 <li><a target="_blank" rel="noopener" href="https://juejin.im/post/5d56b47a5188250541792ede">搞懂Go垃圾回收</a>，一篇还算比较新的分析Go垃圾回收问题的文章。</li>
-<li><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/s48RakEaHPxmKNLUgEUm">有趣的编程语言：Go 语言的启动时间是 C 语言的 300 多倍，C# 的关键字最多</a>，这篇InfoQ文章其实算是一个典型的标题党，主要使用的是一个Github上关于各个语言HelloWorld程序启动时间的测试数据(<a target="_blank" rel="noopener" href="https://github.com/bdrung/startup-time">https://github.com/bdrung/sta…</a>)，使用gccgo编译的Go程序的启动时间非常地长，的确是C的300多倍，但使用GC编译的Go程序启动时间只是C的2倍。</li>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/s48RakEaHPxmKNLUgEUm">有趣的编程语言：Go 语言的启动时间是 C 语言的 300 多倍，C# 的关键字最多</a>，这篇InfoQ文章其实算是一个典型的标题党，主要使用的是一个Github上关于各个语言HelloWorld程序启动时间的测试数据(<a target="_blank" rel="noopener" href="https://github.com/bdrung/startup-time">https://github.com/bdrung/sta...</a>)，使用gccgo编译的Go程序的启动时间非常地长，的确是C的300多倍，但使用GC编译的Go程序启动时间只是C的2倍。</li>
 <li><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/kX69fGExcjEeCzz6Crie">Go 语言的历史回顾</a>，我一直在寻找一个整理Go的版本变动细节的文章，在Go的官方文档和各种书籍上寻找无果时，在InfoQ上找到了一篇还算跟踪地比较新的（Go 1.0 - Go 1.13）文章，对于初学者而言，知道语言的变化也是很重要的（比如方便的知道哪些问题解决了，哪些还没有被解决），可能之后会拓展性的写一篇关于这个的文章。</li>
 </ul>
 

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 3 months ago
                   
                 
               </p>
@@ -272,7 +272,7 @@
 <h2 id="Vim的几种模式"><a href="#Vim的几种模式" class="headerlink" title="Vim的几种模式"></a>Vim的几种模式</h2><ul>
 <li>正常模式：可以使用快捷键命令，或按:输入命令行。</li>
 <li>插入模式：可以输入文本，在正常模式下，按i、a、o等都可以进入插入模式。</li>
-<li>可视模式：正常模式下按v可以进入可视模式， 在可视模式下，移动光标可以选择文本。按V进入可视行模式， 总是整行整行的选中。ctrl+v进入可视块模式，之后使用 j/k/h/l键可以选中一块</li>
+<li>可视模式：正常模式下按v可以进入可视模式， 在可视模式下，移动光标可以选择文本。按V进入可视行模式， 总是整行整行的选中。ctrl+v进入可视块模式，之后使用 j&#x2F;k&#x2F;h&#x2F;l键可以选中一块</li>
 <li>替换模式：正常模式下，按R进入。</li>
 </ul>
 <h2 id="启动Vim"><a href="#启动Vim" class="headerlink" title="启动Vim"></a>启动Vim</h2><ul>
@@ -283,7 +283,7 @@
 <li>vim -y num file: 将编辑窗口的大小设为num行；</li>
 <li>vim + file: 从文件的末尾开始；</li>
 <li>vim +num file: 从第num行开始；</li>
-<li>vim +/string file: 打开file，并将光标停留在第一个找到的string上。</li>
+<li>vim +&#x2F;string file: 打开file，并将光标停留在第一个找到的string上。</li>
 <li>vim –remote file: 用已有的vim进程打开指定的文件。 如果你不想启用多个vim会话，这个很有用。但要注意， 如果你用vim，会寻找名叫VIM的服务器；如果你已经有一个gvim在运行了， 你可以用gvim –remote file在已有的gvim中打开文件。</li>
 </ul>
 <h2 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h2><ul>
@@ -306,9 +306,9 @@
 <li>:q[uit] ——退出当前窗口。(CTRL-W q或CTRL-W CTRL-Q)</li>
 <li>:saveas newfilename – 另存为</li>
 <li>:browse e – 会打开一个文件浏览器让你选择要编辑的文件。 如果是终端中，则会打开netrw的文件浏览窗口； 如果是gvim，则会打开一个图形界面的浏览窗口。 实际上:browse后可以跟任何编辑文档的命令，如sp等。 用browse打开的起始目录可以由browsedir来设置：<ul>
-<li>:set browsedir=last – 用上次访问过的目录（默认）；</li>
-<li>:set browsedir=buffer – 用当前文件所在目录；</li>
-<li>:set browsedir=current – 用当前工作目录；</li>
+<li>:set browsedir&#x3D;last – 用上次访问过的目录（默认）；</li>
+<li>:set browsedir&#x3D;buffer – 用当前文件所在目录；</li>
+<li>:set browsedir&#x3D;current – 用当前工作目录；</li>
 </ul>
 </li>
 <li>:Sex – 水平分割一个窗口，浏览文件系统；</li>
@@ -377,12 +377,12 @@
 <ul>
 <li>m{a-z}: 标记光标所在位置，局部标记，只用于当前文件。</li>
 <li>m{A-Z}: 标记光标所在位置，全局标记。标记之后，退出Vim， 重新启动，标记仍然有效。</li>
-<li>`{a-z}: 移动到标记位置。</li>
+<li>&#96;{a-z}: 移动到标记位置。</li>
 <li>‘{a-z}: 移动到标记行的行首。</li>
-<li>`{0-9}：回到上[2-10]次关闭vim时最后离开的位置。</li>
+<li>&#96;{0-9}：回到上[2-10]次关闭vim时最后离开的位置。</li>
 <li><code>: 移动到上次编辑的位置。&#39;&#39;也可以，不过</code>精确到列，而’’精确到行 。如果想跳转到更老的位置，可以按C-o，跳转到更新的位置用C-i。</li>
-<li>`”: 移动到上次离开的地方。</li>
-<li>`.: 移动到最后改动的地方。</li>
+<li>&#96;”: 移动到上次离开的地方。</li>
+<li>&#96;.: 移动到最后改动的地方。</li>
 <li>:marks 显示所有标记。</li>
 <li>:delmarks a b – 删除标记a和b。</li>
 <li>:delmarks a-c – 删除标记a、b和c。</li>
@@ -391,7 +391,7 @@
 <li>:help mark-motions 查看更多关于mark的知识。</li>
 </ul>
 <h2 id="插入文本"><a href="#插入文本" class="headerlink" title="插入文本"></a>插入文本</h2><h3 id="基本插入"><a href="#基本插入" class="headerlink" title="基本插入"></a>基本插入</h3><ul>
-<li>i: 在光标前插入；一个小技巧：按8，再按i，进入插入模式，输入=， 按esc进入命令模式，就会出现8个=。 这在插入分割线时非常有用，如30i+<esc>就插入了36个+组成的分割线。</li>
+<li>i: 在光标前插入；一个小技巧：按8，再按i，进入插入模式，输入&#x3D;， 按esc进入命令模式，就会出现8个&#x3D;。 这在插入分割线时非常有用，如30i+<esc>就插入了36个+组成的分割线。</li>
 <li>I: 在当前行第一个非空字符前插入；</li>
 <li>gI: 在当前行第一列插入；</li>
 <li>a: 在光标后插入；</li>
@@ -457,37 +457,37 @@
 <li>“+：系统剪贴板。”+yy把当前行的内容放入系统剪贴板。</li>
 </ul>
 <h2 id="查找与替换"><a href="#查找与替换" class="headerlink" title="查找与替换"></a>查找与替换</h2><h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><ul>
-<li>/something: 在后面的文本中查找something。</li>
+<li>&#x2F;something: 在后面的文本中查找something。</li>
 <li>?something: 在前面的文本中查找something。</li>
-<li>/pattern/+number: 将光标停在包含pattern的行后面第number行上。</li>
-<li>/pattern/-number: 将光标停在包含pattern的行前面第number行上。</li>
+<li>&#x2F;pattern&#x2F;+number: 将光标停在包含pattern的行后面第number行上。</li>
+<li>&#x2F;pattern&#x2F;-number: 将光标停在包含pattern的行前面第number行上。</li>
 <li>n: 向后查找下一个。</li>
 <li>N: 向前查找下一个。</li>
 </ul>
 <p>可以用grep或vimgrep查找一个模式都在哪些地方出现过，</p>
 <p>其中:grep是调用外部的grep程序，而:vimgrep是vim自己的查找算法。</p>
-<p>用法为： :vim[grep]/pattern/[g] [j] files</p>
+<p>用法为： :vim[grep]&#x2F;pattern&#x2F;[g] [j] files</p>
 <p>g的含义是如果一个模式在一行中多次出现，则这一行也在结果中多次出现。</p>
 <p>j的含义是grep结束后，结果停在第j项，默认是停在第一项。</p>
 <p>vimgrep前面可以加数字限定搜索结果的上限，如</p>
-<p>:1vim/pattern/ % 只查找那个模式在本文件中的第一个出现。</p>
+<p>:1vim&#x2F;pattern&#x2F; % 只查找那个模式在本文件中的第一个出现。</p>
 <p>其实vimgrep在读纯文本电子书时特别有用，可以生成导航的目录。</p>
 <p>比如电子书中每一节的标题形式为：n. xxxx。你就可以这样：</p>
-<p>:vim/^d{1,}./ %</p>
+<p>:vim&#x2F;^d{1,}.&#x2F; %</p>
 <p>然后用:cw或:copen查看结果，可以用C-w H把quickfix窗口移到左侧，</p>
 <p>就更像个目录了。</p>
 <h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><ul>
-<li>:s/old/new - 用new替换当前行第一个old。</li>
-<li>:s/old/new/g - 用new替换当前行所有的old。</li>
-<li>:n1,n2s/old/new/g - 用new替换文件n1行到n2行所有的old。</li>
-<li>:%s/old/new/g - 用new替换文件中所有的old。</li>
-<li>:%s/^/xxx/g - 在每一行的行首插入xxx，^表示行首。</li>
-<li>:%s/$/xxx/g - 在每一行的行尾插入xxx，$表示行尾。</li>
-<li>所有替换命令末尾加上c，每个替换都将需要用户确认。 如：%s/old/new/gc，加上i则忽略大小写(ignore)。</li>
+<li>:s&#x2F;old&#x2F;new - 用new替换当前行第一个old。</li>
+<li>:s&#x2F;old&#x2F;new&#x2F;g - 用new替换当前行所有的old。</li>
+<li>:n1,n2s&#x2F;old&#x2F;new&#x2F;g - 用new替换文件n1行到n2行所有的old。</li>
+<li>:%s&#x2F;old&#x2F;new&#x2F;g - 用new替换文件中所有的old。</li>
+<li>:%s&#x2F;^&#x2F;xxx&#x2F;g - 在每一行的行首插入xxx，^表示行首。</li>
+<li>:%s&#x2F;$&#x2F;xxx&#x2F;g - 在每一行的行尾插入xxx，$表示行尾。</li>
+<li>所有替换命令末尾加上c，每个替换都将需要用户确认。 如：%s&#x2F;old&#x2F;new&#x2F;gc，加上i则忽略大小写(ignore)。</li>
 </ul>
 <p>还有一种比替换更灵活的方式，它是匹配到某个模式后执行某种命令，</p>
-<p>语法为 :[range]g/pattern/command</p>
-<p>例如 :%g/^ xyz/normal dd。</p>
+<p>语法为 :[range]g&#x2F;pattern&#x2F;command</p>
+<p>例如 :%g&#x2F;^ xyz&#x2F;normal dd。</p>
 <p>表示对于以一个空格和xyz开头的行执行normal模式下的dd命令。</p>
 <p>关于range的规定为：</p>
 <ul>
@@ -532,7 +532,7 @@
 <li>:set nospell－关闭拼写检查功能</li>
 <li>]s－移到下一个拼写错误的单词</li>
 <li>[s－作用与上一命令类似，但它是从相反方向进行搜索</li>
-<li>z=－显示一个有关拼写错误单词的列表，可从中选择</li>
+<li>z&#x3D;－显示一个有关拼写错误单词的列表，可从中选择</li>
 <li>zg－告诉拼写检查器该单词是拼写正确的</li>
 <li>zw－与上一命令相反，告诉拼写检查器该单词是拼写错误的</li>
 </ul>
@@ -606,7 +606,7 @@
 <li>ctrl+w - –当前窗口减小一行。也可以用n减小n行。</li>
 <li>ctrl+w _ –当前窗口扩展到尽可能的大。也可以用n设定行数。</li>
 <li>:resize n – 当前窗口n行高。</li>
-<li>ctrl+w = – 所有窗口同样高度。</li>
+<li>ctrl+w &#x3D; – 所有窗口同样高度。</li>
 <li>n ctrl+w _ – 当前窗口的高度设定为n行。</li>
 <li>ctrl+w &lt; –当前窗口减少一列。也可以用n减少n列。</li>
 <li>ctrl+w &gt; –当前窗口增宽一列。也可以用n增宽n列。</li>
@@ -649,22 +649,22 @@
 <h2 id="编辑特殊文件"><a href="#编辑特殊文件" class="headerlink" title="编辑特殊文件"></a>编辑特殊文件</h2><h3 id="文件加解密"><a href="#文件加解密" class="headerlink" title="文件加解密"></a>文件加解密</h3><ul>
 <li>vim -x file: 开始编辑一个加密的文件。</li>
 <li>:X – 为当前文件设置密码。</li>
-<li>:set key= – 去除文件的密码。</li>
+<li>:set key&#x3D; – 去除文件的密码。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="http://www.cnblogs.com/jiqingwu/admin/vim-quick-edit.html">这里是</a> 滇狐总结的比较高级的vi技巧。</p>
 <h3 id="文件的编码"><a href="#文件的编码" class="headerlink" title="文件的编码"></a>文件的编码</h3><ul>
-<li>:e ++enc=utf8 filename, 让vim用utf-8的编码打开这个文件。</li>
-<li>:w ++enc=gbk，不管当前文件什么编码，把它转存成gbk编码。</li>
+<li>:e ++enc&#x3D;utf8 filename, 让vim用utf-8的编码打开这个文件。</li>
+<li>:w ++enc&#x3D;gbk，不管当前文件什么编码，把它转存成gbk编码。</li>
 <li>:set fenc或:set fileencoding，查看当前文件的编码。</li>
-<li>在vimrc中添加set fileencoding=ucs-bom,utf-8,cp936，vim会根据要打开的文件选择合适的编码。 注意：编码之间不要留空格。 cp936对应于gbk编码。 ucs-bom对应于windows下的文件格式。</li>
+<li>在vimrc中添加set fileencoding&#x3D;ucs-bom,utf-8,cp936，vim会根据要打开的文件选择合适的编码。 注意：编码之间不要留空格。 cp936对应于gbk编码。 ucs-bom对应于windows下的文件格式。</li>
 </ul>
-<p>让vim 正确处理文件格式和文件编码，有赖于 <a target="_blank" rel="noopener" href="http://www.cnblogs.com/jiqingwu/admin/vimrc.html">~/.vimrc的正确配置</a></p>
+<p>让vim 正确处理文件格式和文件编码，有赖于 <a target="_blank" rel="noopener" href="http://www.cnblogs.com/jiqingwu/admin/vimrc.html">~&#x2F;.vimrc的正确配置</a></p>
 <h3 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h3><p>大致有三种文件格式：unix, dos, mac. 三种格式的区别主要在于回车键的编码：dos 下是回车加换行，unix 下只有 换行符，mac 下只有回车符。</p>
 <ul>
-<li>:e ++ff=dos filename, 让vim用dos格式打开这个文件。</li>
-<li>:w ++ff=mac filename, 以mac格式存储这个文件。</li>
+<li>:e ++ff&#x3D;dos filename, 让vim用dos格式打开这个文件。</li>
+<li>:w ++ff&#x3D;mac filename, 以mac格式存储这个文件。</li>
 <li>:set ff，显示当前文件的格式。</li>
-<li>在vimrc中添加set fileformats=unix,dos,mac，让vim自动识别文件格式。</li>
+<li>在vimrc中添加set fileformats&#x3D;unix,dos,mac，让vim自动识别文件格式。</li>
 </ul>
 <h2 id="编程辅助"><a href="#编程辅助" class="headerlink" title="编程辅助"></a>编程辅助</h2><h3 id="一些按键"><a href="#一些按键" class="headerlink" title="一些按键"></a>一些按键</h3><ul>
 <li>gd: 跳转到局部变量的定义处；</li>
@@ -677,8 +677,8 @@
 <li>][: 跳转到下一个函数块结束，需要有单独一行的}。</li>
 <li>[{: 跳转到当前块开始处；</li>
 <li>]}: 跳转到当前块结束处；</li>
-<li>[/: 跳转到当前注释块开始处；</li>
-<li>]/: 跳转到当前注释块结束处；</li>
+<li>[&#x2F;: 跳转到当前注释块开始处；</li>
+<li>]&#x2F;: 跳转到当前注释块结束处；</li>
 <li>%: 不仅能移动到匹配的(),{}或[]上，而且能在#if，#else， #endif之间跳跃。</li>
 </ul>
 <p>下面的括号匹配对编程很实用的。</p>
@@ -698,7 +698,7 @@
 </ul>
 <h3 id="ctags"><a href="#ctags" class="headerlink" title="ctags"></a>ctags</h3><ul>
 <li>ctags -R: 生成tag文件，-R表示也为子目录中的文件生成tags</li>
-<li>:set tags=path/tags – 告诉ctags使用哪个tag文件</li>
+<li>:set tags&#x3D;path&#x2F;tags – 告诉ctags使用哪个tag文件</li>
 <li>:tag xyz – 跳到xyz的定义处，或者将光标放在xyz上按C-]，返回用C-t</li>
 <li>:stag xyz – 用分割的窗口显示xyz的定义，或者C-w ]， 如果用C-w n ]，就会打开一个n行高的窗口</li>
 <li>:ptag xyz – 在预览窗口中打开xyz的定义，热键是C-w }。</li>
@@ -717,11 +717,11 @@
 <p>tab键补齐</p>
 <ul>
 <li>:tag xyz<tab> – 补齐以xyz开头的tag名，继续按tab键，会显示其他的。</li>
-<li>:tag /xyz<tab> – 会用名字中含有xyz的tag名补全。</li>
+<li>:tag &#x2F;xyz<tab> – 会用名字中含有xyz的tag名补全。</li>
 </ul>
 <h3 id="cscope"><a href="#cscope" class="headerlink" title="cscope"></a>cscope</h3><ul>
 <li>cscope -Rbq: 生成cscope.out文件</li>
-<li>:cs add /path/to/cscope.out /your/work/dir</li>
+<li>:cs add &#x2F;path&#x2F;to&#x2F;cscope.out &#x2F;your&#x2F;work&#x2F;dir</li>
 <li>:cs find c func – 查找func在哪些地方被调用</li>
 <li>:cw – 打开quickfix窗口查看结果</li>
 </ul>
@@ -732,13 +732,15 @@
 <li>:Gtags -s symbol 定位 symbol 出现的地方。</li>
 <li>:Gtags -g string Goto string 出现的地方。 :Gtags -gi string 忽略大小写。</li>
 <li>:Gtags -f filename 显示 filename 中的函数列表。 你可以用 :Gtags -f % 显示当前文件。</li>
-<li>:Gtags -P pattern 显示路径中包含特定模式的文件。 如 :Gtags -P .h$ 显示所有头文件， :Gtags -P /vm/ 显示vm目录下的文件。</li>
+<li>:Gtags -P pattern 显示路径中包含特定模式的文件。 如 :Gtags -P .h$ 显示所有头文件， :Gtags -P &#x2F;vm&#x2F; 显示vm目录下的文件。</li>
 </ul>
 <h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>vim提供了:make来编译程序，默认调用的是make， 如果你当前目录下有makefile，简单地:make即可。</p>
 <p>如果你没有make程序，你可以通过配置makeprg选项来更改make调用的程序。 如果你只有一个abc.<a target="_blank" rel="noopener" href="http://lib.csdn.net/base/17">Java</a>文件，你可以这样设置：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-builtin-name">set</span> <span class="hljs-attribute">makeprg</span>=javac\ abc.java<br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> <span class="hljs-attribute">makeprg</span>=javac\ abc.java<br></code></pre></td></tr></table></figure>
+
 <p>然后:make即可。如果程序有错，可以通过quickfix窗口查看错误。 不过如果要正确定位错误，需要设置好errorformat，让vim识别错误信息。 如：</p>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-meta">:setl efm=%A%f:%l:\</span> %m,%-Z%p^,%-C%.%#<br></code></pre></td></tr></table></figure>
+
 <p>%f表示文件名，%l表示行号， %m表示错误信息，其它的还不能理解。 请参考 :help errorformat。</p>
 <h3 id="快速修改窗口"><a href="#快速修改窗口" class="headerlink" title="快速修改窗口"></a>快速修改窗口</h3><p>其实是quickfix插件提供的功能， 对编译调试程序非常有用 :)</p>
 <ul>
@@ -774,9 +776,9 @@
 <li>正常模式下，按两下&gt;;光标所在行会缩进。</li>
 <li>如果先按了n，再按两下&gt;;，光标以下的n行会缩进。</li>
 <li>对应的，按两下&lt;;，光标所在行会缩出。</li>
-<li>如果在编辑代码文件，可以用=进行调整。</li>
-<li>在可视模式下，选择要调整的代码块，按=，代码会按书写规则缩排好。</li>
-<li>或者n =，调整n行代码的缩排。</li>
+<li>如果在编辑代码文件，可以用&#x3D;进行调整。</li>
+<li>在可视模式下，选择要调整的代码块，按&#x3D;，代码会按书写规则缩排好。</li>
+<li>或者n &#x3D;，调整n行代码的缩排。</li>
 </ul>
 <h3 id="折叠"><a href="#折叠" class="headerlink" title="折叠"></a>折叠</h3><ul>
 <li>zf – 创建折叠的命令，可以在一个可视区域上使用该命令；</li>
@@ -785,19 +787,19 @@
 <li>zfap – 折叠光标所在的段；</li>
 <li>zo – 打开折叠的文本；</li>
 <li>zc – 收起折叠；</li>
-<li>za – 打开/关闭当前折叠；</li>
+<li>za – 打开&#x2F;关闭当前折叠；</li>
 <li>zr – 打开嵌套的折行；</li>
 <li>zm – 收起嵌套的折行；</li>
 <li>zR (zO) – 打开所有折行；</li>
 <li>zM (zC) – 收起所有折行；</li>
 <li>zj – 跳到下一个折叠处；</li>
 <li>zk – 跳到上一个折叠处；</li>
-<li>zi – enable/disable fold;</li>
+<li>zi – enable&#x2F;disable fold;</li>
 </ul>
 <h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><p>normal模式下按:进入命令行模式</p>
 <h3 id="命令行模式下的快捷键："><a href="#命令行模式下的快捷键：" class="headerlink" title="命令行模式下的快捷键："></a>命令行模式下的快捷键：</h3><ul>
 <li>上下方向键：上一条或者下一条命令。如果已经输入了部分命令，则找上一 条或者下一条匹配的命令。</li>
-<li>左右方向键：左/右移一个字符。</li>
+<li>左右方向键：左&#x2F;右移一个字符。</li>
 <li>C-w： 向前删除一个单词。</li>
 <li>C-h： 向前删除一个字符，等同于Backspace。</li>
 <li>C-u： 从当前位置移动到命令行开头。</li>
@@ -807,7 +809,7 @@
 <li>Shift-Right： 右移一个单词。</li>
 <li>@： 重复上一次的冒号命令。</li>
 <li>q： 正常模式下，q然后按’:’，打开命令行历史缓冲区， 可以像编辑文件一样编辑命令。</li>
-<li>q/和q? 可以打开查找历史记录。</li>
+<li>q&#x2F;和q? 可以打开查找历史记录。</li>
 </ul>
 <h2 id="执行外部命令"><a href="#执行外部命令" class="headerlink" title="执行外部命令"></a>执行外部命令</h2><ul>
 <li>:! cmd 执行外部命令。</li>
@@ -840,7 +842,7 @@
 <li>:ver 显示版本信息。</li>
 </ul>
 <h3 id="一些小功能"><a href="#一些小功能" class="headerlink" title="一些小功能"></a>一些小功能</h3><ul>
-<li>简单计算器: 在插入模式下，输入C-r =，然后输入表达式，就能在 光标处得到计算结果</li>
+<li>简单计算器: 在插入模式下，输入C-r &#x3D;，然后输入表达式，就能在 光标处得到计算结果</li>
 </ul>
 
               

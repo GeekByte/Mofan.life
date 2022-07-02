@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -287,7 +287,7 @@
 <p>你可能常常听到有人把会话层称作网络通信的“交通警察”。当通过拨号向你的 ISP （因特网服务提供商）请求连接到因特网时，ISP 服务器上的会话层向你与你的 PC 客户机上的会话层进行协商连接。若你的电话线偶然从墙上插孔脱落时，你终端机上的会话层将检测到连接中断并重新发起连接。会话层通过决定节点通信的优先级和通信时间的长短来设置通信期限。</p>
 <h3 id="传输层（Transport-Layer）"><a href="#传输层（Transport-Layer）" class="headerlink" title="传输层（Transport Layer）"></a>传输层（Transport Layer）</h3><p>定义传输数据的协议端口号，以及流控和差错校验。<br>协议有：TCP UDP等，数据包一旦离开网卡即进入网络传输层。</p>
 <p>定义了一些传输数据的协议和端口号（WWW端口80等），如：TCP（传输控制协议，传输效率低，可靠性强，用于传输可靠性要求高，数据量大的数据），UDP（用户数据报协议，与TCP特性恰恰相反，用于传输可靠性要求不高，数据量小的数据，如QQ聊天数据就是通过这种方式传输的）。 主要是将从下层接收的数据进行分段和传输，到达目的地址后再进行重组。常常把这一层数据叫做段。</p>
-<p>O S I 模型中最重要的一层。传输协议同时进行流量控制或是基于接收方可接收数据的快慢程度规定适当的发送速率。除此之外，传输层按照网络能处理的最大尺寸将较长的数据包进行强制分割。例如，以太网无法接收大于1 5 0 0 字节的数据包。发送方节点的传输层将数据分割成较小的数据片，同时对每一数据片安排一序列号，以便数据到达接收方节点的传输层时，能以正确的顺序重组。该过程即被称为排序。工作在传输层的一种服务是 T C P / I P 协议套中的T C P （传输控制协议），另一项传输层服务是I P X / S P X 协议集的S P X （序列包交换）。</p>
+<p>O S I 模型中最重要的一层。传输协议同时进行流量控制或是基于接收方可接收数据的快慢程度规定适当的发送速率。除此之外，传输层按照网络能处理的最大尺寸将较长的数据包进行强制分割。例如，以太网无法接收大于1 5 0 0 字节的数据包。发送方节点的传输层将数据分割成较小的数据片，同时对每一数据片安排一序列号，以便数据到达接收方节点的传输层时，能以正确的顺序重组。该过程即被称为排序。工作在传输层的一种服务是 T C P &#x2F; I P 协议套中的T C P （传输控制协议），另一项传输层服务是I P X &#x2F; S P X 协议集的S P X （序列包交换）。</p>
 <h3 id="网络层（Network-Layer）"><a href="#网络层（Network-Layer）" class="headerlink" title="网络层（Network Layer）"></a>网络层（Network Layer）</h3><p>进行逻辑地址寻址，实现不同网络之间的路径选择。<br>协议有：ICMP IGMP IP（IPV4 IPV6） ARP RARP等。</p>
 <p>在位于不同地理位置的网络中的两个主机系统之间提供连接和路径选择。Internet的发展使得从世界各站点访问信息的用户数大大增加，而网络层正是管理这种连接的层。</p>
 <p>O S I 模型的第三层，其主要功能是将网络地址翻译成对应的物理地址，并决定如何将数据从发送方路由到接收方。 　<br>　<br>网络层通过综合考虑发送优先权、网络拥塞程度、服务质量以及可选路由的花费来决定从一个网络中节点A 到另一个网络中节点B 的最佳路径。由于网络层处理，并智能指导数据传送，路由器连接网络各段，所以路由器属于网络层。在网络中，“路由”是基于编址方案、使用模式以及可达性来指引数据的发送。<br>　　<br>网络层负责在源机器和目标机器之间建立它们所使用的路由。这一层本身没有任何错误检测和修正机制，因此，网络层必须依赖于端端之间的由D L L提供的可靠传输服务。 　　</p>
@@ -315,7 +315,7 @@
 <p>（4）路由器提供了防火墙的服务<br>路由器仅仅转发特定地址的数据包，不传送不支持路由协议的数据包传送和未知目标网络数据包的传送，从而可以防止广播风暴。</p>
 <p>资料来源：</p>
 <p><a target="_blank" rel="noopener" href="http://baike.baidu.com/link?url=VsZda3rzpfER6lUvXIfxOH438oYPOYTccMXy4eCIaO-v8Jnmo8DwfFKMJG8Hw1EJdSDnlcrKgp91e5y4G5Vs_a">百度百科：七层模型</a></p>
-<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/superjunjin/article/details/7841099">TCP/IP四层模型和OSI七层模型的概念</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.csdn.net/superjunjin/article/details/7841099">TCP&#x2F;IP四层模型和OSI七层模型的概念</a></p>
 <p><a target="_blank" rel="noopener" href="http://blog.csdn.net/yaopeng_2005/article/details/7064869">OSI七层模型详解</a></p>
 
               

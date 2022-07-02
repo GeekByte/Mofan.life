@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="多个goroutine，其中一个发生panic，程序会发生什么发生panic后，从当前层依次向上执行defer函数，如果在这个过程中被recover捕获该panic，那么程序不会崩溃，否则，待所有defer执行完后，程序崩溃。  以下来自知乎:如果某goroutine在某函数&amp;#x2F;方法F的调用时出现panic，一个被称为”panicking”的过程将被激活。该过程先会调用函数F的defer函数(如果有">
+    <meta name="description" content="多个goroutine，其中一个发生panic，程序会发生什么发生panic后，从当前层依次向上执行defer函数，如果在这个过程中被recover捕获该panic，那么程序不会崩溃，否则，待所有defer执行完后，程序崩溃。  以下来自知乎:如果某goroutine在某函数&amp;#x2F;方法F的调用时出现panic，一个被称为”panicking”的过程将被激活。该过程先会调用函数F的defer函">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,7 +270,7 @@
               
               <h3 id="多个goroutine，其中一个发生panic，程序会发生什么"><a href="#多个goroutine，其中一个发生panic，程序会发生什么" class="headerlink" title="多个goroutine，其中一个发生panic，程序会发生什么"></a>多个goroutine，其中一个发生panic，程序会发生什么</h3><p>发生panic后，从当前层依次向上执行defer函数，如果在这个过程中被recover捕获该panic，那么程序不会崩溃，否则，待所有defer执行完后，程序崩溃。</p>
 <blockquote>
-<p>以下来自知乎:<br>如果某goroutine在某函数/方法F的调用时出现panic，一个被称为”panicking”的过程将被激活。该过程先会调用函数F的defer函数(如果有的话)，然后依次向上，调用函数F的调用者的defer函数，直至该goroutine的顶层函数，即启动该goroutine时(go T())的那个函数T。如果函数T有defer函数，那么defer会被调用。在整个paniking过程的defer调用链中，如果没有使用recover捕获该panic，那么panicking过程的最后一个环节将会发生：整个程序异常退出(无论发生panic的goroutine是否为main Goroutine)并输出panic相关信息。</p>
+<p>以下来自知乎:<br>如果某goroutine在某函数&#x2F;方法F的调用时出现panic，一个被称为”panicking”的过程将被激活。该过程先会调用函数F的defer函数(如果有的话)，然后依次向上，调用函数F的调用者的defer函数，直至该goroutine的顶层函数，即启动该goroutine时(go T())的那个函数T。如果函数T有defer函数，那么defer会被调用。在整个paniking过程的defer调用链中，如果没有使用recover捕获该panic，那么panicking过程的最后一个环节将会发生：整个程序异常退出(无论发生panic的goroutine是否为main Goroutine)并输出panic相关信息。</p>
 </blockquote>
 <p>验证代码:<br>对比recover代码注视和取消注视便可理解</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;fmt&quot;</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	fmt.Println(<span class="hljs-string">&quot;main&quot;</span>)<br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;main_end&quot;</span>)<br>	&#125;()<br><br>	hello()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">hello</span><span class="hljs-params">()</span></span> &#123;<br>	fmt.Println(<span class="hljs-string">&quot;hello_1&quot;</span>)<br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		<span class="hljs-comment">// 如果没有捕获错误的地方程序会崩溃</span><br>		<span class="hljs-comment">//if err := recover(); err != nil &#123;</span><br>		<span class="hljs-comment">//	fmt.Println(&quot;hello_1, rerecrecover&quot;)</span><br>		<span class="hljs-comment">//&#125;</span><br>		fmt.Println(<span class="hljs-string">&quot;world_1&quot;</span>)<br>	&#125;()<br><br>	hello2()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">hello2</span><span class="hljs-params">()</span></span> &#123;<br>	fmt.Println(<span class="hljs-string">&quot;hello_2&quot;</span>)<br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;world_2&quot;</span>)<br>	&#125;()<br><br>	a, b := <span class="hljs-number">666</span>, <span class="hljs-number">0</span><br>	c := a / b<br>	fmt.Println(c)<br>&#125;<br></code></pre></td></tr></table></figure>

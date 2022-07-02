@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="Shell中函数的定义如下： 123456789[ function ] funname [()]&amp;amp;#123;    action;    [return int;]&amp;amp;#125; 说明：  1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。 2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。要特别注意这里的运行结果，">
+    <meta name="description" content="Shell中函数的定义如下： 123456789[ function ] funname [()]&amp;amp;#123;    action;    [return int;]&amp;amp;#125;  说明：  1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。 2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。要特别注意这里的运行结果">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,14 +270,17 @@
               
               <p>Shell中函数的定义如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">[ function ] funname [()]<br><br>&#123;<br><br>    action;<br><br>    [return int;]<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>说明：</p>
 <ul>
 <li>1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。</li>
 <li>2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令<strong>运行结果</strong>，作为返回值。要特别注意这里的<strong>运行结果</strong>，不是执行后返回的结果，函数的返回值只能是 0～255 之间的值，因此，函数与命令的执行结果可以作为条件语句使用，要注意的是，和 C 语言不同，shell 语言中 0 代表 true，0 以外的值代表 false。</li>
 </ul>
 <h3 id="带有-return-的函数"><a href="#带有-return-的函数" class="headerlink" title="带有 return 的函数"></a>带有 return 的函数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">funWithReturn()&#123;<br>    echo &quot;这个函数会对输入的两个数字进行相加运算...&quot;<br>    echo &quot;输入第一个数字: &quot;<br>    read aNum<br>    echo &quot;输入第二个数字: &quot;<br>    read anotherNum<br>    echo &quot;两个数字分别为 $aNum 和 $anotherNum !&quot;<br>    return $(($aNum+$anotherNum))<br>&#125;<br>funWithReturn<br>echo &quot;输入的两个数字之和为 $? !&quot;<br></code></pre></td></tr></table></figure>
+
 <p>执行结果：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">这个函数会对输入的两个数字进行相加运算...<br>输入第一个数字: <br>1<br>输入第二个数字: <br>2<br>两个数字分别为 1 和 2 !<br>输入的两个数字之和为 3 !<br></code></pre></td></tr></table></figure>
+
 <p>函数返回值在调用该函数后通过 <code>$?</code> 来获得。<code>$?</code> 仅对其上一条指令负责，一旦函数返回后其返回值没有立即保存入参数，那么其返回值将不再能通过 <code>$?</code> 获得。</p>
 <blockquote>
 <p>你可能对这两个数字的和有疑问，因为返回值显示的数字范围只能是 0~255，那是否意味着它只能计算结果为 255 以内的值呢，答案不是，对于结果超出 255 的值，它返回的值为: 结果 - 256 。</p>
@@ -285,8 +288,10 @@
 <p>注意：所有函数在使用前必须定义。这意味着必须将函数放在脚本开始部分，直至shell解释器首次发现它时，才可以使用。调用函数仅使用其函数名即可。</p>
 <h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><p>在Shell中，调用函数时可以向其传递参数。在函数体内部，通过 $n 的形式来获取参数的值，例如，$1表示第一个参数，$2表示第二个参数…，注意，当调用第10个及以上参数的时候，要加<code>&#123;&#125;</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">funWithParam()&#123;<br>    echo &quot;第一个参数为 $1 !&quot;<br>    echo &quot;第二个参数为 $2 !&quot;<br>    echo &quot;第十个参数为 $10 !&quot;<br>    echo &quot;第十个参数为 $&#123;10&#125; !&quot;<br>    echo &quot;第十一个参数为 $&#123;11&#125; !&quot;<br>    echo &quot;参数总数有 $# 个!&quot;<br>    echo &quot;作为一个字符串输出所有参数 $* !&quot;<br>&#125;<br>funWithParam 1 2 3 4 5 6 7 8 9 34 73<br></code></pre></td></tr></table></figure>
+
 <p>执行结果:</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tex">第一个参数为 1 !<br>第二个参数为 2 !<br>第十个参数为 10 !<br>第十个参数为 34 !<br>第十一个参数为 73 !<br>参数总数有 11 个!<br>作为一个字符串输出所有参数 1 2 3 4 5 6 7 8 9 34 73 !<br></code></pre></td></tr></table></figure>
+
 <p>另外，还有几个特殊字符用来处理参数：</p>
 <table>
 <thead>
@@ -325,8 +330,10 @@
 </tr>
 </tbody></table>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell">function func() &#123;<br>    echo &quot;传入的参数个数为: $# &quot;<br>    echo &quot;用一个字符串显示传入的参数: $* &quot;<br>    echo &quot;脚本当前运行的进程ID为：$$ &quot;<br>    echo &quot;后台运行的最后一个进程ID为: $! &quot;<br>    echo &quot;传入的每个参数为: $&#123;@&#125; &quot;<br>    echo &quot;Shell当前使用的选项为: $- &quot;<br>&#125;<br><br>func 1 2 3 &quot;hello&quot; &quot;world&quot;<br>echo &quot;最后命令的退出状态为: $? &quot;<br></code></pre></td></tr></table></figure>
+
 <p>执行结果：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tex">传入的参数个数为: 5<br>用一个字符串显示传入的参数: 1 2 3 hello world<br>脚本当前运行的进程ID为：3377<br>后台运行的最后一个进程ID为:<br>传入的每个参数为: 1 2 3 hello world<br>Shell当前使用的选项为: hB<br>最后命令的退出状态为: 0<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

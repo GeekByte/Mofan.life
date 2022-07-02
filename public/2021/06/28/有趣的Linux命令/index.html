@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="新建文件夹并进入1mkdir hello &amp;amp;&amp;amp; cd $_ ls命令-c按创建时间ctime排序，-t按修改时间mtime排序，-r可以实现逆序排序，按时间排序的默认是降序排序。 1234ls -alrt # 按修改时间升序排序ls --sort&amp;#x3D;time -lra # 等价于 ls -alrtls -alrc # 按创建时间升序排序ls -alru # 按访问时间升序排序 查询文">
+    <meta name="description" content="新建文件夹并进入1mkdir hello &amp;amp;&amp;amp; cd $_  ls命令-c按创建时间ctime排序，-t按修改时间mtime排序，-r可以实现逆序排序，按时间排序的默认是降序排序。 1234ls -alrt # 按修改时间升序排序ls --sort&amp;#x3D;time -lra # 等价于 ls -alrtls -alrc # 按创建时间升序排序ls -alru # 按访问时间升序排序 查询">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,10 +269,12 @@
             <div class="markdown-body">
               
               <h3 id="新建文件夹并进入"><a href="#新建文件夹并进入" class="headerlink" title="新建文件夹并进入"></a>新建文件夹并进入</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir hello &amp;&amp; cd $_<br></code></pre></td></tr></table></figure>
+
 <h3 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h3><p>-c按创建时间ctime排序，-t按修改时间mtime排序，-r可以实现逆序排序，按时间排序的默认是降序排序。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">ls -alrt # 按修改时间升序排序<br>ls --sort=time -lra # 等价于 ls -alrt<br>ls -alrc # 按创建时间升序排序<br>ls -alru # 按访问时间升序排序<br></code></pre></td></tr></table></figure>
 <p>查询文件，将结果按时间排序</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">find . -name *.php|xargs ls -alt<br></code></pre></td></tr></table></figure>
+
               
             </div>
             <hr/>

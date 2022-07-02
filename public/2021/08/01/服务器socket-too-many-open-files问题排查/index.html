@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -272,11 +272,13 @@
 <p>从字面意思上看就是说程序打开的文件数过多，不过这里的files不单是文件的意思，也包括打开的通讯连接(比如socket)，正在监听的端口等等，所以有时候也可以叫做句柄(handle)，这个错误通常也可以叫做句柄数超出系统限制。</p>
 <p><strong>因此应该重点检查进程在某个时刻是否打开了超过系统限制的文件数量以及通讯连接数。</strong></p>
 <h2 id="排查"><a href="#排查" class="headerlink" title="排查"></a>排查</h2><p>查看当前系统设置的最大句柄数：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">ulimit</span> -a</span><br>core file size          (blocks, -c) unlimited<br>data seg size           (kbytes, -d) unlimited<br>scheduling priority             (-e) 0<br>file size               (blocks, -f) unlimited<br>pending signals                 (-i) 64033<br>max locked memory       (kbytes, -l) 64<br>max memory size         (kbytes, -m) unlimited<br>open files                      (-n) 65535<br>pipe size            (512 bytes, -p) 8<br>POSIX message queues     (bytes, -q) 819200<br>real-time priority              (-r) 0<br>stack size              (kbytes, -s) 8192<br>cpu time               (seconds, -t) unlimited<br>max user processes              (-u) 64033<br>virtual memory          (kbytes, -v) unlimited<br>file locks                      (-x) unlimited<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">ulimit</span> -a</span><br>core file size          (blocks, -c) unlimited<br>data seg size           (kbytes, -d) unlimited<br>scheduling priority             (-e) 0<br>file size               (blocks, -f) unlimited<br>pending signals                 (-i) 64033<br>max locked memory       (kbytes, -l) 64<br>max memory size         (kbytes, -m) unlimited<br>open files                      (-n) 65535<br>pipe size            (512 bytes, -p) 8<br>POSIX message queues     (bytes, -q) 819200<br>real-time priority              (-r) 0<br>stack size              (kbytes, -s) 8192<br>cpu time               (seconds, -t) unlimited<br>max user processes              (-u) 64033<br>virtual memory          (kbytes, -v) unlimited<br>file locks                      (-x) unlimited<br></code></pre></td></tr></table></figure>
+
 <p><code>lsof | wc -l</code> 命令可以查看系统当前打开的句柄数量，执行时间较长</p>
 <p>查看某个进程打开的句柄数量，用于检测是否打开了过多的句柄，开启的连接以及打开的文件没有关闭，都会导致输出的数值比较大：</p>
 <p><code>lsof -p pid | wc -l</code></p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="1-增大系统允许打开的句柄数量"><a href="#1-增大系统允许打开的句柄数量" class="headerlink" title="1. 增大系统允许打开的句柄数量"></a>1. 增大系统允许打开的句柄数量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 临时（重启系统会失效）</span><br>ulimit -n 4096 (注：非root用户最大开启4096个，如果需要更多，请用root用户)<br><br><span class="hljs-meta">#</span><span class="bash"> 永久生效（需要重启系统）</span><br>vim /etc/security/limits.conf<br><span class="hljs-meta">#</span><span class="bash"> 在最后加入</span><br>* soft nofile 4096  <br>* hard nofile 4096<br></code></pre></td></tr></table></figure>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="1-增大系统允许打开的句柄数量"><a href="#1-增大系统允许打开的句柄数量" class="headerlink" title="1. 增大系统允许打开的句柄数量"></a>1. 增大系统允许打开的句柄数量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">临时（重启系统会失效）</span><br>ulimit -n 4096 (注：非root用户最大开启4096个，如果需要更多，请用root用户)<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">永久生效（需要重启系统）</span><br>vim /etc/security/limits.conf<br><span class="hljs-meta prompt_"># </span><span class="language-bash">在最后加入</span><br>* soft nofile 4096  <br>* hard nofile 4096<br></code></pre></td></tr></table></figure>
+
 <h3 id="2-检查程序问题"><a href="#2-检查程序问题" class="headerlink" title="2. 检查程序问题"></a>2. 检查程序问题</h3><p>如果你对程序打开的连接数量有一定的估算，在排查阶段发现打开的数值异常，可以将程序打开的句柄详情重定向都文件中进行分析。</p>
 <p><code>lsof -p pid &gt; openfiles.log</code></p>
 <blockquote>

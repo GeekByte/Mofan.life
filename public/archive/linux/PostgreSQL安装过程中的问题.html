@@ -63,7 +63,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -219,14 +219,14 @@
 <article class="page-content">
   <h1 id="PostgreSQL安装过程中的问题"><a href="#PostgreSQL安装过程中的问题" class="headerlink" title="PostgreSQL安装过程中的问题"></a>PostgreSQL安装过程中的问题</h1><h2 id="1-在-postgres-用户中，psql-要求输入密码"><a href="#1-在-postgres-用户中，psql-要求输入密码" class="headerlink" title="1. 在 postgres 用户中，psql 要求输入密码"></a>1. 在 postgres 用户中，psql 要求输入密码</h2><blockquote>
 <p>错误信息大概是：</p>
-<p>psql: error: connection to server on socket “/var/run/postgresql/.s.PGSQL.5432” failed: FATAL: Peer authentication failed for user “postgres”</p>
+<p>psql: error: connection to server on socket “&#x2F;var&#x2F;run&#x2F;postgresql&#x2F;.s.PGSQL.5432” failed: FATAL: Peer authentication failed for user “postgres”</p>
 </blockquote>
 <p>在确保正确安装了 postgresql&lt;版本&gt;-server 后，将 <code>pg_hba.conf</code> 中的 <code>peer</code> 改成 <code>trust</code>。</p>
 <blockquote>
 <p>pg_hba.conf的位置：</p>
 <ul>
-<li>Ubuntu: /etc/postgresql/14/main/</li>
-<li>CentOS: /var/lib/pgsql/14/data/</li>
+<li>Ubuntu: &#x2F;etc&#x2F;postgresql&#x2F;14&#x2F;main&#x2F;</li>
+<li>CentOS: &#x2F;var&#x2F;lib&#x2F;pgsql&#x2F;14&#x2F;data&#x2F;</li>
 </ul>
 </blockquote>
 <h2 id="2-在完成了-PostgreSQL-用户的创建后，登陆密码总是不对"><a href="#2-在完成了-PostgreSQL-用户的创建后，登陆密码总是不对" class="headerlink" title="2. 在完成了 PostgreSQL 用户的创建后，登陆密码总是不对"></a>2. 在完成了 PostgreSQL 用户的创建后，登陆密码总是不对</h2><p>将 1 中的 <code>peer</code> 或 <code>trust</code> 改成 <code>md5</code>。</p>

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -276,10 +276,12 @@
 </blockquote>
 <p>把 limit 设置为 0 的例子如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">batch/v1beta1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">CronJob</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">hello</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">schedule:</span> <span class="hljs-string">&quot;*/1 * * * *&quot;</span><br>  <span class="hljs-attr">successfulJobsHistoryLimit:</span> <span class="hljs-number">0</span><br>  <span class="hljs-attr">failedJobsHistoryLimit:</span> <span class="hljs-number">0</span><br>  <span class="hljs-attr">jobTemplate:</span><br>    <span class="hljs-attr">spec:</span><br>      <span class="hljs-attr">template:</span><br>        <span class="hljs-attr">spec:</span><br>          <span class="hljs-attr">containers:</span><br>          <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">hello</span><br>            <span class="hljs-attr">image:</span> <span class="hljs-string">busybox</span><br>            <span class="hljs-attr">args:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">/bin/sh</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">-c</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">date;</span> <span class="hljs-string">echo</span> <span class="hljs-string">Hello</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">Kubernetes</span> <span class="hljs-string">cluster</span><br>          <span class="hljs-attr">restartPolicy:</span> <span class="hljs-string">OnFailure</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="方法二（不推荐）："><a href="#方法二（不推荐）：" class="headerlink" title="方法二（不推荐）："></a>方法二（不推荐）：</h3><p>官方文档提供了一种方法，通过TTL机制，但是你需要在特性门中开启这一特性，否则这项设置不生效，相关特性门的开启需要由管理员在指定的kubernetes组件上开启。</p>
 <p>开启方式可参考文档：<a target="_blank" rel="noopener" href="https://v1-20.docs.kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/">Feature Gates | Kubernetes</a></p>
 <p>设置TT L的例子如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">batch/v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Job</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">pi-with-ttl</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">ttlSecondsAfterFinished:</span> <span class="hljs-number">100</span><br>  <span class="hljs-attr">template:</span><br>    <span class="hljs-attr">spec:</span><br>      <span class="hljs-attr">containers:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">pi</span><br>        <span class="hljs-attr">image:</span> <span class="hljs-string">perl</span><br>        <span class="hljs-attr">command:</span> [<span class="hljs-string">&quot;perl&quot;</span>,  <span class="hljs-string">&quot;-Mbignum=bpi&quot;</span>, <span class="hljs-string">&quot;-wle&quot;</span>, <span class="hljs-string">&quot;print bpi(2000)&quot;</span>]<br>      <span class="hljs-attr">restartPolicy:</span> <span class="hljs-string">Never</span><br></code></pre></td></tr></table></figure>
+
 <p><code>ttlSecondsAfterFinished</code>字段指定多长时间后删除Job，单位是秒。</p>
 
               

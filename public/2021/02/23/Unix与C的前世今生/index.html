@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 4 months ago
                   
                 
               </p>
@@ -273,7 +273,7 @@
 <p>但是时间到了 1969年，因为种种原因，贝尔实验室的 Ken Thompson 和 Dennis Ritchie 决定放弃Multics，于是贝尔实验室退出了这个项目。Ken Thompson 和 Dennis Ritchie 决定开发一个更为简单并且高效的操作系统，并把它命名为 Unix，于是他们俩就成为了 Unix 之父。</p>
 <p>和 Unix 相比，Multics 有两个比较致命的缺点，一是需要安装在非常昂贵的机器上，普通的计算机没有办法安装。二是设计非常复杂，这也是贝尔实验室的工程师退出的主要原因。不过 Ken Thompson 和 Dennis Ritchie 还是从 Multics 上得到很多启发，可以说 Unix 是 Multics 的简化以及更新。</p>
 <p>说到这里，C 语言还没有出场，因为它在那个时候还没有被发明出来。Unix 操作系统的第一个版本是纯粹用汇编语言编写出来的。一直到了 1974 年，第四个版本才改用 C 语言进行开发。在讲 C 语言之前，我们还不得不先说一下 BCPL 和 B 语言。</p>
-<h3 id="BCPL-和-B-语言"><a href="#BCPL-和-B-语言" class="headerlink" title="BCPL 和 B 语言"></a>BCPL 和 B 语言</h3><p>Ken Thompson 和 Dennis Ritchie 最初用汇编语言来开发 Unix，因为在那个时候，所有的操作系统都是用汇编语言来开发的。不过当时 Multics 是一个例外，Multics 项目组使用了 PL/1 来进行开发。它的价值就在于向世人展示了用一门高级语言也可以开发出一套操作系统。Ken Thompson 和 Dennis Ritchie 也受到了鼓舞，他们决定用汇编之外的语言重新开发 Unix。他们最初的选择是 BCPL。BCPL 最早是由 Martin Richards 发明用来开发编译器的语言。但是 Ken Thompson 和 Dennis Ritchie 很快发现，如果他们想在小型计算机 DEC PDP-7 上使用 BCPL，就需要对这个语言本身进行一些修改。于是就产生了后来的 B 语言。</p>
+<h3 id="BCPL-和-B-语言"><a href="#BCPL-和-B-语言" class="headerlink" title="BCPL 和 B 语言"></a>BCPL 和 B 语言</h3><p>Ken Thompson 和 Dennis Ritchie 最初用汇编语言来开发 Unix，因为在那个时候，所有的操作系统都是用汇编语言来开发的。不过当时 Multics 是一个例外，Multics 项目组使用了 PL&#x2F;1 来进行开发。它的价值就在于向世人展示了用一门高级语言也可以开发出一套操作系统。Ken Thompson 和 Dennis Ritchie 也受到了鼓舞，他们决定用汇编之外的语言重新开发 Unix。他们最初的选择是 BCPL。BCPL 最早是由 Martin Richards 发明用来开发编译器的语言。但是 Ken Thompson 和 Dennis Ritchie 很快发现，如果他们想在小型计算机 DEC PDP-7 上使用 BCPL，就需要对这个语言本身进行一些修改。于是就产生了后来的 B 语言。</p>
 <p>B 语言作为系统开发语言，也存在很多的缺点，于是后来它又被改进为 NB 语言(NB)。可是 NB 还是有很多的问题，于是 Dennis Ritchie 就又发明了 C 语言，最终在 1974年，Ken Thompson 和 Dennis Ritchie 一起用 C 语言重新编写了第四版的 Unix 系统。现在，C 语言已经成为了操作系统开发最常用的编程语言。</p>
 <h3 id="C-语言取代-B-语言"><a href="#C-语言取代-B-语言" class="headerlink" title="C 语言取代 B 语言"></a>C 语言取代 B 语言</h3><p>Dennis Ritchie 曾经解释过自己为什么要发明 C 语言，以及使用 B 语言过程中遇到的一些困难：</p>
 <ul>
@@ -281,7 +281,7 @@
 </ul>
 <ul>
 <li>没有类型：准确的说，B语言只有一种类型，计算机字。如果你有一个字符串，可能你需要把它分成多个变量来保存，比如一个21个字符的字符串，就需要 6 个变量。</li>
-<li>不支持浮点类型运算：在那个时候，大部分硬件已经都可以开始支持浮点运算了，但是 B 语言还不支持这种操作。 </li>
+<li>不支持浮点类型运算：在那个时候，大部分硬件已经都可以开始支持浮点运算了，但是 B 语言还不支持这种操作。</li>
 </ul>
 <p>B 语言的这些问题，开发低效，在机器上运行缓慢等等，都迫使 Dennis Ritchie 发明一种新的编程语言。最开始被称为 New B，后来逐渐演化成了 C 语言。</p>
 <p>C 语言解决了 B 语言的很多缺陷，并很快成为了开发操作系统最流行的一种编程语言。新版本的 Unix 以及今天很多类 Unix 的操作系统都是用 C 语言开发出来的。</p>
@@ -384,7 +384,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/02/23/mac%E4%B8%8B%E7%BB%99docker%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%9C%B0%E5%9D%80/" title="Mac下给Docker配置镜像加速地址">
+                      <a href="/2021/02/23/problems/Mac%E4%B8%8B%E7%BB%99Docker%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%9C%B0%E5%9D%80/" title="Mac下给Docker配置镜像加速地址">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Mac下给Docker配置镜像加速地址</span>
                         <span class="visible-mobile">Previous</span>

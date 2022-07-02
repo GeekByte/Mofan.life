@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,13 +269,17 @@
             <div class="markdown-body">
               
               <p>golang的字符称为rune，等价于C中的char，可直接与整数转换。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> c <span class="hljs-keyword">rune</span>=<span class="hljs-string">&#x27;a&#x27;</span> <br><span class="hljs-keyword">var</span> i <span class="hljs-keyword">int</span> =<span class="hljs-number">98</span><br>i1:=<span class="hljs-keyword">int</span>(c)<br>fmt.Println(<span class="hljs-string">&quot;&#x27;a&#x27; convert to&quot;</span>,i1) <span class="hljs-comment">//98</span><br>c1:=<span class="hljs-keyword">rune</span>(i)<br>fmt.Println(<span class="hljs-string">&quot;98 convert to&quot;</span>,<span class="hljs-keyword">string</span>(c1)) <span class="hljs-comment">//a</span><br><br><span class="hljs-comment">//string to rune</span><br><span class="hljs-keyword">for</span> _, char := <span class="hljs-keyword">range</span> []<span class="hljs-keyword">rune</span>(<span class="hljs-string">&quot;世界你好&quot;</span>) &#123;<br>    fmt.Println(<span class="hljs-keyword">string</span>(char))<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> c <span class="hljs-type">rune</span>=<span class="hljs-string">&#x27;a&#x27;</span> <br><span class="hljs-keyword">var</span> i <span class="hljs-type">int</span> =<span class="hljs-number">98</span><br>i1:=<span class="hljs-type">int</span>(c)<br>fmt.Println(<span class="hljs-string">&quot;&#x27;a&#x27; convert to&quot;</span>,i1) <span class="hljs-comment">//98</span><br>c1:=<span class="hljs-type">rune</span>(i)<br>fmt.Println(<span class="hljs-string">&quot;98 convert to&quot;</span>,<span class="hljs-type">string</span>(c1)) <span class="hljs-comment">//a</span><br><br><span class="hljs-comment">//string to rune</span><br><span class="hljs-keyword">for</span> _, char := <span class="hljs-keyword">range</span> []<span class="hljs-type">rune</span>(<span class="hljs-string">&quot;世界你好&quot;</span>) &#123;<br>    fmt.Println(<span class="hljs-type">string</span>(char))<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>输出：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">&#x27;a&#x27; convert to 97<br>98 convert to b<br>世<br>界<br>你<br>好<br></code></pre></td></tr></table></figure>
+
 <p>rune实际是int32类型，必需先将其转换为string才能打印出来，否则打印出来的是一个整数</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go">c:=<span class="hljs-string">&#x27;a&#x27;</span><br>fmt.Println(c)<br>fmt.Println(<span class="hljs-keyword">string</span>(c))<br>fmt.Println(<span class="hljs-keyword">string</span>(<span class="hljs-number">97</span>))<br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go">c:=<span class="hljs-string">&#x27;a&#x27;</span><br>fmt.Println(c)<br>fmt.Println(<span class="hljs-type">string</span>(c))<br>fmt.Println(<span class="hljs-type">string</span>(<span class="hljs-number">97</span>))<br></code></pre></td></tr></table></figure>
+
 <p>输出：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">97<br>a<br>a<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

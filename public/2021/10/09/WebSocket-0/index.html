@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,19 +270,24 @@
               
               <h2 id="WebSocket与HTTP的关系"><a href="#WebSocket与HTTP的关系" class="headerlink" title="WebSocket与HTTP的关系"></a>WebSocket与HTTP的关系</h2><p>首先HTTP有1.1和1.0之说，也就是所谓的keep-alive，把多个HTTP请求合并为一个，但是Websocket其实是一个新协议，跟HTTP协议基本没有关系，只是为了兼容现有浏览器的握手规范而已，也就是说它是HTTP协议上的一种补充可以通过这样一张图理解</p>
 <p><img src="https://pic1.zhimg.com/50/6651f2f811ec133b0e6d7e6d0e194b4c_720w.jpg?source=1940ef5c" srcset="/img/loading.gif" lazyload alt="img"></p>
-<p>有交集，但是并不是全部。<br>另外Html5是指的一系列新的API，或者说新规范，新技术。Http协议本身只有1.0和1.1，而且跟Html本身没有直接关系。。<br>通俗来说，你可以用HTTP<strong>协议</strong>传输非Html<strong>数据</strong>，就是这样=。=<br>再简单来说，<strong>层级不一样</strong>。</p>
-<h2 id="WebSocket是什么样的协议，具体有什么优点"><a href="#WebSocket是什么样的协议，具体有什么优点" class="headerlink" title="WebSocket是什么样的协议，具体有什么优点"></a>WebSocket是什么样的协议，具体有什么优点</h2><p>首先，Websocket是一个<strong>持久化</strong>的协议，相对于HTTP这种<strong>非持久</strong>的协议来说。<br>简单的举个例子吧，用目前应用比较广泛的PHP生命周期来解释。<br>\1) HTTP的生命周期通过Request来界定，也就是一个Request 一个Response，那么<strong>在</strong>HTTP1.0<strong>中</strong>，这次HTTP请求就结束了。<br>在HTTP1.1中进行了改进，使得有一个keep-alive，也就是说，在一个HTTP连接中，可以发送多个Request，接收多个Response。<br>但是请记住 Request = Response ， 在HTTP中永远是这样，也就是说一个request只能有一个response。而且这个response也是<strong>被动</strong>的，不能主动发起。</p>
+<p>有交集，但是并不是全部。<br>另外Html5是指的一系列新的API，或者说新规范，新技术。Http协议本身只有1.0和1.1，而且跟Html本身没有直接关系。。<br>通俗来说，你可以用HTTP<strong>协议</strong>传输非Html<strong>数据</strong>，就是这样&#x3D;。&#x3D;<br>再简单来说，<strong>层级不一样</strong>。</p>
+<h2 id="WebSocket是什么样的协议，具体有什么优点"><a href="#WebSocket是什么样的协议，具体有什么优点" class="headerlink" title="WebSocket是什么样的协议，具体有什么优点"></a>WebSocket是什么样的协议，具体有什么优点</h2><p>首先，Websocket是一个<strong>持久化</strong>的协议，相对于HTTP这种<strong>非持久</strong>的协议来说。<br>简单的举个例子吧，用目前应用比较广泛的PHP生命周期来解释。<br>\1) HTTP的生命周期通过Request来界定，也就是一个Request 一个Response，那么<strong>在</strong>HTTP1.0<strong>中</strong>，这次HTTP请求就结束了。<br>在HTTP1.1中进行了改进，使得有一个keep-alive，也就是说，在一个HTTP连接中，可以发送多个Request，接收多个Response。<br>但是请记住 Request &#x3D; Response ， 在HTTP中永远是这样，也就是说一个request只能有一个response。而且这个response也是<strong>被动</strong>的，不能主动发起。</p>
 <h2 id="WebSocket的原理"><a href="#WebSocket的原理" class="headerlink" title="WebSocket的原理"></a>WebSocket的原理</h2><p>首先Websocket是基于HTTP协议的，或者说<strong>借用</strong>了HTTP的协议来完成一部分握手。<br>所以，在握手阶段是一样的。</p>
 <p>首先我们来看个典型的Websocket握手</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs tex">GET &#x2F;chat HTTP&#x2F;1.1<br>Host: server.example.com<br>Upgrade: websocket<br>Connection: Upgrade<br>Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw&#x3D;&#x3D;<br>Sec-WebSocket-Protocol: chat, superchat<br>Sec-WebSocket-Version: 13<br>Origin: http:&#x2F;&#x2F;example.com<br></code></pre></td></tr></table></figure>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs tex">GET /chat HTTP/1.1<br>Host: server.example.com<br>Upgrade: websocket<br>Connection: Upgrade<br>Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==<br>Sec-WebSocket-Protocol: chat, superchat<br>Sec-WebSocket-Version: 13<br>Origin: http://example.com<br></code></pre></td></tr></table></figure>
+
 <p>熟悉HTTP的童鞋可能发现了，这段类似HTTP协议的握手请求中，多了几个东西。</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">Upgrade: websocket<br>Connection: Upgrade<br></code></pre></td></tr></table></figure>
+
 <p>这个就是Websocket的核心了，告诉Apache、Nginx等服务器：<strong>注意啦，窝发起的是Websocket协议，快点帮我找到对应的助理处理~不是那个老土的HTTP。</strong></p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw&#x3D;&#x3D;<br>Sec-WebSocket-Protocol: chat, superchat<br>Sec-WebSocket-Version: 13<br></code></pre></td></tr></table></figure>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">Sec-WebSocket-Key: x3JJHMbDL1EzLkh9GBhXDw==<br>Sec-WebSocket-Protocol: chat, superchat<br>Sec-WebSocket-Version: 13<br></code></pre></td></tr></table></figure>
+
 <p>首先，Sec-WebSocket-Key 是一个Base64 encode的值，这个是浏览器随机生成的，告诉服务器：<strong>泥煤，不要忽悠窝，我要验证尼是不是真的是Websocket助理。</strong><br>然后，Sec_WebSocket-Protocol 是一个用户定义的字符串，用来区分同URL下，不同的服务所需要的协议。简单理解：<strong>今晚我要服务A，别搞错啦~</strong><br>最后，Sec-WebSocket-Version 是告诉服务器所使用的Websocket Draft（协议版本），在最初的时候，Websocket协议还在 Draft 阶段，各种奇奇怪怪的协议都有，而且还有很多期奇奇怪怪不同的东西，什么Firefox和Chrome用的不是一个版本之类的，当初Websocket协议太多可是一个大难题。。不过现在还好，已经定下来啦<del>大家都使用的一个东西</del> 脱水：<strong>服务员，我要的是13岁的噢→_→</strong></p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tex">HTTP&#x2F;1.1 101 Switching Protocols<br>Upgrade: websocket<br>Connection: Upgrade<br>Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk&#x3D;<br>Sec-WebSocket-Protocol: chat<br></code></pre></td></tr></table></figure>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tex">HTTP/1.1 101 Switching Protocols<br>Upgrade: websocket<br>Connection: Upgrade<br>Sec-WebSocket-Accept: HSmrc0sMlYUkAGmm5OPpG2HaGWk=<br>Sec-WebSocket-Protocol: chat<br></code></pre></td></tr></table></figure>
+
 <p>这里开始就是HTTP最后负责的区域了，告诉客户，我已经成功切换协议啦~</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">Upgrade: websocket<br>Connection: Upgrade<br></code></pre></td></tr></table></figure>
+
 <p>依然是固定的，告诉客户端即将升级的是Websocket协议，而不是mozillasocket，lurnarsocket或者shitsocket。<br>然后，Sec-WebSocket-Accept 这个则是经过服务器确认，并且加密过后的 Sec-WebSocket-Key。服务器：<strong>好啦好啦，知道啦，给你看我的ID CARD来证明行了吧。。</strong><br>后面的，Sec-WebSocket-Protocol 则是表示最终使用的协议。</p>
 <p>至此，HTTP已经完成它所有工作了，接下来就是完全按照Websocket协议进行了。<br>具体的协议就不在这阐述了。</p>
 <h2 id="WebSocket的作用"><a href="#WebSocket的作用" class="headerlink" title="WebSocket的作用"></a>WebSocket的作用</h2><p>作者：Ovear<br>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20215561/answer/40316953">https://www.zhihu.com/question/20215561/answer/40316953</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
@@ -297,7 +302,7 @@
 <p>-————————-<br><strong>言归正传，我们来说Websocket吧</strong><br>通过上面这个例子，我们可以看出，这两种方式都不是最好的方式，需要很多资源。<br>一种需要更快的速度，一种需要更多的’电话’。这两种都会导致’电话’的需求越来越高。<br>哦对了，忘记说了HTTP还是一个无状态协议。（感谢评论区的各位指出OAQ）<br>通俗的说就是，服务器因为每天要接待太多客户了，是个<strong>健忘鬼</strong>，你一挂电话，他就把你的东西全忘光了，把你的东西全丢掉了。你第二次还得再告诉服务器一遍。</p>
 <p>所以在这种情况下出现了，Websocket出现了。<br>他解决了HTTP的这几个难题。<br>首先，<strong>被动性</strong>，当服务器完成协议升级后（HTTP-&gt;Websocket），服务端就可以主动推送信息给客户端啦。<br>所以上面的情景可以做如下修改。<br>客户端：啦啦啦，我要建立Websocket协议，需要的服务：chat，Websocket协议版本：17（HTTP Request）<br>服务端：ok，确认，已升级为Websocket协议（HTTP Protocols Switched）<br>客户端：麻烦你有信息的时候推送给我噢。。<br>服务端：ok，有的时候会告诉你的。<br>服务端：balabalabalabala<br>服务端：balabalabalabala<br>服务端：哈哈哈哈哈啊哈哈哈哈<br>服务端：笑死我了哈哈哈哈哈哈哈</p>
 <p>就变成了这样，只需要经过<strong>一次HTTP请求</strong>，就可以做到源源不断的信息传送了。（在程序设计中，这种设计叫做回调，即：你有信息了再来通知我，而不是我傻乎乎的每次跑来问你）<br>这样的协议解决了上面同步有延迟，而且还非常消耗资源的这种情况。<br>那么为什么他会解决服务器上消耗资源的问题呢？<br>其实我们所用的程序是要经过两层代理的，即<strong>HTTP协议在Nginx等服务器的解析下</strong>，然后再传送给相应的<strong>Handler（PHP等）</strong>来处理。<br>简单地说，我们有一个非常快速的接<strong>线员（Nginx）</strong>，他负责把问题转交给相应的<strong>客服（Handler）</strong>。<br>本身<strong>接线员基本上速度是足够的</strong>，但是每次都卡在<strong>客服（Handler）</strong>了，老有<strong>客服</strong>处理速度太慢。，导致客服不够。<br>Websocket就解决了这样一个难题，建立后，可以直接跟接线员建立持<strong>久连接</strong>，有信息的时候客服想办法通知接线员，然后<strong>接线员</strong>在统一转交给客户。<br>这样就可以解决客服处理速度过慢的问题了。</p>
-<p>同时，在传统的方式上，要不断的建立，关闭HTTP协议，由于HTTP是非状态性的，每次都要<strong>重新传输identity info（鉴别信息）</strong>，来告诉服务端你是谁。<br>虽然接线员很快速，但是每次都要听这么一堆，效率也会有所下降的，同时还得不断把这些信息转交给客服，不但浪费客服的<strong>处理时间</strong>，而且还会在网路传输中消耗<strong>过多的流量/时间。</strong><br>但是Websocket只需要<strong>一次HTTP握手，所以说整个通讯过程是建立在一次连接/状态中</strong>，也就避免了HTTP的非状态性，服务端会一直知道你的信息，直到你关闭请求，这样就解决了接线员要反复解析HTTP协议，还要查看identity info的信息。<br>同时由<strong>客户主动询问</strong>，转换为<strong>服务器（推送）有信息的时候就发送（当然客户端还是等主动发送信息过来的。。）</strong>，没有信息的时候就交给接线员（Nginx），不需要占用本身速度就慢的<strong>客服（Handler）</strong>了<br>-——————-<br>至于怎么在不支持Websocket的客户端上使用Websocket。。答案是：<strong>不能</strong><br>但是可以通过上面说的 long poll 和 ajax 轮询来 <strong>模拟出类似的效果</strong></p>
+<p>同时，在传统的方式上，要不断的建立，关闭HTTP协议，由于HTTP是非状态性的，每次都要<strong>重新传输identity info（鉴别信息）</strong>，来告诉服务端你是谁。<br>虽然接线员很快速，但是每次都要听这么一堆，效率也会有所下降的，同时还得不断把这些信息转交给客服，不但浪费客服的<strong>处理时间</strong>，而且还会在网路传输中消耗<strong>过多的流量&#x2F;时间。</strong><br>但是Websocket只需要<strong>一次HTTP握手，所以说整个通讯过程是建立在一次连接&#x2F;状态中</strong>，也就避免了HTTP的非状态性，服务端会一直知道你的信息，直到你关闭请求，这样就解决了接线员要反复解析HTTP协议，还要查看identity info的信息。<br>同时由<strong>客户主动询问</strong>，转换为<strong>服务器（推送）有信息的时候就发送（当然客户端还是等主动发送信息过来的。。）</strong>，没有信息的时候就交给接线员（Nginx），不需要占用本身速度就慢的<strong>客服（Handler）</strong>了<br>-——————-<br>至于怎么在不支持Websocket的客户端上使用Websocket。。答案是：<strong>不能</strong><br>但是可以通过上面说的 long poll 和 ajax 轮询来 <strong>模拟出类似的效果</strong></p>
 
               
             </div>

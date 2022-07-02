@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="创建目录  os.Mkdir(“abc”, os.ModePerm) &amp;#x2F;&amp;#x2F;创建单个目录 os.MkdirAll(“a&amp;#x2F;b&amp;#x2F;c”, os.ModePerm) &amp;#x2F;&amp;#x2F;创建多级目录  注意：os.Mkdir创建重复的目录会产生error，os.MkdirAll则不会 获取当前路径 1os.Getwd() 创建文件 12f, _ :&amp;#x3D; os.Create(&amp;quot;.&amp;#x2F;abc.txt&amp;quot;) &amp;#x2F;&amp;#x2F;创">
+    <meta name="description" content="创建目录  os.Mkdir(“abc”, os.ModePerm) &amp;#x2F;&amp;#x2F;创建单个目录 os.MkdirAll(“a&amp;#x2F;b&amp;#x2F;c”, os.ModePerm) &amp;#x2F;&amp;#x2F;创建多级目录  注意：os.Mkdir创建重复的目录会产生error，os.MkdirAll则不会 获取当前路径 1os.Getwd()  创建文件 12f, _ :&amp;#x3D; os.Cr">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,22 +270,28 @@
               
               <p><strong>创建目录</strong></p>
 <ul>
-<li>os.Mkdir(“abc”, os.ModePerm) //创建单个目录</li>
-<li>os.MkdirAll(“a/b/c”, os.ModePerm) //创建多级目录</li>
+<li>os.Mkdir(“abc”, os.ModePerm) &#x2F;&#x2F;创建单个目录</li>
+<li>os.MkdirAll(“a&#x2F;b&#x2F;c”, os.ModePerm) &#x2F;&#x2F;创建多级目录</li>
 </ul>
 <p><strong>注意：</strong>os.Mkdir创建重复的目录会产生error，os.MkdirAll则不会</p>
 <p><strong>获取当前路径</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">os.Getwd()<br></code></pre></td></tr></table></figure>
+
 <p><strong>创建文件</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go">f, _ := os.Create(<span class="hljs-string">&quot;./abc.txt&quot;</span>) <span class="hljs-comment">//创建文件</span><br><span class="hljs-keyword">defer</span> f.Close()<br></code></pre></td></tr></table></figure>
+
 <p><strong>打开文件</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">f, _ := os.OpenFile(<span class="hljs-string">&quot;./abc.txt&quot;</span>, os.O_RDWR|os.O_CREATE|os.O_TRUNC, <span class="hljs-number">666</span>)<br></code></pre></td></tr></table></figure>
+
 <p><strong>删除文件</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go">os.Remove(<span class="hljs-string">&quot;a/b/c&quot;</span>)<br>os.Remove(<span class="hljs-string">&quot;a/b/c/d.txt&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 <p><strong>删除目录</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">os.RemoveAll(<span class="hljs-string">&quot;abc&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 <p><strong>重命名文件</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">os.Rename(<span class="hljs-string">&quot;a.txt&quot;</span>, <span class="hljs-string">&quot;b.txt&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 
 
 <p>待整理：</p>

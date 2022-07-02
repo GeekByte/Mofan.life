@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -278,13 +278,17 @@
 </li>
 </ol>
 <p>保存后重启<code>redis-server</code>，注意要加载到我们配置过的<code>redis.conf</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">redis-server redis.conf<br><br><span class="hljs-meta">#</span><span class="bash"> 如果想在后台运行，使用命令</span><br>nohup redis-server redis.conf &amp;<br><span class="hljs-meta">#</span><span class="bash"> 这会在当前目录创建nohup.log文件，是nohup运行reids-server的日志输出文件。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">redis-server redis.conf<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果想在后台运行，使用命令</span><br>nohup redis-server redis.conf &amp;<br><span class="hljs-meta prompt_"># </span><span class="language-bash">这会在当前目录创建nohup.log文件，是<span class="hljs-built_in">nohup</span>运行reids-server的日志输出文件。</span><br></code></pre></td></tr></table></figure>
+
 <h4 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h4><p>默认端口是<code>6379</code>，如果是别的，请自行替换。</p>
 <p>如果是<code>iptable</code>防火墙</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 命令行操作</span><br>iptables -A INPUT -p tcp --dport 6379 -j ACCEPT<br><br><span class="hljs-meta">#</span><span class="bash"> 或者</span><br><span class="hljs-meta">#</span><span class="bash"> 修改配置文件</span><br>vim /etc/sysconfig/iptables<br><span class="hljs-meta">#</span><span class="bash"> 在最后一行添加</span><br>-A RH-Firewall-1-INPUT -m state NEW -m tcp -dport 8080 -j ACCEPT<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">命令行操作</span><br>iptables -A INPUT -p tcp --dport 6379 -j ACCEPT<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">修改配置文件</span><br>vim /etc/sysconfig/iptables<br><span class="hljs-meta prompt_"># </span><span class="language-bash">在最后一行添加</span><br>-A RH-Firewall-1-INPUT -m state NEW -m tcp -dport 8080 -j ACCEPT<br></code></pre></td></tr></table></figure>
+
 <p>如果是<code>firewall</code>防火墙</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">firewall-cmd --zone=public --add-port=6379/tcp --permanent<br><br><span class="hljs-meta">#</span><span class="bash"> 重启防火墙</span><br>firewall-cmd --reload<br></code></pre></td></tr></table></figure>
-<h4 id="登陆redis-server"><a href="#登陆redis-server" class="headerlink" title="登陆redis-server"></a>登陆redis-server</h4><h5 id="redis-cli命令"><a href="#redis-cli命令" class="headerlink" title="redis-cli命令"></a>redis-cli命令</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 这里登陆db2数据库</span><br>redis-cli -h host -p port -a password -n 2<br><br><span class="hljs-meta">#</span><span class="bash"> 切换db的命令</span><br><span class="hljs-meta">&gt;</span><span class="bash"> select db 1</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">firewall-cmd --zone=public --add-port=6379/tcp --permanent<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">重启防火墙</span><br>firewall-cmd --reload<br></code></pre></td></tr></table></figure>
+
+<h4 id="登陆redis-server"><a href="#登陆redis-server" class="headerlink" title="登陆redis-server"></a>登陆redis-server</h4><h5 id="redis-cli命令"><a href="#redis-cli命令" class="headerlink" title="redis-cli命令"></a>redis-cli命令</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">这里登陆db2数据库</span><br>redis-cli -h host -p port -a password -n 2<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">切换db的命令</span><br><span class="hljs-meta prompt_">&gt; </span><span class="language-bash">select db 1</span><br></code></pre></td></tr></table></figure>
+
 <h5 id="可视化工具"><a href="#可视化工具" class="headerlink" title="可视化工具"></a>可视化工具</h5><p>这里推荐<a target="_blank" rel="noopener" href="https://rdm.dev/">RDM - 适用于Windows，macOS，iPad 和 Linux 的 Redis ® 的 GUI 管理工具.</a></p>
 
               

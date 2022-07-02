@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,9 +269,12 @@
             <div class="markdown-body">
               
               <p>在用 Go 做 orm 相关操作的时候，经常会有 struct 之间的拷贝。比如下面两个struct之间要拷贝共同成员 B, C (类型一样)。这个在struct不是很大的时候从来都不是问题，直接成员拷贝即可。但是当struct的大小达到三四十个成员的时候，就要另辟蹊径了。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> A <span class="hljs-keyword">struct</span> &#123;<br>    A   <span class="hljs-keyword">int</span><br>    B   <span class="hljs-keyword">int</span><br>    C   <span class="hljs-keyword">string</span><br>    E   <span class="hljs-keyword">string</span><br>&#125;<br><br><span class="hljs-keyword">type</span> B <span class="hljs-keyword">struct</span> &#123;<br>    B   <span class="hljs-keyword">int</span><br>    C   <span class="hljs-keyword">string</span><br>    D   <span class="hljs-keyword">int</span><br>    E   <span class="hljs-keyword">string</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> A <span class="hljs-keyword">struct</span> &#123;<br>    A   <span class="hljs-type">int</span><br>    B   <span class="hljs-type">int</span><br>    C   <span class="hljs-type">string</span><br>    E   <span class="hljs-type">string</span><br>&#125;<br><br><span class="hljs-keyword">type</span> B <span class="hljs-keyword">struct</span> &#123;<br>    B   <span class="hljs-type">int</span><br>    C   <span class="hljs-type">string</span><br>    D   <span class="hljs-type">int</span><br>    E   <span class="hljs-type">string</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h2 id="方法一：json"><a href="#方法一：json" class="headerlink" title="方法一：json"></a>方法一：json</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    a := &amp;A&#123;<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>&#125;<br>    aj, _ := json.Marshal(a)<br>    b := <span class="hljs-built_in">new</span>(B)<br>    _ = json.Unmarshal(aj, b)<br><br>    fmt.Printf(<span class="hljs-string">&quot;%+v&quot;</span>, b)<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h2 id="方法二：反射"><a href="#方法二：反射" class="headerlink" title="方法二：反射"></a>方法二：反射</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">CopyStruct</span><span class="hljs-params">(src, dst <span class="hljs-keyword">interface</span>&#123;&#125;)</span></span> &#123;<br>    sval := reflect.ValueOf(src).Elem()<br>    dval := reflect.ValueOf(dst).Elem()<br><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; sval.NumField(); i++ &#123;<br>        value := sval.Field(i)<br>        name := sval.Type().Field(i).Name<br><br>        dvalue := dval.FieldByName(name)<br>        <span class="hljs-keyword">if</span> dvalue.IsValid() == <span class="hljs-literal">false</span> &#123;<br>            <span class="hljs-keyword">continue</span><br>	&#125;<br>        dvalue.Set(value) <span class="hljs-comment">//这里默认共同成员的类型一样，否则这个地方可能导致 panic，需要简单修改一下。</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -277,9 +277,9 @@
 <li>TCP可以保证数据传输的可靠性，有速率控制、重传机制、数据校验等机制。而UDP则是尽力的传输数据，不能保证数据的可靠性。</li>
 <li>TCP报文段头部占20个字节，比UDP多12个，加上连接有握手机制，使用效率上不如UDP。</li>
 </ul>
-<h2 id="TCP三次握手、四次挥手，四次能不能变成三次"><a href="#TCP三次握手、四次挥手，四次能不能变成三次" class="headerlink" title="TCP三次握手、四次挥手，四次能不能变成三次"></a>TCP三次握手、四次挥手，四次能不能变成三次</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>客户端➡️服务器：标志位：SYN=1 序号为：seq=x（默认x=1）</p>
-<p>服务器➡️客户端：标志位：SYN=1，ACK=1 确认位：ack=x+1 序号位：seq=y</p>
-<p>客户端➡️服务器：标志位：ACK=1 确认位：ack=y+1 序号位：seq=x+1</p>
+<h2 id="TCP三次握手、四次挥手，四次能不能变成三次"><a href="#TCP三次握手、四次挥手，四次能不能变成三次" class="headerlink" title="TCP三次握手、四次挥手，四次能不能变成三次"></a>TCP三次握手、四次挥手，四次能不能变成三次</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>客户端➡️服务器：标志位：SYN&#x3D;1 序号为：seq&#x3D;x（默认x&#x3D;1）</p>
+<p>服务器➡️客户端：标志位：SYN&#x3D;1，ACK&#x3D;1 确认位：ack&#x3D;x+1 序号位：seq&#x3D;y</p>
+<p>客户端➡️服务器：标志位：ACK&#x3D;1 确认位：ack&#x3D;y+1 序号位：seq&#x3D;x+1</p>
 <blockquote>
 <p>这个三次握手四次挥手的基础解释以及图片</p>
 <p><img src="https://www.cmdbyte.com/2021/02/v2-8720bd64871a5452df583fdab8207d64_720w.jpg" srcset="/img/loading.gif" lazyload alt="v2-8720bd64871a5452df583fdab8207d64_720w"></p>
@@ -378,7 +378,7 @@
 <p><strong>6、不安全的加密存储</strong></p>
 <p>常见的问题是不安全的密钥生成和储存、不轮换密钥，和使用弱算法。使用弱的或者不带salt<br>的哈希算法来保护密码也很普遍。外部攻击者因访问的局限性很难探测这种漏洞。他们通常<br>必须首先破解其他东西以获得需要的访问。</p>
 <p><strong>7、传输层保护不足</strong></p>
-<p>在身份验证过程中没有使用SSL / TLS，因此暴露传输数据和会话ID，被攻击者截听，或使<br>用过期或者配置不正确的证书。</p>
+<p>在身份验证过程中没有使用SSL &#x2F; TLS，因此暴露传输数据和会话ID，被攻击者截听，或使<br>用过期或者配置不正确的证书。</p>
 <p><strong>8、登录信息提示</strong></p>
 <p>用户登录提示信息会给攻击者一些有用的信息，作为程序的开发人员应该做到对登录提示信<br>息的模糊化，以防攻击者利用登录得知用户是否存在</p>
 <p><strong>9、重复提交请求</strong></p>

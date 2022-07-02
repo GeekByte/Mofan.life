@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -281,7 +281,7 @@
 <p>如果我们定义了主键(PRIMARY KEY)，那么InnoDB会选择主键作为聚集索引、</p>
 <p>如果没有显式定义主键，则InnoDB会选择第一个不包含有NULL值的唯一索引作为主键索引、</p>
 <p>如果也没有这样的唯一索引，则InnoDB会选择内置6字节长的ROWID作为隐含的聚集索引(ROWID随着行记录的写入而主键递增，这个ROWID不像ORACLE的ROWID那样可引用，是隐含的)。</p>
-<p>数据记录本身被存于主索引（一颗B+Tree）的叶子节点上。这就要求同一个叶子节点内（大小为一个内存页或磁盘页）的各条数据记录按主键顺序存放，因此每当有一条新的记录插入时，MySQL会根据其主键将其插入适当的节点和位置，如果页面达到装载因子（InnoDB默认为15/16），则开辟一个新的页（节点）</p>
+<p>数据记录本身被存于主索引（一颗B+Tree）的叶子节点上。这就要求同一个叶子节点内（大小为一个内存页或磁盘页）的各条数据记录按主键顺序存放，因此每当有一条新的记录插入时，MySQL会根据其主键将其插入适当的节点和位置，如果页面达到装载因子（InnoDB默认为15&#x2F;16），则开辟一个新的页（节点）</p>
 <p>如果表使用自增主键，那么每次插入新的记录，记录就会顺序添加到当前索引节点的后续位置，当一页写满，就会自动开辟一个新的页</p>
 <p>如果使用非自增主键（如果身份证号或学号等），由于每次插入主键的值近似于随机，因此每次新纪录都要被插到现有索引页得中间某个位置，此时MySQL不得不为了将新记录插到合适位置而移动数据，甚至目标页面可能已经被回写到磁盘上而从缓存中清掉，此时又要从磁盘上读回来，这增加了很多开销，同时频繁的移动、分页操作造成了大量的碎片，得到了不够紧凑的索引结构，后续不得不通过OPTIMIZE TABLE来重建表并优化填充页面。</p>
 </blockquote>
@@ -330,7 +330,7 @@
 <p>（3） 一般而言，drop &gt; truncate &gt; delete</p>
 <p>（4） 应用范围。TRUNCATE 只能对TABLE；DELETE可以是table和view</p>
 <p>（5） TRUNCATE 和DELETE只删除数据，而DROP则删除整个表（结构和数据）。</p>
-<p>（6） truncate与不带where的delete ：只删除数据，而不删除表的结构（定义）drop语句将删除表的结构被依赖的约束（constrain),触发器（trigger)索引（index);依赖于该表的存储过程/函数将被保留，但其状态会变为：invalid。</p>
+<p>（6） truncate与不带where的delete ：只删除数据，而不删除表的结构（定义）drop语句将删除表的结构被依赖的约束（constrain),触发器（trigger)索引（index);依赖于该表的存储过程&#x2F;函数将被保留，但其状态会变为：invalid。</p>
 <p>（7） delete语句为DML（data maintain Language),这个操作会被放到 rollback segment中,事务提交后才生效。如果有相应的 tigger,执行的时候将被触发。</p>
 <p>（8） truncate、drop是DLL（data define language),操作立即生效，原数据不放到 rollback segment中，不能回滚。</p>
 <p>（9） 在没有备份情况下，谨慎使用 drop 与 truncate。要删除部分数据行采用delete且注意结合where来约束影响范围。回滚段要足够大。要删除表用drop;若想保留表而将表中数据删除，如果于事务无关，用truncate即可实现。如果和事务有关，或老师想触发trigger,还是用delete。</p>
@@ -379,8 +379,8 @@
 <p><strong>内连接:</strong> 只连接匹配的行</p>
 <p><strong>左外连接:</strong> 包含左边表的全部行（不管右边的表中是否存在与它们匹配的行），以及右边表中全部匹配的行</p>
 <p><strong>右外连接:</strong> 包含右边表的全部行（不管左边的表中是否存在与它们匹配的行），以及左边表中全部匹配的行</p>
-<p>例如1：<br>SELECT a.<em>,b.</em> FROM luntan LEFT JOIN usertable as b ON a.username=b.username</p>
-<p>例如2：<br>SELECT a.<em>,b.</em> FROM city as a FULL OUTER JOIN user as b ON a.username=b.username</p>
+<p>例如1：<br>SELECT a.<em>,b.</em> FROM luntan LEFT JOIN usertable as b ON a.username&#x3D;b.username</p>
+<p>例如2：<br>SELECT a.<em>,b.</em> FROM city as a FULL OUTER JOIN user as b ON a.username&#x3D;b.username</p>
 <p><strong>全外连接:</strong> 包含左、右两个表的全部行，不管另外一边的表中是否存在与它们匹配的行。</p>
 <p><strong>交叉连接:</strong> 生成笛卡尔积－它不使用任何匹配或者选取条件，而是直接将一个数据源中的每个行与另一个数据源的每个行都一一匹配</p>
 <p>例如：<br>SELECT type,pub_name FROM titles CROSS JOIN publishers ORDER BY type</p>
@@ -417,7 +417,7 @@
 <li>删除：DELETE</li>
 </ol>
 <p><strong>3. 数据定义语言DDL</strong></p>
-<p>数据定义语言DDL用来创建数据库中的各种对象—–表、视图、索引、同义词、聚簇等如：<br>CREATE TABLE/VIEW/INDEX/SYN/CLUSTER</p>
+<p>数据定义语言DDL用来创建数据库中的各种对象—–表、视图、索引、同义词、聚簇等如：<br>CREATE TABLE&#x2F;VIEW&#x2F;INDEX&#x2F;SYN&#x2F;CLUSTER</p>
 <p>表 视图 索引 同义词 簇</p>
 <p>DDL操作是隐性提交的！不能rollback</p>
 <p><strong>4. 数据控制语言DCL</strong></p>
@@ -438,10 +438,10 @@
 <p>**%百分号通配符:**表示任何字符出现任意次数(可以是0次).</p>
 <p>**_下划线通配符:**表示只能匹配单个字符,不能多也不能少,就是一个字符.</p>
 <p><strong>like操作符:</strong> LIKE作用是指示mysql后面的搜索模式是利用通配符而不是直接相等匹配进行比较.</p>
-<p><strong>注意:</strong> 如果在使用like操作符时,后面的没有使用通用匹配符效果是和=一致的,SELECT * FROM products WHERE products.prod_name like ‘1000’;<br>只能匹配的结果为1000,而不能匹配像JetPack 1000这样的结果.</p>
+<p><strong>注意:</strong> 如果在使用like操作符时,后面的没有使用通用匹配符效果是和&#x3D;一致的,SELECT * FROM products WHERE products.prod_name like ‘1000’;<br>只能匹配的结果为1000,而不能匹配像JetPack 1000这样的结果.</p>
 <ul>
 <li>%通配符使用: 匹配以”yves”开头的记录:(包括记录”yves”) SELECT <em>FROM products WHERE products.prod_name like ‘yves%’;<br>  匹配包含”yves”的记录(包括记录”yves”) SELECT</em> FROM products WHERE products.prod_name like ‘%yves%’;<br>  匹配以”yves”结尾的记录(包括记录”yves”,不包括记录”yves “,也就是yves后面有空格的记录,这里需要注意) SELECT * FROM products WHERE products.prod_name like ‘%yves’;</li>
-<li><em>通配符使用: SELECT \</em>FROM products WHERE products.prod_name like ‘_yves’; 匹配结果为: 像”yyves”这样记录.<br>  SELECT* FROM products WHERE products.prod*name like ‘yves**’; 匹配结果为: 像”yvesHe”这样的记录.(一个下划线只能匹配一个字符,不能多也不能少)</li>
+<li><em>通配符使用: SELECT *FROM products WHERE products.prod_name like ‘_yves’; 匹配结果为: 像”yyves”这样记录.<br>  SELECT* FROM products WHERE products.prod*name like ‘yves</em>*’; 匹配结果为: 像”yvesHe”这样的记录.(一个下划线只能匹配一个字符,不能多也不能少)</li>
 </ul>
 <p><strong>注意事项:</strong></p>
 <ul>
@@ -466,8 +466,8 @@
 </ul>
 <p><strong>性能问题:</strong></p>
 <p>1.任何情况下SELECT COUNT(*) FROM tablename是最优选择;</p>
-<p>2.尽量减少SELECT COUNT(*) FROM tablename WHERE COL = ‘value’ 这种查询;</p>
-<p>3.杜绝SELECT COUNT(COL) FROM tablename WHERE COL2 = ‘value’ 的出现。</p>
+<p>2.尽量减少SELECT COUNT(*) FROM tablename WHERE COL &#x3D; ‘value’ 这种查询;</p>
+<p>3.杜绝SELECT COUNT(COL) FROM tablename WHERE COL2 &#x3D; ‘value’ 的出现。</p>
 <ul>
 <li>如果表没有主键,那么count(1)比count(*)快。</li>
 <li>如果有主键,那么count(主键,联合主键)比count(*)快。</li>
@@ -536,14 +536,14 @@
 </ul>
 <p><strong>为什么不都用Hash索引而使用B+树索引？</strong></p>
 <ol>
-<li>Hash索引仅仅能满足”=”,”IN”和””查询，不能使用范围查询,因为经过相应的Hash算法处理之后的Hash值的大小关系，并不能保证和Hash运算前完全一样；</li>
+<li>Hash索引仅仅能满足”&#x3D;”,”IN”和””查询，不能使用范围查询,因为经过相应的Hash算法处理之后的Hash值的大小关系，并不能保证和Hash运算前完全一样；</li>
 <li>Hash索引无法被用来避免数据的排序操作，因为Hash值的大小关系并不一定和Hash运算前的键值完全一样；</li>
 <li>Hash索引不能利用部分索引键查询，对于组合索引，Hash索引在计算Hash值的时候是组合索引键合并后再一起计算Hash值，而不是单独计算Hash值，所以通过组合索引的前面一个或几个索引键进行查询的时候，Hash索引也无法被利用；</li>
 <li>Hash索引在任何时候都不能避免表扫描，由于不同索引键存在相同Hash值，所以即使取满足某个Hash键值的数据的记录条数，也无法从Hash索引中直接完成查询，还是要回表查询数据；</li>
 <li>Hash索引遇到大量Hash值相等的情况后性能并不一定就会比B+树索引高。</li>
 </ol>
 <p><strong>补充：</strong></p>
-<p>1.MySQL中，只有HEAP/MEMORY引擎才显示支持Hash索引。</p>
+<p>1.MySQL中，只有HEAP&#x2F;MEMORY引擎才显示支持Hash索引。</p>
 <p>2.常用的InnoDB引擎中默认使用的是B+树索引，它会实时监控表上索引的使用情况，如果认为建立哈希索引可以提高查询效率，则自动在内存中的“自适应哈希索引缓冲区”建立哈希索引（在InnoDB中默认开启自适应哈希索引），通过观察搜索模式，MySQL会利用index key的前缀建立哈希索引，如果一个表几乎大部分都在缓冲池中，那么建立一个哈希索引能够加快等值查询。<br>B+树索引和哈希索引的明显区别是：</p>
 <p>3.如果是等值查询，那么哈希索引明显有绝对优势，因为只需要经过一次算法即可找到相应的键值；当然了，这个前提是，键值都是唯一的。如果键值不是唯一的，就需要先找到该键所在位置，然后再根据链表往后扫描，直到找到相应的数据；</p>
 <p>4.如果是范围查询检索，这时候哈希索引就毫无用武之地了，因为原先是有序的键值，经过哈希算法后，有可能变成不连续的了，就没办法再利用索引完成范围查询检索；<br>同理，哈希索引没办法利用索引完成排序，以及like ‘xxx%’ 这样的部分模糊查询（这种部分模糊查询，其实本质上也是范围查询）；</p>
@@ -637,7 +637,7 @@
 <p>7.InnoDB中不保存表的行数，如select count(<em>) from table时，InnoDB需要扫描一遍整个表来计算有多少行，但是MyISAM只要简单的读出保存好的行数即可。注意的是，当count(</em>)语句包含where条件时MyISAM也需要扫描整个表。</p>
 <p>8.对于自增长的字段，InnoDB中必须包含只有该字段的索引，但是在MyISAM表中可以和其他字段一起建立联合索引。</p>
 <p>9.DELETE FROM table时，InnoDB不会重新建立表，而是一行一行的 删除，效率非常慢。MyISAM则会重建表。</p>
-<p>10.InnoDB支持行锁（某些情况下还是锁整表，如 update table set a=1 where user like ‘%lee%’。</p>
+<p>10.InnoDB支持行锁（某些情况下还是锁整表，如 update table set a&#x3D;1 where user like ‘%lee%’。</p>
 </blockquote>
 <h4 id="2-MySQL存储引擎MyISAM与InnoDB如何选择"><a href="#2-MySQL存储引擎MyISAM与InnoDB如何选择" class="headerlink" title="2.MySQL存储引擎MyISAM与InnoDB如何选择"></a><strong>2.MySQL存储引擎MyISAM与InnoDB如何选择</strong></h4><blockquote>
 <p>MySQL有多种存储引擎，每种存储引擎有各自的优缺点，可以择优选择使用：MyISAM、InnoDB、MERGE、MEMORY(HEAP)、BDB(BerkeleyDB)、EXAMPLE、FEDERATED、ARCHIVE、CSV、BLACKHOLE。</p>
@@ -735,7 +735,7 @@
 <p><strong>死锁的解决办法?</strong></p>
 <p>1.查出的线程杀死 kill<br>SELECT trx_MySQL_thread_id FROM information_schema.INNODB_TRX;</p>
 <p>2.设置锁的超时时间<br>Innodb 行锁的等待时间，单位秒。可在会话级别设置，RDS 实例该参数的默认值为 50（秒）。</p>
-<p>生产环境不推荐使用过大的 innodb_lock_wait_timeout参数值<br>该参数支持在会话级别修改，方便应用在会话级别单独设置某些特殊操作的行锁等待超时时间，如下：<br>set innodb_lock_wait_timeout=1000; —设置当前会话 Innodb 行锁等待超时时间，单位秒。</p>
+<p>生产环境不推荐使用过大的 innodb_lock_wait_timeout参数值<br>该参数支持在会话级别修改，方便应用在会话级别单独设置某些特殊操作的行锁等待超时时间，如下：<br>set innodb_lock_wait_timeout&#x3D;1000; —设置当前会话 Innodb 行锁等待超时时间，单位秒。</p>
 <p>3.指定获取锁的顺序</p>
 </blockquote>
 <h4 id="2-有哪些锁（乐观锁悲观锁），select-时怎么加排它锁"><a href="#2-有哪些锁（乐观锁悲观锁），select-时怎么加排它锁" class="headerlink" title="2.有哪些锁（乐观锁悲观锁），select 时怎么加排它锁?"></a><strong>2.有哪些锁（乐观锁悲观锁），select 时怎么加排它锁?</strong></h4><blockquote>
@@ -749,19 +749,19 @@
 </ul>
 <p><strong>乐观锁（Optimistic Lock）:</strong></p>
 <p>**1.**乐观锁，也叫乐观并发控制，它假设多用户并发的事务在处理时不会彼此互相影响，各事务能够在不产生锁的情况下处理各自影响的那部分数据。在提交数据更新之前，每个事务会先检查在该事务读取数据后，有没有其他事务又修改了该数据。如果其他事务有更新的话，那么当前正在提交的事务会进行回滚。</p>
-<p><strong>2.\</strong>**乐观锁的特点先进行业务操作，不到万不得已不去拿锁。**即“乐观”的认为拿锁多半是会成功的，因此在进行完业务操作需要实际更新数据的最后一步再去拿一下锁就好。<br>乐观锁在数据库上的实现完全是逻辑的，不需要数据库提供特殊的支持。</p>
-<p><strong>3.**一般的做法是</strong>在需要锁的数据上增加一个版本号，或者时间戳**，</p>
+<p>*<em>2.*</em>**乐观锁的特点先进行业务操作，不到万不得已不去拿锁。**即“乐观”的认为拿锁多半是会成功的，因此在进行完业务操作需要实际更新数据的最后一步再去拿一下锁就好。<br>乐观锁在数据库上的实现完全是逻辑的，不需要数据库提供特殊的支持。</p>
+<p><strong>3.<strong>一般的做法是</strong>在需要锁的数据上增加一个版本号，或者时间戳</strong>，</p>
 <p><strong>实现方式举例如下：</strong></p>
 <p><strong>乐观锁（给表加一个版本号字段）</strong> 这个并不是乐观锁的定义，给表加版本号，是<strong>数据库实现乐观锁的一种方式</strong>。</p>
 <ol>
 <li>SELECT data AS old_data, version AS old_version FROM …;</li>
 <li>根据获取的数据进行业务操作，得到new_data和new_version</li>
-<li>UPDATE SET data = new_data, version = new_version WHERE version = old_version</li>
+<li>UPDATE SET data &#x3D; new_data, version &#x3D; new_version WHERE version &#x3D; old_version</li>
 </ol>
 <p>if (updated row &gt; 0) {</p>
-<p>// 乐观锁获取成功，操作完成</p>
+<p>&#x2F;&#x2F; 乐观锁获取成功，操作完成</p>
 <p>} else {</p>
-<p>// 乐观锁获取失败，回滚并重试</p>
+<p>&#x2F;&#x2F; 乐观锁获取失败，回滚并重试</p>
 <p>}</p>
 <p><strong>注意：</strong></p>
 <ul>
@@ -795,7 +795,7 @@
 </blockquote>
 <p><strong>问题3：</strong>主从复制中有master,slave1,slave2,…等等这么多MySQL数据库，那比如一个JAVA WEB应用到底应该连接哪个数据库?</p>
 <blockquote>
-<p>我们在应用程序中可以这样，insert/delete/update这些更新数据库的操作，用connection(for master)进行操作，</p>
+<p>我们在应用程序中可以这样，insert&#x2F;delete&#x2F;update这些更新数据库的操作，用connection(for master)进行操作，</p>
 <p>select用connection(for slaves)进行操作。那我们的应用程序还要完成怎么从slaves选择一个来执行select，例如使用简单的轮循算法。</p>
 <p>这样的话，相当于应用程序完成了SQL语句的路由，而且与MySQL的主从复制架构非常关联，一旦master挂了，某些slave挂了，那么应用程序就要修改了。能不能让应用程序与MySQL的主从复制架构没有什么太多关系呢？<br>找一个组件，application program只需要与它打交道，用它来完成MySQL的代理，实现SQL语句的路由。<br>MySQL proxy并不负责，怎么从众多的slaves挑一个？可以交给另一个组件(比如haproxy)来完成。</p>
 <p>这就是所谓的MySQL READ WRITE SPLITE，MySQL的读写分离。</p>

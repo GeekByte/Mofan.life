@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="和其他语言一样，Shell 也可以包含外部脚本。这样可以很方便的封装一些公用的代码作为一个独立的文件。 Shell 文件包含的语法格式如下： 123. filename   # 注意点号(.)和文件名中间有一空格# 或source filename 测试： 123456789101112131415# 创建t1.sh$ vim t1.sh# 输入url&amp;#x3D;&amp;quot;https:&amp;#x2F;&amp;#x2F;www.mofa">
+    <meta name="description" content="和其他语言一样，Shell 也可以包含外部脚本。这样可以很方便的封装一些公用的代码作为一个独立的文件。 Shell 文件包含的语法格式如下： 123. filename   # 注意点号(.)和文件名中间有一空格# 或source filename  测试： 123456789101112131415# 创建t1.sh$ vim t1.sh# 输入url&amp;#x3D;&amp;quot;https:&amp;#x2F;&amp;#x2F;www.mof">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,9 +270,11 @@
               
               <p>和其他语言一样，Shell 也可以包含外部脚本。这样可以很方便的封装一些公用的代码作为一个独立的文件。</p>
 <p>Shell 文件包含的语法格式如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">. filename   # 注意点号(.)和文件名中间有一空格<br><span class="hljs-meta">#</span><span class="bash"> 或</span><br>source filename<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">. filename   # 注意点号(.)和文件名中间有一空格<br><span class="hljs-meta prompt_"># </span><span class="language-bash">或</span><br>source filename<br></code></pre></td></tr></table></figure>
+
 <p>测试：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 创建t1.sh</span><br><span class="hljs-meta">$</span><span class="bash"> vim t1.sh</span><br><br><span class="hljs-meta">#</span><span class="bash"> 输入</span><br>url=&quot;https://www.mofan.life&quot;<br><br><span class="hljs-meta">#</span><span class="bash"> 创建 t2.sh</span><br>vim t2.sh<br><br><span class="hljs-meta">#</span><span class="bash"> 输入</span><br>. t1.sh<br>echo &quot;Welcomt to $&#123;url&#125; ！！！&quot;<br><br><span class="hljs-meta">#</span><span class="bash"> 执行结果</span><br>Welcome to https://www.mofan.life ！！！<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建t1.sh</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">vim t1.sh</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">输入</span><br>url=&quot;https://www.mofan.life&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">创建 t2.sh</span><br>vim t2.sh<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">输入</span><br>. t1.sh<br>echo &quot;Welcomt to $&#123;url&#125; ！！！&quot;<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">执行结果</span><br>Welcome to https://www.mofan.life ！！！<br></code></pre></td></tr></table></figure>
+
 <p><strong>注：</strong> <em>被包含的文件 test1.sh 不需要可执行权限。</em></p>
 
               

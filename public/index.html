@@ -63,7 +63,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -227,6 +227,135 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/06/29/%E6%B5%85%E8%B0%88-AWS-ColudWatch%E3%80%81EventBridge%E3%80%81CloudWatch/" target="_self">
+          浅谈 AWS ColudWatch、EventBridge、CloudWatch
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/06/29/%E6%B5%85%E8%B0%88-AWS-ColudWatch%E3%80%81EventBridge%E3%80%81CloudWatch/" target="_self">
+        <div>
+          
+          最近在公司领了一项任务，通过 AWS 的 CloudWatch、EventBridge、CloudWatch 实现当服务内存占用较大时，自动重启服务。 CloudWatchCloudWatch 主要有两大功能，一个是作为日志中心，所有服务的日志都会输出到这里，通过日志组(log groups)的方式进行分类；另一个是指标监控中心，比如各个服务的 CPU使用情况 以及 内存占用情况 都可以在这里查看
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-29 14:58" pubdate>
+              2022-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF/" class="category-chain-item">技术</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%8A%80%E6%9C%AF/">#技术</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/06/23/problems/Mac%E9%94%AE%E7%9B%98%E8%BF%9E%E7%BB%AD%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" target="_self">
+          Mac键盘连续输入问题
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/06/23/problems/Mac%E9%94%AE%E7%9B%98%E8%BF%9E%E7%BB%AD%E8%BE%93%E5%85%A5%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          
+          在 Vim 里移动光标的时候，发现长按 l 会弹出 l 键相关的其他内容，类似于提示框的东西。 在终端使用下面命令后重启电脑可解决: 12345defaults write NSGlobalDomain ApplePressAndHoldEnabled -boolean false或者defaults write -g ApplePressAndHoldEnabled -bool false  如
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-06-23 11:08" pubdate>
+              2022-06-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Problems/" class="category-chain-item">Problems</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Problems/Mac/" class="category-chain-item">Mac</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Mac/">#Mac</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/05/23/Tools/Vim/Vim%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%9B%BF%E6%8D%A2%E6%93%8D%E4%BD%9C/" target="_self">
           Vim查找与替换操作
         </a>
@@ -235,7 +364,7 @@
       <a class="index-excerpt" href="/2022/05/23/Tools/Vim/Vim%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%9B%BF%E6%8D%A2%E6%93%8D%E4%BD%9C/" target="_self">
         <div>
           
-          原文：Find and Replace in Vim &#x2F; Vi | Linuxize 常规使用vim查找与替换的命令结构： 1:[range]s&#x2F;&amp;#123;pattern&amp;#125;&#x2F;&amp;#123;string&amp;#125;&#x2F;[flags] [count] 在使用上，分隔符并不一定必须斜杠字符 &#x2F; ，也可以使用其他的非字母数字的字符，例如使用 |（s|foo|bar|)
+          原文：Find and Replace in Vim &#x2F; Vi | Linuxize 常规使用vim查找与替换的命令结构： 1:[range]s&#x2F;&amp;#123;pattern&amp;#125;&#x2F;&amp;#123;string&amp;#125;&#x2F;[flags] [count]  在使用上，分隔符并不一定必须斜杠字符 &#x2F; ，也可以使用其他的非字母数字的字符，例如使用 |（s|foo|bar|)  替换当前行第一
         </div>
       </a>
 
@@ -303,7 +432,7 @@
       <a class="index-excerpt" href="/2022/05/18/machinelearning/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/" target="_self">
         <div>
           
-          切换核显与GPU1234# 切换到核显sudo prime-select intel# 切换到GPUsudo prime-select nvidia 若提示 没有prime-select 命令，安装： 1sudo apt install nvidia-prime cudnn 与 cuda 版本对应关系cuDNN Archive | NVIDIA Developer cuda版本存档： cuda 版
+          切换核显与GPU1234# 切换到核显sudo prime-select intel# 切换到GPUsudo prime-select nvidia  若提示 没有prime-select 命令，安装： 1sudo apt install nvidia-prime  cudnn 与 cuda 版本对应关系cuDNN Archive | NVIDIA Developer cuda版本存档： cuda
         </div>
       </a>
 
@@ -502,7 +631,7 @@
       <a class="index-excerpt" href="/2022/04/20/Linux/%E7%A6%81%E7%94%A8Nouveau/" target="_self">
         <div>
           
-          Ubuntu20.04安装Nvidia driver提示Nouveau问题，要禁用 Nouveau，参考 RHEL&#x2F;CentOS 部分 1The Nouveau kernel driver is currently in use by your system. To install the Display Driver, the Nouveau drivers must first be disa
+          Ubuntu20.04安装Nvidia driver提示Nouveau问题，要禁用 Nouveau，参考 RHEL&#x2F;CentOS 部分 1The Nouveau kernel driver is currently in use by your system.  To install the Display Driver, the Nouveau drivers must first be dis
         </div>
       </a>
 
@@ -563,7 +692,7 @@
       <a class="index-excerpt" href="/2022/04/20/Linux/%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E6%94%AF%E6%8C%81SSL%E7%9A%84Python/" target="_self">
         <div>
           
-          步骤:https:&#x2F;&#x2F;techglimpse.com&#x2F;install-python-openssl-support-tutorial&#x2F; 如果在步骤中遇到了问题，可参考后面部分。 OpenSSL问题使用pip安装程序时提示 SSLError()1SSLError(&quot;Can&#39;t connect to HTTPS URL because the SSL module is not av
+          步骤:https:&#x2F;&#x2F;techglimpse.com&#x2F;install-python-openssl-support-tutorial&#x2F; 如果在步骤中遇到了问题，可参考后面部分。 OpenSSL问题使用pip安装程序时提示 SSLError()1SSLError(&quot;Can&amp;#x27;t connect to HTTPS URL because the SSL module is not a
         </div>
       </a>
 
@@ -689,7 +818,7 @@
       <a class="index-excerpt" href="/2022/03/24/Tools/Vim/Vim%E5%88%86%E5%B1%8F%E6%93%8D%E4%BD%9C/" target="_self">
         <div>
           
-          水平方向打开新文件123:sp linuxmi.py  或者  :split linuxmi.py   这个命令把窗口横向切分为两个窗口，并把光标置于上面的窗口中。 垂直方向分屏打开新文件12:vsp linux.py  :vsplit linux.py  这个命令把窗口纵向切分为两个窗口，并把光标置于左边的窗口中。 从命令行直接打开多个文件并分屏12vim -On file1, file2 ..
+          水平方向打开新文件123:sp linuxmi.py  或者  :split linuxmi.py    这个命令把窗口横向切分为两个窗口，并把光标置于上面的窗口中。 垂直方向分屏打开新文件12:vsp linux.py  :vsplit linux.py   这个命令把窗口纵向切分为两个窗口，并把光标置于左边的窗口中。 从命令行直接打开多个文件并分屏12vim -On file1, file2
         </div>
       </a>
 
@@ -736,135 +865,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/Vim/">#Vim</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/24/Linux/%E6%9F%A5%E7%9C%8BCPU%E4%B8%8EGPU%E6%B8%A9%E5%BA%A6/" target="_self">
-          查看CPU与GPU温度
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/03/24/Linux/%E6%9F%A5%E7%9C%8BCPU%E4%B8%8EGPU%E6%B8%A9%E5%BA%A6/" target="_self">
-        <div>
-          
-          查看CPU温度通 lm-sensors 过工具查看： 12345# 安装sudo apt-get install lm-sensors -yyes | sudo sensors-detect# 运行sensors 目前我用的这种方式，其他方式可参考：如何在Ubuntu Linux上获取CPU温度 - 知乎 查看GPU温度1nvidia-smi -q -i 0,1 -d TEMPERATURE -i
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-24 18:32" pubdate>
-              2022-03-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">#Linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/03/24/todo/%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81%E7%9A%84%E5%BA%94%E5%AF%B9%E6%96%B9%E6%B3%95/" target="_self">
-          哈希冲突的应对方法
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2022/03/24/todo/%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81%E7%9A%84%E5%BA%94%E5%AF%B9%E6%96%B9%E6%B3%95/" target="_self">
-        <div>
-          
-          copy from 解决哈希冲突的常用方法分析 - 云+社区 - 腾讯云  1.基本概念哈希算法：根据设定的哈希函数H（key）和处理冲突方法将一组关键字映象到一个有限的地址区间上的算法。也称为散列算法、杂凑算法。  哈希表：数据经过哈希算法之后得到的集合。这样关键字和数据在集合中的位置存在一定的关系，可以根据这种关系快速查询。 非哈希表：与哈希表相对应，集合中的 数据和其存放位置没任何关联关系
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-24 18:27" pubdate>
-              2022-03-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/TODO/" class="category-chain-item">TODO</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/TODO/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
             
           </div>
         

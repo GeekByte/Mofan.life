@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -271,6 +271,7 @@
               <h4 id="表名末尾自动追加s问题"><a href="#表名末尾自动追加s问题" class="headerlink" title="表名末尾自动追加s问题"></a>表名末尾自动追加<code>s</code>问题</h4><p>当使用GORM框架构建数据库表的结构时，它会在表明的结尾自动追加<code>s</code>字符，例如表明为<code>abc</code>，则到数据库中就变成了<code>abcs</code>。</p>
 <p>仅用的方法很简单，把构建表结构的<code>DB</code>对象的<code>SingularTable</code>属性设置为<code>true</code>，默认是<code>false</code>。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">db.SingularTable(<span class="hljs-literal">true</span>)<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

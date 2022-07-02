@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,12 +270,16 @@
               
               <h2 id="Itoa函数"><a href="#Itoa函数" class="headerlink" title="Itoa函数"></a>Itoa函数</h2><p>strconv.Itoa()函数的参数是一个整型数字，它可以将数字转换成对应的字符串类型的数字。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br> <br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;strconv&quot;</span><br>)<br> <br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	string_number := <span class="hljs-number">97</span><br>	result := strconv.Itoa(string_number)<br> <br>	fmt.Println(result)<br>	fmt.Printf(<span class="hljs-string">&quot;%T\n&quot;</span>, result)<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>运行结果：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">97<br>string<br></code></pre></td></tr></table></figure>
+
 <h2 id="string函数"><a href="#string函数" class="headerlink" title="string函数"></a>string函数</h2><p>string函数的参数若是一个整型数字，它将该整型数字转换成ASCII码值等于该整形数字的字符。string()函数是Go语言的内置函数，不需要导入任何包。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br> <br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>)<br> <br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	string_number := <span class="hljs-number">97</span><br>	result := <span class="hljs-keyword">string</span>(string_number)<br>	fmt.Println(result)<br>	fmt.Printf(<span class="hljs-string">&quot;%T\n&quot;</span>, result)<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br> <br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>)<br> <br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	string_number := <span class="hljs-number">97</span><br>	result := <span class="hljs-type">string</span>(string_number)<br>	fmt.Println(result)<br>	fmt.Printf(<span class="hljs-string">&quot;%T\n&quot;</span>, result)<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>运行结果：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">a<br>string<br></code></pre></td></tr></table></figure>
+
 <p>因为ASCII码值为97对应的字符是a，所以string(97)的结果是a</p>
 
               

@@ -63,7 +63,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -220,6 +220,135 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/12/%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4Kubernetes%E7%9A%84CronJob%E5%88%9B%E5%BB%BA%E7%9A%84Job/" target="_self">
+          如何自动删除Kubernetes的CronJob创建的Job
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2021/08/12/%E5%A6%82%E4%BD%95%E8%87%AA%E5%8A%A8%E5%88%A0%E9%99%A4Kubernetes%E7%9A%84CronJob%E5%88%9B%E5%BB%BA%E7%9A%84Job/" target="_self">
+        <div>
+          
+          kubernetes的文档里说，Job完成后不会删除创建的Pod， 保留这些 Pod 使得你可以查看已完成的 Pod 的日志输出，以便检查错误、警告 或者其它诊断性输出。但如果想在它完成后自动删除如何操作呢？ 首先要知道，由Job创建的Pod会在Job删除后级联删除。 方法一：通过限制历史记录数量或者禁用历史记录，让CronJob产生的Job到达一定数量后自动删除旧的，或者干脆Job完成（成功或者
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-12 19:49" pubdate>
+              2021-08-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Kubernetes/" class="category-chain-item">Kubernetes</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Kubernetes/">#Kubernetes</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/08/10/Go-runtime-Gosched-%E5%87%BD%E6%95%B0/" target="_self">
+          Go runtime.Gosched()函数
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2021/08/10/Go-runtime-Gosched-%E5%87%BD%E6%95%B0/" target="_self">
+        <div>
+          
+          代码定义： 123456&#x2F;&#x2F; Gosched yields the processor, allowing other goroutines to run. It does not&#x2F;&#x2F; suspend the current goroutine, so execution resumes automatically.func Gosched() &amp;#123;	checkTimeouts()	mca
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-08-10 23:17" pubdate>
+              2021-08-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/" class="category-chain-item">Go</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Go/">#Go</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
 
   <div class="row mx-auto index-card">
     
@@ -418,7 +547,7 @@
       <a class="index-excerpt" href="/2021/08/01/Go%E4%B8%BA%E4%BD%95%E6%B2%A1%E6%9C%89max-min-int-int-%E5%87%BD%E6%95%B0/" target="_self">
         <div>
           
-          官方解释：Don’t abuse math.Max &#x2F; math.Min | mrekucci’s blog Go提供了 float64 类型的计算最大&#x2F;最小值的函数，但没有提供 int 系列类型的函数，通过官方解释总结起来就是：  由于float64类型要处理 infinity 和 not-a-number 这种值，而他们的处理非常复杂，一般用户没有能力，所有go需要为用户提供系统级别的解决办法
+          官方解释：Don’t abuse math.Max &#x2F; math.Min | mrekucci’s blog Go提供了 float64 类型的计算最大&#x2F;最小值的函数，但没有提供 int 系列类型的函数，通过官方解释总结起来就是：  由于float64类型要处理 infinity 和 not-a-number 这种值，而他们的处理非常复杂，一般用户没有能力，所有go需要为用户提
         </div>
       </a>
 
@@ -547,7 +676,7 @@
       <a class="index-excerpt" href="/2021/07/31/Shell%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" target="_self">
         <div>
           
-          和其他语言一样，Shell 也可以包含外部脚本。这样可以很方便的封装一些公用的代码作为一个独立的文件。 Shell 文件包含的语法格式如下： 123. filename   # 注意点号(.)和文件名中间有一空格# 或source filename 测试： 123456789101112131415# 创建t1.sh$ vim t1.sh# 输入url&#x3D;&quot;https:&#x2F;&#x2F;www.mofa
+          和其他语言一样，Shell 也可以包含外部脚本。这样可以很方便的封装一些公用的代码作为一个独立的文件。 Shell 文件包含的语法格式如下： 123. filename   # 注意点号(.)和文件名中间有一空格# 或source filename  测试： 123456789101112131415# 创建t1.sh$ vim t1.sh# 输入url&#x3D;&quot;https:&#x2F;&#x2F;www.mof
         </div>
       </a>
 
@@ -687,147 +816,7 @@
       <a class="index-excerpt" href="/2021/07/31/Shell%E5%87%BD%E6%95%B0/" target="_self">
         <div>
           
-          Shell中函数的定义如下： 123456789[ function ] funname [()]&amp;#123;    action;    [return int;]&amp;#125; 说明：  1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。 2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。要特别注意这里的运行结果，
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-31 13:14" pubdate>
-              2021-07-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Shell/" class="category-chain-item">Shell</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">#Linux</a>
-            
-              <a href="/tags/Shell/">#Shell</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/31/Shell%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" target="_self">
-          Shell脚本之流程控制
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2021/07/31/Shell%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" target="_self">
-        <div>
-          
-          if 条件语句if 的语法结构为： 123456789if condition1then    command1elif condition2 then     command2else    commandNfi 注意： if 的流程控制不可为空，即符合条件的区域必须有内容。 1234567891011121314a&#x3D;10b&#x3D;20if [ $a &#x3D;&#x3D; $b ]then   echo &quot;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-31 13:14" pubdate>
-              2021-07-31
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Shell/" class="category-chain-item">Shell</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">#Linux</a>
-            
-              <a href="/tags/Shell/">#Shell</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/07/31/Shell%E5%8F%98%E9%87%8F/" target="_self">
-          Shell脚本之变量
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2021/07/31/Shell%E5%8F%98%E9%87%8F/" target="_self">
-        <div>
-          
-          注释单行注释 # 1# hello, world 多行注释 12345:&lt;&lt;EOF内容1...内容2...内容3...EOF EOF 也可以只用别的符号代替。 变量定义变量关于 Shell 的变量，首先记住两点：一是定义不加 $，使用才加；二是 &#x3D; 两边没空格。 另外，只需稍加注意下变量名的命名规则：  命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。 中间不能有空格，可以
+          Shell中函数的定义如下： 123456789[ function ] funname [()]&amp;#123;    action;    [return int;]&amp;#125;  说明：  1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。 2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。要特别注意这里的运行结果
         </div>
       </a>
 

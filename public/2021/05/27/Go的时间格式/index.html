@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -277,9 +277,11 @@
 <p>反观 Go 语言，它直接使用一个具体的时间来当做格式化字符串，需要什么格式，改这个时间格式即可。比如上面的例子，常规方式：2006-01-02  15:04:05，而 21-8-4 9:30:00 这种格式，只需要对应的改变值即可：06-1-2 3:04:05。而且，我查了下，PHP 没法表示没有前导零的分钟数和秒数，而 Go 很容易实现。很显然，Go 的方式是更合理、更易用的，对于各种变化，也能够更自如的应对。</p>
 <p>只不过，很多人对这个具体的时间觉得记不住。这一点，Go 官方也考虑到了。毕竟采用特殊的时间，目的就是为了解决大家记忆问题，因此要确保这个特殊时间也好记。Go 是这么设计的：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tex">1: month (January, Jan, 01, etc)<br>2: day<br>3: hour (15 is 3pm on a 24 hour clock)<br>4: minute<br>5: second<br>6: year (2006)<br>7: timezone (GMT-7 is MST)<br></code></pre></td></tr></table></figure>
+
 <p>刚好是 1 2 3 4 5 6 7，据此进行变化即可。</p>
 <p>比如官方定义的常量：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">const</span> (<br>    ANSIC       = <span class="hljs-string">&quot;Mon Jan _2 15:04:05 2006&quot;</span><br>    UnixDate    = <span class="hljs-string">&quot;Mon Jan _2 15:04:05 MST 2006&quot;</span><br>    RubyDate    = <span class="hljs-string">&quot;Mon Jan 02 15:04:05 -0700 2006&quot;</span><br>    RFC822      = <span class="hljs-string">&quot;02 Jan 06 15:04 MST&quot;</span><br>    RFC822Z     = <span class="hljs-string">&quot;02 Jan 06 15:04 -0700&quot;</span> <span class="hljs-comment">// RFC822 with numeric zone</span><br>    RFC850      = <span class="hljs-string">&quot;Monday, 02-Jan-06 15:04:05 MST&quot;</span><br>    RFC1123     = <span class="hljs-string">&quot;Mon, 02 Jan 2006 15:04:05 MST&quot;</span><br>    RFC1123Z    = <span class="hljs-string">&quot;Mon, 02 Jan 2006 15:04:05 -0700&quot;</span> <span class="hljs-comment">// RFC1123 with numeric zone</span><br>    RFC3339     = <span class="hljs-string">&quot;2006-01-02T15:04:05Z07:00&quot;</span><br>    RFC3339Nano = <span class="hljs-string">&quot;2006-01-02T15:04:05.999999999Z07:00&quot;</span><br>    Kitchen     = <span class="hljs-string">&quot;3:04PM&quot;</span><br>)<br></code></pre></td></tr></table></figure>
+
 <p>按 ANSIC 标准的日期格式，月、日、时、分、秒、年，最后加 MST 时区。对应就是 1 2 3 4 5 6 7。同时还可以随意加星期几。</p>
 <p>发现没有？围绕着 1 2 3 4 5 6 7 随意变化，真的不要太爽。我相信你用习惯了会发现 Go 这个设计真的太好了。</p>
 

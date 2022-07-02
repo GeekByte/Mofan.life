@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="创建表1create table xtable (name varchar(20), address text, age int); 插入数据123insert into xtable values(&amp;quot;X001&amp;quot;, &amp;quot;X City&amp;quot;, 24);insert into xtable values(&amp;quot;Y001&amp;quot;, &amp;quot;Y City&amp;amp;q">
+    <meta name="description" content="创建表1create table xtable (name varchar(20), address text, age int);  插入数据123insert into xtable values(&amp;quot;X001&amp;quot;, &amp;quot;X City&amp;quot;, 24);insert into xtable values(&amp;quot;Y001&amp;quot;, &amp;quot;Y City&amp;amp;">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 4 months ago
                   
                 
               </p>
@@ -269,19 +269,29 @@
             <div class="markdown-body">
               
               <h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> xtable (name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>), address text, age <span class="hljs-type">int</span>);<br></code></pre></td></tr></table></figure>
+
 <h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> xtable <span class="hljs-keyword">values</span>(&quot;X001&quot;, &quot;X City&quot;, <span class="hljs-number">24</span>);<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> xtable <span class="hljs-keyword">values</span>(&quot;Y001&quot;, &quot;Y City&quot;, <span class="hljs-number">22</span>);<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> xtable <span class="hljs-keyword">values</span>(&quot;Z001&quot;, &quot;Z City&quot;, <span class="hljs-number">22</span>);<br></code></pre></td></tr></table></figure>
-<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><h4 id="使用RETURNING子句返回更新后的字段"><a href="#使用RETURNING子句返回更新后的字段" class="headerlink" title="使用RETURNING子句返回更新后的字段"></a>使用RETURNING子句返回更新后的字段</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">update xtable <span class="hljs-keyword">set</span> age <span class="hljs-operator">=</span> <span class="hljs-number">20</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> &quot;X001&quot; returning age <span class="hljs-keyword">as</span> age_no;<br></code></pre></td></tr></table></figure>
+
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><h4 id="使用RETURNING子句返回更新后的字段"><a href="#使用RETURNING子句返回更新后的字段" class="headerlink" title="使用RETURNING子句返回更新后的字段"></a>使用RETURNING子句返回更新后的字段</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> xtable <span class="hljs-keyword">set</span> age <span class="hljs-operator">=</span> <span class="hljs-number">20</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> &quot;X001&quot; returning age <span class="hljs-keyword">as</span> age_no;<br></code></pre></td></tr></table></figure>
+
 <h3 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h3><h4 id="去重查询"><a href="#去重查询" class="headerlink" title="去重查询"></a>去重查询</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> age <span class="hljs-keyword">from</span> xtable <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
 <h3 id="清空表"><a href="#清空表" class="headerlink" title="清空表"></a>清空表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">truncate</span> <span class="hljs-keyword">table</span> xtable;<br></code></pre></td></tr></table></figure>
+
 <h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><p>从数据库中删除表，包含表的所有关联数据，包括 索引、规则、触发器和约束。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">drop</span> <span class="hljs-keyword">table</span> if <span class="hljs-keyword">exists</span> xtable;<br></code></pre></td></tr></table></figure>
+
 <h3 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h3><p>通过从表、子集或基础表中选择的列形成的虚拟表。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> replace <span class="hljs-keyword">view</span> vi <span class="hljs-keyword">as</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> xtable <span class="hljs-keyword">where</span> age <span class="hljs-keyword">is</span> <span class="hljs-keyword">null</span>;<br></code></pre></td></tr></table></figure>
+
 <h3 id="使用select语句创建表"><a href="#使用select语句创建表" class="headerlink" title="使用select语句创建表"></a>使用select语句创建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-string">&#x27;Jax&#x27;</span> <span class="hljs-keyword">as</span> col1, <span class="hljs-number">24</span> <span class="hljs-keyword">as</span> col2, <span class="hljs-string">&#x27;from china&#x27;</span> <span class="hljs-keyword">as</span> col3 <span class="hljs-keyword">into</span> ytable;<br></code></pre></td></tr></table></figure>
+
 <h3 id="设定超时"><a href="#设定超时" class="headerlink" title="设定超时"></a>设定超时</h3><p>指定某个查询在规定时间后超时中止，精确到毫秒。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">postgres# <span class="hljs-keyword">set</span> statement_timeout <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br>postgres# <span class="hljs-keyword">select</span> pg_sleep(<span class="hljs-number">20</span>);<br>ERROR:  canceling statement due <span class="hljs-keyword">to</span> statement timeout<br></code></pre></td></tr></table></figure>
+
 <h3 id="序号生成器"><a href="#序号生成器" class="headerlink" title="序号生成器"></a>序号生成器</h3><p>创建序列后，可以使用 <code>nextval</code> 和 <code>currval</code> 函数获取序列的下一个值和当前值。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> sequence seq;<br><br>nextval(<span class="hljs-string">&#x27;seq&#x27;</span>);<br><br>currval(<span class="hljs-string">&#x27;seq&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
 
 
 

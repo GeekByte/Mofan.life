@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="文章来自：go没有go协程号（goroutineid） - Go语言中文网 - Golang中文社区  今天想给日志添加一个前缀，以区分不同goroutine的日志，方便以后做日志跟踪。最直接的想法是在日志函数里面增加打印goroutineid，跟以前用c语言在日志打印线程id&amp;#x2F;进程id一样。 但是网上查了一下，go开发中不建议使用goroutineid，也没有提供获取协程id的函数（旧版本有，">
+    <meta name="description" content="文章来自：go没有go协程号（goroutineid） - Go语言中文网 - Golang中文社区  今天想给日志添加一个前缀，以区分不同goroutine的日志，方便以后做日志跟踪。最直接的想法是在日志函数里面增加打印goroutineid，跟以前用c语言在日志打印线程id&amp;#x2F;进程id一样。 但是网上查了一下，go开发中不建议使用goroutineid，也没有提供获取协程id的函数（">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -271,15 +271,16 @@
               <blockquote>
 <p>文章来自：<a target="_blank" rel="noopener" href="https://studygolang.com/topics/11363?fr=sidebar">go没有go协程号（goroutineid） - Go语言中文网 - Golang中文社区</a></p>
 </blockquote>
-<p>今天想给日志添加一个前缀，以区分不同goroutine的日志，方便以后做日志跟踪。最直接的想法是在日志函数里面增加打印goroutineid，跟以前用c语言在日志打印线程id/进程id一样。</p>
+<p>今天想给日志添加一个前缀，以区分不同goroutine的日志，方便以后做日志跟踪。最直接的想法是在日志函数里面增加打印goroutineid，跟以前用c语言在日志打印线程id&#x2F;进程id一样。</p>
 <p>但是网上查了一下，go开发中不建议使用goroutineid，也没有提供获取协程id的函数（旧版本有，但现在已删除）</p>
 <p>原因是担心人们使用goroutineid构建协程私有存储，这样很容易导致协程资源一直被占用，无法正常被gc回收。</p>
 <p>（协程结束了，但是协程引用的变量还存放在用户自己构造的协程级私有存储，这时gc无法回收协程）</p>
 <p>如果想在日志里面输出traceid，官方建议使用context包。但是这样做要求每个函数都增加context参数，在程序运行过程中层层传递，才可以实现。这样即不现实，也不优雅。</p>
 <p>为了解决goroutineid，网上各出奇招，有的使用runtime包未公开的方法获取：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Goid</span><span class="hljs-params">()</span> <span class="hljs-title">int</span></span> &#123;<br>    <span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span>  &#123;<br>        <span class="hljs-keyword">if</span> err := <span class="hljs-built_in">recover</span>(); err != <span class="hljs-literal">nil</span> &#123;<br>            fmt.Println(<span class="hljs-string">&quot;panic recover:panic info:%v&quot;</span>, err)        &#125;<br>    &#125;()<br><br>    <span class="hljs-keyword">var</span> buf [<span class="hljs-number">64</span>]<span class="hljs-keyword">byte</span><br>    n := runtime.Stack(buf[:], <span class="hljs-literal">false</span>)<br>    idField := strings.Fields(strings.TrimPrefix(<span class="hljs-keyword">string</span>(buf[:n]), <span class="hljs-string">&quot;goroutine &quot;</span>))[<span class="hljs-number">0</span>]<br>    id, err := strconv.Atoi(idField)<br>    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>        <span class="hljs-built_in">panic</span>(fmt.Sprintf(<span class="hljs-string">&quot;cannot get goroutine id: %v&quot;</span>, err))<br>    &#125;<br>    <span class="hljs-keyword">return</span> id<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Goid</span><span class="hljs-params">()</span></span> <span class="hljs-type">int</span> &#123;<br>    <span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span>  &#123;<br>        <span class="hljs-keyword">if</span> err := <span class="hljs-built_in">recover</span>(); err != <span class="hljs-literal">nil</span> &#123;<br>            fmt.Println(<span class="hljs-string">&quot;panic recover:panic info:%v&quot;</span>, err)        &#125;<br>    &#125;()<br><br>    <span class="hljs-keyword">var</span> buf [<span class="hljs-number">64</span>]<span class="hljs-type">byte</span><br>    n := runtime.Stack(buf[:], <span class="hljs-literal">false</span>)<br>    idField := strings.Fields(strings.TrimPrefix(<span class="hljs-type">string</span>(buf[:n]), <span class="hljs-string">&quot;goroutine &quot;</span>))[<span class="hljs-number">0</span>]<br>    id, err := strconv.Atoi(idField)<br>    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>        <span class="hljs-built_in">panic</span>(fmt.Sprintf(<span class="hljs-string">&quot;cannot get goroutine id: %v&quot;</span>, err))<br>    &#125;<br>    <span class="hljs-keyword">return</span> id<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>这个方法我觉得靠谱，显然runtime包是肯定有获取协程id的方法的，因为处理panic时默认会输出问题协程号。但是这样做效率会不会有问题，暂时还不清楚。</p>
-<p>另外有人使用汇编，cgo的方法获取协程号的，例如github的包：github.com/petermattis/goid</p>
+<p>另外有人使用汇编，cgo的方法获取协程号的，例如github的包：github.com&#x2F;petermattis&#x2F;goid</p>
 <p>这种效率应该高一些，网上有人测试说差了1000倍，不过这种方法兼容性不好，几乎每个版本都要使用不同的方法。</p>
 
               

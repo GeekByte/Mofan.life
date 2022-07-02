@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="查看最大连接数1postgres&amp;#x3D;# show max_connections; 查看当前连接数1postgres&amp;#x3D;# select count(*) from pg_stat_activity; 修改最大连接数12345vim &amp;#x2F;etc&amp;#x2F;postgresql&amp;#x2F;9.6&amp;#x2F;main&amp;#x2F;postgresql.conf# 通过&amp;#x2F;max 找到下面的配置,修改值max_connections &amp;#x3D; 100 使配置">
+    <meta name="description" content="查看最大连接数1postgres&amp;#x3D;# show max_connections;  查看当前连接数1postgres&amp;#x3D;# select count(*) from pg_stat_activity;  修改最大连接数12345vim &amp;#x2F;etc&amp;#x2F;postgresql&amp;#x2F;9.6&amp;#x2F;main&amp;#x2F;postgresql.conf# 通过&amp;#x2F;max 找到下面的配置,修改值max_connections &amp;#x3D; 100">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,9 +269,13 @@
             <div class="markdown-body">
               
               <h3 id="查看最大连接数"><a href="#查看最大连接数" class="headerlink" title="查看最大连接数"></a>查看最大连接数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">postgres<span class="hljs-operator">=</span># <span class="hljs-keyword">show</span> max_connections;<br></code></pre></td></tr></table></figure>
+
 <h3 id="查看当前连接数"><a href="#查看当前连接数" class="headerlink" title="查看当前连接数"></a>查看当前连接数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">postgres<span class="hljs-operator">=</span># <span class="hljs-keyword">select</span> <span class="hljs-built_in">count</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">from</span> pg_stat_activity;<br></code></pre></td></tr></table></figure>
-<h3 id="修改最大连接数"><a href="#修改最大连接数" class="headerlink" title="修改最大连接数"></a>修改最大连接数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/postgresql/9.6/main/postgresql.conf<br><br><span class="hljs-meta">#</span><span class="bash"> 通过/max 找到下面的配置,修改值</span><br>max_connections = 100<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="修改最大连接数"><a href="#修改最大连接数" class="headerlink" title="修改最大连接数"></a>修改最大连接数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim /etc/postgresql/9.6/main/postgresql.conf<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">通过/max 找到下面的配置,修改值</span><br>max_connections = 100<br><br></code></pre></td></tr></table></figure>
+
 <h3 id="使配置生效"><a href="#使配置生效" class="headerlink" title="使配置生效"></a>使配置生效</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">service postgresql restart<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

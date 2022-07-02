@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -278,35 +278,45 @@
 </ul>
 <h3 id="2-日志要打印出方法的入参、出参"><a href="#2-日志要打印出方法的入参、出参" class="headerlink" title="2. 日志要打印出方法的入参、出参"></a>2. 日志要打印出方法的入参、出参</h3><p>我们并不需要打印很多很多日志，只需要打印可以<strong>快速定位问题的有效日志</strong>。</p>
 <p>哪些算得的上<strong>有效关键</strong>的日志呢？比如说，方法进来的时候，打印<strong>入参</strong>。再然后呢，在方法返回的时候，就是<strong>打印出参，返回值</strong>。入参的话，一般就是<strong>userId或者bizSeq这些关键</strong>信息。正例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">testLogMethod</span><span class="hljs-params">(Document doc, Mode mode)</span></span>&#123;<br>   log.debug(“method enter param：&#123;&#125;”,userId);<br>   String id = <span class="hljs-string">&quot;666&quot;</span>;<br>   log.debug(“method exit param：&#123;&#125;”,id);<br>   <span class="hljs-keyword">return</span> id;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">testLogMethod</span><span class="hljs-params">(Document doc, Mode mode)</span>&#123;<br>   log.debug(“method enter param：&#123;&#125;”,userId);<br>   <span class="hljs-type">String</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;666&quot;</span>;<br>   log.debug(“method exit param：&#123;&#125;”,id);<br>   <span class="hljs-keyword">return</span> id;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h3 id="3-选择合适的日志格式"><a href="#3-选择合适的日志格式" class="headerlink" title="3. 选择合适的日志格式"></a>3. 选择合适的日志格式</h3><p>理想的日志格式，应当包括这些最基本的信息：如当<strong>前时间戳</strong>（一般毫秒精确度）、<strong>日志级别</strong>，<strong>线程名字</strong>等等。在logback日志里可以这么配置：</p>
 <p>如果我们的日志格式，连当前时间都沒有记录，那<strong>连请求的时间点都不知道了</strong>？</p>
 <h3 id="4-遇到if…else…等条件时，每个分支首行都尽量打印日志"><a href="#4-遇到if…else…等条件时，每个分支首行都尽量打印日志" class="headerlink" title="4. 遇到if…else…等条件时，每个分支首行都尽量打印日志"></a>4. 遇到if…else…等条件时，每个分支首行都尽量打印日志</h3><p>当你碰到<strong>if…else…或者switch</strong>这样的条件时，可以在分支的首行就打印日志，这样排查问题时，就可以通过日志，确定进入了哪个分支，代码逻辑更清晰，也更方便排查问题了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(user.isVip())&#123;<br>  log.info(<span class="hljs-string">&quot;该用户是会员,Id:&#123;&#125;,开始处理会员逻辑&quot;</span>,user,getUserId());<br>  <span class="hljs-comment">//会员逻辑</span><br>&#125;<span class="hljs-keyword">else</span>&#123;<br>  log.info(<span class="hljs-string">&quot;该用户是非会员,Id:&#123;&#125;,开始处理非会员逻辑&quot;</span>,user,getUserId())<br>  <span class="hljs-comment">//非会员逻辑</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="5-日志级别比较低时，进行日志开关判断"><a href="#5-日志级别比较低时，进行日志开关判断" class="headerlink" title="5.日志级别比较低时，进行日志开关判断"></a>5.日志级别比较低时，进行日志开关判断</h3><p>对于trace/debug这些比较低的日志级别，必须进行日志级别的开关判断。</p>
+
+<h3 id="5-日志级别比较低时，进行日志开关判断"><a href="#5-日志级别比较低时，进行日志开关判断" class="headerlink" title="5.日志级别比较低时，进行日志开关判断"></a>5.日志级别比较低时，进行日志开关判断</h3><p>对于trace&#x2F;debug这些比较低的日志级别，必须进行日志级别的开关判断。</p>
 <p>正例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">User user = <span class="hljs-keyword">new</span> User(<span class="hljs-number">888</span>, <span class="hljs-string">&quot;site&quot;</span>, <span class="hljs-string">&quot;mofan.life&quot;</span>);<br><span class="hljs-keyword">if</span> (log.isDebugEnabled()) &#123;<br>    log.debug(<span class="hljs-string">&quot;userId is: &#123;&#125;&quot;</span>, user.getId());<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>(<span class="hljs-number">888</span>, <span class="hljs-string">&quot;site&quot;</span>, <span class="hljs-string">&quot;mofan.life&quot;</span>);<br><span class="hljs-keyword">if</span> (log.isDebugEnabled()) &#123;<br>    log.debug(<span class="hljs-string">&quot;userId is: &#123;&#125;&quot;</span>, user.getId());<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>如果这样写的话：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">logger.debug(<span class="hljs-string">&quot;Processing trade with id: &quot;</span> + id + <span class="hljs-string">&quot; and symbol: &quot;</span> + symbol);<br></code></pre></td></tr></table></figure>
+
 <p>当<strong>配置的日志级别是warn</strong>的话，上述日志不会打印，但是会执行字符串拼接操作，如果<code>symbol</code>是对象， 还会执行<code>toString()</code>方法，浪费了系统资源，执行了上述操作，最终日志却没有打印，因此建议<strong>加日志开关判断。</strong></p>
 <h3 id="6-不能直接使用日志系统（Log4j、Logback）中的-API，而是使用日志框架SLF4J中的API。"><a href="#6-不能直接使用日志系统（Log4j、Logback）中的-API，而是使用日志框架SLF4J中的API。" class="headerlink" title="6. 不能直接使用日志系统（Log4j、Logback）中的 API，而是使用日志框架SLF4J中的API。"></a>6. 不能直接使用日志系统（Log4j、Logback）中的 API，而是使用日志框架SLF4J中的API。</h3><p>SLF4J 是门面模式的日志框架，有利于维护和各个类的日志处理方式统一，并且可以在保证不修改代码的情况下，很方便的实现底层日志框架的更换。</p>
 <p>正例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.slf4j.Logger; <br><span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Logger logger = LoggerFactory.getLogger(TianLuoBoy.class);<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> org.slf4j.Logger; <br><span class="hljs-keyword">import</span> org.slf4j.LoggerFactory;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> LoggerFactory.getLogger(TianLuoBoy.class);<br></code></pre></td></tr></table></figure>
+
 <h3 id="7-建议使用参数占位-，而不是用-拼接。"><a href="#7-建议使用参数占位-，而不是用-拼接。" class="headerlink" title="7. 建议使用参数占位{}，而不是用+拼接。"></a>7. 建议使用参数占位{}，而不是用+拼接。</h3><p>反例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">logger.info(<span class="hljs-string">&quot;Processing trade with id: &quot;</span> + id + <span class="hljs-string">&quot; and symbol: &quot;</span> + symbol);<br></code></pre></td></tr></table></figure>
+
 <p>上面的例子中，使用<code>+</code>操作符进行字符串的拼接，有一定的<strong>性能损耗</strong>。</p>
 <p>正例如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">logger.info(<span class="hljs-string">&quot;Processing trade with id: &#123;&#125; and symbol : &#123;&#125; &quot;</span>, id, symbol); <br></code></pre></td></tr></table></figure>
+
 <p>我们使用了大括号<code>&#123;&#125;</code>来作为日志中的占位符，比于使用<code>+</code>操作符，更加优雅简洁。并且，<strong>相对于反例</strong>，使用占位符仅是替换动作，可以有效提升性能。</p>
 <h3 id="8-建议使用异步的方式来输出日志。"><a href="#8-建议使用异步的方式来输出日志。" class="headerlink" title="8. 建议使用异步的方式来输出日志。"></a>8. 建议使用异步的方式来输出日志。</h3><ul>
 <li>日志最终会输出到文件或者其它输出流中的，IO性能会有要求的。如果异步，就可以显著提升IO性能。</li>
 <li>除非有特殊要求，要不然建议使用异步的方式来输出日志。以logback为例吧，要配置异步很简单，使用AsyncAppender就行</li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">appender</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;FILE_ASYNC&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;ch.qos.logback.classic.AsyncAppender&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">appender-ref</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;ASYNC&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">appender</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="9-不要使用e-printStackTrace"><a href="#9-不要使用e-printStackTrace" class="headerlink" title="9. 不要使用e.printStackTrace()"></a>9. 不要使用e.printStackTrace()</h3><p>反例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>&#123;<br>  <span class="hljs-comment">// 业务代码处理</span><br>&#125;<span class="hljs-keyword">catch</span>(Exception e)&#123;<br>  e.printStackTrace();<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>正例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span>&#123;<br>  <span class="hljs-comment">// 业务代码处理</span><br>&#125;<span class="hljs-keyword">catch</span>(Exception e)&#123;<br>  log.error(<span class="hljs-string">&quot;你的程序有异常啦&quot;</span>,e);<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p><strong>理由：</strong></p>
 <ul>
 <li>e.printStackTrace()打印出的堆栈日志跟业务代码日志是交错混合在一起的，通常排查异常日志不太方便。</li>
@@ -314,29 +324,35 @@
 </ul>
 <h3 id="10-异常日志不要只打一半，要输出全部错误信息"><a href="#10-异常日志不要只打一半，要输出全部错误信息" class="headerlink" title="10. 异常日志不要只打一半，要输出全部错误信息"></a>10. 异常日志不要只打一半，要输出全部错误信息</h3><p>反例1：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">//业务代码处理</span><br>&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>    <span class="hljs-comment">// 错误</span><br>    LOG.error(<span class="hljs-string">&#x27;你的程序有异常啦&#x27;</span>);<br>&#125; <br></code></pre></td></tr></table></figure>
+
 <ul>
 <li>异常e都没有打印出来，所以压根不知道出了什么类型的异常。</li>
 </ul>
 <p>反例2：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">//业务代码处理</span><br>&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>    <span class="hljs-comment">// 错误</span><br>    LOG.error(<span class="hljs-string">&#x27;你的程序有异常啦&#x27;</span>, e.getMessage());<br>&#125; <br></code></pre></td></tr></table></figure>
+
 <ul>
 <li><code>e.getMessage()</code>不会记录详细的堆栈异常信息，只会记录错误基本描述信息，不利于排查问题。</li>
 </ul>
 <p>正例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">try</span> &#123;<br>    <span class="hljs-comment">//业务代码处理</span><br>&#125; <span class="hljs-keyword">catch</span> (Exception e) &#123;<br>    <span class="hljs-comment">// 错误</span><br>    LOG.error(<span class="hljs-string">&#x27;你的程序有异常啦&#x27;</span>, e);<br>&#125; <br></code></pre></td></tr></table></figure>
+
 <h3 id="11-禁止在线上环境开启-debug"><a href="#11-禁止在线上环境开启-debug" class="headerlink" title="11. 禁止在线上环境开启 debug"></a>11. 禁止在线上环境开启 debug</h3><p>禁止在线上环境开启debug，这一点非常重要。</p>
 <p>因为一般系统的debug日志会很多，并且各种框架中也大量使用 debug的日志，线上开启debug不久可能会打满磁盘，影响业务系统的正常运行。</p>
 <h3 id="12-不要记录了异常，又抛出异常"><a href="#12-不要记录了异常，又抛出异常" class="headerlink" title="12.不要记录了异常，又抛出异常"></a>12.不要记录了异常，又抛出异常</h3><p>反例如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">log.error(<span class="hljs-string">&quot;IO exception&quot;</span>, e);<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> MyException(e);<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">log.error(<span class="hljs-string">&quot;IO exception&quot;</span>, e);<br><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyException</span>(e);<br></code></pre></td></tr></table></figure>
+
 <ul>
 <li>这样实现的话，通常会把栈信息打印两次。这是因为捕获了MyException异常的地方，还会再打印一次。</li>
 <li>这样的日志记录，或者包装后再抛出去，不要同时使用！否则你的日志看起来会让人很迷惑。</li>
 </ul>
 <h3 id="13-避免重复打印日志"><a href="#13-避免重复打印日志" class="headerlink" title="13.避免重复打印日志"></a>13.避免重复打印日志</h3><p>避免重复打印日志，酱紫会浪费磁盘空间。如果你已经有一行日志清楚表达了意思，<strong>避免再冗余打印</strong>，反例如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">if</span>(user.isVip())&#123;<br>  log.info(<span class="hljs-string">&quot;该用户是会员,Id:&#123;&#125;&quot;</span>,user,getUserId());<br>  <span class="hljs-comment">//冗余，可以跟前面的日志合并一起</span><br>  log.info(<span class="hljs-string">&quot;开始处理会员逻辑,id:&#123;&#125;&quot;</span>,user,getUserId());<br>  <span class="hljs-comment">//会员逻辑</span><br>&#125;<span class="hljs-keyword">else</span>&#123;<br>  <span class="hljs-comment">//非会员逻辑</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>如果你是使用log4j日志框架，务必在<code>log4j.xml</code>中设置 additivity=false，因为可以避免重复打印日志</p>
+
+<p>如果你是使用log4j日志框架，务必在<code>log4j.xml</code>中设置 additivity&#x3D;false，因为可以避免重复打印日志</p>
 <p>正例：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">logger</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;com.taobao.dubbo.config&quot;</span> <span class="hljs-attr">additivity</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span> <br></code></pre></td></tr></table></figure>
+
 <h3 id="14-日志文件分离"><a href="#14-日志文件分离" class="headerlink" title="14.日志文件分离"></a>14.日志文件分离</h3><ul>
 <li>我们可以把不同类型的日志分离出去，比如access.log，或者error级别error.log，都可以单独打印到一个文件里面。</li>
 <li>当然，也可以根据不同的业务模块，打印到不同的日志文件里，这样我们排查问题和做数据统计的时候，都会比较方便啦。</li>

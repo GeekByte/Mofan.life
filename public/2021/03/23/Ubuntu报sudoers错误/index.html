@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="我是在使用postgresql的时候出现的问题： 1xxx is not in the sudoers file.This incident will be reported 按照下面的方法 解决方法来自：Ubuntu报“xxx is not in the sudoers file.This incident will be reported” 错误解决方法_Linux教程_Linux公社-Lin">
+    <meta name="description" content="我是在使用postgresql的时候出现的问题： 1xxx is not in the sudoers file.This incident will be reported  按照下面的方法 解决方法来自：Ubuntu报“xxx is not in the sudoers file.This incident will be reported” 错误解决方法_Linux教程_Linux公社-Li">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 4 months ago
                   
                 
               </p>
@@ -270,21 +270,23 @@
               
               <p>我是在使用postgresql的时候出现的问题：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">xxx is not in the sudoers file.This incident will be reported<br></code></pre></td></tr></table></figure>
+
 <p>按照下面的方法</p>
 <p>解决方法来自：<a target="_blank" rel="noopener" href="http://www.linuxidc.com/Linux/2016-07/133066.htm">Ubuntu报“xxx is not in the sudoers file.This incident will be reported” 错误解决方法_Linux教程_Linux公社-Linux系统门户网站</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.linuxidc.com/topicnews.aspx?tid=2">Ubuntu</a>下普通用户用sudo执行命令时报”xxx is not in the sudoers file.This incident will be reported”错误，解决方法就是在/etc/sudoers文件里给该用户添加权限。如下：</p>
+<p><a target="_blank" rel="noopener" href="https://www.linuxidc.com/topicnews.aspx?tid=2">Ubuntu</a>下普通用户用sudo执行命令时报”xxx is not in the sudoers file.This incident will be reported”错误，解决方法就是在&#x2F;etc&#x2F;sudoers文件里给该用户添加权限。如下：</p>
 <p>1.切换到root用户下</p>
-<p>2./etc/sudoers文件默认是只读的，对root来说也是，因此需先添加sudoers文件的写权限,命令是:<br>chmod u+w /etc/sudoers</p>
-<p>3.编辑sudoers文件<br><code>vi /etc/sudoers</code><br>找到这行 root ALL=(ALL) ALL,在他下面添加xxx ALL=(ALL) ALL (这里的xxx是你的用户名)</p>
+<p>2.&#x2F;etc&#x2F;sudoers文件默认是只读的，对root来说也是，因此需先添加sudoers文件的写权限,命令是:<br>chmod u+w &#x2F;etc&#x2F;sudoers</p>
+<p>3.编辑sudoers文件<br><code>vi /etc/sudoers</code><br>找到这行 root ALL&#x3D;(ALL) ALL,在他下面添加xxx ALL&#x3D;(ALL) ALL (这里的xxx是你的用户名)</p>
 <p>ps:这里说下你可以sudoers添加下面四行中任意一条</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">youuser      ALL=(ALL)        ALL<br><span class="hljs-meta">%</span><span class="bash">youuser     ALL=(ALL)        ALL</span><br>youuser      ALL=(ALL)        NOPASSWD: ALL<br><span class="hljs-meta">%</span><span class="bash">youuser     ALL=(ALL)        NOPASSWD: ALL</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">youuser      ALL=(ALL)        ALL<br><span class="hljs-meta prompt_">%</span><span class="language-bash">youuser     ALL=(ALL)        ALL</span><br>youuser      ALL=(ALL)        NOPASSWD: ALL<br><span class="hljs-meta prompt_">%</span><span class="language-bash">youuser     ALL=(ALL)        NOPASSWD: ALL</span><br></code></pre></td></tr></table></figure>
+
 <ul>
 <li>第一行:允许用户youuser执行sudo命令(需要输入密码).</li>
 <li>第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).</li>
 <li>第三行:允许用户youuser执行sudo命令,并且在执行的时候不输入密码.</li>
 <li>第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不输入密码.</li>
 </ul>
-<p>4.撤销sudoers文件写权限,命令:<br>chmod u-w /etc/sudoers</p>
+<p>4.撤销sudoers文件写权限,命令:<br>chmod u-w &#x2F;etc&#x2F;sudoers</p>
 
               
             </div>
@@ -391,7 +393,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/03/23/Mac%E8%BF%9E%E6%8E%A5L2TPVPN%E9%97%AE%E9%A2%98/" title="Mac连接L2TPVPN问题">
+                      <a href="/2021/03/23/problems/Mac%E8%BF%9E%E6%8E%A5L2TPVPN%E9%97%AE%E9%A2%98/" title="Mac连接L2TPVPN问题">
                         <span class="hidden-mobile">Mac连接L2TPVPN问题</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>

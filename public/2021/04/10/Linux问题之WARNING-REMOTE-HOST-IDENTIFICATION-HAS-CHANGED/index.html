@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,6 +270,7 @@
               
               <p>在使用<code>ssh</code> 传输文件时，报了下面的问题：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs txt">[root@xx]# scp xxx.tar root@192.168.13.14:/root/<br>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br>@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @<br>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@<br>IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!<br>Someone could be eavesdropping on you right now (man-in-the-middle attack)!<br>It is also possible that a host key has just been changed.<br>The fingerprint for the ECDSA key sent by the remote host is<br>SHA256:9XvufSSIeZ7MAurIZ1Qw9Z13YV1Zcim2kthmECgYw.<br>Please contact your system administrator.<br>Add correct host key in /root/.ssh/known_hosts to get rid of this message.<br>Offending ECDSA key in /root/.ssh/known_hosts:8<br>ECDSA host key for 192.168.13.14 has changed and you have requested strict checking.<br>Host key verification failed.<br>lost connection<br></code></pre></td></tr></table></figure>
+
 <p>文件传输不过去，只需要删除<code>.ssh</code>目录下的known_hosts文件就能传输了。<br><code>rm -rf ~/.ssh/known_hosts</code></p>
 <p>应该是之前进行过传输，生成了这么一个认证文件，后来另一台机器可能重装系统了，但是路由器分给它的内网IP没有变，但是在通信认证的时候发现和原先的认证记录对不起来，造成了这个问题。这是我的个人猜测，如果有更好的简介，欢迎留言交流。</p>
 

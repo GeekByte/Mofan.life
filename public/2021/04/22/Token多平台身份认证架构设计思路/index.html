@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -286,7 +286,7 @@
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>下面是一些在IT服务常见的一些使用场景:</p>
 <ul>
 <li>用户在web浏览器端登录系统,使用系统服务</li>
-<li>用户在手机端（Android/iOS）登录系统,使用系统服务</li>
+<li>用户在手机端（Android&#x2F;iOS）登录系统,使用系统服务</li>
 <li>用户使用开放接口登录系统,调用系统服务</li>
 <li>用户在PC处理登录状态时通过手机扫码授权手机登录（使用得比较少）</li>
 <li>用户在手机处理登录状态进通过手机扫码授权PC进行登录（比较常见）</li>
@@ -294,7 +294,7 @@
 <p>通过对场景的细分,得到如下不同的认证token类别：</p>
 <h4 id="原始账号密码类别"><a href="#原始账号密码类别" class="headerlink" title="原始账号密码类别"></a>原始账号密码类别</h4><ul>
 <li>用户名和密码</li>
-<li>API应用ID/KEY</li>
+<li>API应用ID&#x2F;KEY</li>
 </ul>
 <h4 id="会话ID类别"><a href="#会话ID类别" class="headerlink" title="会话ID类别"></a>会话ID类别</h4><ul>
 <li>浏览器端token</li>
@@ -315,7 +315,7 @@
 <h5 id="变化成本"><a href="#变化成本" class="headerlink" title="变化成本"></a>变化成本</h5><p>本认证方式,token发生变化时,用户需要做出的相应更改的成本:</p>
 <ul>
 <li>用户名和密码发生变化时,用户需要额外记忆和重新键入新密码</li>
-<li>API应用ID/KEY发生变化时,第三方应用需要重新在代码中修改并部署</li>
+<li>API应用ID&#x2F;KEY发生变化时,第三方应用需要重新在代码中修改并部署</li>
 <li>授权二维码发生变化时,需要用户重新打开手机应用进行扫码</li>
 </ul>
 <p>环境风险</p>
@@ -348,7 +348,7 @@
 <p>将各类token的固有特点及可控属性进行调控后, 对每个指标进行量化评分（1~5分），我们可以得到如下的对比表：</p>
 <p><img src="https://www.cmdbyte.com/2021/02/token_2.jpeg" srcset="/img/loading.gif" lazyload></p>
 <blockquote>
-<p>备注:user_name/passwd 和 app_id/app_key 是等价的效果</p>
+<p>备注:user_name&#x2F;passwd 和 app_id&#x2F;app_key 是等价的效果</p>
 </blockquote>
 <h3 id="token的层级关系"><a href="#token的层级关系" class="headerlink" title="token的层级关系"></a>token的层级关系</h3><p>参考上一节的对比表，可以很容易对这些不同用途的token进行分层，主要可以分为4层：</p>
 <ul>
@@ -373,14 +373,14 @@
 <li>良好的解耦性。核心接口调用服务器的认证 access_token 可以完成独立的实现和部署</li>
 <li>良好的层次性。不同平台的可以有完全不同的用户权限控制系统，这个控制可以在 会话层 中各平台解决掉</li>
 </ul>
-<h4 id="账号密码"><a href="#账号密码" class="headerlink" title="账号密码"></a>账号密码</h4><p>广义的 账号/密码 有如下的呈现方式:</p>
+<h4 id="账号密码"><a href="#账号密码" class="headerlink" title="账号密码"></a>账号密码</h4><p>广义的 账号&#x2F;密码 有如下的呈现方式:</p>
 <ul>
 <li>传统的注册用户名和密码</li>
-<li>应用程序的app_id/app_key</li>
+<li>应用程序的app_id&#x2F;app_key</li>
 </ul>
 <h5 id="它们的特点如下："><a href="#它们的特点如下：" class="headerlink" title="它们的特点如下："></a>它们的特点如下：</h5><h5 id="会有特别的意义"><a href="#会有特别的意义" class="headerlink" title="会有特别的意义"></a>会有特别的意义</h5><p>比如：用户自己为了方便记忆，会设置有一定含义的账号和密码。</p>
 <p>搜索公众号后端架构师后台回复“架构整洁”，获取一份惊喜礼包。</p>
-<h5 id="不常修改"><a href="#不常修改" class="headerlink" title="不常修改"></a>不常修改</h5><p>账号密码对用户有特别含义，一般没有特殊情况不会愿意修改。而app_id/app_key则会写在应用程序中，修改会意味着重新发布上线的成本</p>
+<h5 id="不常修改"><a href="#不常修改" class="headerlink" title="不常修改"></a>不常修改</h5><p>账号密码对用户有特别含义，一般没有特殊情况不会愿意修改。而app_id&#x2F;app_key则会写在应用程序中，修改会意味着重新发布上线的成本</p>
 <h5 id="一旦泄露影响深远"><a href="#一旦泄露影响深远" class="headerlink" title="一旦泄露影响深远"></a>一旦泄露影响深远</h5><p>正因为不常修改，只要泄露了基本相当于用户的网络身份被泄露，而且只要没被察觉这种身份盗用就会一直存在</p>
 <p>所以在认证系统中应该尽量减少传输的机会，避免泄露。</p>
 <h4 id="客户端会话token"><a href="#客户端会话token" class="headerlink" title="客户端会话token"></a>客户端会话token</h4><h5 id="功能："><a href="#功能：" class="headerlink" title="功能："></a>功能：</h5><p>充当着session的角色，不同的客户端有不同的生命周期。</p>
@@ -454,7 +454,7 @@
 <li>有时效的优惠券发放</li>
 <li>有时效的邀请码发放</li>
 <li>有时效的二维码授权</li>
-<li>具有时效 手机/邮件 验证码</li>
+<li>具有时效 手机&#x2F;邮件 验证码</li>
 <li>多个不同平台调用同一套API接口</li>
 <li>多个平台使用同一个身份认证中心</li>
 </ul>

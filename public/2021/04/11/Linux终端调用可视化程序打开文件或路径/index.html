@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -273,19 +273,25 @@
 <p>其实在终端，我们可以通过命令调用某些程序，直接打开文件或者路径。</p>
 <h3 id="方式一-借助nautilus"><a href="#方式一-借助nautilus" class="headerlink" title="方式一: 借助nautilus"></a>方式一: 借助nautilus</h3><p><code>nautilus</code> 是 <code>Ubuntu</code> 下默认的文件管理器。<br>在控制台可以使用 <code>nautilus</code> 命令打开文件管理器，并且文件管理器界面所处的路径和当前终端相同。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nautilus &lt;path&gt;<br></code></pre></td></tr></table></figure>
+
 <p>为了更方便的使用该命令，可以为它添加 <code>alias</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">alias opendir=&#x27;nautilus&#x27;<br></code></pre></td></tr></table></figure>
+
 <h3 id="方式二：直接打开"><a href="#方式二：直接打开" class="headerlink" title="方式二：直接打开"></a>方式二：直接打开</h3><p>大多数软件安装后都是可以从命令行调用启动的，如果不能在终端调用，也可以找到其安装路径，将其添加到环境变量中。</p>
 <p>因此直接调用对应的应用程序，打开对应文件。例如</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">wps xxx.doc<br>FoxitReader xxx.pdf<br></code></pre></td></tr></table></figure>
+
 <h3 id="方式三：xdg-open"><a href="#方式三：xdg-open" class="headerlink" title="方式三：xdg-open"></a>方式三：xdg-open</h3><p>上面介绍的两种方式需要记住两类命令，一类是打开路径的，一类是打开文件的，但我们用鼠标无论是打开文件夹还是打开文件都只有一个操作–双击，其背后的原理就是文件夹或文件的打开都绑定了一个默认操作它的程序。</p>
 <p>所以，我们可以使用<code>xdg-open</code>命令打开文件或文件夹，剩下的具体用什么程序打开，交给系统去判断。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">xdg-open xxx.doc<br>xdg-open xxx.pdf<br>xdg-open xxx.png<br>xdg-open xxx.mp4<br>xdg-open .<br>xdg-open ~/Downloads<br></code></pre></td></tr></table></figure>
+
 <p><code>xdg-open</code>命令还有一个操作，就是可以传入网址，系统监测到是网址，于是调用默认的浏览器去打开它。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">xdg-open https://www.baidu.com<br></code></pre></td></tr></table></figure>
+
 <p>总之，<code>xdg-open</code>可以完成所有你用鼠标双击的操作，都是调用默认的程序去打开对应的文件。</p>
 <p>为了方便输入这个命令，同样可以给它添加一个<code>alias</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">alias dakai=&#x27;xdg-open&#x27;<br>alias 打开=&#x27;xdg-open&#x27;<br></code></pre></td></tr></table></figure>
+
 <p>我们看到我们添加了两个<code>alias</code>，于是就实现了输入英文或者输入中文都能使用<code>xdg-open</code>的操作，免去了在终端还有切换一次中英文的操作。</p>
 
               

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,17 +269,19 @@
             <div class="markdown-body">
               
               <h3 id="查看连接信息"><a href="#查看连接信息" class="headerlink" title="查看连接信息"></a>查看连接信息</h3><p>成功连接 redis server 后，使用 <code>info clients</code> 命令会打印以下信息:</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tex"># Clients<br>connected_clients:5<br>cluster_connections:0<br>maxclients:10000<br>client_recent_max_input_buffer:40<br>client_recent_max_output_buffer:0<br>blocked_clients:0<br>tracking_clients:0<br>clients_in_timeout_table:0<br></code></pre></td></tr></table></figure>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tex"><span class="hljs-params">#</span> Clients<br>connected<span class="hljs-built_in">_</span>clients:5<br>cluster<span class="hljs-built_in">_</span>connections:0<br>maxclients:10000<br>client<span class="hljs-built_in">_</span>recent<span class="hljs-built_in">_</span>max<span class="hljs-built_in">_</span>input<span class="hljs-built_in">_</span>buffer:40<br>client<span class="hljs-built_in">_</span>recent<span class="hljs-built_in">_</span>max<span class="hljs-built_in">_</span>output<span class="hljs-built_in">_</span>buffer:0<br>blocked<span class="hljs-built_in">_</span>clients:0<br>tracking<span class="hljs-built_in">_</span>clients:0<br>clients<span class="hljs-built_in">_</span>in<span class="hljs-built_in">_</span>timeout<span class="hljs-built_in">_</span>table:0<br></code></pre></td></tr></table></figure>
 <p>通过上面的信息可知, <code>connected_clients</code> 代表当前连接数，<code>maxclients</code> 代表该redis server 允许的最大连接数。</p>
 <blockquote>
 <p>也可以通过命令 <code>CONFIG GET maxclients</code> 获取最大连接数。</p>
 </blockquote>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">1) &quot;maxclients&quot;<br>2) &quot;10000&quot;<br></code></pre></td></tr></table></figure>
 <h3 id="设置最大连接数"><a href="#设置最大连接数" class="headerlink" title="设置最大连接数"></a>设置最大连接数</h3><p>有三种方式可以进行设置。</p>
-<h4 id="通过配置文件"><a href="#通过配置文件" class="headerlink" title="通过配置文件"></a>通过配置文件</h4><p>在2.6之后的版本，允许通过配置文件修改最大连接数。<br>在配置文件中找到<code># maxclients 1000，取消注释，修改数值即可，修改完后要重启 </code>redis server`。</p>
+<h4 id="通过配置文件"><a href="#通过配置文件" class="headerlink" title="通过配置文件"></a>通过配置文件</h4><p>在2.6之后的版本，允许通过配置文件修改最大连接数。<br>在配置文件中找到<code># maxclients 1000，取消注释，修改数值即可，修改完后要重启 </code>redis server&#96;。</p>
 <h4 id="启动-redis-server-时加参数"><a href="#启动-redis-server-时加参数" class="headerlink" title="启动 redis server 时加参数"></a>启动 redis server 时加参数</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">redis-server --maxclients 100000 -f /etc/redis.conf<br></code></pre></td></tr></table></figure>
+
 <h4 id="通过redis客户端设置"><a href="#通过redis客户端设置" class="headerlink" title="通过redis客户端设置"></a>通过redis客户端设置</h4><p>成功连接redis server后，在终端使用下面命令设置</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">CONFIG SET maxclients 2000<br></code></pre></td></tr></table></figure>
+
 <p>通过这种方式修改不需要重启Redis，但是在 redis server 重启后这种设置会失效。</p>
 
               

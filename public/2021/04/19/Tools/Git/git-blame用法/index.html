@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="在使用Git作为代码的版本控制系统时，有时候想查看下这行代码是谁写的或者谁修改的，可以使用git blame命令。 其具体用法为： 1234# 从文件第一行开始查看git blame 文件名# 指定行的范围查看,比如查看10-30行的代码git blame 10,30 文件名 通过Enter进行换行，通过Q退出查看。 该命令的输出格式为: 1commit_ID | 代码提交作者 | 提交时间 |">
+    <meta name="description" content="在使用Git作为代码的版本控制系统时，有时候想查看下这行代码是谁写的或者谁修改的，可以使用git blame命令。 其具体用法为： 1234# 从文件第一行开始查看git blame 文件名# 指定行的范围查看,比如查看10-30行的代码git blame 10,30 文件名  通过Enter进行换行，通过Q退出查看。 该命令的输出格式为: 1commit_ID | 代码提交作者 | 提交时间 |">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 4 months ago
                   
                 
               </p>
@@ -270,10 +270,12 @@
               
               <p>在使用<code>Git</code>作为代码的版本控制系统时，有时候想查看下这行代码是谁写的或者谁修改的，可以使用<code>git blame</code>命令。</p>
 <p>其具体用法为：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 从文件第一行开始查看</span><br>git blame 文件名<br><span class="hljs-meta">#</span><span class="bash"> 指定行的范围查看,比如查看10-30行的代码</span><br>git blame 10,30 文件名<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">从文件第一行开始查看</span><br>git blame 文件名<br><span class="hljs-meta prompt_"># </span><span class="language-bash">指定行的范围查看,比如查看10-30行的代码</span><br>git blame 10,30 文件名<br></code></pre></td></tr></table></figure>
+
 <p>通过<code>Enter</code>进行换行，通过<code>Q</code>退出查看。</p>
 <p>该命令的输出格式为:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">commit_ID | 代码提交作者 | 提交时间 | 代码位于文件中的行数 | 实际代码 <br></code></pre></td></tr></table></figure>
+
 
 
 <p>知道<code>commit_ID</code>后，可以使用命令<code>git show commit_ID</code>查看具体的改动情况。</p>

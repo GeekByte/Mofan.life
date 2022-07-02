@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -281,14 +281,17 @@
 <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><h4 id="创建模式"><a href="#创建模式" class="headerlink" title="创建模式"></a>创建模式</h4><p>使用<code>CREATE SCHEMA</code> 语句。</p>
 <p>示例：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-comment">-- 创建模式</span><br><span class="hljs-keyword">CREATE</span> SCHEMA myschema;<br><br><span class="hljs-comment">-- 在某个模式下创建表，如果模式不存在则创建模式并在该模式下创建表，模式存在则仅创建表</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> myschema.company(<br>   ID   <span class="hljs-type">INT</span>              <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>   NAME <span class="hljs-type">VARCHAR</span> (<span class="hljs-number">20</span>)     <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>   AGE  <span class="hljs-type">INT</span>              <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>   ADDRESS  <span class="hljs-type">CHAR</span> (<span class="hljs-number">25</span>),<br>   SALARY   <span class="hljs-type">DECIMAL</span> (<span class="hljs-number">18</span>, <span class="hljs-number">2</span>),<br>   <span class="hljs-keyword">PRIMARY</span> KEY (ID)<br>);<br></code></pre></td></tr></table></figure>
+
 <h4 id="切换模式"><a href="#切换模式" class="headerlink" title="切换模式"></a>切换模式</h4><p><code>\dn</code> : 查看数据库下所有的模式</p>
 <p><code>\set search_path=模式名</code> : 切换到对应模式下</p>
 <p><code>\dt</code> 或 <code>\d</code> : 查看模式下表的<strong>关联列表</strong></p>
 <p> <code>\dp</code> 查看模式下表的<strong>存取权限</strong></p>
 <h4 id="删除模式"><a href="#删除模式" class="headerlink" title="删除模式"></a>删除模式</h4><p>删除一个空的模式：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">DROP</span> SCHEMA myschema;<br></code></pre></td></tr></table></figure>
+
 <p>删除一个模式以及其中包含的所有对象：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">DROP</span> SCHEMA myschema CASCADE;<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

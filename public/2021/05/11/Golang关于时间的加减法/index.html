@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -278,17 +278,23 @@
 <li><code>UnixNano() / 1e6</code>：时间戳，毫秒。</li>
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs go">t := time.Now()<br>fmt.Println(<span class="hljs-string">&quot;time.Now()：&quot;</span>, t) <span class="hljs-comment">// 2020-10-24 22:10:53.328973 +0800 CST m=+0.006015101</span><br>year, month, day := t.Date()<br>fmt.Println(<span class="hljs-string">&quot;日期：&quot;</span>, year, month, day) <span class="hljs-comment">// 2020 October 24</span><br>fmt.Println(<span class="hljs-string">&quot;一年中的第几天：&quot;</span>, t.YearDay()) <span class="hljs-comment">// 298</span><br>fmt.Println(<span class="hljs-string">&quot;星期几：&quot;</span>, t.Weekday()) <span class="hljs-comment">// Saturday</span><br>fmt.Println(<span class="hljs-string">&quot;年：&quot;</span>, t.Year()) <span class="hljs-comment">// 2020</span><br>fmt.Println(<span class="hljs-string">&quot;月：&quot;</span>, t.Month()) <span class="hljs-comment">// October</span><br>fmt.Println(<span class="hljs-string">&quot;日：&quot;</span>, t.Day()) <span class="hljs-comment">// 24</span><br>fmt.Println(<span class="hljs-string">&quot;时：&quot;</span>, t.Hour()) <span class="hljs-comment">// 22</span><br>fmt.Println(<span class="hljs-string">&quot;分：&quot;</span>, t.Minute()) <span class="hljs-comment">// 10</span><br>fmt.Println(<span class="hljs-string">&quot;秒：&quot;</span>, t.Second()) <span class="hljs-comment">// 53</span><br>fmt.Println(<span class="hljs-string">&quot;纳秒：&quot;</span>, t.Nanosecond()) <span class="hljs-comment">// 328973000</span><br>fmt.Println(<span class="hljs-string">&quot;秒时间戳：&quot;</span>, t.Unix()) <span class="hljs-comment">// 1603548653</span><br>fmt.Println(<span class="hljs-string">&quot;纳秒时间戳：&quot;</span>, t.UnixNano()) <span class="hljs-comment">// 1603548653328973000</span><br>fmt.Println(<span class="hljs-string">&quot;毫秒时间戳：&quot;</span>, t.UnixNano() / <span class="hljs-number">1e6</span>) <span class="hljs-comment">// 1603548653328</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="线程睡眠"><a href="#线程睡眠" class="headerlink" title="线程睡眠"></a>线程睡眠</h2><p>可以使用<code>Duration</code>对象和指数<code>e</code></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go">time.Sleep(<span class="hljs-number">2</span> * time.Second) <span class="hljs-comment">// 休眠2秒</span><br>time.Sleep(<span class="hljs-number">2e9</span>) <span class="hljs-comment">// 休眠2秒</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="计算耗时"><a href="#计算耗时" class="headerlink" title="计算耗时"></a>计算耗时</h2><p>使用<code>Sub()</code>计算两个<code>Time</code>间隔。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs go">t := time.Now()<br>time.Sleep(<span class="hljs-number">2e9</span>) <span class="hljs-comment">// 休眠2秒</span><br>delta := time.Now().Sub(t)<br>fmt.Println(<span class="hljs-string">&quot;时间差：&quot;</span>, delta) <span class="hljs-comment">// 2.0534341s</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="时间加减"><a href="#时间加减" class="headerlink" title="时间加减"></a>时间加减</h2><p>使用<code>Add</code>增加纳秒、微秒、毫秒、秒、分、时，接收<code>Duration</code>对象。</p>
 <p>使用<code>AddDate</code>增加年、月、日，接收<code>int</code>参数。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs go">t := time.Now()<br>addOneHour := t.Add(time.Hour)<br>addTwoHour := t.Add(<span class="hljs-number">2</span> * time.Hour)<br>fmt.Println(<span class="hljs-string">&quot;增加1小时：&quot;</span>, addOneHour)<br>fmt.Println(<span class="hljs-string">&quot;增加2小时：&quot;</span>, addTwoHour)<br><br>subTwoHour := t.Add(<span class="hljs-number">-2</span> * time.Hour)<br>fmt.Println(<span class="hljs-string">&quot;减去2小时：&quot;</span>, subTwoHour)<br><br>addDate := t.AddDate(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br>fmt.Println(<span class="hljs-string">&quot;增加1年：&quot;</span>, addDate) <span class="hljs-comment">// 2021-10-24 22:10:53.328973 +0800 CST</span><br><br>subDate := t.AddDate(<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)<br>fmt.Println(<span class="hljs-string">&quot;减去1年：&quot;</span>, subDate) <span class="hljs-comment">// 2019-10-24 22:10:53.328973 +0800 CST</span><br><br>before := t.Before(t.Add(time.Hour))<br>fmt.Println(<span class="hljs-string">&quot;before：&quot;</span>, before)<br><br>after := t.After(t.Add(time.Hour))<br>fmt.Println(<span class="hljs-string">&quot;after：&quot;</span>, after)<br></code></pre></td></tr></table></figure>
+
 <h2 id="毫秒转换"><a href="#毫秒转换" class="headerlink" title="毫秒转换"></a>毫秒转换</h2><p>毫秒转换<code>Time</code></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go">nanoSecondToTime := time.Unix(<span class="hljs-number">0</span>, <span class="hljs-number">1603546715761482000</span>)<br>fmt.Println(<span class="hljs-string">&quot;毫秒值转Time：&quot;</span>, nanoSecondToTime) <span class="hljs-comment">// 2020-10-24 21:38:35.761482 +0800 CST</span><br></code></pre></td></tr></table></figure>
+
 <p>秒转换<code>Time</code></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go">secondToTime := time.Unix(<span class="hljs-number">1603546715</span>, <span class="hljs-number">0</span>)<br>fmt.Println(<span class="hljs-string">&quot;秒值转Time：&quot;</span>, secondToTime) <span class="hljs-comment">// 2020-10-24 21:38:35 +0800 CST</span><br></code></pre></td></tr></table></figure>
+
 
               
             </div>

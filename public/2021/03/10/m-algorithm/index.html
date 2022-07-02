@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -282,8 +282,8 @@
 </blockquote>
 <blockquote>
 <p>和可被k整除的子数组(这里用了35min，要了若干次提示QAQ）</p>
-<p> 给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目，时间要求O(n)。  输入：A = [4,5,0,-2,-3,1], K = 5  输出：7  </p>
-<p>解释： 有 7 个子数组满足其元素之和可被 K = 5 整除： [4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]   提示：  1 &lt;= A.length &lt;= 30000  -10000 &lt;= A[i] &lt;= 10000  2 &lt;= K &lt;= 10000</p>
+<p> 给定一个整数数组 A，返回其中元素之和可被 K 整除的（连续、非空）子数组的数目，时间要求O(n)。  输入：A &#x3D; [4,5,0,-2,-3,1], K &#x3D; 5  输出：7  </p>
+<p>解释： 有 7 个子数组满足其元素之和可被 K &#x3D; 5 整除： [4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]   提示：  1 &lt;&#x3D; A.length &lt;&#x3D; 30000  -10000 &lt;&#x3D; A[i] &lt;&#x3D; 10000  2 &lt;&#x3D; K &lt;&#x3D; 10000</p>
 </blockquote>
 <blockquote>
 <p>手撕代码 LRU</p>
@@ -310,6 +310,7 @@
 </blockquote>
 <p>这段代码有什么问题：</p>
 <h6 id="2-1-这段代码有什么问题，如果解决"><a href="#2-1-这段代码有什么问题，如果解决" class="headerlink" title="2.1 这段代码有什么问题，如果解决"></a>2.1 这段代码有什么问题，如果解决</h6><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs go">total := <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++ &#123;<br>    sum += i<br>    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>        total += i<br>    &#125;()<br>&#125;<br>fmt.Printf(<span class="hljs-string">&quot;total:%d sum %d&quot;</span>, total, sum)<br></code></pre></td></tr></table></figure>
+
 <blockquote>
 <p>这段代码在协程里面执行，会造成数据不统一<br>可以使用加锁避免</p>
 </blockquote>
@@ -320,6 +321,7 @@
 <p>代码如下:</p>
 </blockquote>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> lo sync.Mutex<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    total := <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++ &#123;<br>        nums += i<br>        lo.Lock()<br>        <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>            total += i<br>            lo.Unlock()<br>        &#125;()<br>    &#125;<br>    fmt.Printf(<span class="hljs-string">&quot;total:%d&quot;</span>, total)<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <ul>
 <li>还有其他问题吗</li>
 </ul>

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -271,29 +271,42 @@
               <h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>使用<code>CREATE TABLE</code> 语句。</p>
 <p>示例：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> COMPANY(<br>   ID <span class="hljs-type">INT</span> <span class="hljs-keyword">PRIMARY</span> KEY     <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>   NAME           TEXT    <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>   AGE            <span class="hljs-type">INT</span>     <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>   ADDRESS        <span class="hljs-type">CHAR</span>(<span class="hljs-number">50</span>),<br>   SALARY         <span class="hljs-type">REAL</span><br>);<br></code></pre></td></tr></table></figure>
+
 <p>其他命令:</p>
 <p><code>\d</code> : 查看存在的表的列表</p>
 <p><code>\d tablename</code> : 查看表的信息</p>
 <h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><p>使用<code>DROP TABLE</code> 语句。</p>
 <p>示例：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> department, company;<br><br><span class="hljs-comment">-- 配合 IF EXISTS 使用, 如果存在删除表</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> department, company;<br></code></pre></td></tr></table></figure>
+
 <h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><h4 id="修改列的数据类型"><a href="#修改列的数据类型" class="headerlink" title="修改列的数据类型"></a>修改列的数据类型</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">ALTER</span> column_name TYPE datatype;<br></code></pre></td></tr></table></figure>
+
 <h4 id="修改列的名称"><a href="#修改列的名称" class="headerlink" title="修改列的名称"></a>修改列的名称</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name RENAME old_cloumn_name <span class="hljs-keyword">TO</span> new_column_name;<br></code></pre></td></tr></table></figure>
+
 <h4 id="删除列"><a href="#删除列" class="headerlink" title="删除列"></a>删除列</h4><p>删除一列</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> col1;<br></code></pre></td></tr></table></figure>
+
 <p>删除多列</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs SQL"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> col1, <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> col2;<br></code></pre></td></tr></table></figure>
+
 <h4 id="新增列"><a href="#新增列" class="headerlink" title="新增列"></a>新增列</h4><p>在<code>company</code> 表新增 <code>age</code> 列，类型为<code>real</code>，非空。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> company <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">column</span> <span class="hljs-type">real</span> <span class="hljs-type">real</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></td></tr></table></figure>
+
 <h4 id="给列添加-NOT-NULL-约束"><a href="#给列添加-NOT-NULL-约束" class="headerlink" title="给列添加 NOT NULL 约束"></a>给列添加 NOT NULL 约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name MODIFY column_name datatype <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></td></tr></table></figure>
+
 <h4 id="给列添加-UNIQUE-约束"><a href="#给列添加-UNIQUE-约束" class="headerlink" title="给列添加 UNIQUE 约束"></a>给列添加 UNIQUE 约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> MyUniqueConstraint <span class="hljs-keyword">UNIQUE</span>(column1, column2...);<br></code></pre></td></tr></table></figure>
+
 <p><code>MyUniqueConstraint</code>: 约束的名字，方便管理</p>
 <h4 id="给列添加-CHECK-约束"><a href="#给列添加-CHECK-约束" class="headerlink" title="给列添加 CHECK 约束"></a>给列添加 CHECK 约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> MyUniqueConstraint <span class="hljs-keyword">CHECK</span> (<span class="hljs-keyword">CONDITION</span>);<br></code></pre></td></tr></table></figure>
+
 <p><code>MyUniqueConstraint</code>: 约束的名字，方便管理</p>
 <p><code>CONDITION</code>: 约束，即为列的条件，比如<code>age &gt; 20</code></p>
 <h4 id="删除约束"><a href="#删除约束" class="headerlink" title="删除约束"></a>删除约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> MyUniqueConstraint;<br><br># 如果是MySQL<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">DROP</span> INDEX MyUniqueConstraint;<br></code></pre></td></tr></table></figure>
+
 <h4 id="给表添加主键"><a href="#给表添加主键" class="headerlink" title="给表添加主键"></a>给表添加主键</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> MyPrimaryKey <span class="hljs-keyword">PRIMARY</span> KEY (column1, column2...);<br></code></pre></td></tr></table></figure>
+
 <h4 id="删除主键"><a href="#删除主键" class="headerlink" title="删除主键"></a>删除主键</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> MyPrimaryKey;<br><br># 如果是MySQL<br><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> table_name <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">PRIMARY</span> KEY;<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

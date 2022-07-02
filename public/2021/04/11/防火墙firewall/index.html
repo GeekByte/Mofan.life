@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,7 +270,9 @@
               
               <p>从Cent OS 7.0开始，Cent OS 默认使用<code>firewall</code>作为其防火墙。</p>
 <h2 id="firewall-常用命令"><a href="#firewall-常用命令" class="headerlink" title="firewall 常用命令"></a>firewall 常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">firewall-cmd --state                           <span class="hljs-comment"># 查看防火墙状态，是否是running</span><br>firewall-cmd --reload                          <span class="hljs-comment"># 重新载入配置，比如添加规则之后，需要执行此命令</span><br>firewall-cmd --get-zones                       <span class="hljs-comment"># 列出支持的zone</span><br>firewall-cmd --get-services                    <span class="hljs-comment"># 列出支持的服务，在列表中的服务是放行的</span><br>firewall-cmd --query-service ftp               <span class="hljs-comment"># 查看ftp服务是否支持，返回yes或者no</span><br>firewall-cmd --add-service=ftp                 <span class="hljs-comment"># 临时开放ftp服务</span><br>firewall-cmd --add-service=ftp --permanent     <span class="hljs-comment"># 永久开放ftp服务</span><br>firewall-cmd --remove-service=ftp --permanent  <span class="hljs-comment"># 永久移除ftp服务</span><br>firewall-cmd --add-port=80/tcp --permanent     <span class="hljs-comment"># 永久添加80端口 </span><br>iptables -L -n                                 <span class="hljs-comment"># 查看规则，这个命令是和iptables的相同的</span><br>man firewall-cmd                               <span class="hljs-comment"># 查看帮助</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="用法实例"><a href="#用法实例" class="headerlink" title="用法实例"></a>用法实例</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 开启80端口</span><br>firewall-cmd --zone=public --add-port=80/tcp --permanent<br><span class="hljs-comment"># 参数解析：</span><br><span class="hljs-comment"># --zone               # 作用域</span><br><span class="hljs-comment"># --add-port=80/tcp    # 添加端口，格式为：端口/通讯协议</span><br><span class="hljs-comment"># --permanent          # 永久生效，没有此参数重启后失效</span><br><br><span class="hljs-comment"># 启动防火墙</span><br>systemctl start firewalld.service   <br><br><span class="hljs-comment"># 关闭防火墙</span><br>systemctl stop firewalld.service   <br><br><span class="hljs-comment"># 禁止firewall开机启动</span><br>systemctl <span class="hljs-built_in">disable</span> firewalld.service       <br><br><span class="hljs-comment"># 重启防火墙</span><br>firewall-cmd --reload<br><br><span class="hljs-comment"># 查看防火墙状态</span><br>systemctl status firewalld.service<br><br><span class="hljs-comment"># 查看防火墙规则</span><br>iptables -L -n<br></code></pre></td></tr></table></figure>
+
               
             </div>
             <hr/>

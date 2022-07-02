@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -274,10 +274,11 @@
 <ul>
 <li><code>GO111MODULE=off</code> 无模块支持，go 会从 GOPATH 和 vendor 文件夹寻找包。</li>
 <li><code>GO111MODULE=on</code> 模块支持，go 会忽略 GOPATH 和 vendor 文件夹，只根据 go.mod 下载依赖。</li>
-<li><code>GO111MODULE=auto</code> 在 $GOPATH/src 外面且根目录有 go.mod 文件时，开启模块支持。</li>
+<li><code>GO111MODULE=auto</code> 在 $GOPATH&#x2F;src 外面且根目录有 go.mod 文件时，开启模块支持。</li>
 </ul>
 <p>在使用模块的时候，GOPATH 是无意义的，不过它还是会把下载的依赖储存在 <code>GOPATH/pkg/mod</code> 中，也会把<code>go install</code>的结果放在<code>GOPATH/pkg/mod</code>中，也会把<code>go install</code>的结果放在<code>GOPATH/bin</code> 中。</p>
 <h2 id="Go-mod-命令"><a href="#Go-mod-命令" class="headerlink" title="Go mod 命令"></a>Go mod 命令</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">download    download modules to local cache (下载依赖的module到本地cache))<br>edit        edit go.mod from tools or scripts (编辑go.mod文件)<br>graph       print module requirement graph (打印模块依赖图))<br>init        initialize new module in current directory (再当前文件夹下初始化一个新的module, 创建go.mod文件))<br>tidy        add missing and remove unused modules (增加丢失的module，去掉未用的module)<br>vendor      make vendored copy of dependencies (将依赖复制到vendor下)<br>verify      verify dependencies have expected content (校验依赖)<br>why         explain why packages or modules are needed (解释为什么需要依赖)<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,23 +269,30 @@
             <div class="markdown-body">
               
               <p>Golang 的 <code>log</code> 模块主要提供了三类接口，分别是 <code>Print</code>，<code>Panic</code>，<code>Fatal</code>，并对每一类接口提供了三种调用方式，分别是 “Xxxx”，”Xxxxln”，”Xxxxf”，基本和 fmt 中的相关函数类似。</p>
-<h3 id="log-Print"><a href="#log-Print" class="headerlink" title="log.Print"></a>log.Print</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;log&quot;</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	arr := []<span class="hljs-keyword">int</span>&#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;<br>	log.Print(<span class="hljs-string">&quot;Print arrary:&quot;</span>, arr, <span class="hljs-string">&quot;\n&quot;</span>) <span class="hljs-comment">//默认输出后不换行，要换行加转义字符&quot;\n&quot;</span><br>	log.Println(<span class="hljs-string">&quot;Println arrary:&quot;</span>, arr)  <span class="hljs-comment">//输出后自动换行</span><br>	log.Printf(<span class="hljs-string">&quot;Print arrary with item [%d,%d]&quot;</span>, arr[<span class="hljs-number">0</span>], arr[<span class="hljs-number">1</span>]) <span class="hljs-comment">//可以指定输出格式</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="log-Print"><a href="#log-Print" class="headerlink" title="log.Print"></a>log.Print</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;log&quot;</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	arr := []<span class="hljs-type">int</span>&#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;<br>	log.Print(<span class="hljs-string">&quot;Print arrary:&quot;</span>, arr, <span class="hljs-string">&quot;\n&quot;</span>) <span class="hljs-comment">//默认输出后不换行，要换行加转义字符&quot;\n&quot;</span><br>	log.Println(<span class="hljs-string">&quot;Println arrary:&quot;</span>, arr)  <span class="hljs-comment">//输出后自动换行</span><br>	log.Printf(<span class="hljs-string">&quot;Print arrary with item [%d,%d]&quot;</span>, arr[<span class="hljs-number">0</span>], arr[<span class="hljs-number">1</span>]) <span class="hljs-comment">//可以指定输出格式</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>运行结果：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">2021/02/24 10:23:15 Print arrary:[0 1]<br>2021/02/24 10:23:15 Println arrary: [0 1]<br>2021/02/24 10:23:15 Print arrary with item [0,1]<br></code></pre></td></tr></table></figure>
+
 <h3 id="log-Fatal"><a href="#log-Fatal" class="headerlink" title="log.Fatal"></a>log.Fatal</h3><p>该接口会将日志内容打印至标准输出，然后调用系统的 <code>os.Exit(1)</code> 接口，退出程序并返回状态 1 。</p>
 <p>有一点需要注意，<strong>由于是直接调用系统接口退出，所以 defer 函数不会被调用。</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;log&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">test_deferpanic</span><span class="hljs-params">()</span></span> &#123;<br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;-----first-----&quot;</span>)<br>	&#125;()<br>	log.Fatalln(<span class="hljs-string">&quot;Test for defer Fatal&quot;</span>)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	test_deferpanic()<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>运行结果：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">2021/02/24 10:33:58 Test for defer Fatal<br></code></pre></td></tr></table></figure>
+
 <p>从运行结果可以看到，<code>defer</code>函数并没有被调用。</p>
 <h3 id="log-Panic"><a href="#log-Panic" class="headerlink" title="log.Panic"></a>log.Panic</h3><p>该接口会将日志刷到标准错误后调用<code>panic</code> 函数。</p>
 <p><strong>不同于 <code>Fatal</code>，在 <code>Panic</code>之前的 <code>defer</code>函数会执行，之后的则不执行。</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;log&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">test_deferpanic</span><span class="hljs-params">()</span></span> &#123;<br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;-----first-----&quot;</span>)<br>	&#125;()<br>	log.Panicln(<span class="hljs-string">&quot;Test for defer Fatal&quot;</span>)<br>	<span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;-----Second-----&quot;</span>)<br>	&#125;()<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	test_deferpanic()<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>运行结果：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">2021/02/24 10:50:26 Test for defer Fatal<br>-----first-----<br>panic: Test for defer Fatal<br></code></pre></td></tr></table></figure>
+
 <p>可以看到在触发 <code>Panic</code> 后，第一个 <code>defer</code>函数执行，第二个没有执行。说明在在Panic之后声明的defer是不会执行的。</p>
 <h3 id="自定义Logger类型"><a href="#自定义Logger类型" class="headerlink" title="自定义Logger类型"></a>自定义Logger类型</h3><p>除了上面 <code>log</code> 模块下的三类接口，你也可以自定义 <code>Logger</code> 对象。 <code>log.Logger</code> 提供了 <code>New</code> 方法来创建自定义对象。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">New</span><span class="hljs-params">(out io.Writer, prefix <span class="hljs-keyword">string</span>, flag <span class="hljs-keyword">int</span>)</span> *<span class="hljs-title">Logger</span></span><br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">New</span><span class="hljs-params">(out io.Writer, prefix <span class="hljs-type">string</span>, flag <span class="hljs-type">int</span>)</span></span> *Logger<br></code></pre></td></tr></table></figure>
+
 <p>该函数一共有 3 个参数：</p>
 <ul>
 <li><p>out 用于指定输出位置，是一个 <code>io.Writer</code> 对象，该对象可以是一个文件也可以是实现了该接口的对象。通常我们可以用这个来指定日志输出到哪个文件。</p>
@@ -293,13 +300,14 @@
 <li><p>prefix 就是日志内容前面的东西，我们可以将其置为 “[Info]” 、 “[Warning]”等来帮助区分日志级别。</p>
 </li>
 <li><p>flag 是一个选项，用于显示日志开头的东西，可选的值有：</p>
-  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">Ldate         = 1 &lt;&lt; iota     // 形如 2009/01/23 的日期<br>Ltime                         // 形如 01:23:23 的时间<br>Lmicroseconds                 // 形如 01:23:23.123123 的时间<br>Llongfile                     // 绝对路径文件名和行号 /a/b/c/d.go:23<br>Lshortfile                    // 文件名和行号 d.go:23. 重写 Llongfile<br>LUTC                          // 如果 Ldate 或者 Ltime 已经设置, 使用 UTC 时区<br>Lmsgprefix                    // 把 &quot;prefix&quot; 从每一行的开头移动到每段信息的开头<br>LstdFlags     = Ldate | Ltime // 标准日志输出的初始日期和时间<br></code></pre></td></tr></table></figure>
-<p>示例代码：</p>
-</li>
+  <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs text">Ldate         = 1 &lt;&lt; iota     // 形如 2009/01/23 的日期<br>Ltime                         // 形如 01:23:23 的时间<br>Lmicroseconds                 // 形如 01:23:23.123123 的时间<br>Llongfile                     // 绝对路径文件名和行号 /a/b/c/d.go:23<br>Lshortfile                    // 文件名和行号 d.go:23. 重写 Llongfile<br>LUTC                          // 如果 Ldate 或者 Ltime 已经设置, 使用 UTC 时区<br>Lmsgprefix                    // 把 &quot;prefix&quot; 从每一行的开头移动到每段信息的开头<br>LstdFlags     = Ldate | Ltime // 标准日志输出的初始日期和时间<br></code></pre></td></tr></table></figure></li>
 </ul>
+<p>示例代码：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;log&quot;</span><br>	<span class="hljs-string">&quot;os&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	fileName := <span class="hljs-string">&quot;info_first.log&quot;</span><br>	logFile, err := os.Create(fileName)<br>	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> &#123;<br>		log.Fatalln(<span class="hljs-string">&quot;Open file error&quot;</span>)<br>	&#125;<br>	<span class="hljs-keyword">defer</span> logFile.Close()<br>	debugLog := log.New(logFile, <span class="hljs-string">&quot;[Info]&quot;</span>, log.Lmsgprefix)<br>	debugLog.Println(<span class="hljs-string">&quot;A info message here&quot;</span>)<br>	debugLog.SetPrefix(<span class="hljs-string">&quot;[Debug]&quot;</span>)<br>	debugLog.Println(<span class="hljs-string">&quot;A debug message here&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>会创建 <code>info_first.log</code> 文件，并将 log 信息写入，文件内容如下：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs text">[Info]A info message here<br>[Debug]A debug message here<br></code></pre></td></tr></table></figure>
+
 
               
             </div>
@@ -404,7 +412,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/23/mac%E4%B8%8B%E7%BB%99docker%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%9C%B0%E5%9D%80/" title="Mac下给Docker配置镜像加速地址">
+                      <a href="/2021/02/23/problems/Mac%E4%B8%8B%E7%BB%99Docker%E9%85%8D%E7%BD%AE%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%9C%B0%E5%9D%80/" title="Mac下给Docker配置镜像加速地址">
                         <span class="hidden-mobile">Mac下给Docker配置镜像加速地址</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>

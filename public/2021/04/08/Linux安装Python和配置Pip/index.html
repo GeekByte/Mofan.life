@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -280,15 +280,21 @@
 <h3 id="安装Python"><a href="#安装Python" class="headerlink" title="安装Python"></a>安装Python</h3><h4 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h4><p>Linux版本的Python下载地址：<a target="_blank" rel="noopener" href="https://www.python.org/downloads/source/">Python Source Releases | Python.org</a></p>
 <p>都是源码下载，需要自己编译，我下载的 <code>xz</code> 格式的压缩包。</p>
 <h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>请在 <code>sudo</code> 模式下进行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 解压压缩包</span><br>tar -xvf Python-3.9.4.tar.xz<br><span class="hljs-meta">#</span><span class="bash"> 配置</span><br>cd Python-3.9.4<br>./configure<br><span class="hljs-meta">#</span><span class="bash"> 编译 &amp; 安装</span><br>make &amp;&amp; make install<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">解压压缩包</span><br>tar -xvf Python-3.9.4.tar.xz<br><span class="hljs-meta prompt_"># </span><span class="language-bash">配置</span><br>cd Python-3.9.4<br>./configure<br><span class="hljs-meta prompt_"># </span><span class="language-bash">编译 &amp; 安装</span><br>make &amp;&amp; make install<br></code></pre></td></tr></table></figure>
+
 <p>安装完后在<code>/usr/local/bin</code> 中会看到编译后的<code>Python</code> 可执行文件</p>
-<h4 id="创建软连接"><a href="#创建软连接" class="headerlink" title="创建软连接"></a>创建软连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 先删除原先的python软连接</span><br>sudo rm -rf /usr/bin/python<br><span class="hljs-meta">#</span><span class="bash"> 创建软连接</span><br>sudo ln -s /usr/local/bin/python3.9 /usr/bin/python<br></code></pre></td></tr></table></figure>
-<h3 id="配置Pip"><a href="#配置Pip" class="headerlink" title="配置Pip"></a>配置Pip</h3><h4 id="创建软连接-1"><a href="#创建软连接-1" class="headerlink" title="创建软连接"></a>创建软连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 创建软连接</span><br>sudo ln -s /usr/local/bin/pip3.9 /usr/bin/pip<br><br><span class="hljs-meta">#</span><span class="bash"> 如果提示已经存在软连接，则先删除再创建</span><br>sudo rm -rf /usr/bin/pip<br></code></pre></td></tr></table></figure>
+<h4 id="创建软连接"><a href="#创建软连接" class="headerlink" title="创建软连接"></a>创建软连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">先删除原先的python软连接</span><br>sudo rm -rf /usr/bin/python<br><span class="hljs-meta prompt_"># </span><span class="language-bash">创建软连接</span><br>sudo ln -s /usr/local/bin/python3.9 /usr/bin/python<br></code></pre></td></tr></table></figure>
+
+<h3 id="配置Pip"><a href="#配置Pip" class="headerlink" title="配置Pip"></a>配置Pip</h3><h4 id="创建软连接-1"><a href="#创建软连接-1" class="headerlink" title="创建软连接"></a>创建软连接</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建软连接</span><br>sudo ln -s /usr/local/bin/pip3.9 /usr/bin/pip<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果提示已经存在软连接，则先删除再创建</span><br>sudo rm -rf /usr/bin/pip<br></code></pre></td></tr></table></figure>
+
 <h4 id="修改全局仓库地址"><a href="#修改全局仓库地址" class="headerlink" title="修改全局仓库地址"></a>修改全局仓库地址</h4><p>在当前的用户目录下，创建文件夹.pip，在里面新建文件pip.conf</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir .pip &amp;&amp; cd .pip<br>vim pip.conf<br></code></pre></td></tr></table></figure>
+
 <p>在里面写入下面的内容：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">[global]<br>index-url = https://pypi.tuna.tsinghua.edu.cn/simple/<br></code></pre></td></tr></table></figure>
+
 <h4 id="其他的仓库地址"><a href="#其他的仓库地址" class="headerlink" title="其他的仓库地址"></a>其他的仓库地址</h4><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs txt"># 阿里源<br>[global]<br>index-url = http://mirrors.aliyun.com/pypi/simple/<br>trusted-host = mirrors.aliyun.com<br><br># 豆瓣源<br>[global]<br>index-url = http://pypi.douban.com/simple<br>trusted-host = pypi.douban.com<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on a minute ago
+                    Last updated on a month ago
                   
                 
               </p>
@@ -272,14 +272,15 @@
 <p>很多操作在不同项目里面是类似的，完全可以共享。GitHub 注意到了这一点，想出了一个很妙的点子，允许开发者把每个操作写成独立的脚本文件，存放到代码仓库，使得其他开发者可以引用。</p>
 <p>如果你需要某个 action，不必自己写复杂的脚本，直接引用他人写好的 action 即可，整个持续集成过程，就变成了一个 actions 的组合。这就是 GitHub Actions 最特别的地方。</p>
 <p>GitHub 做了一个官方市场，可以搜索到他人提交的 actions。另外，还有一个 awesome actions 的仓库，也可以找到不少 action。</p>
-<p>上面说了，每个 action 就是一个独立脚本，因此可以做成代码仓库，使用userName/repoName的语法引用 action。比如，actions/setup-node就表示github.com/actions/setup-node这个仓库，它代表一个 action，作用是安装 Node.js。事实上，GitHub 官方的 actions 都放在 github.com/actions 里面。</p>
+<p>上面说了，每个 action 就是一个独立脚本，因此可以做成代码仓库，使用userName&#x2F;repoName的语法引用 action。比如，actions&#x2F;setup-node就表示github.com&#x2F;actions&#x2F;setup-node这个仓库，它代表一个 action，作用是安装 Node.js。事实上，GitHub 官方的 actions 都放在 github.com&#x2F;actions 里面。</p>
 <p>既然 actions 是代码仓库，当然就有版本的概念，用户可以引用某个具体版本的 action。下面都是合法的 action 引用，用的就是 Git 的指针概念，详见官方文档。</p>
-<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>GitHub Actions 的配置文件叫做 workflow 文件，存放在代码仓库的.github/workflows目录。</p>
-<p>workflow 文件采用 YAML 格式，文件名可以任意取，但是后缀名统一为.yml，比如foo.yml。一个库可以有多个 workflow 文件。GitHub 只要发现.github/workflows目录里面有.yml文件，就会自动运行该文件。</p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>GitHub Actions 的配置文件叫做 workflow 文件，存放在代码仓库的.github&#x2F;workflows目录。</p>
+<p>workflow 文件采用 YAML 格式，文件名可以任意取，但是后缀名统一为.yml，比如foo.yml。一个库可以有多个 workflow 文件。GitHub 只要发现.github&#x2F;workflows目录里面有.yml文件，就会自动运行该文件。</p>
 <p>workflow 文件的配置字段非常多，详见官方文档。下面是一些基本字段。</p>
 <p>（1）name</p>
 <p>name字段是 workflow 的名称。如果省略该字段，默认为当前 workflow 的文件名。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">name: GitHub Actions Demo<br></code></pre></td></tr></table></figure>
+
 <p>（2）on</p>
 <p>on字段指定触发 workflow 的条件，通常是某些事件。</p>
 <p>on: push<br>上面代码指定，push事件触发 workflow。</p>
@@ -305,6 +306,7 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">ubuntu-latest，ubuntu-18.04或ubuntu-16.04</span><br><span class="hljs-string">windows-latest，windows-2019或windows-2016</span><br><span class="hljs-string">macOS-latest或macOS-10.14</span><br></code></pre></td></tr></table></figure>
 <p>下面代码指定虚拟机环境为ubuntu-18.04。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-18.04</span><br><span class="hljs-string">（7）jobs.&lt;job_id&gt;.steps</span><br></code></pre></td></tr></table></figure>
+
 <p>steps字段指定每个 Job 的运行步骤，可以包含一个或多个步骤。每个步骤都可以指定以下三个字段。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">jobs.&lt;job_id&gt;.steps.name：步骤名称。</span><br><span class="hljs-string">jobs.&lt;job_id&gt;.steps.run：该步骤运行的命令或者</span> <span class="hljs-string">action。</span><br><span class="hljs-string">jobs.&lt;job_id&gt;.steps.env：该步骤所需的环境变量。</span><br></code></pre></td></tr></table></figure>
 <p>下面是一个完整的 workflow 文件的范例。</p>

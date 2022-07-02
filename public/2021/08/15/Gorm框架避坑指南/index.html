@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -277,7 +277,7 @@
 <li>每次更新时，它会让数据库的自增主键变成0，导致下次更新别的数据时，报主键重复错误</li>
 <li>每次更新时，它会将 created_at 字段变成0，从而丢失数据的创建时间</li>
 </ul>
-<p>另外，我再说一个逻辑上的错误：如果该条记录，我们用 0/1 标识它未删除/删除，那么，当它处于删除状态，即值为 1 时，这时，我们要更新这条记录，在提交记录中，一般不会提交该字段，所以它默认值是 0， 于是它被更新为 0，于是数据由删除状态变成未删除状态，引发业务逻辑上的bug。</p>
+<p>另外，我再说一个逻辑上的错误：如果该条记录，我们用 0&#x2F;1 标识它未删除&#x2F;删除，那么，当它处于删除状态，即值为 1 时，这时，我们要更新这条记录，在提交记录中，一般不会提交该字段，所以它默认值是 0， 于是它被更新为 0，于是数据由删除状态变成未删除状态，引发业务逻辑上的bug。</p>
 <h5 id="select-omit-的形式"><a href="#select-omit-的形式" class="headerlink" title="select(*).omit()的形式"></a>select(*).omit()的形式</h5><p>这种形式，可以解决上面那两个显而易见的坑，即不让主键和 created_at 字段更新，除此之外，其他字段都要被更新，还是有可能会出现那种逻辑上的问题。</p>
 <p><strong>最好的方式是，用select(“字段1”, “字段2”) 明确指定哪些字段要更新，尽可能让数据保持在可控范围，同时也减少误更新导致数据丢失范围。</strong></p>
 

@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="查找&amp;#x2F;text : 正向查找text，按n查找下一个，按N查找上一个。 ?text : 反向查找text，按n查找下一个，按N查找上一个。 *&amp;#x2F;# ： 查找光标当前的单词，如果光标当前单词为text，那么就是查找text。 :set ignorecase ：设置查找忽略大小写。 :set noignorecase ：设置查找不忽略大小写。 :nohisearch : 关闭当前的高亮显示，当再次查找">
+    <meta name="description" content="查找&amp;#x2F;text : 正向查找text，按n查找下一个，按N查找上一个。 ?text : 反向查找text，按n查找下一个，按N查找上一个。 ***&amp;#x2F;#** ： 查找光标当前的单词，如果光标当前单词为text，那么就是查找text。 :set ignorecase ：设置查找忽略大小写。 :set noignorecase ：设置查找不忽略大小写。 :nohisearch : 关">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,16 +261,16 @@
               <p class="note note-success">
                 
                   
-                    Last updated on a month ago
+                    Last updated on 3 months ago
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p><strong>/text</strong> : 正向查找<code>text</code>，按<code>n</code>查找下一个，按<code>N</code>查找上一个。</p>
+              <h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p><strong>&#x2F;text</strong> : 正向查找<code>text</code>，按<code>n</code>查找下一个，按<code>N</code>查找上一个。</p>
 <p><strong>?text</strong> : 反向查找<code>text</code>，按<code>n</code>查找下一个，按<code>N</code>查找上一个。</p>
-<p>*<strong>/#</strong> ： 查找光标当前的单词，如果光标当前单词为<code>text</code>，那么就是查找<code>text</code>。</p>
+<p>***&#x2F;#** ： 查找光标当前的单词，如果光标当前单词为<code>text</code>，那么就是查找<code>text</code>。</p>
 <p><strong>:set ignorecase</strong> ：设置查找忽略大小写。</p>
 <p><strong>:set noignorecase</strong> ：设置查找不忽略大小写。</p>
 <p><strong>:nohisearch</strong> : 关闭当前的高亮显示，当再次查找时恢复高亮。</p>
@@ -306,9 +306,9 @@
 <p>Ctrl+wk –移动到上方的窗口</p>
 <p>:!ls %:p  显示当前文件完整路径，但是会离开Vim页面</p>
 <p>2、其他命令:</p>
-<p>Esc/Ctrl+[ – 键入命令</p>
+<p>Esc&#x2F;Ctrl+[ – 键入命令</p>
 <p>:!command –执行shell命令</p>
-<p>:suspend/Ctrl+Z –挂起vim,回到shell,fg 返回vim</p>
+<p>:suspend&#x2F;Ctrl+Z –挂起vim,回到shell,fg 返回vim</p>
 <p>:!perl -c script.pl –检查perl脚本语法,不用退出vim</p>
 <p>:!perl script.pl –执行perl脚本, 不用退出vim</p>
 <p>:help –显示帮助文档</p>
@@ -329,11 +329,11 @@
 <p>:1, 10 m 20 –将第1-10行移动到第20行之后</p>
 <p>替换:</p>
 <p>ra –将当前光标所在字符替换为a</p>
-<p>s/old/new/ –用old替换new,替换当前行的第一个匹配</p>
-<p>s/old/new/g –用old替换new,替换当前行的所有匹配</p>
-<p>%s/old/new/ –用old替换new,替换所有行的第一个匹配</p>
-<p>%s/old/new/g –用old替换new,替换所有匹配</p>
-<p>:10,20 s/^/text/g –在第10行到第20行每行前面加上text(:3,5 s/^/#/g –注释3-5行, :3,5 s/^#//g<br>–解除3-5行的注释, :1,$ s/^/#/g –注释整个文档, :%s/^/#/g –注释整个文档)</p>
+<p>s&#x2F;old&#x2F;new&#x2F; –用old替换new,替换当前行的第一个匹配</p>
+<p>s&#x2F;old&#x2F;new&#x2F;g –用old替换new,替换当前行的所有匹配</p>
+<p>%s&#x2F;old&#x2F;new&#x2F; –用old替换new,替换所有行的第一个匹配</p>
+<p>%s&#x2F;old&#x2F;new&#x2F;g –用old替换new,替换所有匹配</p>
+<p>:10,20 s&#x2F;^&#x2F;text&#x2F;g –在第10行到第20行每行前面加上text(:3,5 s&#x2F;^&#x2F;#&#x2F;g –注释3-5行, :3,5 s&#x2F;^#&#x2F;&#x2F;g<br>–解除3-5行的注释, :1,$ s&#x2F;^&#x2F;#&#x2F;g –注释整个文档, :%s&#x2F;^&#x2F;#&#x2F;g –注释整个文档)</p>
 <p>ddp –交换光标所在行和下一行</p>
 <p>移动:</p>
 <p>h –左移一个字符(5h –左移5个字符)</p>
@@ -403,9 +403,9 @@
 <p>Ctrl+wj –移动到下方的窗口</p>
 <p>Ctrl+wk –移动到上方的窗口</p>
 <p>2、其他命令:</p>
-<p>Esc/Ctrl+[ – 键入命令</p>
+<p>Esc&#x2F;Ctrl+[ – 键入命令</p>
 <p>:!command –执行shell命令</p>
-<p>:suspend/Ctrl+Z –挂起vim,回到shell,fg 返回vim</p>
+<p>:suspend&#x2F;Ctrl+Z –挂起vim,回到shell,fg 返回vim</p>
 <p>:!perl -c script.pl –检查perl脚本语法,不用退出vim</p>
 <p>:!perl script.pl –执行perl脚本, 不用退出vim</p>
 <p>:help –显示帮助文档</p>
@@ -432,11 +432,11 @@
 <p>:1, 10 m 20 –将第1-10行移动到第20行之后</p>
 <p>替换:</p>
 <p>ra –将当前光标所在字符替换为a</p>
-<p>s/old/new/ –用old替换new,替换当前行的第一个匹配</p>
-<p>s/old/new/g –用old替换new,替换当前行的所有匹配</p>
-<p>%s/old/new/ –用old替换new,替换所有行的第一个匹配</p>
-<p>%s/old/new/g –用old替换new,替换所有匹配</p>
-<p>:10,20 s/^/text/g –在第10行到第20行每行前面加上text(:3,5 s/^/#/g –注释3-5行, :3,5 s/^#//g<br>–解除3-5行的注释, :1,$ s/^/#/g –注释整个文档, :%s/^/#/g –注释整个文档)</p>
+<p>s&#x2F;old&#x2F;new&#x2F; –用old替换new,替换当前行的第一个匹配</p>
+<p>s&#x2F;old&#x2F;new&#x2F;g –用old替换new,替换当前行的所有匹配</p>
+<p>%s&#x2F;old&#x2F;new&#x2F; –用old替换new,替换所有行的第一个匹配</p>
+<p>%s&#x2F;old&#x2F;new&#x2F;g –用old替换new,替换所有匹配</p>
+<p>:10,20 s&#x2F;^&#x2F;text&#x2F;g –在第10行到第20行每行前面加上text(:3,5 s&#x2F;^&#x2F;#&#x2F;g –注释3-5行, :3,5 s&#x2F;^#&#x2F;&#x2F;g<br>–解除3-5行的注释, :1,$ s&#x2F;^&#x2F;#&#x2F;g –注释整个文档, :%s&#x2F;^&#x2F;#&#x2F;g –注释整个文档)</p>
 <p>ddp –交换光标所在行和下一行</p>
 <p>移动:</p>
 <p>h –左移一个字符(5h –左移5个字符)</p>

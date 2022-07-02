@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="HTTP header中的Content-type也称之为Media Types。 在返回体中，用于告诉客户端返回的数据类型，常见的类型比如JSON(“Content-type”:”application&amp;#x2F;json”) 反之，在请求体中用于告诉服务端发送的数据类型。 在实际应用中，最好为传输的数据确定一个粒度最小的类型。比如在下载一个xxx.tar.gz文件时，我们可以使用”application">
+    <meta name="description" content="HTTP header中的Content-type也称之为Media Types。 在返回体中，用于告诉客户端返回的数据类型，常见的类型比如JSON(“Content-type”:”application&amp;#x2F;json”) 反之，在请求体中用于告诉服务端发送的数据类型。 在实际应用中，最好为传输的数据确定一个粒度最小的类型。比如在下载一个xxx.tar.gz文件时，我们可以使用”applic">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,9 +269,9 @@
             <div class="markdown-body">
               
               <p>HTTP header中的Content-type也称之为Media Types。</p>
-<p>在返回体中，用于告诉客户端返回的数据类型，常见的类型比如JSON(“Content-type”:”application/json”)</p>
+<p>在返回体中，用于告诉客户端返回的数据类型，常见的类型比如JSON(“Content-type”:”application&#x2F;json”)</p>
 <p>反之，在请求体中用于告诉服务端发送的数据类型。</p>
-<p>在实际应用中，最好为传输的数据确定一个粒度最小的类型。比如在下载一个xxx.tar.gz文件时，我们可以使用”application/octet-stream”，这个用于表示传输的是二进制数据，但是范围表示的太大，这个类型定义在RFC 1341，但是目前已经被移除了。对于这种gzip文件，我们可以指定”application/gzip”。</p>
+<p>在实际应用中，最好为传输的数据确定一个粒度最小的类型。比如在下载一个xxx.tar.gz文件时，我们可以使用”application&#x2F;octet-stream”，这个用于表示传输的是二进制数据，但是范围表示的太大，这个类型定义在RFC 1341，但是目前已经被移除了。对于这种gzip文件，我们可以指定”application&#x2F;gzip”。</p>
 <p>下面是所有的Media Type类型，如果有需要可以查找具体的文件类型，粒度很细。</p>
 <p><a target="_blank" rel="noopener" href="https://www.iana.org/assignments/media-types/media-types.xhtml">Media Types</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type">Content-Type - HTTP | MDN</a></p>
 

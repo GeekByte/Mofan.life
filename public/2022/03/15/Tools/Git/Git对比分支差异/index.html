@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="1. 显示出 branch1 和 branch2 中差异的部分1git diff branch1 branch2 --stat 2. 显示指定文件的详细差异1git diff branch1 branch2 &amp;lt;具体文件路径&amp;gt; 3. 显示出所有有差异的文件的详细差异1git diff branch1 branch2 4. 查看 branch1 分支有，而 branch2 中没有的 log">
+    <meta name="description" content="1. 显示出 branch1 和 branch2 中差异的部分1git diff branch1 branch2 --stat  2. 显示指定文件的详细差异1git diff branch1 branch2 &amp;lt;具体文件路径&amp;gt;  3. 显示出所有有差异的文件的详细差异1git diff branch1 branch2  4. 查看 branch1 分支有，而 branch2 中没有的">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 3 months ago
                   
                 
               </p>
@@ -269,12 +269,17 @@
             <div class="markdown-body">
               
               <h3 id="1-显示出-branch1-和-branch2-中差异的部分"><a href="#1-显示出-branch1-和-branch2-中差异的部分" class="headerlink" title="1. 显示出 branch1 和 branch2 中差异的部分"></a>1. 显示出 branch1 和 branch2 中差异的部分</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git diff branch1 branch2 --<span class="hljs-built_in">stat</span><br></code></pre></td></tr></table></figure>
+
 <h3 id="2-显示指定文件的详细差异"><a href="#2-显示指定文件的详细差异" class="headerlink" title="2. 显示指定文件的详细差异"></a>2. 显示指定文件的详细差异</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git diff branch1 branch2 &lt;具体文件路径&gt;<br></code></pre></td></tr></table></figure>
+
 <h3 id="3-显示出所有有差异的文件的详细差异"><a href="#3-显示出所有有差异的文件的详细差异" class="headerlink" title="3. 显示出所有有差异的文件的详细差异"></a>3. 显示出所有有差异的文件的详细差异</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git diff branch1 branch2<br></code></pre></td></tr></table></figure>
+
 <h3 id="4-查看-branch1-分支有，而-branch2-中没有的-log"><a href="#4-查看-branch1-分支有，而-branch2-中没有的-log" class="headerlink" title="4. 查看 branch1 分支有，而 branch2 中没有的 log"></a>4. 查看 branch1 分支有，而 branch2 中没有的 log</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">log</span> branch1 ^branch2<br></code></pre></td></tr></table></figure>
+
 <h3 id="5-查看-branch2-中比-branch1-中多提交了哪些内容"><a href="#5-查看-branch2-中比-branch1-中多提交了哪些内容" class="headerlink" title="5. 查看 branch2 中比 branch1 中多提交了哪些内容"></a>5. 查看 branch2 中比 branch1 中多提交了哪些内容</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">log</span> branch1..branch2<br></code></pre></td></tr></table></figure>
 <p>注意，列出来的是两个点后边（此处即branch2）多提交的内容。</p>
 <h3 id="6-不知道谁提交的多谁提交的少，单纯想知道有什么不一样"><a href="#6-不知道谁提交的多谁提交的少，单纯想知道有什么不一样" class="headerlink" title="6. 不知道谁提交的多谁提交的少，单纯想知道有什么不一样"></a>6. 不知道谁提交的多谁提交的少，单纯想知道有什么不一样</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">log</span> branch1...branch2<br></code></pre></td></tr></table></figure>
+
 <h3 id="7-在上述情况下，在显示出每个提交是在哪个分支上"><a href="#7-在上述情况下，在显示出每个提交是在哪个分支上" class="headerlink" title="7. 在上述情况下，在显示出每个提交是在哪个分支上"></a>7. 在上述情况下，在显示出每个提交是在哪个分支上</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">log</span> -lefg-right branch1...branch2<br></code></pre></td></tr></table></figure>
 <p>注意 commit 后面的箭头，根据我们在 –left-right branch1…branch2 的顺序，左箭头 &lt; 表示是 branch1 的，右箭头 &gt; 表示是branch2的。</p>
 

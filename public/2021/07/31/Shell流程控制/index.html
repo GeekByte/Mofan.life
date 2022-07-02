@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="if 条件语句if 的语法结构为： 123456789if condition1then    command1elif condition2 then     command2else    commandNfi 注意： if 的流程控制不可为空，即符合条件的区域必须有内容。 1234567891011121314a&amp;#x3D;10b&amp;#x3D;20if [ $a &amp;#x3D;&amp;#x3D; $b ]then   echo &amp;quot;">
+    <meta name="description" content="if 条件语句if 的语法结构为： 123456789if condition1then    command1elif condition2 then     command2else    commandNfi  注意： if 的流程控制不可为空，即符合条件的区域必须有内容。 1234567891011121314a&amp;#x3D;10b&amp;#x3D;20if [ $a &amp;#x3D;&amp;#x3D; $b ]then   echo &amp;amp;quot">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,39 +270,54 @@
               
               <h2 id="if-条件语句"><a href="#if-条件语句" class="headerlink" title="if 条件语句"></a>if 条件语句</h2><p><code>if</code> 的语法结构为：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">if condition1<br>then<br>    command1<br>elif condition2 <br>then <br>    command2<br>else<br>    commandN<br>fi<br></code></pre></td></tr></table></figure>
+
 <p><strong>注意：</strong> if 的流程控制不可为空，即符合条件的区域必须有内容。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">a=10<br>b=20<br>if [ $a == $b ]<br>then<br>   echo &quot;a 等于 b&quot;<br>elif [ $a -gt $b ]<br>then<br>   echo &quot;a 大于 b&quot;<br>elif [ $a -lt $b ]<br>then<br>   echo &quot;a 小于 b&quot;<br>else<br>   echo &quot;没有符合的条件&quot;<br>fi<br></code></pre></td></tr></table></figure>
+
 <p>执行结果：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">a 小于 b<br></code></pre></td></tr></table></figure>
+
 <p><code>if</code> 语句常和 <code>test</code> 搭配使用：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell">num1=$[2*3]<br>num2=$[1+5]<br>if test $[num1] -eq $[num2]<br>then<br>    echo &#x27;两个数字相等!&#x27;<br>else<br>    echo &#x27;两个数字不相等!&#x27;<br>fi<br></code></pre></td></tr></table></figure>
+
 <p>执行结果：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">两个数字相等!<br></code></pre></td></tr></table></figure>
+
 <h2 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h2><h3 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for in 循环"></a>for in 循环</h3><p>格式：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">for var in item1 item2 ... itemN<br>do<br>    command1<br>    command2<br>    ...<br>    commandN<br>done<br><br><span class="hljs-meta">#</span><span class="bash"> 也可以写成一行</span><br>for var in item1 item2 ... itemN; do command1; command2… done;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">for var in item1 item2 ... itemN<br>do<br>    command1<br>    command2<br>    ...<br>    commandN<br>done<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">也可以写成一行</span><br>for var in item1 item2 ... itemN; do command1; command2… done;<br></code></pre></td></tr></table></figure>
+
 <p>in 列表可选，如果省略，for 循环将使用命令行的位置参数。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">for loop in 1 2 3 4 5<br>do<br>    echo &quot;The value is: $loop&quot;<br>done<br><br><span class="hljs-meta">#</span><span class="bash"> 顺序输出字符串中的字串</span><br>for str in This is a string<br>do<br>    echo $str<br>done<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell">for loop in 1 2 3 4 5<br>do<br>    echo &quot;The value is: $loop&quot;<br>done<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">顺序输出字符串中的字串</span><br>for str in This is a string<br>do<br>    echo $str<br>done<br></code></pre></td></tr></table></figure>
+
 <h3 id="for-循环-1"><a href="#for-循环-1" class="headerlink" title="for(()) 循环"></a>for(()) 循环</h3><p>格式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">for((初始值;条件;计算));do<br>    commnd<br>done;<br></code></pre></td></tr></table></figure>
+
 <p>通常情况下 shell 变量调用需要加 $,但是 for 的 (()) 中不需要。</p>
 <h2 id="while语句"><a href="#while语句" class="headerlink" title="while语句"></a>while语句</h2><p>格式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">while condition<br>do<br>    command<br>done<br></code></pre></td></tr></table></figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">int=1<br>while(( $int&lt;=5 ))<br>do<br>    echo $int<br>    let &quot;int++&quot;<br>done<br></code></pre></td></tr></table></figure>
+
 <blockquote>
 <p>上面例子使用了 Bash let 命令，它用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量</p>
 </blockquote>
 <p>while 可用于读取键盘信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &#x27;按下 &lt;CTRL-D&gt; 退出&#x27;<br>echo -n &#x27;输入你最喜欢的网站名: &#x27;<br>while read FILM<br>do<br>    echo &quot;是的！$FILM 是一个好网站&quot;<br>done<br></code></pre></td></tr></table></figure>
+
 <h2 id="无限循环"><a href="#无限循环" class="headerlink" title="无限循环"></a>无限循环</h2><p>格式：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">while :<br>do<br>    command<br>done<br><br><span class="hljs-meta">#</span><span class="bash"> or</span><br><br>while true<br>do<br>    command<br>done<br><br><span class="hljs-meta">#</span><span class="bash"> or</span><br>for (( ; ; ))<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">while :<br>do<br>    command<br>done<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">or</span><br><br>while true<br>do<br>    command<br>done<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">or</span><br>for (( ; ; ))<br></code></pre></td></tr></table></figure>
+
 <h2 id="util-循环"><a href="#util-循环" class="headerlink" title="util 循环"></a>util 循环</h2><p>until 循环执行一系列命令直至条件为 true 时停止。用的较少，一般用 while 即可</p>
 <p>格式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">until condition<br>do<br>    command<br>done<br></code></pre></td></tr></table></figure>
+
 <p>输出 0 ～ 9 之间的数字：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">a=0<br><br>until [ ! $a -lt 10 ]<br>do<br>   echo $a<br>   a=`expr $a + 1`<br>done<br></code></pre></td></tr></table></figure>
+
 <h2 id="case-多分支选择结构"><a href="#case-多分支选择结构" class="headerlink" title="case 多分支选择结构"></a>case 多分支选择结构</h2><p><strong>case … esac</strong> 为多选择语句，与其他语言中的 switch … case 语句类似，是一种多分枝选择结构。</p>
 <p>格式：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell">case 值 in<br>模式1)<br>    command1<br>    command2<br>    ...<br>    commandN<br>    ;;<br>模式2）<br>    command1<br>    command2<br>    ...<br>    commandN<br>    ;;<br>esac<br></code></pre></td></tr></table></figure>
+
 <blockquote>
 <p><strong>注意：</strong></p>
 <p>1.case 取值后面必须为单词 <strong>in</strong></p>
@@ -311,15 +326,20 @@
 <p>4.esac（就是 case 反过来）作为结束标记。</p>
 </blockquote>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &#x27;输入 1 到 4 之间的数字:&#x27;<br>echo &#x27;你输入的数字为:&#x27;<br>read aNum<br>case $aNum in<br>    1)  echo &#x27;你选择了 1&#x27;<br>    ;;<br>    2)  echo &#x27;你选择了 2&#x27;<br>    ;;<br>    3)  echo &#x27;你选择了 3&#x27;<br>    ;;<br>    4)  echo &#x27;你选择了 4&#x27;<br>    ;;<br>    *)  echo &#x27;你没有输入 1 到 4 之间的数字&#x27;<br>    ;;<br>esac<br></code></pre></td></tr></table></figure>
+
 <p>执行结果：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">输入 1 到 4 之间的数字:<br>你输入的数字为:<br>3<br>你选择了 3<br></code></pre></td></tr></table></figure>
+
 <h2 id="break-与-continue-循环控制语句"><a href="#break-与-continue-循环控制语句" class="headerlink" title="break 与 continue 循环控制语句"></a>break 与 continue 循环控制语句</h2><h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><p>break 终止整个循环。</p>
 <p>开启一个死循环，直到用户输入数字大于 5，则结束循环。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">while :<br>do<br>    echo -n &quot;输入 1 到 5 之间的数字:&quot;<br>    read aNum<br>    case $aNum in<br>        1|2|3|4|5) echo &quot;你输入的数字为 $aNum!&quot;<br>        ;;<br>        *) echo &quot;你输入的数字不是 1 到 5 之间的! 游戏结束&quot;<br>            break<br>        ;;<br>    esac<br>done<br></code></pre></td></tr></table></figure>
+
 <p>执行结果：</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">输入 1 到 5 之间的数字:3<br>你输入的数字为 3!<br>输入 1 到 5 之间的数字:7<br>你输入的数字不是 1 到 5 之间的! 游戏结束<br></code></pre></td></tr></table></figure>
+
 <h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><p>与 break 不同，continue 仅仅跳过当前循环中后面的语句，不会终止整个循环。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs shell">while :<br>do<br>    echo -n &quot;输入 1 到 5 之间的数字: &quot;<br>    read aNum<br>    case $aNum in<br>        1|2|3|4) echo &quot;你输入的数字为 $aNum!&quot;<br>        ;;<br>        5) echo &quot;你输入的数字是5!&quot;<br>            continue<br>            echo &quot;游戏结束&quot;<br>        ;;<br>    esac<br>done<br></code></pre></td></tr></table></figure>
+
 <p>你会发现，无论你输入什么数字，”游戏结束”这四个字都不会输出。</p>
 
               

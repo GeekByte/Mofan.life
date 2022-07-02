@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on a month ago
+                    Last updated on 2 months ago
                   
                 
               </p>
@@ -272,6 +272,7 @@
 <p>同时，这个主题我认为有一个缺点，就是无法像Linux 那样普通用户模式下是 $ 开始，管理员账户下是 # 开始，于是我在这个基础上又进行了一些修改，具体很简单，编辑: <code>vim .oh-my-zsh/themes/murilasso.zsh-theme</code> ， 只需要关注下<code>$&#123;git_branch&#125; %&#123;$reset_color%&#125;%(!.#.$) &quot;</code> 这里即可.</p>
 <p>我的主题文件为:</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs txt">local return_code=&quot;%(?..%&#123;$fg[red]%&#125;%? ↵%&#123;$reset_color%&#125;)&quot;<br>local user_host=&#x27;%&#123;$terminfo[bold]$fg[green]%&#125;%n@%m%&#123;$reset_color%&#125;&#x27;<br>local current_dir=&#x27;%&#123;$terminfo[bold]$fg[blue]%&#125;%~%&#123;$reset_color%&#125;&#x27;<br>local rvm_ruby=&#x27;%&#123;$fg[red]%&#125;$(rvm_prompt_info || rbenv_prompt_info)%&#123;$reset_color%&#125;&#x27;<br>local git_branch=&#x27;%&#123;$fg[blue]%&#125;$(git_prompt_info)%&#123;$reset_color%&#125;&#x27;<br><br>PROMPT=&quot;$&#123;user_host&#125;:$&#123;current_dir&#125; $&#123;rvm_ruby&#125;<br>$&#123;git_branch&#125; %&#123;$reset_color%&#125;%(!.#.$) &quot;<br>RPS1=&quot;$&#123;return_code&#125;&quot;<br><br>ZSH_THEME_GIT_PROMPT_PREFIX=&quot;&quot;<br>ZSH_THEME_GIT_PROMPT_SUFFIX=&quot;&quot;<br>ZSH_THEME_GIT_PROMPT_DIRTY=&quot; %&#123;$fg[red]%&#125;✗%&#123;$reset_color%&#125;&quot;<br>ZSH_THEME_GIT_PROMPT_CLEAN=&quot; %&#123;$fg[green]%&#125;✔%&#123;$reset_color%&#125;&quot;<br></code></pre></td></tr></table></figure>
+
               
             </div>
             <hr/>
@@ -365,7 +366,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/10/30/Mac%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8BSSD%E5%81%A5%E5%BA%B7%E6%83%85%E5%86%B5/" title="Mac使用命令查看SSD健康情况">
+                      <a href="/2021/10/30/problems/Mac%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8BSSD%E5%81%A5%E5%BA%B7%E6%83%85%E5%86%B5/" title="Mac使用命令查看SSD健康情况">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">Mac使用命令查看SSD健康情况</span>
                         <span class="visible-mobile">Previous</span>

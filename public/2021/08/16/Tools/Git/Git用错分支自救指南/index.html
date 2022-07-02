@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="有时候自己分支正在开发东西，但是中途切换到其他分支做了修复 bug 等事情，导致下次写代码时忘记切回自己分支。 没有推送到远端1234567891011# 把所有改动暂存git add .# 把暂存的改动提交到 git 的暂存栈git stash# 切换到本该用来开发代码的分支（假设是xxx)git checkout xxxx# 将暂存栈中的代码取出来git stash pop 你会发现在其他分支">
+    <meta name="description" content="有时候自己分支正在开发东西，但是中途切换到其他分支做了修复 bug 等事情，导致下次写代码时忘记切回自己分支。 没有推送到远端1234567891011# 把所有改动暂存git add .# 把暂存的改动提交到 git 的暂存栈git stash# 切换到本该用来开发代码的分支（假设是xxx)git checkout xxxx# 将暂存栈中的代码取出来git stash pop  你会发现在其他分">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 4 months ago
                   
                 
               </p>
@@ -269,12 +269,15 @@
             <div class="markdown-body">
               
               <p>有时候自己分支正在开发东西，但是中途切换到其他分支做了修复 bug 等事情，导致下次写代码时忘记切回自己分支。</p>
-<h3 id="没有推送到远端"><a href="#没有推送到远端" class="headerlink" title="没有推送到远端"></a>没有推送到远端</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 把所有改动暂存</span><br>git add .<br><br><span class="hljs-meta">#</span><span class="bash"> 把暂存的改动提交到 git 的暂存栈</span><br>git stash<br><br><span class="hljs-meta">#</span><span class="bash"> 切换到本该用来开发代码的分支（假设是xxx)</span><br>git checkout xxxx<br><br><span class="hljs-meta">#</span><span class="bash"> 将暂存栈中的代码取出来</span><br>git stash pop<br></code></pre></td></tr></table></figure>
+<h3 id="没有推送到远端"><a href="#没有推送到远端" class="headerlink" title="没有推送到远端"></a>没有推送到远端</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">把所有改动暂存</span><br>git add .<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">把暂存的改动提交到 git 的暂存栈</span><br>git stash<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">切换到本该用来开发代码的分支（假设是xxx)</span><br>git checkout xxxx<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">将暂存栈中的代码取出来</span><br>git stash pop<br></code></pre></td></tr></table></figure>
+
 <p>你会发现在其他分支上写的代码完美的回到了自己要用的分支上，这时候，是提交还是继续编写就看你了。</p>
 <h3 id="推送到远端了"><a href="#推送到远端了" class="headerlink" title="推送到远端了"></a>推送到远端了</h3><p>出现这种情况一般是用 jetbrans 开发的工具了，因为它的代码提交实在方便，如果不是在 push 前看一眼那不太清晰的分支标识，真的不太容易发现自己用错了分支。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 切到提交了代码的分支，也就是你用错的分支（假设是xxx）</span><br>git checkout xxx<br><br><span class="hljs-meta">#</span><span class="bash"> 把最近一次提交放到暂存区</span><br>git reset HEAD-1<br><br><span class="hljs-meta">#</span><span class="bash"> 将修改放到暂存栈</span><br>git stash<br><br><span class="hljs-meta">#</span><span class="bash"> 切换到你想用的代码分支（假设是yyy）</span><br>git checkout yyy<br><br><span class="hljs-meta">#</span><span class="bash"> 将修改从暂存栈取出来</span><br>git stash pop<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">切到提交了代码的分支，也就是你用错的分支（假设是xxx）</span><br>git checkout xxx<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">把最近一次提交放到暂存区</span><br>git reset HEAD-1<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">将修改放到暂存栈</span><br>git stash<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">切换到你想用的代码分支（假设是yyy）</span><br>git checkout yyy<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">将修改从暂存栈取出来</span><br>git stash pop<br></code></pre></td></tr></table></figure>
+
 <p>现在你可以在自己的分支上提交，但是别忘了要干掉推送到远端的那个错误分支的代码。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 切到用错的分支</span><br>git checkout xxx<br><br><span class="hljs-meta">#</span><span class="bash"> 强制推送（因为上一步进行了回退，所以，这次提交的是你错误提交前的代码，以此将错误的提交信息干掉）</span><br><span class="hljs-meta">#</span><span class="bash"> xxx 是你用错的分支，要指定一下</span><br>git push origin xxx -f <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">切到用错的分支</span><br>git checkout xxx<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">强制推送（因为上一步进行了回退，所以，这次提交的是你错误提交前的代码，以此将错误的提交信息干掉）</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">xxx 是你用错的分支，要指定一下</span><br>git push origin xxx -f <br></code></pre></td></tr></table></figure>
+
 
 
 

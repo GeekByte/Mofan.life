@@ -63,7 +63,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -219,17 +219,23 @@
 <article class="page-content">
   <h1 id="Kubernets-Cluster-Guide"><a href="#Kubernets-Cluster-Guide" class="headerlink" title="Kubernets Cluster Guide"></a>Kubernets Cluster Guide</h1><p>查看版本信息</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">minikube version<br></code></pre></td></tr></table></figure>
+
 <p>启动集群</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">minikube start<br></code></pre></td></tr></table></figure>
+
 <p>连接集群的工具，kubectl，查看版本</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl version<br></code></pre></td></tr></table></figure>
+
 <p>查看集群信息</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl cluster-info<br></code></pre></td></tr></table></figure>
+
 <p>获取 nodes</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl get nodes<br></code></pre></td></tr></table></figure>
+
 <p>部署app，需要指定 app名称 和 镜像地址</p>
 <p>eg:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1<br></code></pre></td></tr></table></figure>
+
 <blockquote>
 <p>这个命令做了哪些事：</p>
 <ul>
@@ -242,8 +248,10 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl get deployments<br></code></pre></td></tr></table></figure>
 
 
+
 <p>启动代理，将 pods 暴露出去</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl proxy<br></code></pre></td></tr></table></figure>
+
 
 
 <h3 id="Kubernetes-Pods"><a href="#Kubernetes-Pods" class="headerlink" title="Kubernetes Pods"></a>Kubernetes Pods</h3><p>Pod 是 Kubernetes 抽象出来的，表示一组一个或多个应用程序容器（如 Docker），以及这些容器的一些共享资源。这些资源包括:</p>

@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,6 +270,7 @@
               
               <p>当项目启动需要指定很多参数时，每次启动都需要写很长的指令，于是考虑将启动指令写成脚本形式，于是产生了一个问题，第一次启动项目使用脚本可以正常启动，但是第二次就会报网络地址或者端口占用的错误，所以，需要每次执行脚本的时候，kill 掉上次的进程，然后启动。于是就有了下面的脚本：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#/bin/bash</span><br>PROCESS=`ps -ef|grep <span class="hljs-string">&#x27;./go-admin server&#x27;</span>|grep -v grep|grep -v PPID|awk <span class="hljs-string">&#x27;&#123; print $2&#125;&#x27;</span>`<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-variable">$PROCESS</span><br><span class="hljs-keyword">do</span><br>    <span class="hljs-keyword">if</span> [ -z <span class="hljs-variable">$i</span> ]<br>    <span class="hljs-keyword">then</span><br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;No process run&quot;</span><br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Kill the go-admin process [ <span class="hljs-variable">$i</span> ]&quot;</span><br>        <span class="hljs-built_in">kill</span> <span class="hljs-variable">$i</span><br>    <span class="hljs-keyword">fi</span><br><span class="hljs-keyword">done</span><br><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Start run go-admin&quot;</span><br><br>go build<br>./go-admin server -c=config/settings.dev.yml<br></code></pre></td></tr></table></figure>
+
 <p>对上面的代码坐几点说明：</p>
 <ol>
 <li><code>PROCESS</code> 变量的值中有 <code>grep &#39;./go-admin server&#39;</code> ，注意 <code>grep</code> 在进行匹配的时候是类似 <code>*Xxx*</code> 的前后全匹配方式，所以当有多个进程名字中都含有该值时，会返回多个进程ID，于是 <code>PROCESS</code> 变量是一个数组。</li>

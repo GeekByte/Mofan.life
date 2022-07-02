@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="水平方向打开新文件123:sp linuxmi.py  或者  :split linuxmi.py   这个命令把窗口横向切分为两个窗口，并把光标置于上面的窗口中。 垂直方向分屏打开新文件12:vsp linux.py  :vsplit linux.py  这个命令把窗口纵向切分为两个窗口，并把光标置于左边的窗口中。 从命令行直接打开多个文件并分屏12vim -On file1, file2 ..">
+    <meta name="description" content="水平方向打开新文件123:sp linuxmi.py  或者  :split linuxmi.py    这个命令把窗口横向切分为两个窗口，并把光标置于上面的窗口中。 垂直方向分屏打开新文件12:vsp linux.py  :vsplit linux.py   这个命令把窗口纵向切分为两个窗口，并把光标置于左边的窗口中。 从命令行直接打开多个文件并分屏12vim -On file1, file2">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 3 months ago
                   
                 
               </p>
@@ -269,17 +269,27 @@
             <div class="markdown-body">
               
               <h4 id="水平方向打开新文件"><a href="#水平方向打开新文件" class="headerlink" title="水平方向打开新文件"></a>水平方向打开新文件</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">:sp linuxmi.py  <br>或者  <br>:split linuxmi.py  <br></code></pre></td></tr></table></figure>
+
 <p>这个命令把窗口横向切分为两个窗口，并把光标置于上面的窗口中。</p>
 <h4 id="垂直方向分屏打开新文件"><a href="#垂直方向分屏打开新文件" class="headerlink" title="垂直方向分屏打开新文件"></a>垂直方向分屏打开新文件</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">:vsp linux.py  <br>:vsplit linux.py <br></code></pre></td></tr></table></figure>
+
 <p>这个命令把窗口纵向切分为两个窗口，并把光标置于左边的窗口中。</p>
-<h4 id="从命令行直接打开多个文件并分屏"><a href="#从命令行直接打开多个文件并分屏" class="headerlink" title="从命令行直接打开多个文件并分屏"></a>从命令行直接打开多个文件并分屏</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">vim -On file1, file2 ... # 垂直分屏  <br>vim -on file1, file2 ... # 水平分屏  <br></code></pre></td></tr></table></figure>
-<h4 id="调整窗口宽度"><a href="#调整窗口宽度" class="headerlink" title="调整窗口宽度"></a>调整窗口宽度</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl-w &gt;   # 向右加宽，默认值为1  <br>Ctrl-w N &gt; # 向右加宽宽度N  <br>Ctrl-w &lt;   # 向左加宽，默认值为1 <br>Ctrl-w N &lt; # 向左加宽宽度N  <br></code></pre></td></tr></table></figure>
-<h4 id="横屏-竖屏分屏打开当前文件"><a href="#横屏-竖屏分屏打开当前文件" class="headerlink" title="横屏/竖屏分屏打开当前文件"></a><strong>横屏/竖屏分屏打开当前文件</strong></h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+w s  <br>Ctrl+w v <br></code></pre></td></tr></table></figure>
+<h4 id="从命令行直接打开多个文件并分屏"><a href="#从命令行直接打开多个文件并分屏" class="headerlink" title="从命令行直接打开多个文件并分屏"></a>从命令行直接打开多个文件并分屏</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">vim -On file1, file2 ... <span class="hljs-params">#</span> 垂直分屏  <br>vim -on file1, file2 ... <span class="hljs-params">#</span> 水平分屏  <br></code></pre></td></tr></table></figure>
+
+<h4 id="调整窗口宽度"><a href="#调整窗口宽度" class="headerlink" title="调整窗口宽度"></a>调整窗口宽度</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl-w &gt;   <span class="hljs-params">#</span> 向右加宽，默认值为1  <br>Ctrl-w N &gt; <span class="hljs-params">#</span> 向右加宽宽度N  <br>Ctrl-w &lt;   <span class="hljs-params">#</span> 向左加宽，默认值为1 <br>Ctrl-w N &lt; <span class="hljs-params">#</span> 向左加宽宽度N  <br></code></pre></td></tr></table></figure>
+
+<h4 id="横屏-x2F-竖屏分屏打开当前文件"><a href="#横屏-x2F-竖屏分屏打开当前文件" class="headerlink" title="横屏&#x2F;竖屏分屏打开当前文件"></a><strong>横屏&#x2F;竖屏分屏打开当前文件</strong></h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+w s  <br>Ctrl+w v <br></code></pre></td></tr></table></figure>
+
 <h4 id="切换分屏"><a href="#切换分屏" class="headerlink" title="切换分屏"></a>切换分屏</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+w h,j,k,l  <br>Ctrl+w 上下左右键  <br>Crtl+w进行分屏窗口的切换 按完以后再按一个w  <br>Crtl+w进行分屏窗口的切换 按完以后再按一个r 互换窗口  <br>Crtl+w进行分屏窗口的切换 按完以后再按一个c 关闭窗口 <br></code></pre></td></tr></table></figure>
+
 <h4 id="关闭分屏"><a href="#关闭分屏" class="headerlink" title="关闭分屏"></a>关闭分屏</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+W c 关闭当前窗口  <br>Ctrl+w q 关闭当前窗口，若只有一个分屏且退出vim  <br>:only 仅保留当前分屏  <br>:hide 关闭当前分屏  <br></code></pre></td></tr></table></figure>
-<h4 id="调整分屏大小"><a href="#调整分屏大小" class="headerlink" title="调整分屏大小"></a>调整分屏大小</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+w &#x3D; 所有分屏都统一高度  <br>Ctrl+w + 增加高度，默认值为1  <br>Ctrl+w - 减少高度  <br>10 ctrl+w + 增加10行高度  <br>Ctrl-w N + &#x2F;&#x2F;当前屏高度加N <br></code></pre></td></tr></table></figure>
+
+<h4 id="调整分屏大小"><a href="#调整分屏大小" class="headerlink" title="调整分屏大小"></a>调整分屏大小</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+w = 所有分屏都统一高度  <br>Ctrl+w + 增加高度，默认值为1  <br>Ctrl+w - 减少高度  <br>10 ctrl+w + 增加10行高度  <br>Ctrl-w N + //当前屏高度加N <br></code></pre></td></tr></table></figure>
+
 <h4 id="重设当前屏的高度"><a href="#重设当前屏的高度" class="headerlink" title="重设当前屏的高度"></a>重设当前屏的高度</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">:resize 30<br></code></pre></td></tr></table></figure>
-<h4 id="移动分屏"><a href="#移动分屏" class="headerlink" title="移动分屏"></a>移动分屏</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl-w + K  # 将屏幕移动到最顶端 <br>Ctrl-w + J  # 将屏幕移动到最低端 <br>Ctrl-w + H  # 将屏幕移动到最左边 <br>Ctrl-w + L  # 将屏幕移动到最右边 <br></code></pre></td></tr></table></figure>
+
+<h4 id="移动分屏"><a href="#移动分屏" class="headerlink" title="移动分屏"></a>移动分屏</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl-w + K  <span class="hljs-params">#</span> 将屏幕移动到最顶端 <br>Ctrl-w + J  <span class="hljs-params">#</span> 将屏幕移动到最低端 <br>Ctrl-w + H  <span class="hljs-params">#</span> 将屏幕移动到最左边 <br>Ctrl-w + L  <span class="hljs-params">#</span> 将屏幕移动到最右边 <br></code></pre></td></tr></table></figure>
+
 
               
             </div>

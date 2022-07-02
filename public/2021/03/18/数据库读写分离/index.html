@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -279,8 +279,8 @@
 <p>3） 混合类型的复制。默认采用基于语句的复制，一旦发现基于语句无法精确复制时，就会采用基于行的复制。</p>
 <p>4.2、 复制的工作过程</p>
 <p>1） 在每个事务更新数据完成之前，master在二进制日志记录这些改变。写入二进制日志完成后，master通知存储引擎提交事务。</p>
-<p>2） Slave将master的binary log复制到其中继日志。首先slave开始一个工作线程（I/O），I/O线程在master上打开一个普通的连接，然后开始binlog dump process。binlog dump process从master的二进制日志中读取事件，如果已经跟上master，它会睡眠并等待master产生新的事件，I/O线程将这些事件写入中继日志。</p>
-<p>3） Sql slave thread（sql从线程）处理该过程的最后一步，sql线程从中继日志读取事件，并重放其中的事件而更新slave数据，使其与master中的数据一致，只要该线程与I/O线程保持一致，中继日志通常会位于os缓存中，所以中继日志的开销很小。</p>
+<p>2） Slave将master的binary log复制到其中继日志。首先slave开始一个工作线程（I&#x2F;O），I&#x2F;O线程在master上打开一个普通的连接，然后开始binlog dump process。binlog dump process从master的二进制日志中读取事件，如果已经跟上master，它会睡眠并等待master产生新的事件，I&#x2F;O线程将这些事件写入中继日志。</p>
+<p>3） Sql slave thread（sql从线程）处理该过程的最后一步，sql线程从中继日志读取事件，并重放其中的事件而更新slave数据，使其与master中的数据一致，只要该线程与I&#x2F;O线程保持一致，中继日志通常会位于os缓存中，所以中继日志的开销很小。</p>
 <p><img src="https://www.cmdbyte.com/2021/02/20180312205215249.png" srcset="/img/loading.gif" lazyload alt="20180312205215249"></p>
 <p><strong>5、 mysql读写分离原理</strong></p>
 <p>读写分离就是在主服务器上修改，数据会同步到从服务器，从服务器只能提供读取数据，不能写入，实现备份的同时也实现了数据库性能的优化，以及提升了服务器安全。</p>

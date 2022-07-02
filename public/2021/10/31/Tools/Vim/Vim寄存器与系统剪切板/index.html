@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 3 months ago
                   
                 
               </p>
@@ -282,28 +282,34 @@
 </li>
 <li><p>只读（read-only）寄存器：”:,”.,”%,”#，分别缓存最近命令、最近插入文本、当前文件名、当前交替文件名；</p>
 </li>
-<li><p>表达式（expression）寄存器：”=，只读，用于执行表达式命令；</p>
+<li><p>表达式（expression）寄存器：”&#x3D;，只读，用于执行表达式命令；</p>
 </li>
 <li><p>选择及拖拽（selection and drop）寄存器：”*,”+,”~，存取GUI选择文本，可用于与外部应用交互，使用前提为系统剪切板（clipboard）可用；</p>
 </li>
 <li><p>黑洞（black hole）寄存器：”_，不缓存操作内容（干净删除）；</p>
 </li>
-<li><p>模式寄存器（last search pattern）：”/，缓存最近的搜索模式。</p>
+<li><p>模式寄存器（last search pattern）：”&#x2F;，缓存最近的搜索模式。</p>
 </li>
 </ol>
 <h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><h4 id="查看寄存器的状况"><a href="#查看寄存器的状况" class="headerlink" title="查看寄存器的状况"></a>查看寄存器的状况</h4><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">:reg<br></code></pre></td></tr></table></figure>
+
 <h3 id="访问特定的寄存器"><a href="#访问特定的寄存器" class="headerlink" title="访问特定的寄存器"></a>访问特定的寄存器</h3><p>通过在操作方式(y(复制), p(粘贴))前加上寄存器名称，便可操作特定寄存器。</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">&quot;ap      粘贴字母a寄存器内容  <br>&quot;1y      把选取内容复制到数字寄存器1 <br></code></pre></td></tr></table></figure>
+
 <h3 id="与系统剪切板交互"><a href="#与系统剪切板交互" class="headerlink" title="与系统剪切板交互"></a>与系统剪切板交互</h3><p>通过 <code>&quot;+</code> + 操作方式实现，例如：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs txt">&quot;+y 复制选中内容到剪切板<br>&quot;+p 粘贴剪切板内容到Vim<br>&quot;+gp 粘贴剪切板到Vim，并将光标移到内容后<br></code></pre></td></tr></table></figure>
+
 <p>如果想将这种命令的方式变成快捷键的方式，可以借助Vim的Map功能：</p>
 <p>在<code>.vimrc</code>种增加：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">nmap &lt;c-v&gt; &quot;+gp  <br>nmap &lt;c-c&gt; &quot;+y  <br></code></pre></td></tr></table></figure>
+
 <p>这样就能通过 <code>Ctrl + C</code> 实现复制，<code>Ctrl + V</code> 实现粘贴。</p>
 <p>当然，如果不使用这种修饰键，也可以通过组合普通键的方式实现：</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">nmap &lt;leader&gt;v &quot;+gp <br>nmap &lt;leader&gt;c &quot;+y <br></code></pre></td></tr></table></figure>
+
 <p>&lt;leader&gt;由自己设置，比如设置成<code>,</code> :</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">let mapleader=&quot;,&quot; <br></code></pre></td></tr></table></figure>
+
 
               
             </div>

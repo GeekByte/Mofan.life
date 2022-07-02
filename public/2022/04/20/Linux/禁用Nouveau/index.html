@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="Ubuntu20.04安装Nvidia driver提示Nouveau问题，要禁用 Nouveau，参考 RHEL&amp;#x2F;CentOS 部分 1The Nouveau kernel driver is currently in use by your system. To install the Display Driver, the Nouveau drivers must first be disa">
+    <meta name="description" content="Ubuntu20.04安装Nvidia driver提示Nouveau问题，要禁用 Nouveau，参考 RHEL&amp;#x2F;CentOS 部分 1The Nouveau kernel driver is currently in use by your system.  To install the Display Driver, the Nouveau drivers must first be dis">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 6 days ago
+                    Last updated on a month ago
                   
                 
               </p>
@@ -270,19 +270,20 @@
               
               <p>Ubuntu20.04安装Nvidia driver提示Nouveau问题，要禁用 Nouveau，参考 <code>RHEL/CentOS</code> 部分</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">The Nouveau kernel driver is currently in use by your system.<br></code></pre></td></tr></table></figure>
+
 <p>To install the Display Driver, the Nouveau drivers must first be disabled. Each distribution of Linux has a different method for disabling Nouveau.</p>
 <p>The Nouveau drivers are loaded if the following command prints anything:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">lsmod | grep nouveau<br></code></pre></td></tr></table></figure>
+
 <ul>
-<li>Fedora<br>Create a file at /usr/lib/modprobe.d/blacklist-nouveau.conf with the following contents:<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">blacklist nouveau<br>options nouveau modeset&#x3D;0<br></code></pre></td></tr></table></figure>
+<li>Fedora<br>Create a file at &#x2F;usr&#x2F;lib&#x2F;modprobe.d&#x2F;blacklist-nouveau.conf with the following contents:<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">blacklist nouveau<br>options nouveau modeset=0<br></code></pre></td></tr></table></figure>
 Regenerate the kernel initramfs:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo dracut --force<br></code></pre></td></tr></table></figure>
 Run the following command:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo grub2-mkconfig -o /boot/grub2/grub.cfg<br></code></pre></td></tr></table></figure>
 Reboot the system.</li>
-<li>RHEL/CentOS<br>Create a file at /etc/modprobe.d/blacklist-nouveau.conf with the following contents:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash">blacklist nouveau<br>options nouveau modeset=0<br></code></pre></td></tr></table></figure>
+<li>RHEL&#x2F;CentOS<br>Create a file at &#x2F;etc&#x2F;modprobe.d&#x2F;blacklist-nouveau.conf with the following contents:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash">blacklist nouveau<br>options nouveau modeset=0<br></code></pre></td></tr></table></figure>
 Regenerate the kernel initramfs:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo dracut --force<br></code></pre></td></tr></table></figure></li>
-<li>OpenSUSE<br>Create a file at /etc/modprobe.d/blacklist-nouveau.conf with the following contents:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash">blacklist nouveau<br>options nouveau modeset=0<br></code></pre></td></tr></table></figure>
-Regenerate the kernel initrd:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo /sbin/mkinitrd<br></code></pre></td></tr></table></figure>
-</li>
+<li>OpenSUSE<br>Create a file at &#x2F;etc&#x2F;modprobe.d&#x2F;blacklist-nouveau.conf with the following contents:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs Bash">blacklist nouveau<br>options nouveau modeset=0<br></code></pre></td></tr></table></figure>
+Regenerate the kernel initrd:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Bash">sudo /sbin/mkinitrd<br></code></pre></td></tr></table></figure></li>
 </ul>
 
               

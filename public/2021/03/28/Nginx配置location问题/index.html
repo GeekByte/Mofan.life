@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="由于我新增了一个静态资源项目，于是我想通过Nginx根据url的不同访问到不同的静态资源。也就是我想让url+&amp;#x2F;tonger的请求解析到&amp;#x2F;home&amp;#x2F;tonger下的静态资源，于是就有了下面的配置。 12345678910&amp;#x2F;&amp;#x2F; 配置tonger静态资源路径location &amp;#x2F;tonger&amp;#x2F; &amp;amp;#123;root &amp;#x2F;home&amp;#x2F;tonger&amp;#x2F;;index index.html;&amp;amp;#125;locatio">
+    <meta name="description" content="由于我新增了一个静态资源项目，于是我想通过Nginx根据url的不同访问到不同的静态资源。也就是我想让url+&amp;#x2F;tonger的请求解析到&amp;#x2F;home&amp;#x2F;tonger下的静态资源，于是就有了下面的配置。 12345678910&amp;#x2F;&amp;#x2F; 配置tonger静态资源路径location &amp;#x2F;tonger&amp;#x2F; &amp;amp;#123;root &amp;#x2F;home&amp;#x2F;tonger&amp;#x2F;;index index.html;&amp;amp;#1">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,18 +261,20 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <p>由于我新增了一个静态资源项目，于是我想通过Nginx根据url的不同访问到不同的静态资源。也就是我想让<code>url+/tonger</code>的请求解析到/home/tonger下的静态资源，于是就有了下面的配置。</p>
+              <p>由于我新增了一个静态资源项目，于是我想通过Nginx根据url的不同访问到不同的静态资源。也就是我想让<code>url+/tonger</code>的请求解析到&#x2F;home&#x2F;tonger下的静态资源，于是就有了下面的配置。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs text">// 配置tonger静态资源路径<br>location /tonger/ &#123;<br>root /home/tonger/;<br>index index.html;<br>&#125;<br><br>location / &#123;<br>root /html;<br>index index.html index.html;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>配置完了之后发现总是报404错误，试了location的各种匹配规则写法，还是不行。</p>
 <p>知道后来看到博客，说这样配置实际的请求访问的是<code>url+/home/tonger/index.html</code>，这样是访问不到的，要想<code>url+/tonger/index.html</code> 需要改成下面这样，尝试了一下，两种都能成功。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">location /tonger/ &#123;<br>root /home/;<br>index index.html;<br>&#125;<br><br>// 或者<br><br>location /tonger/ &#123;<br>alias /home/tonger/;<br>index index.html;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
 
 <p>Nginx还需要好好学习一下！！！</p>

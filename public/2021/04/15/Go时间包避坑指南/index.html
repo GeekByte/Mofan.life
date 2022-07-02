@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,8 +270,10 @@
               
               <p>首先看一段代码：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	st := <span class="hljs-string">&quot;2019-11-21 11:59:01&quot;</span><br>	fmt.Printf(<span class="hljs-string">&quot;%s\n&quot;</span>, st)<br>	t, _ := time.Parse(<span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span>, st)<br>	fmt.Println(t.Unix())<br><br>	tt := time.Unix(t.Unix(), <span class="hljs-number">0</span>)<br>	fmt.Println(tt.Format(<span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>上述代码的任务很简单，就是将字符串格式的时间转化为时间戳。<br>但是直到调试我才无意发现，这个是有问题的，转化后的unix并不是原来的时间。。<br>运行结果如下：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">2019-11-21 11:59:01<br>1574337541<br>2019-11-21 19:59:01<br></code></pre></td></tr></table></figure>
+
 <p>时间总是会多了8个小时，让我联想到了我们的东8区，估计和时区有关系。</p>
 <p>看了下time.Parse的解释：</p>
 <p>其中的一句：</p>
@@ -284,8 +286,10 @@
 </blockquote>
 <p>使用以下的方式就可以正确的转化时间了：</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> LOC, _ = time.LoadLocation(<span class="hljs-string">&quot;Asia/Shanghai&quot;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	st := <span class="hljs-string">&quot;2019-11-21 11:59:01&quot;</span><br>	fmt.Printf(<span class="hljs-string">&quot;%s\n&quot;</span>, st)<br>	t, _ := time.ParseInLocation(<span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span>, st, LOC)<br>	fmt.Println(t.Unix())<br><br>	tt := time.Unix(t.Unix(), <span class="hljs-number">0</span>)<br>	fmt.Println(tt.Format(<span class="hljs-string">&quot;2006-01-02 15:04:05&quot;</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>输出结果：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">2019-11-21 11:59:01<br>1574308741<br>2019-11-21 11:59:01<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="本来不想写的，但是发现网上没有一个靠谱的教程。简单的写几个步骤，照着做能实现：Linux安装ssh工具，配置ssh允许root登陆，开放对应端口，默认ssh端口是22。 安装ssh12345# Ubuntusudo apt install openssh-server# CentOSsudo yum install openssh-server 配置新系统如果没有vim先安装下vim。sudo a">
+    <meta name="description" content="本来不想写的，但是发现网上没有一个靠谱的教程。简单的写几个步骤，照着做能实现：Linux安装ssh工具，配置ssh允许root登陆，开放对应端口，默认ssh端口是22。 安装ssh12345# Ubuntusudo apt install openssh-server# CentOSsudo yum install openssh-server  配置新系统如果没有vim先安装下vim。sudo">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,15 +270,19 @@
               
               <p>本来不想写的，但是发现网上没有一个靠谱的教程。简单的写几个步骤，照着做能实现：<code>Linux</code>安装<code>ssh</code>工具，配置<code>ssh</code>允许<code>root</code>登陆，开放对应端口，默认<code>ssh</code>端口是<code>22</code>。</p>
 <h3 id="安装ssh"><a href="#安装ssh" class="headerlink" title="安装ssh"></a>安装ssh</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Ubuntu</span><br>sudo apt install openssh-server<br><br><span class="hljs-comment"># CentOS</span><br>sudo yum install openssh-server<br></code></pre></td></tr></table></figure>
+
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>新系统如果没有<code>vim</code>先安装下<code>vim</code>。<code>sudo apt install vim</code></p>
 <p>修改配置文件：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo vim <span class="hljs-regexp">/etc/</span>ssh/sshd_config<br></code></pre></td></tr></table></figure>
+
 <p>将里面字段改成这样：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">原：PermitRootLogin prohibit-password<br>现：PermitRootLogin yes<br><br>原：PasswordAuthentication no<br>现：PasswordAuthentication yes<br></code></pre></td></tr></table></figure>
+
 <p>上面的字段可能被注释了，要删除 <code>#</code>。</p>
 <p>重启ssh <code>sudo /etc/init.d/ssh restart</code></p>
 <h3 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h3><p>iptables防火墙好像没有默认开放22端口。开放端口命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">iptables -A INPUT -p tcp --dport 22 -j ACCEPT<br>iptables -A OUTPUT -p tcp --sport 22 -j ACCEPT<br></code></pre></td></tr></table></figure>
+
 
 
 <p>然后就可以<code>ssh root@xxxxx</code>登陆了</p>

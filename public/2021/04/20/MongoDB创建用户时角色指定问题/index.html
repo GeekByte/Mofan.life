@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,7 +270,8 @@
               
               <p><code>MongoDB</code>是基于角色来分配用户权限的。</p>
 <p>现在又这样一个场景，我要在<code>MongoDB</code>里为一个数据库创建一个用户，并让这个用户对于这个数据库有读写权限。于是就有了下面的语句。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 选择数据库，如果数据库不存在就创建<br>use mo<br><br># 为mo数据库创建用户mofan,并分配读写权限<br>db.createUser(&#123;user:&quot;mofan&quot;, pwd:&quot;nihao&quot;, roles[&#123;role:&quot;readWrite&quot;, db:&quot;mo&quot;&#125;]&#125;)<br><br># 如果是新创建的数据库，为了让其可见，要插入条记录<br>db.mo.insert(&#123;&quot;a&quot;:&quot;b&quot;&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"># 选择数据库，如果数据库不存在就创建<br>use mo<br><br># 为mo数据库创建用户mofan,并分配读写权限<br>db.createUser(&#123;<span class="hljs-keyword">user</span>:&quot;mofan&quot;, pwd:&quot;nihao&quot;, roles[&#123;role:&quot;readWrite&quot;, db:&quot;mo&quot;&#125;]&#125;)<br><br># 如果是新创建的数据库，为了让其可见，要插入条记录<br>db.mo.insert(&#123;&quot;a&quot;:&quot;b&quot;&#125;)<br></code></pre></td></tr></table></figure>
+
 <p>在分配角色的时候，有些角色只能在<code>admin</code>数据库里使用，所以，都有什么角色，这些角色又是对谁用的呢？</p>
 <h3 id="MongoDB提供的角色有下面这几种"><a href="#MongoDB提供的角色有下面这几种" class="headerlink" title="MongoDB提供的角色有下面这几种"></a>MongoDB提供的角色有下面这几种</h3><ul>
 <li>数据库用户角色：read、readWrite;</li>

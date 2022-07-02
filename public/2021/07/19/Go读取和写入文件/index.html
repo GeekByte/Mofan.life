@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -271,11 +271,11 @@
               <h2 id="读取指定目录下的文件列表"><a href="#读取指定目录下的文件列表" class="headerlink" title="读取指定目录下的文件列表"></a>读取指定目录下的文件列表</h2><p>如果仅仅是想获取一个目录下面的文件和文件夹的列表,有两个比较简单的方法</p>
 <ul>
 <li><p>利用ioutil的ReadDir方法</p>
-  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br> <br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;io/ioutil&quot;</span><br>)<br> <br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    files, _ := ioutil.ReadDir(<span class="hljs-string">&quot;./&quot;</span>)<br>    <span class="hljs-keyword">for</span> _, f := <span class="hljs-keyword">range</span> files &#123;<br>            fmt.Println(f.Name())<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br> <br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;io/ioutil&quot;</span><br>)<br> <br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    files, _ := ioutil.ReadDir(<span class="hljs-string">&quot;./&quot;</span>)<br>    <span class="hljs-keyword">for</span> _, f := <span class="hljs-keyword">range</span> files &#123;<br>            fmt.Println(f.Name())<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
 <li><p>利用filepath的Glob方法</p>
 <p>  filepath的walk会递归获取所有的文件</p>
-  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">package</span> main    <br> <br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;path/filepath&quot;</span><br>)<br> <br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    files, _ := filepath.Glob(<span class="hljs-string">&quot;*&quot;</span>)<br>    fmt.Println(files) <span class="hljs-comment">// contains a list of all files in the current directory</span><br>&#125;<br></code></pre></td></tr></table></figure>
-</li>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs Go"><span class="hljs-keyword">package</span> main    <br> <br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;path/filepath&quot;</span><br>)<br> <br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    files, _ := filepath.Glob(<span class="hljs-string">&quot;*&quot;</span>)<br>    fmt.Println(files) <span class="hljs-comment">// contains a list of all files in the current directory</span><br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ul>
 
               

@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="普通占位符假设有如下数据： 12345type Human struct &amp;amp;#123;	Name string&amp;amp;#125;var people &amp;#x3D; Human&amp;amp;#123;Name:&amp;quot;zhangsan&amp;quot;&amp;amp;#125;    占位符 说明 举例 输出    %v 相应值的默认格式。 Printf(“%v”, people) {zhangsan}   %+v 打印结构体时，会添加字段名">
+    <meta name="description" content="普通占位符假设有如下数据： 12345type Human struct &amp;amp;#123;	Name string&amp;amp;#125;var people &amp;#x3D; Human&amp;amp;#123;Name:&amp;quot;zhangsan&amp;quot;&amp;amp;#125;     占位符 说明 举例 输出    %v 相应值的默认格式。 Printf(“%v”, people) {zhangsan}   %+v 打印结构体时，会添加字段">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -269,7 +269,8 @@
             <div class="markdown-body">
               
               <h2 id="普通占位符"><a href="#普通占位符" class="headerlink" title="普通占位符"></a>普通占位符</h2><p>假设有如下数据：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Human <span class="hljs-keyword">struct</span> &#123;<br>	Name <span class="hljs-keyword">string</span><br>&#125;<br><br><span class="hljs-keyword">var</span> people = Human&#123;Name:<span class="hljs-string">&quot;zhangsan&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Human <span class="hljs-keyword">struct</span> &#123;<br>	Name <span class="hljs-type">string</span><br>&#125;<br><br><span class="hljs-keyword">var</span> people = Human&#123;Name:<span class="hljs-string">&quot;zhangsan&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
@@ -522,7 +523,7 @@
 </tbody></table>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>golang没有 ‘%u’ 点位符，若整数为无符号类型，默认就会被打印成无符号的。</p>
 <p>宽度与精度的控制格式以Unicode码点为单位。宽度为该数值占用区域的最小宽度；精度为小数点之后的位数。<br> 操作数的类型为int时，宽度与精度都可用字符 ‘*’ 表示。</p>
-<p>对于 %g/%G 而言，精度为所有数字的总数，例如：123.45，%.4g 会打印123.5，（而 %6.2f 会打印123.45）。</p>
+<p>对于 %g&#x2F;%G 而言，精度为所有数字的总数，例如：123.45，%.4g 会打印123.5，（而 %6.2f 会打印123.45）。</p>
 <p>%e 和 %f 的默认精度为6</p>
 <p>对大多数的数值类型而言，宽度为输出的最小字符数，如果必要的话会为已格式化的形式填充空格。</p>
 <p>而以字符串类型，精度为输出的最大字符数，如果必要的话会直接截断。</p>

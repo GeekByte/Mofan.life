@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="当我在卸载PostgreSQL的一个数据库时，提示这个数据库正在被使用，不能被卸载。 123&amp;#x3D;&amp;gt;drop database db;ERROR:  database &amp;quot;db&amp;quot; is being accessed by other usersDETAIL:  There is 1 other session using the database. 然后到网上查了下有没有强制删">
+    <meta name="description" content="当我在卸载PostgreSQL的一个数据库时，提示这个数据库正在被使用，不能被卸载。 123&amp;#x3D;&amp;gt;drop database db;ERROR:  database &amp;quot;db&amp;quot; is being accessed by other usersDETAIL:  There is 1 other session using the database.  然后到网上查了下有没有强制">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,13 +270,17 @@
               
               <p>当我在卸载<code>PostgreSQL</code>的一个数据库时，提示这个数据库正在被使用，不能被卸载。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">=&gt;drop database db;<br>ERROR:  database &quot;db&quot; is being accessed by other users<br>DETAIL:  There is 1 other session using the database.<br></code></pre></td></tr></table></figure>
+
 <p>然后到网上查了下有没有强制删除的方法，主要方法如下：首先禁止会话再连入数据库中，然后断掉当前的所有的连接，然后卸载就行了。</p>
 <p><strong>1.禁止会话连入</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">postgres<span class="hljs-operator">=</span># update pg_database <span class="hljs-keyword">set</span> datallowconn <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;false&#x27;</span> <span class="hljs-keyword">where</span> datname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;db_name&#x27;</span>;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">postgres<span class="hljs-operator">=</span># <span class="hljs-keyword">update</span> pg_database <span class="hljs-keyword">set</span> datallowconn <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;false&#x27;</span> <span class="hljs-keyword">where</span> datname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;db_name&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
 <p><strong>2.中断当前数据库的所有连接</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">postgres<span class="hljs-operator">=</span># <span class="hljs-keyword">select</span> pg_terminate_backend(pid) <span class="hljs-keyword">from</span> pg_stat_activity <span class="hljs-keyword">where</span> datname <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;db&#x27;</span>;<br></code></pre></td></tr></table></figure>
+
 <p><strong>3.删除数据库</strong></p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">postgres<span class="hljs-operator">=</span># <span class="hljs-keyword">drop</span> database db;<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

@@ -63,7 +63,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -226,15 +226,15 @@
 <li>docker ps 列出正在运行的容器</li>
 <li>docker ps -a 列出全部容器（包括不再运行的容器）</li>
 </ul>
-<h3 id="Docker-是怎么样工作的"><a href="#Docker-是怎么样工作的" class="headerlink" title="Docker 是怎么样工作的"></a>Docker 是怎么样工作的</h3><p>docker 是一种 C/S 架构模式（Client-Server)。</p>
+<h3 id="Docker-是怎么样工作的"><a href="#Docker-是怎么样工作的" class="headerlink" title="Docker 是怎么样工作的"></a>Docker 是怎么样工作的</h3><p>docker 是一种 C&#x2F;S 架构模式（Client-Server)。</p>
 <p>docker client 与 docker demon 的连接是通过 websocket。</p>
 <p>docker client 负责处理用户输入的各种命令，然后将命令发送到 server 中，docker 中真正管理容器的是 server，也就是 docker demon（docker 守护进程）。</p>
 <h3 id="Docker-容器之间怎么隔离"><a href="#Docker-容器之间怎么隔离" class="headerlink" title="Docker 容器之间怎么隔离"></a>Docker 容器之间怎么隔离</h3><p>Linux 中的 PID、IPC、网络等资源是全局的，Docker 中使用 namespace 机制进行资源隔离，在该机制下，这些资源就不再是全局的，而是属于某个特定的 namespace，各个 namespace 下的资源互不打扰。</p>
 <p>虽然 namespace 在逻辑上控制资源互相隔离，但容器中的进程还是可以不受控制的访问系统资源，所以，docker 采用 control groups 技术（也就是cgroup)，有了cgroup就可以控制容器中进程对系统资源的消耗了，比如你可以限制某个容器使用内存的上限、可以在哪些CPU上运行等等。</p>
 <p>有了这两项技术，容器看起来就真的像是独立的操作系统了。</p>
 <h3 id="Docker-容器与主机间资源的拷贝"><a href="#Docker-容器与主机间资源的拷贝" class="headerlink" title="Docker 容器与主机间资源的拷贝"></a>Docker 容器与主机间资源的拷贝</h3><p>docker cp命令用于容器与主机之间的数据拷贝</p>
-<p>主机到哦容器：docker cp /www 96f7f14e99ab:/www/</p>
-<p>容器到主机：docker cp 96f7f14e99ab:/www /tmp</p>
+<p>主机到哦容器：docker cp &#x2F;www 96f7f14e99ab:&#x2F;www&#x2F;</p>
+<p>容器到主机：docker cp 96f7f14e99ab:&#x2F;www &#x2F;tmp</p>
 <h3 id="如何在生产中监控-Docker"><a href="#如何在生产中监控-Docker" class="headerlink" title="如何在生产中监控 Docker"></a>如何在生产中监控 Docker</h3><p>docker 通过 docker status 命令和 docker事件 等工具来监控生产环境中的docker，我们可以通过这些命令获取关于容器的一些数据。</p>
 <ul>
 <li>docker status 统计数据：当我们使用容器ID调用docker stats时，我们获得容器的CPU，内存使用情况等。它类似于Linux中的top命令。</li>
@@ -249,7 +249,7 @@
 </ul>
 <h3 id="进入容器的方法"><a href="#进入容器的方法" class="headerlink" title="进入容器的方法"></a>进入容器的方法</h3><ol>
 <li>使用 docker attach 命令</li>
-<li>使用 docker exec 命令， eg：docker exec -i -t 784fd3b294d7 /bin/bash</li>
+<li>使用 docker exec 命令， eg：docker exec -i -t 784fd3b294d7 &#x2F;bin&#x2F;bash</li>
 </ol>
 <h3 id="什么是联合文件系统（UnionFS）"><a href="#什么是联合文件系统（UnionFS）" class="headerlink" title="什么是联合文件系统（UnionFS）"></a>什么是联合文件系统（UnionFS）</h3><p>docker 的镜像实际上是由一层一层的文件系统组成的，这种层级的文件系统就是 UnionFS。UnionFS 是一种分层、轻量级并且高性能的文件系统。联合加载会把各层的文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录。</p>
 <h3 id="Docker与虚拟机的区别"><a href="#Docker与虚拟机的区别" class="headerlink" title="Docker与虚拟机的区别"></a>Docker与虚拟机的区别</h3><ul>
@@ -276,7 +276,7 @@
 <li>MAINTAINER：镜像维护者的姓名和邮箱。</li>
 <li>RUN：容器构建时需要运行的命令，该命令基于基础镜像支持的命令。</li>
 <li>EXPOSE：当前容器对外界暴露的端口。</li>
-<li>WORKDIR：（默认在/根目录），终端登录进去后的落脚点。</li>
+<li>WORKDIR：（默认在&#x2F;根目录），终端登录进去后的落脚点。</li>
 <li>ENV：构建镜像过程中的环境变量。</li>
 <li>ADD：拷贝 + 解压 功能。</li>
 <li>COPY：直接拷贝。</li>

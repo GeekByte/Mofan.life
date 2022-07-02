@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 2 months ago
+                    Last updated on 4 months ago
                   
                 
               </p>
@@ -297,8 +297,8 @@
 <li>通过这种方式不会拷贝原数组或原切片中的数据，只是创建了一个指向原数据的切片结构体，故改变新切片中的数据会同时改变原数据</li>
 </ul>
 </li>
-<li>使用字面量初始化新的切片, slice := []int{1, 2, 3}</li>
-<li>使用关键字make, slice := make([]int, 10)</li>
+<li>使用字面量初始化新的切片, slice :&#x3D; []int{1, 2, 3}</li>
+<li>使用关键字make, slice :&#x3D; make([]int, 10)</li>
 </ul>
 <p>切片的操作基本都是在编译期间完成的，除了访问切片的长度、容量或者其中的元素之外，编译期间也会将包含 <code>range</code> 关键字的遍历转换成形式更简单的循环</p>
 <h3 id="访问切片"><a href="#访问切片" class="headerlink" title="访问切片"></a>访问切片</h3><p>使用 <code>len</code> 和 <code>cap</code> 可获取切片的长度和容量.</p>
@@ -324,7 +324,7 @@
 </ul>
 </li>
 <li>相同点：<ul>
-<li> 两种拷贝方式最终都通过 <code>runtime.memmove</code> 将整块内存的内容拷贝到目标的内存区域中</li>
+<li>两种拷贝方式最终都通过 <code>runtime.memmove</code> 将整块内存的内容拷贝到目标的内存区域中</li>
 </ul>
 </li>
 </ul>
@@ -423,7 +423,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/11/19/%E5%A4%9Agoroutine%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9Cdemo/" title="多goroutine协同工作Demo">
+                      <a href="/2021/11/19/%E5%A4%9Agoroutine%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9CDemo/" title="多goroutine协同工作Demo">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">多goroutine协同工作Demo</span>
                         <span class="visible-mobile">Previous</span>

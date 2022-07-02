@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -274,13 +274,17 @@
 <h4 id="通过修改配置文件配置密码"><a href="#通过修改配置文件配置密码" class="headerlink" title="通过修改配置文件配置密码"></a>通过修改配置文件配置密码</h4><p><code>redis.conf</code>配置文件一般是在<code>redis安装包</code>解压后的目录，当然你也可以放在其他位置，比如常用的<code>/etc/redis/redis.conf</code></p>
 <p>通过<code>Vim</code>打开这个文件，使用<code>Vim</code>的查找命令<code>/</code>找到<code>requirepass</code>，将它取消注释，然后删除后面的<code>footbared</code>，改成你的密码。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim redis.conf<br><br><span class="hljs-comment"># 在vim中，按 Shift + : 进入命令行界面，输入 /requirepass ，按 n 查找下一个，找到后取消注释，设置密码。</span><br></code></pre></td></tr></table></figure>
+
 <p>重启<code>redis-server</code>，指定配置文件启动。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">ps -ef | grep redis-server<br><br>kill xxx<br><br>redis-server redis.conf<br></code></pre></td></tr></table></figure>
+
 <p>现在用<code>redis-cli</code>连接<code>redis-server</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">redis-cli -h &lt;IP地址&gt; -p &lt;端口&gt; -a &lt;密码&gt;<br></code></pre></td></tr></table></figure>
+
 <p>具体的<code>redis-cli</code>命令，可以通过<code>redis-cli --help</code>查看。</p>
 <h4 id="临时修改"><a href="#临时修改" class="headerlink" title="临时修改"></a>临时修改</h4><p><code>redis-server</code> 已启动的情况下</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 使用redis-cli连接redis-server</span><br>redis-cli -h IP地址 -p 端口号(默认6379)<br><br><span class="hljs-comment"># 在交互界面输入命令，设置密码</span><br>&gt; config <span class="hljs-built_in">set</span> requirepass areyouok123<br><br><span class="hljs-comment"># 查看设置的密码</span><br>&gt; config get requirepass<br><br><span class="hljs-comment"># 退出redis-cli，重新连接，再次输入命令就提示你要输入密码了</span><br>&gt; config get requirepass<br>(error) NOAUTH Authentication required.<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

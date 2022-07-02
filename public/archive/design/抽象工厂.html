@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Youpeng Cui">
+  <meta name="keywords" content="Linux Go Mac">
+  
+    <meta name="description" content="mofan.life: Youpeng&amp;#39;s Technology Blog">
+  
+  
+  
+  <title>page.title - mofan.life: Youpeng&#39;s Technology Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.mofan.life","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":"e16cbb6ce764a8813654d6c255365079","google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Mofan</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archive
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Category
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tag
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/abouts/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.1)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <p>抽象工厂模式也称为：Abstract Factory</p>
+<h2 id="意图"><a href="#意图" class="headerlink" title="意图"></a>意图</h2><p><strong>抽象工厂模式</strong>是一种创建型设计模式， 它能创建一系列相关的对象， 而无需指定其具体类。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>假设你正在开发一款家具商店模拟器。 你的代码中包括一些类， 用于表示：</p>
+<ol>
+<li>一系列相关产品， 例如 <code>椅子</code>Chair 、  <code>沙发</code>Sofa和 <code>咖啡桌</code>Coffee­Table 。</li>
+<li>系列产品的不同变体。 例如， 你可以使用 <code>现代</code>Modern 、  <code>维多利亚</code>Victorian 、  <code>装饰风艺术</code>Art­Deco等风格生成 <code>椅子</code> 、  <code>沙发</code>和 <code>咖啡桌</code> 。</li>
+</ol>
+<p>你需要设法单独生成每件家具对象， 这样才能确保其风格一致。 如果顾客收到的家具风格不一样， 他们可不会开心。</p>
+<p>此外， 你也不希望在添加新产品或新风格时修改已有代码。 家具供应商对于产品目录的更新非常频繁， 你不会想在每次更新时都去修改核心代码的。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>首先， 抽象工厂模式建议为系列中的每件产品明确声明接口 （例如椅子、 沙发或咖啡桌）。 然后， 确保所有产品变体都继承这些接口。 例如， 所有风格的椅子都实现 <code>椅子</code>接口； 所有风格的咖啡桌都实现 <code>咖啡桌</code>接口， 以此类推。</p>
+<p>接下来， 我们需要声明<em>抽象工厂</em>——包含系列中所有产品构造方法的接口。 例如 <code>create­Chair</code>创建椅子 、  <code>create­Sofa</code>创建沙发和 <code>create­Coffee­Table</code>创建咖啡桌 。 这些方法必须返回<strong>抽象</strong>产品类型， 即我们之前抽取的那些接口：  <code>椅子</code> ，  <code>沙发</code>和 <code>咖啡桌</code>等等。</p>
+<p>那么该如何处理产品变体呢？ 对于系列产品的每个变体， 我们都将基于 <code>抽象工厂</code>接口创建不同的工厂类。 每个工厂类都只能返回特定类别的产品， 例如，  <code>现代家具工厂</code>Modern­Furniture­Factory只能创建 <code>现代椅子</code>Modern­Chair 、  <code>现代沙发</code>Modern­Sofa和 <code>现代咖啡桌</code>Modern­Coffee­Table对象。</p>
+<p>客户端代码可以通过相应的抽象接口调用工厂和产品类。 你无需修改实际客户端代码， 就能更改传递给客户端的工厂类， 也能更改客户端代码接收的产品变体。</p>
+<p>假设客户端想要工厂创建一把椅子。 客户端无需了解工厂类， 也不用管工厂类创建出的椅子类型。 无论是现代风格， 还是维多利亚风格的椅子， 对于客户端来说没有分别， 它只需调用抽象 <code>椅子</code>接口就可以了。 这样一来， 客户端只需知道椅子以某种方式实现了 <code>sit­On</code>坐下方法就足够了。 此外， 无论工厂返回的是何种椅子变体， 它都会和由同一工厂对象创建的沙发或咖啡桌风格一致。</p>
+<p>最后一点说明： 如果客户端仅接触抽象接口， 那么谁来创建实际的工厂对象呢？ 一般情况下， 应用程序会在初始化阶段创建具体工厂对象。 而在此之前， 应用程序必须根据配置文件或环境设定选择工厂类别。</p>
+<h2 id="抽象工厂模式适合的应用场景"><a href="#抽象工厂模式适合的应用场景" class="headerlink" title="抽象工厂模式适合的应用场景"></a>抽象工厂模式适合的应用场景</h2><h4 id="如果代码需要与多个不同系列的相关产品交互，-但是由于无法提前获取相关信息，-或者出于对未来扩展性的考虑，-你不希望代码基于产品的具体类进行构建，-在这种情况下，-你可以使用抽象工厂。"><a href="#如果代码需要与多个不同系列的相关产品交互，-但是由于无法提前获取相关信息，-或者出于对未来扩展性的考虑，-你不希望代码基于产品的具体类进行构建，-在这种情况下，-你可以使用抽象工厂。" class="headerlink" title="如果代码需要与多个不同系列的相关产品交互， 但是由于无法提前获取相关信息， 或者出于对未来扩展性的考虑， 你不希望代码基于产品的具体类进行构建， 在这种情况下， 你可以使用抽象工厂。"></a>如果代码需要与多个不同系列的相关产品交互， 但是由于无法提前获取相关信息， 或者出于对未来扩展性的考虑， 你不希望代码基于产品的具体类进行构建， 在这种情况下， 你可以使用抽象工厂。</h4><p> 抽象工厂为你提供了一个接口， 可用于创建每个系列产品的对象。 只要代码通过该接口创建对象， 那么你就不会生成与应用程序已生成的产品类型不一致的产品。</p>
+<h4 id="如果你有一个基于一组抽象方法的类，-且其主要功能因此变得不明确，-那么在这种情况下可以考虑使用抽象工厂模式。"><a href="#如果你有一个基于一组抽象方法的类，-且其主要功能因此变得不明确，-那么在这种情况下可以考虑使用抽象工厂模式。" class="headerlink" title="如果你有一个基于一组抽象方法的类， 且其主要功能因此变得不明确， 那么在这种情况下可以考虑使用抽象工厂模式。"></a>如果你有一个基于一组<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/factory-method">抽象方法</a>的类， 且其主要功能因此变得不明确， 那么在这种情况下可以考虑使用抽象工厂模式。</h4><p> 在设计良好的程序中， <em>每个类仅负责一件事</em>。 如果一个类与多种类型产品交互， 就可以考虑将工厂方法抽取到独立的工厂类或具备完整功能的抽象工厂类中。</p>
+<h2 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h2><ol>
+<li>以不同的产品类型与产品变体为维度绘制矩阵。</li>
+<li>为所有产品声明抽象产品接口。 然后让所有具体产品类实现这些接口。</li>
+<li>声明抽象工厂接口， 并且在接口中为所有抽象产品提供一组构建方法。</li>
+<li>为每种产品变体实现一个具体工厂类。</li>
+<li>在应用程序中开发初始化代码。 该代码根据应用程序配置或当前环境， 对特定具体工厂类进行初始化。 然后将该工厂对象传递给所有需要创建产品的类。</li>
+<li>找出代码中所有对产品构造函数的直接调用， 将其替换为对工厂对象中相应构建方法的调用。</li>
+</ol>
+<h2 id="抽象工厂模式的优缺点"><a href="#抽象工厂模式的优缺点" class="headerlink" title="抽象工厂模式的优缺点"></a>抽象工厂模式的优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>你可以确保同一工厂生成的产品相互匹配。</li>
+<li>你可以避免客户端和具体产品代码的耦合。</li>
+<li><em>单一职责原则</em>。 你可以将产品生成代码抽取到同一位置， 使得代码易于维护。</li>
+<li><em>开闭原则</em>。 向应用程序中引入新产品变体时， 你无需修改客户端代码。</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>由于采用该模式需要向应用中引入众多接口和类， 代码可能会比之前更加复杂。</li>
+</ul>
+<h2 id="与其他模式之间的关系"><a href="#与其他模式之间的关系" class="headerlink" title="与其他模式之间的关系"></a>与其他模式之间的关系</h2><ul>
+<li>在许多设计工作的初期都会使用<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/factory-method">工厂方法模式</a> （较为简单， 而且可以更方便地通过子类进行定制）， 随后演化为使用<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/abstract-factory">抽象工厂模式</a>、 <a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/prototype">原型模式</a>或<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/builder">生成器模式</a> （更灵活但更加复杂）。</li>
+<li><a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/builder">生成器</a>重点关注如何分步生成复杂对象。 <a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/abstract-factory">抽象工厂</a>专门用于生产一系列相关对象。 <em>抽象工厂</em>会马上返回产品， <em>生成器</em>则允许你在获取产品前执行一些额外构造步骤。</li>
+<li><a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/abstract-factory">抽象工厂模式</a>通常基于一组<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/factory-method">工厂方法</a>， 但你也可以使用<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/prototype">原型模式</a>来生成这些类的方法。</li>
+<li>当只需对客户端代码隐藏子系统创建对象的方式时， 你可以使用<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/abstract-factory">抽象工厂</a>来代替<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/facade">外观模式</a>。</li>
+<li>你可以将<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/abstract-factory">抽象工厂</a>和<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/bridge">桥接模式</a>搭配使用。 如果由<em>桥接</em>定义的抽象只能与特定实现合作， 这一模式搭配就非常有用。 在这种情况下， <em>抽象工厂</em>可以对这些关系进行封装， 并且对客户端代码隐藏其复杂性。</li>
+<li><a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/abstract-factory">抽象工厂</a>、 <a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/builder">生成器</a>和<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/prototype">原型</a>都可以用<a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/singleton">单例模式</a>来实现。</li>
+</ul>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate"></span> <!--  <span id="times"></span> --> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP备2022000091号
+    </a>
+  </span>
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

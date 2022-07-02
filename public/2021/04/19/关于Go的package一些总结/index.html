@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -275,6 +275,7 @@
 <p><code>Go</code>中的<code>package</code>可以简单理解为一个文件夹的名字，但是它又可以和文件夹不同名，但是，在一个文件夹下，只能存在一个同名包，就算这个文件夹下有一个子文件夹，包名也不能和它上一级文件夹下的包名相同。</p>
 <p>比如：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs text">are<br>|<br>|___package you<br>|<br>|___ok<br>	|<br>	|___package me<br></code></pre></td></tr></table></figure>
+
 <p><code>pakcage me</code>和<code>package you</code> 不能同名，同时<code>me</code>也称为<code>you</code>的嵌套包。</p>
 <h3 id="包内变量或函数的对外可见性"><a href="#包内变量或函数的对外可见性" class="headerlink" title="包内变量或函数的对外可见性"></a>包内变量或函数的对外可见性</h3><p>对外可见性指的是一个包内的变量或者方法能不能被其他的包<code>import</code>，<code>Go</code>没有像<code>Java</code>那样使用关键字来对变量或方法的可见性进行约束，而是巧妙的利用了首字母大小写来作区分：<code>首字母大写的变量名或者方法名是对其他包可见的，否则即不可见；首字母小写的变量名或者方法名在同包内可见。</code></p>
 <h3 id="包的命名规范"><a href="#包的命名规范" class="headerlink" title="包的命名规范"></a>包的命名规范</h3><p><code>Go</code>是一门以简洁著称语言，简洁也是它的设计原则，所以，<code>Go</code>官方也鼓励使用简洁的包命名，最好包名全部使用小写而且包名足够简短。尽量避免使用类似<code>under_scores</code>， <code>hy-phens</code>， <code>mixedCaps</code>等形式的命名。</p>

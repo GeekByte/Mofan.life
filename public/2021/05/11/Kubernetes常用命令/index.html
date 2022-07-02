@@ -16,7 +16,7 @@
   <meta name="author" content="Youpeng Cui">
   <meta name="keywords" content="Linux Go Mac">
   
-    <meta name="description" content="查看集群信息 1kubectl cluster-info 获取集群中所有节点 1kubectl get nodes 获取帮助 12345kubectl --helpkubectl get --helpkubectl get nodes --help 部署应用 要提供实例名称和 app 镜像地址 1kubectl create deployment kubernetes-bootcamp --ima">
+    <meta name="description" content="查看集群信息 1kubectl cluster-info  获取集群中所有节点 1kubectl get nodes  获取帮助 12345kubectl --helpkubectl get --helpkubectl get nodes --help  部署应用 要提供实例名称和 app 镜像地址 1kubectl create deployment kubernetes-bootcamp --">
   
   
   
@@ -69,7 +69,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -261,7 +261,7 @@
               <p class="note note-success">
                 
                   
-                    Last updated on 5 months ago
+                    Last updated on 6 months ago
                   
                 
               </p>
@@ -270,17 +270,23 @@
               
               <p><strong>查看集群信息</strong></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl cluster-info<br></code></pre></td></tr></table></figure>
+
 <p><strong>获取集群中所有节点</strong></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl get nodes<br></code></pre></td></tr></table></figure>
+
 <p><strong>获取帮助</strong></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl --<span class="hljs-built_in">help</span><br><br>kubectl get --<span class="hljs-built_in">help</span><br><br>kubectl get nodes --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>部署应用</strong></p>
 <p>要提供实例名称和 app 镜像地址</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1<br></code></pre></td></tr></table></figure>
+
 <p><strong>列出部署的应用</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">kubectl <span class="hljs-builtin-name">get</span> deployments<br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">kubectl <span class="hljs-built_in">get</span> deployments<br></code></pre></td></tr></table></figure>
+
 <p><strong>获取Pod中容器的信息</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl describe pods<br></code></pre></td></tr></table></figure>
+
 <blockquote>
 <p>Pod的定义：一组一个或多个容器，同时定义其使用的资源</p>
 </blockquote>
@@ -289,10 +295,13 @@
 </blockquote>
 <p><strong>获取Pod日志</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl logs $POD_NAME<br></code></pre></td></tr></table></figure>
+
 <p><strong>在Pod中运行命令</strong>(单条命令)</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl exec $POD_NAME -- env<br></code></pre></td></tr></table></figure>
+
 <p><strong>与Pod通过bash交互</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl exec -ti $POD_NAME -- bash<br></code></pre></td></tr></table></figure>
+
 
               
             </div>

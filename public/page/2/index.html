@@ -63,7 +63,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -227,6 +227,135 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/03/24/Linux/%E6%9F%A5%E7%9C%8BCPU%E4%B8%8EGPU%E6%B8%A9%E5%BA%A6/" target="_self">
+          查看CPU与GPU温度
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/03/24/Linux/%E6%9F%A5%E7%9C%8BCPU%E4%B8%8EGPU%E6%B8%A9%E5%BA%A6/" target="_self">
+        <div>
+          
+          查看CPU温度通 lm-sensors 过工具查看： 12345# 安装sudo apt-get install lm-sensors -yyes | sudo sensors-detect# 运行sensors  目前我用的这种方式，其他方式可参考：如何在Ubuntu Linux上获取CPU温度 - 知乎 查看GPU温度1nvidia-smi -q -i 0,1 -d TEMPERATURE
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-24 18:32" pubdate>
+              2022-03-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">#Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/03/24/todo/%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81%E7%9A%84%E5%BA%94%E5%AF%B9%E6%96%B9%E6%B3%95/" target="_self">
+          哈希冲突的应对方法
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2022/03/24/todo/%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81%E7%9A%84%E5%BA%94%E5%AF%B9%E6%96%B9%E6%B3%95/" target="_self">
+        <div>
+          
+          copy from 解决哈希冲突的常用方法分析 - 云+社区 - 腾讯云  1.基本概念哈希算法：根据设定的哈希函数H（key）和处理冲突方法将一组关键字映象到一个有限的地址区间上的算法。也称为散列算法、杂凑算法。  哈希表：数据经过哈希算法之后得到的集合。这样关键字和数据在集合中的位置存在一定的关系，可以根据这种关系快速查询。 非哈希表：与哈希表相对应，集合中的 数据和其存放位置没任何关联关系
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-24 18:27" pubdate>
+              2022-03-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/TODO/" class="category-chain-item">TODO</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/TODO/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/03/24/Linux/LinuxCommand/Linux%E5%91%BD%E4%BB%A4-wc-%E7%BB%9F%E8%AE%A1%E6%96%87%E6%9C%AC%E8%A1%8C%E6%95%B0%E3%80%81%E5%AD%97%E7%AC%A6%E6%95%B0%E7%AD%89/" target="_self">
           Linux命令: wc 统计文本行数、字符数等
         </a>
@@ -298,7 +427,7 @@
       <a class="index-excerpt" href="/2022/03/15/Tools/Git/Git%E5%AF%B9%E6%AF%94%E5%88%86%E6%94%AF%E5%B7%AE%E5%BC%82/" target="_self">
         <div>
           
-          1. 显示出 branch1 和 branch2 中差异的部分1git diff branch1 branch2 --stat 2. 显示指定文件的详细差异1git diff branch1 branch2 &lt;具体文件路径&gt; 3. 显示出所有有差异的文件的详细差异1git diff branch1 branch2 4. 查看 branch1 分支有，而 branch2 中没有的 log
+          1. 显示出 branch1 和 branch2 中差异的部分1git diff branch1 branch2 --stat  2. 显示指定文件的详细差异1git diff branch1 branch2 &lt;具体文件路径&gt;  3. 显示出所有有差异的文件的详细差异1git diff branch1 branch2  4. 查看 branch1 分支有，而 branch2 中没有的
         </div>
       </a>
 
@@ -366,7 +495,7 @@
       <a class="index-excerpt" href="/2022/03/15/Docker/Docker%E9%95%9C%E5%83%8F%E7%9B%B8%E5%85%B3/" target="_self">
         <div>
           
-          将镜像打包成文件或从文件载入镜像镜像打包成文件 1docker save -o &lt;文件名&gt; &lt;待打包镜像&gt; eg: 1docker save -o nps.tar ffdfghdf&#x2F;nps 从文件导入镜像 123docker load --input &lt;文件名&gt;或者docker load &lt; &lt;文件名&gt; eg: 1docker load &amp;lt
+          将镜像打包成文件或从文件载入镜像镜像打包成文件 1docker save -o &lt;文件名&gt; &lt;待打包镜像&gt; eg: 1docker save -o nps.tar ffdfghdf&#x2F;nps  从文件导入镜像 123docker load --input &lt;文件名&gt;或者docker load &lt; &lt;文件名&gt; eg: 1docker load &amp;l
         </div>
       </a>
 
@@ -419,12 +548,12 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/03/10/Mac%E5%88%A0%E9%99%A4launchpad%E9%87%8C%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84%E5%9B%BE%E6%A0%87/" target="_self">
+        <a href="/2022/03/10/problems/Mac%E5%88%A0%E9%99%A4launchpad%E9%87%8C%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84%E5%9B%BE%E6%A0%87/" target="_self">
           Mac删除launchpad里带问号的图标
         </a>
       </h1>
 
-      <a class="index-excerpt" href="/2022/03/10/Mac%E5%88%A0%E9%99%A4launchpad%E9%87%8C%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84%E5%9B%BE%E6%A0%87/" target="_self">
+      <a class="index-excerpt" href="/2022/03/10/problems/Mac%E5%88%A0%E9%99%A4launchpad%E9%87%8C%E5%B8%A6%E9%97%AE%E5%8F%B7%E7%9A%84%E5%9B%BE%E6%A0%87/" target="_self">
         <div>
           
           按住 Option，然后点击图标左上角x号。
@@ -520,12 +649,12 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/02/24/Mac%E9%BC%A0%E6%A0%87%E4%B8%8E%E8%A7%A6%E6%91%B8%E6%9D%BF%E6%89%8B%E5%8A%BF%E4%B8%8D%E5%B7%A5%E4%BD%9C/" target="_self">
+        <a href="/2022/02/24/problems/Mac%E9%BC%A0%E6%A0%87%E4%B8%8E%E8%A7%A6%E6%91%B8%E6%9D%BF%E6%89%8B%E5%8A%BF%E4%B8%8D%E5%B7%A5%E4%BD%9C/" target="_self">
           Mac鼠标与触摸板手势不工作
         </a>
       </h1>
 
-      <a class="index-excerpt" href="/2022/02/24/Mac%E9%BC%A0%E6%A0%87%E4%B8%8E%E8%A7%A6%E6%91%B8%E6%9D%BF%E6%89%8B%E5%8A%BF%E4%B8%8D%E5%B7%A5%E4%BD%9C/" target="_self">
+      <a class="index-excerpt" href="/2022/02/24/problems/Mac%E9%BC%A0%E6%A0%87%E4%B8%8E%E8%A7%A6%E6%91%B8%E6%9D%BF%E6%89%8B%E5%8A%BF%E4%B8%8D%E5%B7%A5%E4%BD%9C/" target="_self">
         <div>
           
           苹果鼠标与触摸板除了简单的移动光标及点击动作正常工作，其他手势都不能工作。 解决：在终端执行：killall Dock 命令可解决。 参考：  3 and 4 Finger Gestures Stopped working i… - Apple Community TrackPad Gesture not working : MacOS
@@ -614,12 +743,12 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/11/19/%E5%A4%9Agoroutine%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9Cdemo/" target="_self">
+        <a href="/2021/11/19/%E5%A4%9Agoroutine%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9CDemo/" target="_self">
           多goroutine协同工作Demo
         </a>
       </h1>
 
-      <a class="index-excerpt" href="/2021/11/19/%E5%A4%9Agoroutine%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9Cdemo/" target="_self">
+      <a class="index-excerpt" href="/2021/11/19/%E5%A4%9Agoroutine%E5%8D%8F%E5%90%8C%E5%B7%A5%E4%BD%9CDemo/" target="_self">
         <div>
           
           在一个长无序slice里查找目标值。思路：将长slice分块，用多个goroutine去找，如果有一个找到就结束goroutine并返回相对下标值 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758package mainimport
@@ -632,144 +761,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2021-11-19 11:49" pubdate>
               2021-11-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%9D%A2%E8%AF%95/" class="category-chain-item">面试</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E9%9D%A2%E8%AF%95/Go/" class="category-chain-item">Go</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Go/">#Go</a>
-            
-              <a href="/tags/%E9%9D%A2%E8%AF%95/">#面试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/18/Go/%E6%95%B0%E7%BB%84/" target="_self">
-          Go 数组与切片
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2021/11/18/Go/%E6%95%B0%E7%BB%84/" target="_self">
-        <div>
-          
-          数组数组是由相同类型的元素的集合组成的数据结构，数组中的元素由一块连续的内存存储，因此可通过索引快速地访问数组中特定的元素。 Go的数组在编译期间初始化，初始化的过程会直接读写内存（如元素的赋值与更新）。数组初始化后无法改变，即数组长度与元素类型不可变。 Go中数组的类型在编译期间确定，类型受元素类型与数组长度影响，只有二者相同才认为是相同类型数组。 Go中数组在编译期间，会根据数组长度决定数组初
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-18 21:01" pubdate>
-              2021-11-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="category-chain-item">编程语言</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/Go/" class="category-chain-item">Go</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Go/">#Go</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/11/18/goroutine%E9%87%8C%E5%8F%91%E7%94%9F%E4%BA%86panic%E4%BC%9A%E6%80%8E%E6%A0%B7/" target="_self">
-          多个goroutine，其中一个发生panic，程序会发生什么
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2021/11/18/goroutine%E9%87%8C%E5%8F%91%E7%94%9F%E4%BA%86panic%E4%BC%9A%E6%80%8E%E6%A0%B7/" target="_self">
-        <div>
-          
-          多个goroutine，其中一个发生panic，程序会发生什么发生panic后，从当前层依次向上执行defer函数，如果在这个过程中被recover捕获该panic，那么程序不会崩溃，否则，待所有defer执行完后，程序崩溃。  以下来自知乎:如果某goroutine在某函数&#x2F;方法F的调用时出现panic，一个被称为”panicking”的过程将被激活。该过程先会调用函数F的defer函数(如果有
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-11-18 19:11" pubdate>
-              2021-11-18
             </time>
           </div>
         

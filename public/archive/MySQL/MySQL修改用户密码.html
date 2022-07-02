@@ -63,7 +63,7 @@
   <script  src="/js/color-schema.js" ></script>
 
   
-<meta name="generator" content="Hexo 5.3.0"></head>
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -219,12 +219,10 @@
 <article class="page-content">
   <h1 id="MySQL修改用户密码"><a href="#MySQL修改用户密码" class="headerlink" title="MySQL修改用户密码"></a>MySQL修改用户密码</h1><ol>
 <li><p>创建一个新密码作为主密码并将旧密码作为次要密码</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ALTER USER &#39;jeffrey&#39;@&#39;localhost&#39;<br>  IDENTIFIED BY &#39;new_password&#39;<br>  RETAIN CURRENT PASSWORD;<br></code></pre></td></tr></table></figure></li>
-<li><p>删除次要密码</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ALTER USER &#39;jeffery&#39;@&#39;localhost&#39; DISCARD OLD PASSWORD;<br></code></pre></td></tr></table></figure>
-
-
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ALTER USER &#x27;jeffrey&#x27;@&#x27;localhost&#x27;<br>  IDENTIFIED BY &#x27;new_password&#x27;<br>  RETAIN CURRENT PASSWORD;<br></code></pre></td></tr></table></figure>
 </li>
+<li><p>删除次要密码</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">ALTER USER &#x27;jeffery&#x27;@&#x27;localhost&#x27; DISCARD OLD PASSWORD;<br></code></pre></td></tr></table></figure></li>
 </ol>
 <p>参考：<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/alter-user.html#alter-user-authentication">MySQL :: MySQL 8.0 Reference Manual :: 13.7.1.1 ALTER USER Statement</a></p>
 <p>可能是第二种方案（未验证）：</p>
