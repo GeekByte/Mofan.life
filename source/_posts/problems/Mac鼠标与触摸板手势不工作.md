@@ -2,6 +2,7 @@
 title: Mac鼠标与触摸板手势不工作
 categories:
   - Problems
+  - Mac
 tags:
   - Mac
 date: 2022-02-24 09:58:29
