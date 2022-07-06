@@ -1,11 +1,10 @@
 ---
 title: 多goroutine协同工作Demo
 categories:
-  - 面试
+  - 编程语言
   - Go
 tags:
   - Go
-  - 面试
 date: 2021-11-19 11:49:53
 ---
 
