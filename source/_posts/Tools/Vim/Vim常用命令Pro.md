@@ -31,6 +31,12 @@ date: 2021-10-25 17:16:04
 - :qa 关闭所有buffer并退出vim，如果有没保存的buffer，会提示
 - :qa! 关闭所有buffer并退出vim，不会保存buffer
 
+### 删除buffer
+**bd**: 关闭列表中的buffer，默认关闭当前buffer, 也可以使用 `bd [N]` 来关闭序号为N的buffer。如果文件有修改，则失败，如果使用 `bd!` 强制关闭，则内容丢失。关闭后的buffer仍能通过 `b[N]` 命令跳转，但不会出现在buffer列表中。
+
+**bw**: 删除buffer，buffer会从列表中消失，且不能通过 `b[N]` 跳转回去。
+
+
 ## 文件操作
 - :pwd 显示当前文档所在路径（显示文档名）
 - :e 重新加载该文档
