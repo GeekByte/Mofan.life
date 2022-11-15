@@ -10,7 +10,7 @@ date: 2022-11-14 19:02:03
 
 Go Map 是采用哈希链表实现，当哈希值冲突时，会把冲突的内容放到链表里面。
 
-Go 提供了 delete() 方法删除 key，这种方式的删除不会释放内存，仅仅将 key 的关联值标记为 empty。
+Go 提供了 delete() 方法删除 key，这种方式的删除不会释放内存，仅仅将 key 的关联值标记为 EmptyOne, [Go1.19](https://github.com/golang/go/blob/master/src/runtime/map.go#L731L803)。
 如何真正的释放 Map 的内存，将 Map 设置为 nil，然后等待 GC 就行了。
 
 下面代码展示了不同方式删除 Map 时内存的变化：
