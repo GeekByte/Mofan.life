@@ -11,10 +11,9 @@ date: 2022-12-18 20:41:54
 
 [传送门](https://support.apple.com/zh-cn/guide/notes/apd46c25187e/mac)
 
-在 Mac 上的“备忘录” App <img src="https://help.apple.com/assets/63599A6D01A15536BE52CD0C/63599A7401A15536BE52CD14/zh_CN/c3bda5a343373a897a1b6c805a212dab.png" alt="img" style="zoom: 33%;" /> 中，你可以使用键盘快捷键和手势快速完成许多任务。请参阅下方的快捷键和手势，以及在[菜单栏](https://support.apple.com/zh-cn/guide/notes/aside/glos33eb8abd/4.9/mac/13.0)的“备忘录”菜单中显示的键盘快捷键。在 App 菜单中，键盘快捷键[显示为符号](https://support.apple.com/zh-cn/guide/mac-help/cpmh0011)。
+在 Mac 上的“备忘录” App 中，你可以使用键盘快捷键和手势快速完成许多任务。请参阅下方的快捷键和手势，以及在[菜单栏](https://support.apple.com/zh-cn/guide/notes/aside/glos33eb8abd/4.9/mac/13.0)的“备忘录”菜单中显示的键盘快捷键。在 App 菜单中，键盘快捷键[显示为符号](https://support.apple.com/zh-cn/guide/mac-help/cpmh0011)。
 
 *【注】*App 中的键盘快捷键因你在 Mac 上使用的语言和键盘布局而异。如果下方的快捷键未按预期正常工作，请在菜单栏的 App 菜单中查找以查看正确的快捷键。你还可以[使用虚拟键盘](https://support.apple.com/zh-cn/guide/mac-help/mchlp1015)查看当前键盘布局，称为*输入法*。
-
 
 
 ## 通用
