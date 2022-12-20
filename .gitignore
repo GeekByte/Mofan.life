@@ -4,3 +4,5 @@
 ./node_modules
 ./public
 _posts/.DS_Store
+public/
+node_modules/
