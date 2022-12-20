@@ -6,7 +6,6 @@ tags:
   - tcpdump
 date: 2022-12-20 15:47:21
 ---
-
 ## tcpdump 参数指南
 
 ```txt
@@ -336,6 +335,7 @@ reading from file webserver.pcap, link-type LINUX_SLL (Linux cooked)
 13:36:58.022089 IP 54.204.39.132.80 > 192.168.122.98.39378: Flags [F.], seq 643, ack 114, win 57, options [nop,nop,TS val 526053025 ecr 135708327], length 0
 ```
 
+可以将 pcap 文件导入可视化工具（如 WireShark）进行分析。
 
 
 参考：
