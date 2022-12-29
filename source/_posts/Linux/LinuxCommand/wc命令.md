@@ -1,10 +1,11 @@
 ---
-title: 'Linux命令: wc 统计文本行数、字符数等'
+title: 'Linux wc 命令'
 categories:
   - Linux
+  - Linux Command
 tags:
   - Linux
-  - Linux命令
+  - Linux Command
 date: 2022-03-24 18:05:40
 ---
 

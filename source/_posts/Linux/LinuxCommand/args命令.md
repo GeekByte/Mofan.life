@@ -1,9 +1,11 @@
 ---
-title: 'Linux命令:args 将标准输入转为命令行参数'
+title: 'Linux args 命令'
 categories:
   - Linux
+  - Linux Command
 tags:
   - Linux
+  - Linux Command
 date: 2022-03-26 18:54:38
 ---
 
