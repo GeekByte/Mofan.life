@@ -1,14 +1,10 @@
 ---
 title: Linux修改时区
 categories:
-
   - Linux
-
 tags:
-
   - Linux
-  date: 2022-12-20 11:07:00
-
+date: 2022-12-20 11:07:00
 ---
 
 ## 方式一：使用 timedatectl
