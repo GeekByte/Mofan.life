@@ -1,11 +1,11 @@
 ---
-title: Vim错误
+title: Vim 删除奇数行或偶数行
 categories:
   - Tools
   - Vim
 tags:
   - Vim
-date: 2022-03-02 18:06:18
+date: 2023-03-02 18:06:18
 ---
 
 > Vim 操作奇偶数行的思路一般是先匹配两行，然后删除奇数行或偶数行，或合并两行。
