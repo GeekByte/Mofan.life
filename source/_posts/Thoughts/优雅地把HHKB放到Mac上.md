@@ -1,10 +1,9 @@
 ---
 title: 优雅地把HHKB放到Mac上
 categories:
-  - TODO 
-  - 杂文 
+  - 思考
 tags:
-  - 杂文 
+  - 思考
 date: 2022-04-27 16:06:15
 ---
 
