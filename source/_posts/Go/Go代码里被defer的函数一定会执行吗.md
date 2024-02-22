@@ -1,5 +1,5 @@
 ---
-title: 题1:Go代码里被defer的函数一定会执行吗?
+title: Go代码里被defer的函数一定会执行吗?
 categories:
   - 编程语言
   - Go
