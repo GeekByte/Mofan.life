@@ -155,7 +155,11 @@ replace with bar (y/n/a/q/l/^E/^Y)?
 :s/\<foo\>/bar/g
 ```
 
+搜索词也可以使用 [very magic](https://vim.fandom.com/wiki/Simplifying_regular_expressions_using_magic_and_no-magic) 模式
 
+```shell
+:/\v<foo>
+```
 
 ## 搜索历史
 
