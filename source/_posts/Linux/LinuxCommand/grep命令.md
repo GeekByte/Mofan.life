@@ -31,6 +31,8 @@ date: 2022-12-27 16:04:42
 | -r   | 递归搜索                                                     |
 | -F   | 匹配固定字符串的内容，不支持正则                             |
 | -q   | 禁止输出任何结果，以退出状态表示搜索是否成功，0: 匹配到，1: 没匹配到，2: 有错误 |
+| -e   | 允许指定一个或多个模式进行搜索。你可以多次使用 `-e` 选项来指定多个模式 |
+| -E   | -e 的拓展，可以使用更多的元字符和语法来描述模式，例如使用`+`来匹配一个或多个重复的字符，使用`|`来表示逻辑或等等 |
 
 
 
@@ -170,4 +172,170 @@ grep -c ^$ anaconda-ks.cfg
 
 6
 ```
+
+
+
+## AND, OR, NOT 运算符实例
+
+**问题：**您能否通过一些示例解释如何在 Unix grep 命令中使用 OR、AND 和 NOT 运算符？
+
+**答：**在 grep 中，我们有与 OR 和 NOT 运算符等效的选项。没有 grep AND 运算符。但是，您可以使用模式模拟 AND。下面提到的示例将帮助您了解如何在 Linux grep 命令中使用 OR、AND 和 NOT。
+
+以下示例中使用了以下employee.txt 文件。
+
+```javascript
+$ cat employee.txt
+100  Thomas  Manager    Sales       $5,000
+200  Jason   Developer  Technology  $5,500
+300  Raj     Sysadmin   Technology  $7,000
+400  Nisha   Manager    Marketing   $9,500
+500  Randy   Manager    Sales       $6,000
+```
+
+### OR 运算符
+
+对 grep OR 使用以下 4 种方法中的任何一种。
+
+#### 1.Grep OR 使用 \|
+
+如果使用不带任何选项的 grep 命令，则需要使用 \| 为 or 条件分隔多个模式。
+
+```javascript
+grep 'pattern1\|pattern2' filename
+```
+
+例如，从employee.txt 文件中grep Tech 或Sales。如果管道前面没有反斜杠，以下将不起作用。
+
+```javascript
+$ grep 'Tech\|Sales' employee.txt
+100  Thomas  Manager    Sales       $5,000
+200  Jason   Developer  Technology  $5,500
+300  Raj     Sysadmin   Technology  $7,000
+500  Randy   Manager    Sales       $6,000
+```
+
+#### 2. Grep OR使用 -E
+
+grep -E 选项用于扩展正则表达式。如果您使用带有 -E 选项的 grep 命令，您只需要使用 | 为 or 条件分隔多个模式。
+
+```javascript
+grep -E 'pattern1|pattern2' filename
+```
+
+例如，从employee.txt 文件中grep Tech 或Sales。只需使用 | 分隔多个 OR 模式。
+
+```javascript
+$ grep -E 'Tech|Sales' employee.txt
+100  Thomas  Manager    Sales       $5,000
+200  Jason   Developer  Technology  $5,500
+300  Raj     Sysadmin   Technology  $7,000
+500  Randy   Manager    Sales       $6,000
+```
+
+#### 3. Grep OR 使用 egrep
+
+egrep 与'grep -E' 完全相同。因此，使用 egrep（不带任何选项）并为 or 条件分隔多个模式。
+
+```javascript
+egrep 'pattern1|pattern2' filename
+```
+
+例如，从employee.txt 文件中grep Tech 或Sales。只需使用 | 分隔多个 OR 模式。
+
+```javascript
+$ egrep 'Tech|Sales' employee.txt
+100  Thomas  Manager    Sales       $5,000
+200  Jason   Developer  Technology  $5,500
+300  Raj     Sysadmin   Technology  $7,000
+500  Randy   Manager    Sales       $6,000
+```
+
+#### 4. Grep OR 使用 grep -e
+
+使用 grep -e 选项，您只能传递一个参数。在单个命令中使用多个 -e 选项可为 or 条件使用多个模式。
+
+```javascript
+grep -e pattern1 -e pattern2 filename
+```
+
+例如，从employee.txt 文件中grep Tech 或Sales。将多个 -e 选项与 grep 一起用于多个 OR 模式。
+
+```javascript
+$ grep -e Tech -e Sales employee.txt
+100  Thomas  Manager    Sales       $5,000
+200  Jason   Developer  Technology  $5,500
+300  Raj     Sysadmin   Technology  $7,000
+500  Randy   Manager    Sales       $6,000
+```
+
+### AND 运算符
+
+#### 1. Grep AND 使用 -E 'pattern1.*pattern2'
+
+grep 中没有 AND 运算符。但是，您可以使用 grep -E 选项模拟 AND。
+
+```javascript
+grep -E 'pattern1.*pattern2' filename
+grep -E 'pattern1.*pattern2|pattern2.*pattern1' filename
+```
+
+下面的示例将 grep 所有包含“Dev”和“Tech”的行（以相同的顺序）。
+
+```javascript
+$ grep -E 'Dev.*Tech' employee.txt
+200  Jason   Developer  Technology  $5,500
+```
+
+以下示例将 grep 中包含“Manager”和“Sales”的所有行（以任何顺序）。
+
+```javascript
+$ grep -E 'Manager.*Sales|Sales.*Manager'employee.txt
+```
+
+#### 2. Grep AND 使用多个 grep 命令
+
+您还可以使用多个由管道分隔的 grep 命令来模拟 AND 场景。
+
+```javascript
+grep -E 'pattern1' filename | grep -E 'pattern2'
+```
+
+下面的示例将 grep 在同一行中同时包含“Manager”和“Sales”的所有行。
+
+```javascript
+$ grep Manager employee.txt | grep Sales
+100  Thomas  Manager    Sales       $5,000
+500  Randy   Manager    Sales       $6,000
+```
+
+### NOT 运算符
+
+#### 1. Grep NOT使用 grep -v
+
+使用 grep -v 可以模拟 NOT 条件。**-v 选项用于反转匹配**。即它匹配除给定模式之外的所有行。
+
+```javascript
+grep -v 'pattern1' filename
+```
+
+例如，显示除包含关键字“Sales”之外的所有行。
+
+```javascript
+$ grep -v Sales employee.txt
+200  Jason   Developer  Technology  $5,500
+300  Raj     Sysadmin   Technology  $7,000
+400  Nisha   Manager    Marketing   $9,500
+```
+
+您还可以将 NOT 与其他运算符结合以获得一些强大的组合。
+
+例如，以下将显示经理或开发人员（机器人忽略销售）。
+
+```javascript
+$ egrep 'Manager|Developer' employee.txt | grep -v Sales
+200  Jason   Developer  Technology  $5,500
+400  Nisha   Manager    Marketing   $9,500
+```
+
+
 
