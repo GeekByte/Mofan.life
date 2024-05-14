@@ -6,5 +6,4 @@
 _posts/.DS_Store
 public/
 node_modules/
-themes/*
 db.json
