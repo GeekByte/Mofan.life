@@ -2,8 +2,9 @@
 ./.DS_Store
 ./_posts/.DS_Store
 ./node_modules
-./public
 _posts/.DS_Store
-public/
+public
+public/*
 node_modules/
 db.json
+yarn.lock
