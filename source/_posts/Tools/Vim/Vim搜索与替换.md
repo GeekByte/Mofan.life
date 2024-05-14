@@ -10,6 +10,21 @@ date: 2022-05-23 11:30:33
 
 原文：[Find and Replace in Vim / Vi | Linuxize](https://linuxize.com/post/vim-find-replace/)
 
+
+
+## ignorecase 与 smartcase
+
+Vim 中的 `ignorecase` 用于设置大小写敏感，它将在所有搜索、替换命令中生效。 在 normal 模式中 `:set ignorecase` 设置为不敏感；`:set noignorecase` 设置为敏感。 `ignorecase` 属于选项变量，因此也可以通过 `&` 来设置，例如：`:let &ignorecase=1`。 把冒号去掉后可以直接放到 .vimrc 文件里持久生效。
+
+> 更多 Vim 变量赋值和引用的细节，可参考这篇文章：[Vim 中的变量赋值、引用与作用域](https://harttle.land/2017/01/30/variables-in-vim.html)。
+
+开启 `ignorecase` 之后还可以把 `smartcase` 也打开（后者要求前者出于开启状态）， Vim 会启用智能模式：
+
+- 在你输入的模式中包含大写时，启用大小写敏感模式；
+- 在你输入的模式中只有小写时，启用大小写不敏感模式。
+
+
+
 ## 常规使用
 
 vim查找与替换的命令结构：
